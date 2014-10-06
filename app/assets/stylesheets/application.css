@@ -13,3 +13,166 @@
  *= require_tree .
  *= require_self
  */
+
+
+/**
+ * Site Wide Styles
+ **/
+
+body {
+    margin: 60px auto 0;
+
+    background-color: #FFFFFF;
+
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.centerer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+
+
+
+/**
+ * Header Styles
+ **/
+
+#header {
+    position: fixed;
+    top: 0px;
+
+    width: 100%;
+    height: 60px;
+
+    background-color: rgba(255,255,255,0.80);
+
+    font-size: 14px;
+}
+
+#header .centerer {
+    width: 800px;
+}
+
+#header .main-logo {
+    display: inline-block;
+    
+    width: 200px;
+    height: 50px;
+
+    margin: 5px 0;
+
+    background-color: #A0CAFF;
+}
+
+#header .primary-nav {
+    display: inline-block;
+    float: right;
+
+    height: 20px;
+
+    margin: 20px 10px;
+}
+
+#header .account-management {
+    display: inline-block;
+    float: right;
+
+    height: 20px;
+
+    margin: 20px 10px;
+}
+
+
+/**
+ * Notification Styles
+ **/
+
+#notifications {
+    width: 100%;
+}
+
+#notifications .notice {
+    width: 100%;
+
+    background-color: #E7EB87;
+
+    font-size: 14px;
+    text-align: center;
+}
+#notifications .notice .centerer {
+    width: 800px;
+
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+#notifications .alert {
+    width: 100%;
+
+    background-color: #EB8787;
+
+    font-size: 14px;
+    text-align: center;
+}
+#notifications .alert .centerer {
+    width: 800px;
+
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+
+
+/**
+ * Page Content Styles
+ **/
+
+#page-content {
+    width: 100%;
+}
+
+
+
+
+
+
+
+/**
+ * Footer Styles
+ **/
+
+#footer {
+    width: 100%;
+    height: 40px;
+    
+    background-color: rgba(200,200,200,0.90);
+
+    font-size: 12px;
+}
+
+#footer .centerer {
+    width: 800px;
+}
+
+#footer .copyright {
+    display: inline-block;
+
+    height: 12px;
+    
+    margin: 14px 0;
+}
+
+#footer .links {
+    display: inline-block;
+    float: right;
+
+    height: 12px;
+    
+    margin: 14px 10px;
+}
+

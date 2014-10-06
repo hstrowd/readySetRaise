@@ -80,4 +80,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Required for devise gem.
+  config.action_mailer.default_url_options = { host: 'readySetRaise.com', port: 80 }
 end
