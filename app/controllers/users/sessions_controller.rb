@@ -1,3 +1,4 @@
+# NOTE: This class is not currently being used. To enable it, update the routes config to add it to the users scope.
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
 
