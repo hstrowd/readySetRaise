@@ -38,6 +38,9 @@ gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Test support tools
+gem "rspec-rails", :group => [:development, :test]
+
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 

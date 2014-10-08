@@ -1,0 +1,8 @@
+<div id="org-index">
+  <% for org in @orgs %>
+    <div id="org-<% org.id %>">
+      <div class="name"><% org.name %></div>
+      <div class="description"><% org.description %></div>
+    </div>
+  <% end %>
+</div>

@@ -27,6 +27,9 @@ body {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.clear {
+    clear: both;
+}
 .centerer {
     margin-left: auto;
     margin-right: auto;
