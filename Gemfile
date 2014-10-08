@@ -40,6 +40,7 @@ gem 'devise'
 
 # Test support tools
 gem "rspec-rails", :group => [:development, :test]
+gem "factory_girl_rails", "~> 4.0", :group => [:development, :test]
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
