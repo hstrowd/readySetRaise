@@ -1,0 +1,43 @@
+<div class="org-form">
+  <%= form_for(@org) do |f| %>
+    <% if @org.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@org.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+        <ul>
+          <% @org.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field name">
+      <div class="label">
+        <%= f.label :name %>
+      </div>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field description">
+      <div class="label">
+        <%= f.label :description %>
+      </div>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field homepage-url">
+      <div class="label">
+        <%= f.label :homepage_url %>
+      </div>
+      <%= f.text_field :homepage_url %>
+    </div>
+    <div class="field donation-url">
+      <div class="label">
+        <%= f.label :donation_url %>
+      </div>
+      <%= f.text_field :donation_url %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Create Organization", class: :submit %>
+    </div>
+  <% end %>
+</div>

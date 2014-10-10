@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ReadySetRaise</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>ReadySetRaise</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 
-  <div id="header">
-    <div class="centerer">
-      <div class="main-logo">LOGO</div>
-      <%= render "layouts/account_management" %>
-      <%= render "layouts/primary_navigation" %>
-    </div>
-  </div>
+    <%= yield(:head) %>
+  </head>
+  <body>
 
-  <div id="notifications">
-    <div class="notice">
-      <% if notice %>
-        <div class="centerer"><%= notice %></div>
-      <% end %>
-    </div>
-    <div class="alert">
-      <% if alert %>
-        <div class="centerer"><%= alert %></div>
-      <% end %>
-    </div>
-  </div>
+    <div id="page-container">
+      <div id="header">
+        <div class="centerer">
+          <div class="main-logo">LOGO</div>
+          <%= render "layouts/account_management" %>
+          <%= render "layouts/primary_navigation" %>
+        </div>
+      </div>
 
-  <div id="page-content">
-    <%= yield %>
-  </div>
+      <div id="page-content">
+        <div id="notifications">
+          <div class="notice">
+            <% if notice %>
+              <div class="centerer"><%= notice %></div>
+            <% end %>
+            <!-- Add JS to close the notification after a few seconds. -->
+          </div>
+          <div class="alert">
+            <% if alert %>
+              <div class="centerer"><%= alert %></div>
+            <% end %>
+          </div>
+        </div>
 
-  <div id="footer">
-    <div class="centerer">
-      <div class="copyright">Copyright © 2014 Harrison Strowd | All rights reserved.</div>
-      <div class="links">
-        <a href="http://www.hstrowd.com">hstrowd.com</a> | 
-        <a href="http://www.strowd.com">strowd.com</a> | 
-        <a href="http://www.sarrison.com">sarrison.com</a>
+        <%= yield %>
+      </div>
+
+      <div id="footer">
+        <div class="centerer">
+          <div class="copyright">Copyright © 2014 Harrison Strowd | All rights reserved.</div>
+          <div class="links">
+            <a href="http://www.hstrowd.com" class="first">hstrowd.com</a> | 
+            <a href="http://www.strowd.com">strowd.com</a> | 
+            <a href="http://www.sarrison.com">sarrison.com</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
-</body>
+  </body>
 </html>

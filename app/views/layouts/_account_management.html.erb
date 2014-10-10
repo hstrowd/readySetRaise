@@ -1,9 +1,15 @@
 <div class="account-management">
   <% if current_user %>
-    Welcome back, <%= link_to current_user.first_name, edit_registration_path(:user) %></a>
-    <%= link_to "Logout", destroy_session_path(:user), method: :delete %>
+
+    <%= link_to destroy_session_path(:user), method: :delete do %>
+      <div class="btn">Logout</div>
+    <% end %>
+
   <% else %>
-    <%= link_to "Login", new_session_path(:user) %>
-    <%= link_to "Sign Up", new_registration_path(:user) %>
+
+    <%= link_to new_session_path(:user) do %>
+      <div class="btn">Login</div>
+    <% end %>
+
   <% end %>
 </div>

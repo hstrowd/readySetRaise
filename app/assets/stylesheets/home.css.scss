@@ -13,10 +13,90 @@
     text-align: center;
 }
 
+
+
+/**
+ *  First Banner
+ **/
+
 #home .section.one {
     height: 400px;
 
     background-color: #A3EB87;
+
+    color: #FFFFFF;
+}
+
+#home .section.one .text-carousel .slick-arrow {
+    margin: 10px;
+}
+#home .section.one .text-carousel .slick-arrow:hover {
+    cursor: pointer;
+    opacity: 0.4;
+}
+#home .section.one .body .text-container {
+    float: left;
+    
+    width: 390px;
+
+    margin: 30px 0;
+}
+#home .section.one .body .text {
+    display: table;
+
+    width: 100%;
+}
+#home .section.one .body .text .vert-align {
+    display: table-cell;
+
+    height: 270px;
+
+    vertical-align: middle;
+}
+#home .section.one .heading {
+    margin: 25px;
+
+    font-size: 28px;
+}
+#home .section.one .content {
+    margin: 25px;
+}
+#home .section.one .img-carousel {
+    float: right;
+    
+    width: 500px;
+    height: 330px;
+
+    margin: 25px;
+}
+#home .section.one .body .img-carousel .img-container {
+    width: 500px;
+    height: 330px;
+
+    vertical-align: middle;
+    text-align: center;
+}
+#home .section.one .body .img-carousel .img-container .vert-align {
+    display: inline-block;
+
+    height: 100%;
+
+    vertical-align: middle;
+}
+#home .section.one .body .img-carousel .img-container img {
+    display: inline-block;
+    
+    max-width: 100%;
+    max-height: 100%;
+
+    vertical-align: middle;
+
+    margin: 0 auto;
+}
+
+#home .section.one .img-carousel .slick-dots li button:before {
+    color: #FFFFFF;
+    font-size: 18px;
 }
 
 #home .section.two {

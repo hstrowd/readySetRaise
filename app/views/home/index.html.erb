@@ -1,7 +1,59 @@
 <div id="home">
   <div class="section one">
     <div class="body">
-      We're striving to put the 'FUN' back into fundraising by adding some friendly competition to the mix.
+      <div class="text-container text-carousel">
+        <div class="text">
+          <div class="vert-align">
+            <div class="heading">
+              Putting the FUN back in fundraising
+            </div>
+            <div class="content">
+              Add some friendly competition to your next fundraising event and you'll find it not only helps you reach your fundraising goal but also brings more joy to your donors.
+            </div>
+          </div>
+        </div>
+        <div class="text">
+          <div class="vert-align">
+            <div class="heading">
+              Getting people excited about fundraising
+            </div>
+            <div class="content">
+              By bringing together an interconnected group of friends and making a game out your organization's fundraiser, you'll find that people get more involved and caught up in the excitement of the event.
+            </div>
+          </div>
+        </div>
+        <div class="text">
+          <div class="vert-align">
+            <div class="heading">
+              Aligning attendee's interests with your event goals
+            </div>
+            <div class="content">
+              Regardless of what we'd like to believe, people attend fundraisers to enjoy good company, food, and/or entertainment. By centering your event around a friendly competition, you provide all of this at the same time focusing the attention on raising support for your cause. 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="img-carousel">
+        <div>
+          <div class="img-container">
+            <div class="vert-align"></div>
+            <%= image_tag "home-competition.png" %>
+          </div>
+        </div>
+        <div>
+          <div class="img-container">
+            <div class="vert-align"></div>
+            <%= image_tag "home-excitement.png" %>
+          </div>
+        </div>
+        <div>
+          <div class="img-container">
+            <div class="vert-align"></div>
+            <%= image_tag "home-cooperation.png" %>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
     </div>
   </div>
   <div class="section two">
@@ -14,4 +66,28 @@
       Bring some real spirit to your next fundraiser... the spirit of competition.
     </div>
   </div>
+
+  <script>
+    $(document).ready(function(){
+      $('#home .section.one .img-carousel').slick({
+        autoplay: true,
+        autoplaySpeed: 8000,
+        arrows: false,
+        asNavFor: '#home .section.one .text-carousel',
+        speed: 1000,
+        dots: true
+      });
+      $('#home .section.one .text-carousel').slick({
+        autoplay: true,
+        autoplaySpeed: 8000,
+        fade: true,
+        arrows: true,
+        asNavFor: '#home .section.one .img-carousel',
+        speed: 1000,
+        prevArrow: '<%= image_tag "leftArrow.png", class: 'slick-arrow prev' %>',
+        nextArrow: '<%= image_tag "rightArrow.png", class: 'slick-arrow next' %>'
+      });
+    });
+  </script>
+
 </div>

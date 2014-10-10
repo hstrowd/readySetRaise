@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require slick
  *= require_self
  */
 
@@ -19,12 +20,18 @@
  * Site Wide Styles
  **/
 
+html {
+    height: 100%;
+}
 body {
-    margin: 60px auto 0;
+    
+    height: 100%;
 
-    background-color: #FFFFFF;
+    margin: 0;
+    
+    background-color: #DDDDDD;
 
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
 
 .clear {
@@ -36,6 +43,12 @@ body {
 }
 
 
+
+#page-container {
+    position: relative;
+    
+    min-height: 100%;
+}
 
 
 
@@ -52,8 +65,12 @@ body {
     width: 100%;
     height: 60px;
 
+    /* Required to be above the Slick carousels. */
+    z-index: 99;
+    
     background-color: rgba(255,255,255,0.80);
 
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
     font-size: 14px;
 }
 
@@ -80,16 +97,62 @@ body {
 
     margin: 20px 10px;
 }
+#header .primary-nav a {
+    margin: 5px;
+    
+    color: #666666;
+    text-decoration: none;
+}
+#header .primary-nav a:hover {
+    color: #92D279;
+    text-decoration: underline;
+}
 
 #header .account-management {
     display: inline-block;
     float: right;
 
-    height: 20px;
+    width: 70px;
+    height: 40px;
 
-    margin: 20px 10px;
+    margin: 10px 5px;
 }
+#header .account-management .current-user {
+    display: inline-block;
+    
+    width: 60px
+}
+#header .account-management .current-user .user-welcome {
+    font-size: 10px;
+}
+#header .account-management .btn {
+    display: inline-block;
+    
+    width: 58px;
+    padding: 6px 4px;
+    margin: 3px 5px;
 
+    border: 1px solid #888888;
+    border-radius: 5px;
+
+    text-align: center;
+}
+#header .account-management .btn:hover {
+    display: inline-block;
+    
+    padding: 5px 4px;
+    margin: 3px 4px;
+
+    background-color: #A3EB87;
+    border: 2px solid #AAAAAA;
+}
+#header .account-management a {
+    color: #666666;
+    text-decoration: none;
+}
+#header .account-management a:hover {
+    color: #444444;
+}
 
 /**
  * Notification Styles
@@ -104,6 +167,7 @@ body {
 
     background-color: #E7EB87;
 
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
     font-size: 14px;
     text-align: center;
 }
@@ -137,6 +201,9 @@ body {
 
 #page-content {
     width: 100%;
+
+    margin: 60px auto 0;
+    padding-bottom: 40px;
 }
 
 
@@ -150,11 +217,16 @@ body {
  **/
 
 #footer {
+    position: absolute;
+    bottom: 0;
+    
     width: 100%;
     height: 40px;
     
-    background-color: rgba(200,200,200,0.90);
+    background-color: rgba(100,100,100,0.90);
 
+    color: #CCCCCC;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
     font-size: 12px;
 }
 
@@ -178,4 +250,12 @@ body {
     
     margin: 14px 10px;
 }
-
+#footer .links a {
+    margin: 2px;
+    
+    color: #FFFFFF;
+    text-decoration: none;
+}
+#footer .links a:hover {
+    text-decoration: underline;
+}
