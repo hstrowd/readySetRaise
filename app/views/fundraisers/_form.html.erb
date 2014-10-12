@@ -1,33 +1,63 @@
-<%= form_for(@fundraiser) do |f| %>
-  <% if @fundraiser.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@fundraiser.errors.count, "error") %> prohibited this fundraiser from being saved:</h2>
+<div class="fundraiser-form">
+  <%= form_for(@fundraiser) do |f| %>
 
-      <ul>
-      <% @fundraiser.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <!-- TODO: Add a dropdown menu to select the organization if this user has multiple available. -->
+
+    <div class="field title">
+      <div class="label">
+        <%= f.label :title %>
+      </div>
+      <%= f.text_field :title, autofocus: true %>
+      <% if !@fundraiser.errors[:title].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:title][0].humanize %></div>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :pledge_start_time %><br>
-    <%= f.datetime_select :pledge_start_time %>
-  </div>
-  <div class="field">
-    <%= f.label :pledge_end_time %><br>
-    <%= f.datetime_select :pledge_end_time %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="field description">
+      <div class="label">
+        <%= f.label :description %>
+      </div>
+      <%= f.text_field :description, autofocus: true %>
+      <% if !@fundraiser.errors[:description].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:description][0].humanize %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field pledge-start-time">
+      <div class="label">
+        <%= f.label :pledge_start_time %>
+      </div>
+      <%= f.text_field :pledge_start_time, autofocus: true %>
+      <% if !@fundraiser.errors[:pledge_start_time].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:pledge_start_time][0].humanize %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field pledge-end-time">
+      <div class="label">
+        <%= f.label :pledge_end_time %>
+      </div>
+      <%= f.text_field :pledge_end_time, autofocus: true %>
+      <% if !@fundraiser.errors[:pledge_end_time].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:pledge_end_time][0].humanize %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Schedule Fundraiser", class: :submit %>
+    </div>
+
+  <% end %>
+</div>

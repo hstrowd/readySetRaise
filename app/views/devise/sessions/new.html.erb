@@ -5,43 +5,43 @@
       <div class="description">Haven't created an account yet? Get started at the <%= link_to "Account Setup", new_registration_path(:user) %> page. Forgot your password? Recover it with the <%= link_to "Password Reset", new_password_path(:user) %> utility.</div>
     </div>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <div class="field email">
-      <div class="label">
-        <%= f.label :email %>
-      </div>
-      <%= f.text_field :email, autofocus: true %>
-      <% if !resource.errors[:email].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= resource.errors[:email][0].humanize %></div>
+      <div class="field email">
+        <div class="label">
+          <%= f.label :email %>
         </div>
-      <% end %>
-    </div>
-
-    <div class="field password">
-      <div class="label">
-        <%= f.label :password %>
+        <%= f.text_field :email, autofocus: true %>
+        <% if !resource.errors[:email].empty? %>
+          <div class="error">
+            <div class="icon"></div>
+            <div class="reason"><%= resource.errors[:email][0].humanize %></div>
+          </div>
+        <% end %>
       </div>
-      <%= f.text_field :password, autofocus: true %>
-      <% if !resource.errors[:password].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= resource.errors[:password][0].humanize %></div>
+
+      <div class="field password">
+        <div class="label">
+          <%= f.label :password %>
         </div>
-      <% end %>
-    </div>
-
-    <div class="field remember-me">
-      <div class="label">
+        <%= f.text_field :password, autofocus: true %>
+        <% if !resource.errors[:password].empty? %>
+          <div class="error">
+            <div class="icon"></div>
+            <div class="reason"><%= resource.errors[:password][0].humanize %></div>
+          </div>
+        <% end %>
       </div>
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
 
-    <div><%= f.submit "Log In", class: :submit  %></div>
-  <% end %>
+      <div class="field remember-me">
+        <div class="label">
+        </div>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+
+      <div><%= f.submit "Log In", class: :submit  %></div>
+    <% end %>
 
   </div>
 </div>
