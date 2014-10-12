@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   resources :organizations
   resources :fundraisers
+  resources :events
+  resources :teams
+  resources :pledges
 
   devise_for :users, :controllers => { registrations: 'users/registrations' }
 
