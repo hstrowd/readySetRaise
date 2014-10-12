@@ -1,33 +1,61 @@
-<%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+<div class="event-form">
+  <%= form_for(@event) do |f| %>
 
-      <ul>
-      <% @event.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div class="field title">
+      <div class="label">
+        <%= f.label :title %>
+      </div>
+      <%= f.text_field :title, autofocus: true %>
+      <% if !@fundraiser.errors[:title].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:title][0].humanize %></div>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
-  </div>
-  <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="field description">
+      <div class="label">
+        <%= f.label :description %>
+      </div>
+      <%= f.text_field :description, autofocus: true %>
+      <% if !@fundraiser.errors[:description].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:description][0].humanize %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field start-time">
+      <div class="label">
+        <%= f.label :start_time %>
+      </div>
+      <%= f.text_field :start_time, autofocus: true %>
+      <% if !@fundraiser.errors[:start_time].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:start_time][0].humanize %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="field end-time">
+      <div class="label">
+        <%= f.label :end_time %>
+      </div>
+      <%= f.text_field :end_time, autofocus: true %>
+      <% if !@fundraiser.errors[:end_time].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:end_time][0].humanize %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit class: :submit %>
+    </div>
+
+  <% end %>
+</div>

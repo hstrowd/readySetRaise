@@ -1,29 +1,35 @@
-<%= form_for(@pledge) do |f| %>
-  <% if @pledge.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pledge.errors.count, "error") %> prohibited this pledge from being saved:</h2>
+<div class="pledge-form">
+  <%= form_for(@pledge) do |f| %>
 
-      <ul>
-      <% @pledge.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div class="field team">
+      <div class="label">
+        <%= f.label :team %>
+      </div>
+      <!-- TODO: Update this to be a dropdown. -->
+      <%= f.text_field :team, autofocus: true %>
+      <% if !@fundraiser.errors[:team].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:team][0].humanize %></div>
+        </div>
       <% end %>
-      </ul>
+    </div>
+
+    <div class="field amount">
+      <div class="label">
+        <%= f.label :amount %>
+      </div>
+      <%= f.number_field :amount, autofocus: true %>
+      <% if !@fundraiser.errors[:amount].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:amount][0].humanize %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :donor %><br>
-    <%= f.text_field :donor %>
-  </div>
-  <div class="field">
-    <%= f.label :team %><br>
-    <%= f.text_field :team %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.text_field :amount %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

@@ -67,6 +67,7 @@ a:hover {
  * Application Setup Form Styles
  **/
 
+/* TODO: Rename this to just form. */
 .setup-form .centerer {
     width: 940px;
 }

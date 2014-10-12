@@ -1,25 +1,35 @@
-<%= form_for(@team) do |f| %>
-  <% if @team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+<div class="team-form">
+  <%= form_for(@team) do |f| %>
 
-      <ul>
-      <% @team.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div class="field name">
+      <div class="label">
+        <%= f.label :name %>
+      </div>
+      <%= f.text_field :name, autofocus: true %>
+      <% if !@fundraiser.errors[:name].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:name][0].humanize %></div>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :pledge_target %><br>
-    <%= f.text_field :pledge_target %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="field pledge-target">
+      <div class="label">
+        <%= f.label :pledge_target %>
+      </div>
+      <%= f.text_field :pledge_target, autofocus: true %>
+      <% if !@fundraiser.errors[:pledge_target].empty? %>
+        <div class="error">
+          <div class="icon"></div>
+          <div class="reason"><%= @fundraiser.errors[:pledge_target][0].humanize %></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit class: :submit %>
+    </div>
+
+  <% end %>
+</div>
