@@ -1,0 +1,30 @@
+<div class="login">
+  <div class="align-helper">
+    <%= form_for(:user, url: session_path(:user)) do |f| %>
+      <div class="field">
+        <div class="label">
+          <%= f.label :email %>
+        </div>
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <div class="label">
+          <%= f.label :password %><br />
+        </div>
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= f.check_box :remember_me %> 
+        <div class="label">
+          <%= f.label :remember_me %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Submit", class: :submit %>
+      </div>
+    <% end %>
+  </div>
+</div>

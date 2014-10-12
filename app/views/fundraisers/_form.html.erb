@@ -1,0 +1,33 @@
+<%= form_for(@fundraiser) do |f| %>
+  <% if @fundraiser.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fundraiser.errors.count, "error") %> prohibited this fundraiser from being saved:</h2>
+
+      <ul>
+      <% @fundraiser.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :pledge_start_time %><br>
+    <%= f.datetime_select :pledge_start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :pledge_end_time %><br>
+    <%= f.datetime_select :pledge_end_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

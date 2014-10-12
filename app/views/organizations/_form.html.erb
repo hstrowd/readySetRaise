@@ -17,24 +17,44 @@
         <%= f.label :name %>
       </div>
       <%= f.text_field :name %>
+      <% if @org.errors[:name] %>
+        <div class="error">
+          <% @org.errors[:name][0] %>
+        </div>
+      <% end %>
     </div>
     <div class="field description">
       <div class="label">
         <%= f.label :description %>
       </div>
       <%= f.text_area :description %>
+      <% if @org.errors[:description] %>
+        <div class="error">
+          <% @org.errors[:description][0] %>
+        </div>
+      <% end %>
     </div>
     <div class="field homepage-url">
       <div class="label">
         <%= f.label :homepage_url %>
       </div>
       <%= f.text_field :homepage_url %>
+      <% if @org.errors[:homepage_url] %>
+        <div class="error">
+          <% @org.errors[:homepage_url][0] %>
+        </div>
+      <% end %>
     </div>
     <div class="field donation-url">
       <div class="label">
         <%= f.label :donation_url %>
       </div>
       <%= f.text_field :donation_url %>
+      <% if @org.errors[:donation_url] %>
+        <div class="error">
+          <% @org.errors[:donation_url][0] %>
+        </div>
+      <% end %>
     </div>
     <div class="actions">
       <%= f.submit "Create Organization", class: :submit %>

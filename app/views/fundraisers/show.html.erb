@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @fundraiser.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @fundraiser.description %>
+</p>
+
+<p>
+  <strong>Pledge start time:</strong>
+  <%= @fundraiser.pledge_start_time %>
+</p>
+
+<p>
+  <strong>Pledge end time:</strong>
+  <%= @fundraiser.pledge_end_time %>
+</p>
+
+<%= link_to 'Edit', edit_fundraiser_path(@fundraiser) %> |
+<%= link_to 'Back', fundraisers_path %>

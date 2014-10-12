@@ -34,6 +34,10 @@ body {
     font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
 
+/**
+ * Site Wide Styles
+ **/
+
 .clear {
     clear: both;
 }
@@ -42,13 +46,161 @@ body {
     margin-right: auto;
 }
 
-
-
 #page-container {
     position: relative;
     
     min-height: 100%;
 }
+
+a {
+    color: #3861E2;
+    text-decoration: none;
+}
+a:hover {
+    color: #7294FD;
+    text-decoration: underline;
+}
+
+
+
+/**
+ * Application Setup Form Styles
+ **/
+
+.setup-form .centerer {
+    width: 940px;
+}
+
+.setup-form .instructions {
+    width: 800px;
+}
+.setup-form .instructions .title {
+    margin: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+.setup-form .instructions .description {
+    margin: 10px 20px;
+}
+
+.setup-form form {
+    margin: 20px 0;
+}
+.setup-form .field {
+    margin: 10px 50px;
+
+    vertical-align: middle;
+}
+.setup-form .field .label {
+    display: inline-block;
+    
+    width: 150px;
+
+    margin-right: 15px;
+
+    color: #444444;
+    font-size: 18px;
+    
+    vertical-align: middle;
+    text-align: right;
+}
+.setup-form .field .label .help-text {
+    font-size: 12px;
+}
+.setup-form .field .field_with_errors {
+    display: inline-block;
+
+    vertical-align: middle;
+}
+.setup-form .field input {
+    width: 300px;
+
+    padding: 5px;
+
+    vertical-align: middle;
+}
+.setup-form .field .field_with_errors input {
+    border-color: #EB8787;
+    background-color: #FFBDBD;
+}
+.setup-form .field textarea {
+    width: 300px;
+    max-width: 469px;
+    height: 50px;
+    max-height: 200px;
+
+    padding: 5px;
+
+    vertical-align: middle;
+
+    font-size: 12px;
+}
+.setup-form .field .error {
+    display: inline-block;
+
+    height: 32px;
+    
+    vertical-align: middle;
+}
+.setup-form .field .error .icon {
+    display: inline-block;
+
+    width: 10px;
+    height: 10px;
+    
+    padding: 3px;
+    margin: 8px 2px;
+
+    background-image: url(error.gif); 
+    
+    vertical-align: middle;
+}
+.setup-form .field .error .reason {
+    display: none;
+
+    max-width: 324px;
+
+    padding: 2px;
+    margin: 3px 0;
+
+    border: 1px solid #EB8787;
+    border-radius: 4px;
+    background-color: #FFBDBD;
+
+    vertical-align: top;
+}
+.setup-form .field .error:hover .reason {
+    display: inline-block;
+}
+
+.setup-form submit {
+    width: 535px;
+}
+.setup-form input.submit {
+    display: inherit;
+    
+    height: 40px;
+    width: 240px;
+    
+    padding: 6px 4px;
+    margin: 20px 170px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #888888;
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+.setup-form input.submit:hover {
+    padding: 5px 4px;
+
+    background-color: #A3EB87;
+    border: 2px solid #AAAAAA;
+}
+
+
 
 
 
@@ -63,7 +215,6 @@ body {
     top: 0px;
 
     width: 100%;
-    height: 60px;
 
     /* Required to be above the Slick carousels. */
     z-index: 99;
@@ -76,6 +227,7 @@ body {
 
 #header .centerer {
     width: 800px;
+    height: 60px;
 }
 
 #header .main-logo {
@@ -154,6 +306,64 @@ body {
     color: #444444;
 }
 
+#header .login {
+    display: none;
+    
+    height: 31px;
+
+    background-color: #A3EB87;
+
+    font-size: 12px;
+}
+#header .login .align-helper {
+    width: 800px;
+
+    margin: 0 auto;
+
+    text-align:right;
+}
+
+#header .login .field {
+    display:inline-block;
+
+    margin: 4px 5px;
+}
+#header .login .field .label {
+    display:inline-block;
+
+    margin: 0 3px;
+}
+#header .login input {
+    display: inline-block;
+
+    padding: 3px;
+}
+
+#header .login .actions {
+    display:inline-block;
+}
+#header .login .actions input.submit {
+    display: inline-block;
+    
+    width: 48px;
+    height: 26px
+    padding: 3px 2px;
+    margin: 1px 2px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #888888;
+    border-radius: 5px;
+
+    text-align: center;
+}
+#header .login .actions input.submit:hover {
+    background-color: #A0CAFF;
+    border: 1px solid #666666;
+}
+
+
+
+
 /**
  * Notification Styles
  **/
@@ -202,7 +412,8 @@ body {
 #page-content {
     width: 100%;
 
-    margin: 60px auto 0;
+    margin: 59px auto 0;
+    padding: 1px;  /* Prevents margins from collapsing. */
     padding-bottom: 40px;
 }
 

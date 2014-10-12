@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, only: [:create]
 
   def index
     @orgs = Organization.all
@@ -17,12 +17,18 @@ class OrganizationsController < ApplicationController
   end
 
   def new
+    if !current_user
+      # TODO: Mark this session as wanting to create an organization
+      redirect_to new_registration_path(:user)
+      return
+    end
     @org = Organization.new
   end
 
   def create
     @org = Organization.new(params[:organization])
     if @org.save
+      # TODO: Redirect them to creating an event
       redirect_to @org
     else
       render :new
