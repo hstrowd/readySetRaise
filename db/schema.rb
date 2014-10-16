@@ -11,29 +11,80 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011030724) do
+ActiveRecord::Schema.define(version: 20141012181452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "fundraiser_id", null: false
+    t.integer  "user_id",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["fundraiser_id"], name: "index_events_on_fundraiser_id", using: :btree
 
   create_table "fundraisers", force: true do |t|
     t.string   "title",             null: false
     t.string   "description",       null: false
     t.datetime "pledge_start_time", null: false
     t.datetime "pledge_end_time",   null: false
+    t.integer  "organization_id",   null: false
+    t.integer  "user_id",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "fundraisers", ["organization_id"], name: "index_fundraisers_on_organization_id", using: :btree
+
+  create_table "organization_members", id: false, force: true do |t|
+    t.integer "organization_id", null: false
+    t.integer "user_id",         null: false
+  end
+
   create_table "organizations", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "homepage_url"
-    t.boolean  "is_verified"
+    t.string   "name",                         null: false
+    t.string   "url_key",                      null: false
+    t.text     "description",                  null: false
+    t.string   "homepage_url",                 null: false
+    t.boolean  "is_verified",  default: false, null: false
     t.string   "donation_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "organizations", ["url_key"], name: "index_organizations_on_url_key", unique: true, using: :btree
+
+  create_table "pledges", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.float    "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pledges", ["team_id"], name: "index_pledges_on_team_id", using: :btree
+  add_index "pledges", ["user_id"], name: "index_pledges_on_user_id", using: :btree
+
+  create_table "team_members", id: false, force: true do |t|
+    t.integer "team_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.float    "pledge_target"
+    t.integer  "event_id",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams", ["event_id"], name: "index_teams_on_event_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

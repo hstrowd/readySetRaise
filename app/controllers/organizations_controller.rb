@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
+  before_action :organization_params, only: [:create, :update]
 
   def index
     @orgs = Organization.all
@@ -26,13 +27,19 @@ class OrganizationsController < ApplicationController
   end
 
   def create
-    @org = Organization.new(params[:organization])
+    @org = Organization.new(organization_params)
+    @org.is_verified = false
     if @org.save
-      # TODO: Redirect them to creating an event
-      redirect_to @org
+      redirect_to new_fundraiser_path
     else
       render :new
     end
+  end
+
+  private
+
+  def organization_params
+    params.require(:organization).permit(:name, :description, :url_key, :homepage_url, :donation_url)
   end
 
 end

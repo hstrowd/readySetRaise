@@ -23,13 +23,19 @@ class FundraisersController < ApplicationController
   end
 
   def create
-    @fundraiser = Fundraiser.new(params[:fundraiser])
+    @fundraiser = Fundraiser.new(fundraiser_params)
     if @fundraiser.save
       # TODO: Redirect them to creating an event
       redirect_to @fundraiser
     else
       render :new
     end
+  end
+
+  private
+
+  def fundraiser_params
+    params.require(:fundraiser).permit(:title, :description, :pledge_start_time, :pledge_end_time)
   end
 
 end

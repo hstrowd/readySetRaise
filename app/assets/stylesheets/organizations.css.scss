@@ -10,6 +10,14 @@
 #org-new .progress-indicator {
     height: 1px;
 }
+
 .org-form .field.name input {
     font-size: 16px;
+}
+.org-form .field .info .variable {
+    display: inline-block;
+
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-weight: bold;
+    font-style: italic;
 }

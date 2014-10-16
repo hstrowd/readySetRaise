@@ -1,3 +1,59 @@
 // Place all the styles related to the Fundraisers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#new-fundraiser form .pledge-start-time #pledge_start_date {
+    width: 150px;
+}
+#new-fundraiser form .pledge-end-time #pledge_end_date {
+    width: 150px;
+}
+#new-fundraiser form .pledge-end-time #pledge_end_time {
+    width: 114px;
+}
+
+div.ui-datepicker{
+ font-size: 11px;
+}
+
+#new-fundraiser form .custom-combobox {
+    position: relative;
+    display: inline-block;
+    margin-right: 25px
+}
+#new-fundraiser form .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+}
+#new-fundraiser form .custom-combobox-input {
+    width: 82px;
+
+    margin: 0;
+    padding: 5px 10px;
+
+    font-size: 12px;
+}
+#new-fundraiser form .field_with_errors .custom-combobox-input {
+    background-image: none;
+}
+#new-fundraiser form .custom-combobox a.ui-button {
+    width: 23px;
+    background: #FFFFFF;
+    border: 1px solid #AAAAAA;
+}
+#new-fundraiser form .custom-combobox a.ui-button:hover {
+    border: 1px solid #666666;
+}
+#new-fundraiser form .field_with_errors .custom-combobox a.ui-button {
+    border-color: #EB8787;
+    background-color: #FFBDBD;
+}
+
+ul.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: scroll;
+    font-size: 12px;
+}

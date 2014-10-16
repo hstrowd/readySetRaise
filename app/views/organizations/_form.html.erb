@@ -1,49 +1,43 @@
 <div class="org-form">
   <%= form_for(@org) do |f| %>
-    <div class="field name">
-      <div class="label">
-        <%= f.label :name %>
-      </div>
-      <%= f.text_field :name %>
-      <% if @org.errors[:name] %>
-        <div class="error">
-          <% @org.errors[:name][0] %>
-        </div>
-      <% end %>
-    </div>
-    <div class="field description">
-      <div class="label">
-        <%= f.label :description %>
-      </div>
+
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @org, 
+                 attr: :name
+               }) %>
+    <% content_for 'description_field' do %>
       <%= f.text_area :description %>
-      <% if @org.errors[:description] %>
-        <div class="error">
-          <% @org.errors[:description][0] %>
-        </div>
-      <% end %>
-    </div>
-    <div class="field homepage-url">
-      <div class="label">
-        <%= f.label :homepage_url %>
-      </div>
-      <%= f.text_field :homepage_url %>
-      <% if @org.errors[:homepage_url] %>
-        <div class="error">
-          <% @org.errors[:homepage_url][0] %>
-        </div>
-      <% end %>
-    </div>
-    <div class="field donation-url">
-      <div class="label">
-        <%= f.label :donation_url %>
-      </div>
-      <%= f.text_field :donation_url %>
-      <% if @org.errors[:donation_url] %>
-        <div class="error">
-          <% @org.errors[:donation_url][0] %>
-        </div>
-      <% end %>
-    </div>
+    <% end %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @org, 
+                 attr: :description
+               }) %>
+    <!-- TODO: Add client side validation. -->
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @org, 
+                 field_label: :unique_key, 
+                 attr: :url_key, 
+                 info: 'Used in URLs (e.g. https://readySetRaise.com/<div class="variable">unique-key</div>/).' 
+               }) %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @org, 
+                 attr: :homepage_url
+               }) %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @org, 
+                 attr: :donation_url
+               }) %>
+
     <div class="actions">
       <%= f.submit "Create Organization", class: :submit %>
     </div>

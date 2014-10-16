@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require slick
+ *= require jquery-ui
  *= require_self
  */
 
@@ -124,6 +125,10 @@ a:hover {
     border-color: #EB8787;
     background-color: #FFBDBD;
 }
+.setup-form .field .field_with_errors textarea {
+    border-color: #EB8787;
+    background-color: #FFBDBD;
+}
 .setup-form .field textarea {
     width: 300px;
     max-width: 469px;
@@ -135,6 +140,28 @@ a:hover {
     vertical-align: middle;
 
     font-size: 12px;
+}
+.setup-form .field .info {
+    display: inline-block;
+
+    height: 32px;
+
+    font-size: 12px;
+    
+    vertical-align: middle;
+}
+.setup-form .field .info .icon {
+    display: inline-block;
+
+    width: 10px;
+    height: 10px;
+    
+    padding: 3px;
+    margin: 8px 2px;
+
+    background-image: url(info.png); 
+    
+    vertical-align: middle;
 }
 .setup-form .field .error {
     display: inline-block;

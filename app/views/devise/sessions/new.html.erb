@@ -24,7 +24,7 @@
         <div class="label">
           <%= f.label :password %>
         </div>
-        <%= f.text_field :password, autofocus: true %>
+        <%= f.password_field :password, autofocus: true %>
         <% if !resource.errors[:password].empty? %>
           <div class="error">
             <div class="icon"></div>
