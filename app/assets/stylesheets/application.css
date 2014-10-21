@@ -163,6 +163,19 @@ a:hover {
     
     vertical-align: middle;
 }
+.setup-form .field .info .description {
+    display: none;
+
+    max-width: 324px;
+
+    padding: 2px;
+    margin: 7px 0;
+
+    vertical-align: top;
+}
+.setup-form .field .info:hover .description {
+    display: inline-block;
+}
 .setup-form .field .error {
     display: inline-block;
 

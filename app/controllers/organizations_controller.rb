@@ -28,8 +28,12 @@ class OrganizationsController < ApplicationController
 
   def create
     @org = Organization.new(organization_params)
+    @org.creator = current_user
     @org.is_verified = false
     if @org.save
+      # Make the current user a member.
+      @org.members << current_user
+
       redirect_to new_fundraiser_path
     else
       render :new

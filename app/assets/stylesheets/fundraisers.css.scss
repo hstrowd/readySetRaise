@@ -2,14 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#new-fundraiser form .pledge-start-time #pledge_start_date {
+#new-fundraiser form .pledge-start-time #date_pledge_start {
     width: 150px;
 }
-#new-fundraiser form .pledge-end-time #pledge_end_date {
+#new-fundraiser form .pledge-start-time .custom-combobox-input {
+    width: 82px;
+}
+#new-fundraiser form .pledge-end-time #date_pledge_end {
     width: 150px;
 }
-#new-fundraiser form .pledge-end-time #pledge_end_time {
-    width: 114px;
+#new-fundraiser form .pledge-end-time .custom-combobox-input {
+    width: 82px;
+}
+
+#new-fundraiser form .organization .custom-combobox-input {
+    width: 268px;
 }
 
 div.ui-datepicker{
@@ -29,8 +36,6 @@ div.ui-datepicker{
     padding: 0;
 }
 #new-fundraiser form .custom-combobox-input {
-    width: 82px;
-
     margin: 0;
     padding: 5px 10px;
 

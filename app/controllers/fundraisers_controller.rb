@@ -17,17 +17,26 @@ class FundraisersController < ApplicationController
   end
 
   def new
-    # TODO: Lookp the organizations for just this user.
-    @orgs = Organization.all
+    # Lookp the organizations for this user.
+    @organizations = current_user.organizations
+    if @organizations.empty?
+      redirect_to new_organization_path
+    end
+
     @fundraiser = Fundraiser.new
   end
 
   def create
     @fundraiser = Fundraiser.new(fundraiser_params)
+    @fundraiser.creator = current_user
     if @fundraiser.save
       # TODO: Redirect them to creating an event
       redirect_to @fundraiser
     else
+      @organizations = current_user.organizations
+      if @organizations.empty?
+        redirect_to new_organization_path
+      end
       render :new
     end
   end
@@ -35,7 +44,17 @@ class FundraisersController < ApplicationController
   private
 
   def fundraiser_params
-    params.require(:fundraiser).permit(:title, :description, :pledge_start_time, :pledge_end_time)
+    input_params = params.require(:fundraiser).permit(:title, :description, :organization_id, :pledge_start_time, :pledge_end_time)
+
+    # Parse date values.
+    if input_params.has_key?(:pledge_start_time)
+      input_params[:pledge_start_time] = DateTime.strptime(input_params[:pledge_start_time], "%m/%d/%Y %I:%M %p")
+    end
+    if input_params.has_key?(:pledge_end_time)
+      input_params[:pledge_end_time] = DateTime.strptime(input_params[:pledge_end_time], "%m/%d/%Y %I:%M %p")
+    end
+
+    input_params
   end
 
 end

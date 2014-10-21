@@ -31,20 +31,20 @@ ActiveRecord::Schema.define(version: 20141012181452) do
 
   create_table "fundraisers", force: true do |t|
     t.string   "title",             null: false
-    t.string   "description",       null: false
+    t.string   "description"
     t.datetime "pledge_start_time", null: false
     t.datetime "pledge_end_time",   null: false
     t.integer  "organization_id",   null: false
-    t.integer  "user_id",           null: false
+    t.integer  "creator_id",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "fundraisers", ["organization_id"], name: "index_fundraisers_on_organization_id", using: :btree
 
-  create_table "organization_members", id: false, force: true do |t|
+  create_table "organization_memberships", id: false, force: true do |t|
     t.integer "organization_id", null: false
-    t.integer "user_id",         null: false
+    t.integer "member_id",       null: false
   end
 
   create_table "organizations", force: true do |t|
@@ -54,10 +54,12 @@ ActiveRecord::Schema.define(version: 20141012181452) do
     t.string   "homepage_url",                 null: false
     t.boolean  "is_verified",  default: false, null: false
     t.string   "donation_url"
+    t.integer  "creator_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "organizations", ["creator_id"], name: "index_organizations_on_creator_id", using: :btree
   add_index "organizations", ["url_key"], name: "index_organizations_on_url_key", unique: true, using: :btree
 
   create_table "pledges", force: true do |t|
