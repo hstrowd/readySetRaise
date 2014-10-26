@@ -14,6 +14,11 @@
  *= require slick
  *= require jquery-ui
  *= require_self
+ *
+ *= depend_on_asset "info.png"
+ *= depend_on_asset "error.gif"
+ *= depend_on_asset "logo.png"
+ *= depend_on_asset "bg-texture.png"
  */
 
 
@@ -158,7 +163,7 @@ a:hover {
     padding: 3px;
     margin: 8px 2px;
 
-    background-image: url(info.png); 
+    background-image: url('<%= asset_path("info.png") %>'); 
     
     vertical-align: middle;
 }
@@ -178,7 +183,7 @@ a:hover {
     padding: 3px;
     margin: 8px 2px;
 
-    background-image: url(error.gif); 
+    background-image: url('<%= asset_path("error.gif") %>'); 
     
     vertical-align: middle;
 }
@@ -265,7 +270,7 @@ a:hover {
 
     margin: 5px 0;
 
-    background-image: url(logo-small.png);
+    background-image: url('<%= asset_path("logo-small.png"); %>');
 }
 
 #header .primary-nav {
@@ -443,7 +448,7 @@ a:hover {
     padding: 1px;  /* Prevents margins from collapsing. */
     padding-bottom: 40px;
 
-    background-image: url('bg-texture.png');
+    background-image: url('<%= asset_path("bg-texture.png"); %>');
 }
 
 
