@@ -86,8 +86,7 @@ RSpec.describe Users::RegistrationsController do
     describe "when not logged in" do
       it "redirects to the login page" do
         get :edit
-        # TODO: Find a more maintainable way to assert this redirect location.
-        expect(response).to redirect_to('/users/sign_in')
+        expect(response).to redirect_to user_session_path
       end
     end
   end
