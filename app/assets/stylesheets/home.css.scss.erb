@@ -1,11 +1,13 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+//= depend_on_asset "bg-texture.png"
 
 #home .section {
     width: 100%;
 
-    background-image: url('bg-texture.png');
+    background-image: url('<%= asset_path("bg-texture.png"); %>');
 }
 #home .section .body {
     width: 940px;
