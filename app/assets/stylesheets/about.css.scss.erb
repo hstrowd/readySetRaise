@@ -1,0 +1,84 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+//= depend_on_asset "bg-texture.png"
+
+
+#about-us .section {
+    width: 100%;
+
+    background-image: url('<%= asset_path("bg-texture.png"); %>');
+}
+#about-us .section .body {
+    width: 940px;
+    margin: 0 auto;
+    padding: 10px;
+
+    text-align: center;
+
+    color: #444444;
+}
+#about-us .section .title {
+    margin: 10px 0;
+    
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 24px;
+    color: #000000;
+}
+#about-us .section .image {
+    display: inline-block;
+
+    width: 360px;
+    vertical-align: middle;
+
+    margin: auto 0;
+    padding: 20px;
+}
+#about-us .section .content {
+    display: inline-block;
+
+    width: 500px;
+    vertical-align: middle;
+}
+
+
+
+
+#about-us .section.service {
+    background-color: #A0CAFF;
+}
+
+#about-us .section.vision {
+    background-color: #A3EB87;
+}
+
+#about-us .section.team .member {
+    margin: 20px 0;
+    
+    text-align: left;
+}
+#about-us .section.team .member .pic {
+    display: inline-block;
+
+    width: 200px;
+
+    vertical-align: top;
+}
+#about-us .section.team .member .pic img {
+    box-shadow: 4px 4px 10px #444444;
+}
+#about-us .section.team .member .personal-details {
+    display: inline-block;
+
+    width: 600px;
+
+    vertical-align: top;
+}
+#about-us .section.team .member .personal-details .name {
+    margin: 5px 15px;
+
+    color: #59A73B;
+    font-size: 16px;
+    font-weight: bold;
+}

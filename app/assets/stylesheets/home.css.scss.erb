@@ -1,0 +1,266 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+//= depend_on_asset "bg-texture.png"
+
+#home .section {
+    width: 100%;
+
+    background-image: url('<%= asset_path("bg-texture.png"); %>');
+}
+#home .section .body {
+    width: 940px;
+    margin: 0 auto;
+    padding: 10px;
+
+    text-align: center;
+}
+
+
+
+/**
+ *  First Banner
+ **/
+
+#home .section.pitch {
+    height: 400px;
+
+    background-color: #A3EB87;
+
+    color: #FFFFFF;
+}
+
+#home .section.pitch .text-carousel .slick-arrow {
+    margin: 10px;
+}
+#home .section.pitch .text-carousel .slick-arrow:hover {
+    cursor: pointer;
+    opacity: 0.4;
+}
+#home .section.pitch .body .text-container {
+    float: left;
+    
+    width: 390px;
+
+    margin: 30px 0;
+}
+#home .section.pitch .body .text {
+    display: table;
+
+    width: 100%;
+}
+#home .section.pitch .body .text .vert-align {
+    display: table-cell;
+
+    height: 270px;
+
+    vertical-align: middle;
+}
+#home .section.pitch .heading {
+    margin: 25px;
+
+    font-size: 28px;
+}
+#home .section.pitch .content {
+    margin: 25px;
+}
+#home .section.pitch .img-carousel {
+    float: right;
+    
+    width: 500px;
+    height: 330px;
+
+    margin: 25px;
+}
+#home .section.pitch .body .img-carousel .img-container {
+    width: 500px;
+    height: 330px;
+
+    vertical-align: middle;
+    text-align: center;
+}
+#home .section.pitch .body .img-carousel .img-container .vert-align {
+    display: inline-block;
+
+    height: 100%;
+
+    vertical-align: middle;
+}
+#home .section.pitch .body .img-carousel .img-container img {
+    display: inline-block;
+    
+    max-width: 100%;
+    max-height: 100%;
+
+    vertical-align: middle;
+
+    margin: 0 auto;
+}
+
+#home .section.pitch .img-carousel .slick-dots li button:before {
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+
+
+
+#home .section.method .title {
+    margin: 10px auto;
+
+    color: #5F97DE;
+    font-size: 28px;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+#home .section.method .outline {
+    display: inline-block;
+    
+    width: 200px;
+
+    margin: 0 10px;
+    vertical-align: top;
+}
+#home .section.method .outline .step {
+    margin: 25px 0;
+}
+#home .section.method .outline .title {
+    margin: 3px 10px;
+
+    color: #59A73B;
+    font-size: 14px;
+}
+#home .section.method .outline .title .horiz-line {
+    display: inline-block;
+    
+    width: 40px;
+    height: 8px;
+
+    margin: 0 3px;
+    
+    border-bottom: 1px solid #AAAAAA;
+}
+#home .section.method .outline .title .horiz-line.left {
+    float: left;
+}
+#home .section.method .outline .title .horiz-line.right {
+    float: right;
+}
+#home .section.method .outline .pic {
+    width: 120px;
+    height: 80px;
+
+    margin: 0 auto;
+
+    box-shadow: 4px 4px 10px #AAAAAA;
+
+    cursor: pointer;
+}
+#home .section.method .outline .pic img {
+    width: 100%;
+    height: 100%;
+
+    margin: 0 auto;
+}
+
+#home .section.method .steps {
+    display: inline-block;
+
+    width: 600px;
+    height: 580px;
+
+    vertical-align: top;
+    overflow: hidden;
+}
+
+#home .section.method .steps .step {
+    position: relative;
+
+    height: 580px;
+
+    opacity: 0.0;
+}
+#home .section.method .steps .step.plan {
+    opacity: 1.0;
+}
+#home .section.method .steps .step.recruit {
+    top: -590px;
+}
+#home .section.method .steps .step.host {
+    top: -1180px;
+}
+#home .section.method .steps .step.follow-up {
+    top: -1770px;
+}
+
+#home .section.method .steps .step .title {
+    color: #59A73B;
+    font-size: 20px;
+}
+#home .section.method .steps .step .description .action {
+    margin: 15px;
+
+    text-align: left;
+}
+#home .section.method .steps .step .description .action .title {
+    margin: 5px 15px;
+    
+    color: #5F97DE;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+
+
+#home .section.get-started {
+    height: 200px;
+
+    overflow: hidden;
+
+    background-color: #A0CAFF;
+}
+#home .section.get-started .hook {
+    width: 440px;
+
+    margin: 20px auto;
+    
+    font-size: 22px;
+    color: #444444;
+}
+#home .section.get-started .coming-soon {
+    width: 360px;
+
+    margin: 20px auto;
+    
+    font-size: 24px;
+    font-weight: bold;
+}
+#home .section.get-started a {
+        text-decoration: none;
+}
+#home .section.get-started .btn {
+    width: 200px;
+    height: 30px;
+
+    margin: 20px auto;
+    padding: 10px;
+
+    background-color: #DDDDDD;
+    border: 2px solid #777777;
+    border-radius: 8px;
+
+    color: #4982CB;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+#home .section.get-started .btn:hover {
+    background-color: #A3EB87;
+
+    border-color: #555555;
+    
+    color: #3272C3;
+}

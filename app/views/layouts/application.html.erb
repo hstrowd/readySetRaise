@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReadySetRaise</title>
+    <title>TeamRaising.org - A new concept for competitive, team-based fundraising.</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
 
     <%= yield(:head) %>
@@ -13,8 +14,10 @@
     <div id="page-container">
       <div id="header">
         <div class="centerer">
-          <div class="main-logo">LOGO</div>
+          <div class="main-logo"></div>
+<!--
           <%= render "layouts/account_management" %>
+-->
           <%= render "layouts/primary_navigation" %>
         </div>
         <!-- The login form should span the width of the page. -->
