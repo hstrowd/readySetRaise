@@ -1,6 +1,5 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
-  before_action :organization_params, only: [:create, :update]
 
   def index
     @orgs = Organization.all

@@ -10,11 +10,13 @@ RSpec.describe OrganizationsController do
 
   describe "GET new" do
     it "renders the new template" do
-      @current_user = create(:user)
-      sign_in @current_user
+      current_user = create(:user)
+      sign_in current_user
 
       get :new
-      expect(response).to render_template("new")
+
+      expect(assigns(:org)).to be_a_new(Organization)
+      expect(response).to render_template(:new)
     end
 
     it "redirects to sign up if user not signed in" do
@@ -30,44 +32,39 @@ RSpec.describe OrganizationsController do
     end
 
     it "re-renders the new record form if the submission is invalid" do
-      @current_user = create(:user)
-      sign_in @current_user
+      current_user = create(:user)
+      sign_in current_user
 
-      # TODO: Look into other ways of accomplishing this.
-      expect(Organization.find_by_name('Test Organization')).to be_nil
+      expect {
+        post :create, organization: {
+          name: nil,
+          description: 'A test organization.',
+          url_key: 'test-org',
+          homepage_url: 'http://www.test-org.com/',
+          donation_url: 'http://www.test-org.com/donate/'
+        }
+      }.to_not change{ Organization.count }
 
-      post :create, organization: {
-        name: nil,
-        description: 'A test organization.',
-        url_key: 'test-org',
-        homepage_url: 'http://www.test-org.com/',
-        donation_url: 'http://www.test-org.com/donate/'
-      }
-      expect(response).to render_template('new')
-
-      # TODO: figure out how to assert this.
-      #expect(subject.org.errors.count).to be_gt(0)
-
-      expect(Organization.find_by_name('Test Organization')).to be_nil
+      expect(response).to render_template(:new)
+      expect(assigns(:org).errors.count).to be > 0
     end
 
     it "creates a new record" do
-      @current_user = create(:user)
-      sign_in @current_user
+      current_user = create(:user)
+      sign_in current_user
 
-      # TODO: Look into other ways of accomplishing this.
-      expect(Organization.find_by_name('Test Organization')).to be_nil
+      expect {
+        post :create, organization: {
+          name: 'Test Organization',
+          description: 'A test organization.',
+          url_key: 'test-org',
+          homepage_url: 'http://www.test-org.com/',
+          donation_url: 'http://www.test-org.com/donate/'
+        }
+      }.to change{ Organization.count }.by(1)
 
-      post :create, organization: {
-        name: 'Test Organization',
-        description: 'A test organization.',
-        url_key: 'test-org',
-        homepage_url: 'http://www.test-org.com/',
-        donation_url: 'http://www.test-org.com/donate/'
-      }
       expect(response).to redirect_to new_fundraiser_path
 
-      expect(Organization.find_by_name('Test Organization')).to_not be_nil
     end
   end
 end

@@ -32,12 +32,15 @@ class FundraisersController < ApplicationController
     if @fundraiser.save
       # TODO: Redirect them to creating an event
       redirect_to @fundraiser
+      return
     else
       @organizations = current_user.organizations
       if @organizations.empty?
         redirect_to new_organization_path
+      else
+        render :new
       end
-      render :new
+      return
     end
   end
 
@@ -47,12 +50,12 @@ class FundraisersController < ApplicationController
     input_params = params.require(:fundraiser).permit(:title, :description, :organization_id, :pledge_start_time, :pledge_end_time)
 
     # Parse date values.
-    if input_params.has_key?(:pledge_start_time)
-      input_params[:pledge_start_time] = DateTime.strptime(input_params[:pledge_start_time], "%m/%d/%Y %I:%M %p")
-    end
-    if input_params.has_key?(:pledge_end_time)
-      input_params[:pledge_end_time] = DateTime.strptime(input_params[:pledge_end_time], "%m/%d/%Y %I:%M %p")
-    end
+#    if input_params.has_key?(:pledge_start_time)
+#      input_params[:pledge_start_time] = DateTime.iso8601(input_params[:pledge_start_time])
+#    end
+#    if input_params.has_key?(:pledge_end_time)
+#      input_params[:pledge_end_time] = DateTime.iso8601(input_params[:pledge_end_time])
+#    end
 
     input_params
   end
