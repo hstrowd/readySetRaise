@@ -17,13 +17,9 @@ class FundraisersController < ApplicationController
   end
 
   def new
-    # Lookp the organizations for this user.
-    @organizations = current_user.organizations
-    if @organizations.empty?
-      redirect_to new_organization_path
-    end
-
     @fundraiser = Fundraiser.new
+
+    return if redirect_to_new_org?
   end
 
   def create
@@ -32,19 +28,21 @@ class FundraisersController < ApplicationController
     if @fundraiser.save
       # TODO: Redirect them to creating an event
       redirect_to @fundraiser
-      return
     else
-      @organizations = current_user.organizations
-      if @organizations.empty?
-        redirect_to new_organization_path
-      else
-        render :new
-      end
-      return
+      return if redirect_to_new_org?
+      render :new
     end
   end
 
   private
+
+  def redirect_to_new_org?
+    # Lookp the organizations for this user.
+    @organizations = current_user.organizations
+    if @organizations.empty?
+      redirect_to new_organization_path
+    end
+  end
 
   def fundraiser_params
     input_params = params.require(:fundraiser).permit(:title, :description, :organization_id, :pledge_start_time, :pledge_end_time)
