@@ -1,8 +1,8 @@
-<div id="login" class="setup-form">
+<div id="login" class="std-form">
   <div class="centerer">
     <div class="instructions">
       <div class="title">Log In</div>
-      <div class="description">Haven't created an account yet? Get started at the <%= link_to "Account Setup", new_registration_path(:user) %> page. Forgot your password? Recover it with the <%= link_to "Password Reset", new_password_path(:user) %> utility.</div>
+      <div class="description">Haven't created an account yet? Get started at the <%= link_to "Account Setup", new_registration_path(:user) %> page. Forgot your password? Recover it with the <%= link_to "Password Reset", users_password_reset_new_path %> utility.</div>
     </div>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

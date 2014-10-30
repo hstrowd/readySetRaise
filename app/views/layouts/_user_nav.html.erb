@@ -1,0 +1,9 @@
+<div id="user-nav">
+  <div class="centerer">
+    <%= link_to 'My Organizations', organizations_path %>
+    <%= link_to destroy_session_path(:user), class: 'logout-btn', method: :delete do %>
+      <div class="btn">Log Out</div>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+</div>

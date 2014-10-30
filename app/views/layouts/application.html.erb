@@ -23,6 +23,10 @@
       </div>
 
       <div id="page-content">
+        <% if current_user %>
+          <%= render "layouts/user_nav" %>
+        <% end %>
+
         <div id="notifications">
           <div class="notice">
             <% if notice %>

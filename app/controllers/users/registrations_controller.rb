@@ -2,6 +2,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_sign_up_params, only: [:create]
   before_filter :configure_account_update_params, only: [:update]
 
+  before_action :authenticate_user!, only: [:create]
+
+  # GET /resource/:id
+  def show
+    logger.warn("current user ID: #{current_user.id}, input ID: #{params[:id]}")
+    if(params[:id] && (current_user.id != params[:id].to_i))
+      flash[:alert] = 'Invalid Request'
+      redirect_to action: "show", id: current_user.id
+      return
+    end
+
+    @user = current_user
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -36,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # You can put the params you want to permit in the empty array.
   def configure_sign_up_params

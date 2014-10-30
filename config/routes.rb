@@ -6,7 +6,22 @@ Rails.application.routes.draw do
   resources :teams
   resources :pledges
 
-  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  devise_for :users, :controllers => { registrations: 'users/registrations' },
+                     :skip => [:passwords]
+
+  devise_scope :user do
+    get "/users/:id", to: "users/registrations#show", as: 'show_user'
+
+    # Password Reset support.
+    get "/users/password/reset/new" => "users/password_resets#new"
+    post "/users/password/reset" => "users/password_resets#create"
+    get "/users/password/reset/edit" => "users/password_resets#edit"
+    put "/users/password/reset" => "users/password_resets#update"
+
+    # Password changes for logged in users.
+    get "/users/password/change/new" => "users/password_changes#edit_password"
+    post "/users/password/change" => "users/password_changes#update_password"
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

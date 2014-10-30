@@ -1,9 +1,10 @@
 <div class="account-management">
   <% if current_user %>
 
-    <%= link_to destroy_session_path(:user), class: 'logout-btn', method: :delete do %>
-      <div class="btn">Log Out</div>
-    <% end %>
+    <div class="welcome">
+      Welcome back, 
+      <div class="account-name"><%= link_to current_user.first_name, show_user_path(current_user.id) %></div>
+    </div>
 
   <% else %>
 

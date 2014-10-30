@@ -55,6 +55,8 @@ body {
     position: relative;
     
     min-height: 100%;
+
+    background-image: url('<%= asset_path("bg-texture.png"); %>');
 }
 
 a {
@@ -73,31 +75,31 @@ a:hover {
  **/
 
 /* TODO: Rename this to just form. */
-.setup-form .centerer {
+.std-form .centerer {
     width: 940px;
 }
 
-.setup-form .instructions {
+.std-form .instructions {
     width: 800px;
 }
-.setup-form .instructions .title {
+.std-form .instructions .title {
     margin: 20px;
     font-size: 24px;
     font-weight: bold;
 }
-.setup-form .instructions .description {
+.std-form .instructions .description {
     margin: 10px 20px;
 }
 
-.setup-form form {
+.std-form form {
     margin: 20px 0;
 }
-.setup-form .field {
+.std-form .field {
     margin: 10px 50px;
 
     vertical-align: middle;
 }
-.setup-form .field .label {
+.std-form .field .label {
     display: inline-block;
     
     width: 150px;
@@ -110,30 +112,30 @@ a:hover {
     vertical-align: middle;
     text-align: right;
 }
-.setup-form .field .label .help-text {
+.std-form .field .label .help-text {
     font-size: 12px;
 }
-.setup-form .field .field_with_errors {
+.std-form .field .field_with_errors {
     display: inline-block;
 
     vertical-align: middle;
 }
-.setup-form .field input {
+.std-form .field input {
     width: 300px;
 
     padding: 5px;
 
     vertical-align: middle;
 }
-.setup-form .field .field_with_errors input {
+.std-form .field .field_with_errors input {
     border-color: #EB8787;
     background-color: #FFBDBD;
 }
-.setup-form .field .field_with_errors textarea {
+.std-form .field .field_with_errors textarea {
     border-color: #EB8787;
     background-color: #FFBDBD;
 }
-.setup-form .field textarea {
+.std-form .field textarea {
     width: 300px;
     max-width: 469px;
     height: 50px;
@@ -145,7 +147,7 @@ a:hover {
 
     font-size: 12px;
 }
-.setup-form .field .info {
+.std-form .field .info {
     display: inline-block;
 
     height: 32px;
@@ -154,7 +156,7 @@ a:hover {
     
     vertical-align: middle;
 }
-.setup-form .field .info .icon {
+.std-form .field .info .icon {
     display: inline-block;
 
     width: 10px;
@@ -167,7 +169,7 @@ a:hover {
     
     vertical-align: middle;
 }
-.setup-form .field .info .description {
+.std-form .field .info .description {
     display: none;
 
     max-width: 324px;
@@ -177,17 +179,17 @@ a:hover {
 
     vertical-align: top;
 }
-.setup-form .field .info:hover .description {
+.std-form .field .info:hover .description {
     display: inline-block;
 }
-.setup-form .field .error {
+.std-form .field .error {
     display: inline-block;
 
     height: 32px;
     
     vertical-align: middle;
 }
-.setup-form .field .error .icon {
+.std-form .field .error .icon {
     display: inline-block;
 
     width: 10px;
@@ -200,7 +202,7 @@ a:hover {
     
     vertical-align: middle;
 }
-.setup-form .field .error .reason {
+.std-form .field .error .reason {
     display: none;
 
     max-width: 324px;
@@ -214,14 +216,14 @@ a:hover {
 
     vertical-align: top;
 }
-.setup-form .field .error:hover .reason {
+.std-form .field .error:hover .reason {
     display: inline-block;
 }
 
-.setup-form submit {
+.std-form submit {
     width: 535px;
 }
-.setup-form input.submit {
+.std-form input.submit {
     display: inherit;
     
     height: 40px;
@@ -238,7 +240,7 @@ a:hover {
     font-weight: bold;
     text-align: center;
 }
-.setup-form input.submit:hover {
+.std-form input.submit:hover {
     padding: 5px 4px;
 
     background-color: #A3EB87;
@@ -271,7 +273,7 @@ a:hover {
 }
 
 #header .centerer {
-    width: 800px;
+    width: 940px;
     height: 60px;
 }
 
@@ -309,18 +311,23 @@ a:hover {
     display: inline-block;
     float: right;
 
-    width: 70px;
+    width: 80px;
     height: 40px;
 
     margin: 10px 5px;
 }
-#header .account-management .current-user {
-    display: inline-block;
-    
-    width: 60px
-}
-#header .account-management .current-user .user-welcome {
+#header .account-management .welcome {
+    margin: 5px 0;
+
     font-size: 10px;
+    text-align: center;
+}
+#header .account-management .welcome .account-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    font-size: 14px;
 }
 #header .account-management .btn {
     display: inline-block;
@@ -348,7 +355,8 @@ a:hover {
     text-decoration: none;
 }
 #header .account-management a:hover {
-    color: #444444;
+    color: #92D279;
+    text-decoration: underline;
 }
 
 #header .login {
@@ -361,7 +369,7 @@ a:hover {
     font-size: 12px;
 }
 #header .login .align-helper {
-    width: 800px;
+    width: 920px;
 
     margin: 0 auto;
 
@@ -409,6 +417,45 @@ a:hover {
 
 
 
+
+#user-nav {
+    padding: 3px;
+
+    background-color: #DDDDDD;
+}
+#user-nav .centerer {
+    width: 940px;
+}
+#user-nav .btn {
+    display: inline-block;
+    
+    width: 58px;
+    padding: 6px 4px;
+    margin: 3px 5px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #888888;
+    border-radius: 5px;
+
+    color: #777777;
+    text-align: center;
+}
+#user-nav .btn:hover {
+    display: inline-block;
+    
+    padding: 5px 4px;
+    margin: 3px 4px;
+
+    background-color: #A3EB87;
+    border: 2px solid #AAAAAA;
+
+    color: #666666;
+}
+#user-nav .logout-btn {
+    float: right;
+}
+
+
 /**
  * Notification Styles
  **/
@@ -427,7 +474,7 @@ a:hover {
     text-align: center;
 }
 #notifications .notice .centerer {
-    width: 800px;
+    width: 940px;
 
     padding: 10px 0;
     margin: 0 auto;
@@ -442,7 +489,7 @@ a:hover {
     text-align: center;
 }
 #notifications .alert .centerer {
-    width: 800px;
+    width: 940px;
 
     padding: 10px 0;
     margin: 0 auto;
@@ -460,8 +507,6 @@ a:hover {
     margin: 59px auto 0;
     padding: 1px;  /* Prevents margins from collapsing. */
     padding-bottom: 40px;
-
-    background-image: url('<%= asset_path("bg-texture.png"); %>');
 }
 
 

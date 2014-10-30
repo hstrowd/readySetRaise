@@ -1,11 +1,11 @@
-<div id="forgot-password" class="setup-form">
+<div id="forgot-password" class="std-form">
   <div class="centerer">
     <div class="instructions">
       <div class="title">Forgot your password?</div>
       <div class="description">Enter your email address below and we'll email you instructions to reset your password.</div>
     </div>
 
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: users_password_reset_path, html: { method: :post }) do |f| %>
 
       <div class="field email">
         <div class="label">

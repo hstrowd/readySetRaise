@@ -13,6 +13,7 @@ class OrganizationsController < ApplicationController
     if !@org
       flash[:alert] = 'Unable to find requested organization.'
       redirect_to action: "index"
+      return
     end
   end
 
