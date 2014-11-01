@@ -39,6 +39,16 @@ body {
     font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
 
+#page-container {
+    position: relative;
+    
+    min-height: 100%;
+
+    background-image: url('<%= asset_path("bg-texture.png"); %>');
+}
+
+
+
 /**
  * Site Wide Styles
  **/
@@ -51,12 +61,12 @@ body {
     margin-right: auto;
 }
 
-#page-container {
-    position: relative;
-    
-    min-height: 100%;
+.vert-centerer {
+    display: inline-block;
 
-    background-image: url('<%= asset_path("bg-texture.png"); %>');
+    height: 100%;
+
+    vertical-align: middle;
 }
 
 a {
@@ -68,6 +78,12 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Ensures images size properly to fit within their parent containers. */
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 
 
 /**
@@ -76,44 +92,46 @@ a:hover {
 
 /* TODO: Rename this to just form. */
 .std-form .centerer {
-    width: 940px;
+    max-width: 940px;
+    width: 80%;
 }
 
 .std-form .instructions {
-    width: 800px;
+    width: 85%px;
 }
 .std-form .instructions .title {
-    margin: 20px;
-    font-size: 24px;
+    margin: .75em 1em;
+    font-size: 1.5em;
     font-weight: bold;
 }
 .std-form .instructions .description {
-    margin: 10px 20px;
+    margin: .5em 2em;
 }
 
 .std-form form {
-    margin: 20px 0;
+    margin: .75em 0;
 }
 .std-form .field {
-    margin: 10px 50px;
+    margin: 0.5em 2.5em;
 
     vertical-align: middle;
 }
 .std-form .field .label {
     display: inline-block;
     
-    width: 150px;
+    width: 30%;
+    max-width: 150px;
 
-    margin-right: 15px;
+    margin-right: .6em;
 
     color: #444444;
-    font-size: 18px;
+    font-size: 0.9em;
     
     vertical-align: middle;
     text-align: right;
 }
 .std-form .field .label .help-text {
-    font-size: 12px;
+    font-size: .5em;
 }
 .std-form .field .field_with_errors {
     display: inline-block;
@@ -121,9 +139,10 @@ a:hover {
     vertical-align: middle;
 }
 .std-form .field input {
-    width: 300px;
+    width: 30%;
+    max-width: 300px;
 
-    padding: 5px;
+    padding: 0.5em;
 
     vertical-align: middle;
 }
@@ -136,34 +155,35 @@ a:hover {
     background-color: #FFBDBD;
 }
 .std-form .field textarea {
-    width: 300px;
-    max-width: 469px;
-    height: 50px;
+    width: 30%;
+    max-width: 300px;
+    height: 2.5em;
     max-height: 200px;
 
-    padding: 5px;
+    padding: .5em;
 
     vertical-align: middle;
 
-    font-size: 12px;
+    font-size: .5em;
 }
 .std-form .field .info {
     display: inline-block;
 
-    height: 32px;
+    width: 30%;
+    height: 2.5em;
 
-    font-size: 12px;
+    font-size: .5em;
     
     vertical-align: middle;
 }
 .std-form .field .info .icon {
     display: inline-block;
+    float: left;
 
-    width: 10px;
-    height: 10px;
+    width: 1.7em;
+    height: 1.7em;
     
-    padding: 3px;
-    margin: 8px 2px;
+    margin: .3em .1em;
 
     background-image: url('<%= asset_path("info.png") %>'); 
     
@@ -172,10 +192,10 @@ a:hover {
 .std-form .field .info .description {
     display: none;
 
-    max-width: 324px;
+    max-width: 100%;
 
-    padding: 2px;
-    margin: 7px 0;
+    padding: .1em;
+    margin: .5em;
 
     vertical-align: top;
 }
@@ -185,18 +205,18 @@ a:hover {
 .std-form .field .error {
     display: inline-block;
 
-    height: 32px;
+    max-width: 30%;
+    height: 2.5em;
     
     vertical-align: middle;
 }
 .std-form .field .error .icon {
     display: inline-block;
 
-    width: 10px;
-    height: 10px;
+    width: 1.7em;
+    height: 1.7em;
     
-    padding: 3px;
-    margin: 8px 2px;
+    margin: .3em .1em;
 
     background-image: url('<%= asset_path("error.gif") %>'); 
     
@@ -205,13 +225,13 @@ a:hover {
 .std-form .field .error .reason {
     display: none;
 
-    max-width: 324px;
+    max-width: 100%;
 
-    padding: 2px;
-    margin: 3px 0;
+    padding: .1em;
+    margin: .5em;
 
     border: 1px solid #EB8787;
-    border-radius: 4px;
+    border-radius: .2em;
     background-color: #FFBDBD;
 
     vertical-align: top;
@@ -220,31 +240,29 @@ a:hover {
     display: inline-block;
 }
 
-.std-form submit {
-    width: 535px;
-}
 .std-form input.submit {
     display: inherit;
     
-    height: 40px;
-    width: 240px;
+    height: 3em;
+    width: 25%;
+    min-width: 10em;
     
-    padding: 6px 4px;
-    margin: 20px 170px;
+    padding: .25em .2em;
+    margin: 1.5em 18%;
 
     background-color: #FFFFFF;
-    border: 1px solid #888888;
-    border-radius: 5px;
+    border: .12em solid #888888;
+    border-radius: .5em;
 
-    font-size: 14px;
+    font-size: .75em;
     font-weight: bold;
     text-align: center;
 }
 .std-form input.submit:hover {
-    padding: 5px 4px;
+    padding: .3em .2em;
 
     background-color: #A3EB87;
-    border: 2px solid #AAAAAA;
+    border: .18em solid #AAAAAA;
 }
 
 
@@ -262,6 +280,8 @@ a:hover {
     top: 0px;
 
     width: 100%;
+    /* TODO: Update this to be less for restricted height displays. */
+    height: 5em;
 
     /* Required to be above the Slick carousels. */
     z-index: 99;
@@ -269,35 +289,47 @@ a:hover {
     background-color: rgba(255,255,255,0.80);
 
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-    font-size: 14px;
+    font-size: .9em;
 }
 
 #header .centerer {
-    width: 940px;
-    height: 60px;
+    width: 100%;
+    max-width: 940px;
+    height: 100%;
 }
 
 #header .main-logo {
-    display: inline-block;
-    
-    width: 300px;
-    height: 50px;
+    float:left;
 
-    margin: 5px 0;
-
-    background-image: url('<%= asset_path("logo-small.png"); %>');
+    width: 32%;
+    max-width: 300px;
+    height: 100%;
 }
-
-#header .primary-nav {
+#header .main-logo img {
     display: inline-block;
+
+    max-width: 95%;
+
+    vertical-align: middle;
+}
+#header .controls {
     float: right;
 
-    height: 20px;
+    height: 100%;
 
-    margin: 20px 10px;
+    text-align: right;
+}
+#header .primary-nav {
+    display: inline-block;
+
+    height: 100%;
+
+    margin: 0 1em;
+
+    vertical-align: middle;
 }
 #header .primary-nav a {
-    margin: 5px;
+    margin: .5em;
     
     color: #666666;
     text-decoration: none;
@@ -309,17 +341,19 @@ a:hover {
 
 #header .account-management {
     display: inline-block;
-    float: right;
 
-    width: 80px;
-    height: 40px;
+    width: 5em;
+    height: 80%;
 
-    margin: 10px 5px;
+    margin: .5em 0;
+    vertical-align: middle;
+
+    text-align: center;
 }
 #header .account-management .welcome {
-    margin: 5px 0;
+    margin: .25em 0;
 
-    font-size: 10px;
+    font-size: .6em;
     text-align: center;
 }
 #header .account-management .welcome .account-name {
@@ -327,49 +361,55 @@ a:hover {
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    font-size: 14px;
+    font-size: 1.66em;
+}
+#header .account-management .login-btn {
+    display: inline-block;
+
+    width: 90%;
 }
 #header .account-management .btn {
     display: inline-block;
     
-    width: 58px;
-    padding: 6px 4px;
-    margin: 3px 5px;
+    width: 90%;
+    padding: .3em 0;
+    margin: .15em .05em;
 
-    border: 1px solid #888888;
-    border-radius: 5px;
+    border: .1em solid #888888;
+    border-radius: .5em;
 
     text-align: center;
 }
 #header .account-management .btn:hover {
     display: inline-block;
     
-    padding: 5px 4px;
-    margin: 3px 4px;
+    padding: .25em 0;
+    margin: .15em 0;
 
     background-color: #A3EB87;
-    border: 2px solid #AAAAAA;
+    border: .2em solid #AAAAAA;
 }
 #header .account-management a {
     color: #666666;
     text-decoration: none;
 }
 #header .account-management a:hover {
-    color: #92D279;
+    color: #222222;
     text-decoration: underline;
 }
 
 #header .login {
     display: none;
     
-    height: 31px;
+    height: 2.2em;
 
     background-color: #A3EB87;
 
-    font-size: 12px;
+    font-size: .8em;
 }
 #header .login .align-helper {
-    width: 920px;
+    width: 95%;
+    max-width: 920px;
 
     margin: 0 auto;
 
@@ -379,17 +419,17 @@ a:hover {
 #header .login .field {
     display:inline-block;
 
-    margin: 4px 5px;
+    margin: .2em .25em;
 }
 #header .login .field .label {
     display:inline-block;
 
-    margin: 0 3px;
+    margin: 0 .15em;
 }
 #header .login input {
     display: inline-block;
 
-    padding: 3px;
+    padding: .15em;
 }
 
 #header .login .actions {
@@ -398,20 +438,20 @@ a:hover {
 #header .login .actions input.submit {
     display: inline-block;
     
-    width: 48px;
-    height: 26px;
-    padding: 3px 2px;
-    margin: 1px 2px;
+    width: 5em;
+    height: 2em;
+    padding: .15em .1em;
+    margin: .05em .1em;
 
     background-color: #FFFFFF;
-    border: 1px solid #888888;
-    border-radius: 5px;
+    border: .1em solid #888888;
+    border-radius: .5em;
 
     text-align: center;
 }
 #header .login .actions input.submit:hover {
     background-color: #A0CAFF;
-    border: 1px solid #666666;
+    border: .1em solid #666666;
 }
 
 
@@ -419,35 +459,33 @@ a:hover {
 
 
 #user-nav {
-    padding: 3px;
+    padding: .15em;
 
     background-color: #DDDDDD;
 }
 #user-nav .centerer {
-    width: 940px;
+    width: 95%;
+    max-width: 940px;
 }
 #user-nav .btn {
     display: inline-block;
     
-    width: 58px;
-    padding: 6px 4px;
-    margin: 3px 5px;
+    width: 4em;
+    padding: .3em .25em;
+    margin: .2em .3em;
 
     background-color: #FFFFFF;
-    border: 1px solid #888888;
-    border-radius: 5px;
+    border: .1em solid #888888;
+    border-radius: .4em;
 
     color: #777777;
     text-align: center;
 }
 #user-nav .btn:hover {
-    display: inline-block;
-    
-    padding: 5px 4px;
-    margin: 3px 4px;
+    margin: .15em .25em;
 
     background-color: #A3EB87;
-    border: 2px solid #AAAAAA;
+    border: .15em solid #AAAAAA;
 
     color: #666666;
 }
@@ -470,13 +508,14 @@ a:hover {
     background-color: #E7EB87;
 
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-    font-size: 14px;
+    font-size: .9em;
     text-align: center;
 }
 #notifications .notice .centerer {
-    width: 940px;
+    width: 95%;
+    max-width: 940px;
 
-    padding: 10px 0;
+    padding: .7em 0;
     margin: 0 auto;
 }
 
@@ -485,13 +524,14 @@ a:hover {
 
     background-color: #EB8787;
 
-    font-size: 14px;
+    font-size: .9em;
     text-align: center;
 }
 #notifications .alert .centerer {
-    width: 940px;
+    width: 95%;
+    max-width: 940px;
 
-    padding: 10px 0;
+    padding: .7em 0;
     margin: 0 auto;
 }
 
@@ -501,12 +541,19 @@ a:hover {
  * Page Content Styles
  **/
 
+#header-stub {
+    height: 5em;
+    font-size: .9em;
+}
 #page-content {
     width: 100%;
 
-    margin: 59px auto 0;
-    padding: 1px;  /* Prevents margins from collapsing. */
-    padding-bottom: 40px;
+    margin: 0 auto;
+    padding: .1em;  /* Prevents margins from collapsing. */
+}
+#footer-stub {
+    height: 4em;
+    font-size: .7em;
 }
 
 
@@ -524,37 +571,38 @@ a:hover {
     bottom: 0;
     
     width: 100%;
-    height: 40px;
+    height: 4em;
     
     background-color: rgba(100,100,100,0.90);
 
     color: #CCCCCC;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-    font-size: 12px;
+    font-size: .7em;
 }
 
 #footer .centerer {
-    width: 800px;
+    width: 80%;
+    max-width: 800px;
 }
 
 #footer .copyright {
     display: inline-block;
 
-    height: 12px;
+    height: 1em;
     
-    margin: 14px 0;
+    margin: 1.5em 0;
 }
 
 #footer .links {
     display: inline-block;
     float: right;
 
-    height: 12px;
+    height: 1em;
     
-    margin: 14px 10px;
+    margin: 1.5em .8em;
 }
 #footer .links a {
-    margin: 2px;
+    margin: .2em;
     
     color: #FFFFFF;
     text-decoration: none;

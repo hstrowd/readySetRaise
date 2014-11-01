@@ -1,12 +1,12 @@
 var login = {
-    formHeight: 31,
+    formHeight: '1.76em',
     loginText: 'Log In',
     cancelText: 'Cancel',
     show: function(event) {
         $('#header .login').slideDown();
 
         var content = $('#page-content');
-        var newMargin = parseInt(content.css('margin-top')) + this.formHeight;
+        var newMargin = this.formHeight;
         content.animate({'margin-top': newMargin});
 
         var loginButton = $('a.login-btn');
@@ -20,7 +20,7 @@ var login = {
         $('#header .login').slideUp();
 
         var content = $('#page-content');
-        var newMargin = parseInt(content.css('margin-top')) - this.formHeight;
+        var newMargin = 0;
         content.animate({'margin-top': newMargin});
 
         var loginButton = $('a.login-btn');

@@ -14,13 +14,19 @@
     <div id="page-container">
       <div id="header">
         <div class="centerer">
-          <div class="main-logo"></div>
-          <%= render "layouts/account_management" %>
-          <%= render "layouts/primary_navigation" %>
+          <div class="main-logo">
+            <div class="vert-centerer"></div>
+            <%= image_tag 'logo-small.png' %>
+          </div>
+          <div class="controls">
+            <%= render "layouts/primary_navigation" %>
+            <%= render "layouts/account_management" %>
+          </div>
         </div>
         <!-- The login form should span the width of the page. -->
         <%= render "layouts/login_form" %>
       </div>
+      <div id="header-stub"></div>
 
       <div id="page-content">
         <% if current_user %>
@@ -44,6 +50,7 @@
         <%= yield %>
       </div>
 
+      <div id="footer-stub"></div>
       <div id="footer">
         <div class="centerer">
           <div class="copyright">Copyright © 2014 Harrison Strowd | All rights reserved.</div>

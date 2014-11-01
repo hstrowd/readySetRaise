@@ -30,6 +30,12 @@
   </div>
 
   <div class="org-activity">
+    <% @orgs.each do |org| %>
+      <div class="org">
+        <div class="name"><%= link_to org.homepage_url, org.name %></div>
+        <div class="description"><%= org.name %></div>
+      </div>
+    <% end %>
   </div>
 
 </div>
