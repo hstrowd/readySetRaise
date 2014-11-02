@@ -24,7 +24,7 @@ var launchHomeCarousel = function(){
 };
 
 var setupHomeMethodTransitions = function() {
-  $('#home .section.method .outline .pic').click(function(event) {
+  $('#home .section.method .outline .step').click(function(event) {
     var step = $(this).data('step');
     var requestedStep = $('#home .section.method .steps .step.' + step);
     if (requestedStep.css('opacity') == 0) {

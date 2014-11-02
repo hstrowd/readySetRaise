@@ -69,6 +69,24 @@ body {
     vertical-align: middle;
 }
 
+.btn {
+    padding: .3em .25em;
+    margin: .2em .3em;
+
+    background-color: #FFFFFF;
+    border: .1em solid #888888;
+    border-radius: .4em;
+
+    color: #777777;
+    text-align: center;
+}
+.btn:hover {
+    background-color: #A3EB87;
+    border: .1em solid #444444;
+
+    color: #666666;
+}
+
 a {
     color: #3861E2;
     text-decoration: none;
@@ -375,7 +393,6 @@ img {
     padding: .3em 0;
     margin: .15em .05em;
 
-    border: .1em solid #888888;
     border-radius: .5em;
 
     text-align: center;
@@ -385,9 +402,6 @@ img {
     
     padding: .25em 0;
     margin: .15em 0;
-
-    background-color: #A3EB87;
-    border: .2em solid #AAAAAA;
 }
 #header .account-management a {
     color: #666666;
@@ -471,23 +485,6 @@ img {
     display: inline-block;
     
     width: 4em;
-    padding: .3em .25em;
-    margin: .2em .3em;
-
-    background-color: #FFFFFF;
-    border: .1em solid #888888;
-    border-radius: .4em;
-
-    color: #777777;
-    text-align: center;
-}
-#user-nav .btn:hover {
-    margin: .15em .25em;
-
-    background-color: #A3EB87;
-    border: .15em solid #AAAAAA;
-
-    color: #666666;
 }
 #user-nav .logout-btn {
     float: right;
@@ -581,25 +578,22 @@ img {
 }
 
 #footer .centerer {
-    width: 80%;
+    width: 95%;
     max-width: 800px;
+
+    text-align: center;
 }
 
 #footer .copyright {
-    display: inline-block;
-
     height: 1em;
     
-    margin: 1.5em 0;
+    margin: .5em 0;
 }
 
 #footer .links {
-    display: inline-block;
-    float: right;
-
     height: 1em;
     
-    margin: 1.5em .8em;
+    margin: .5em .8em;
 }
 #footer .links a {
     margin: .2em;
@@ -609,4 +603,22 @@ img {
 }
 #footer .links a:hover {
     text-decoration: underline;
+}
+
+@media screen and (min-width: 700px)  {
+    #footer .centerer {
+        width: 90%;
+    }
+    #footer .copyright {
+        display: inline-block;
+        float: left;
+
+        margin: 1.5em 0;
+    }
+    #footer .links {
+        display: inline-block;
+        float: right;
+    
+        margin: 1.5em .8em;
+    }
 }
