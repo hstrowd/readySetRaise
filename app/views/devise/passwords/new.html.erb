@@ -14,7 +14,7 @@
         <%= f.text_field :email, autofocus: true %>
         <% if !resource.errors[:email].empty? %>
           <div class="error">
-            <div class="icon"></div>
+            <div class="icon"><%= image_tag "error.gif" %></div>
             <div class="reason"><%= resource.errors[:email][0].humanize %></div>
           </div>
         <% end %>

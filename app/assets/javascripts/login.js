@@ -1,5 +1,5 @@
 var login = {
-    formHeight: '1.76em',
+    formHeight: '1.4em',
     loginText: 'Log In',
     cancelText: 'Cancel',
     show: function(event) {

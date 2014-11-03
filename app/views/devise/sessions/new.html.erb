@@ -7,31 +7,23 @@
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-      <div class="field email">
-        <div class="label">
-          <%= f.label :email %>
-        </div>
-        <%= f.text_field :email, autofocus: true %>
-        <% if !resource.errors[:email].empty? %>
-          <div class="error">
-            <div class="icon"></div>
-            <div class="reason"><%= resource.errors[:email][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
+      <%= render(partial: "shared/form_field", 
+                 locals: { 
+                   form: f, 
+                   model: resource, 
+                   attr: :email
+                 }) %>
 
-      <div class="field password">
-        <div class="label">
-          <%= f.label :password %>
-        </div>
-        <%= f.password_field :password, autofocus: true %>
-        <% if !resource.errors[:password].empty? %>
-          <div class="error">
-            <div class="icon"></div>
-            <div class="reason"><%= resource.errors[:password][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
+      <% content_for 'password_field' do %>
+        <%= f.password_field :password %>
+      <% end %>
+      <%= render(partial: "shared/form_field", 
+                 locals: { 
+                   form: f, 
+                   model: resource, 
+                   attr: :password,
+                   info: "#{@minimum_password_length} characters minimum"
+                 }) %>
 
       <div class="field remember-me">
         <div class="label">

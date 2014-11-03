@@ -43,11 +43,13 @@ body {
     position: relative;
     
     min-height: 100%;
-
-    background-image: url('<%= asset_path("bg-texture.png"); %>');
 }
 
-
+@media screen and (min-width: 1024px)  {
+    #page-container {
+        background-image: url('<%= asset_path("bg-texture.png"); %>');
+    }
+}
 
 /**
  * Site Wide Styles
@@ -111,33 +113,30 @@ img {
 /* TODO: Rename this to just form. */
 .std-form .centerer {
     max-width: 940px;
-    width: 80%;
+    width: 95%;
 }
 
-.std-form .instructions {
-    width: 85%px;
-}
 .std-form .instructions .title {
-    margin: .75em 1em;
+    margin: 4% 6%;
     font-size: 1.5em;
     font-weight: bold;
 }
 .std-form .instructions .description {
-    margin: .5em 2em;
+    margin: 4% 2%;
 }
 
 .std-form form {
     margin: .75em 0;
 }
 .std-form .field {
-    margin: 0.5em 2.5em;
+    margin: 2% 4%;
 
     vertical-align: middle;
 }
 .std-form .field .label {
     display: inline-block;
     
-    width: 30%;
+    width: 25%;
     max-width: 150px;
 
     margin-right: .6em;
@@ -151,16 +150,29 @@ img {
 .std-form .field .label .help-text {
     font-size: .5em;
 }
+.std-form .field .label .field_with_errors {
+    width: 100%;
+}
+.std-form .field .input {
+    display: inline-block;
+
+    width: 60%;
+    max-width: 300px;
+
+    /* To account for the padding in the input field. */
+    margin-right: 1.5em;
+}
 .std-form .field .field_with_errors {
     display: inline-block;
+
+    width: 100%;
 
     vertical-align: middle;
 }
 .std-form .field input {
-    width: 30%;
-    max-width: 300px;
+    width: 100%;
 
-    padding: 0.5em;
+    padding: .75em;
 
     vertical-align: middle;
 }
@@ -173,12 +185,11 @@ img {
     background-color: #FFBDBD;
 }
 .std-form .field textarea {
-    width: 30%;
-    max-width: 300px;
+    width: 100%;
     height: 2.5em;
     max-height: 200px;
 
-    padding: .5em;
+    padding: .75em;
 
     vertical-align: middle;
 
@@ -187,28 +198,24 @@ img {
 .std-form .field .info {
     display: inline-block;
 
-    width: 30%;
-    height: 2.5em;
+    width: 65%;
+    height: 2em;
+
+    margin-left: 29%;    
+    vertical-align: middle;
 
     font-size: .5em;
-    
-    vertical-align: middle;
 }
 .std-form .field .info .icon {
     display: inline-block;
     float: left;
 
-    width: 1.7em;
-    height: 1.7em;
-    
     margin: .3em .1em;
 
-    background-image: url('<%= asset_path("info.png") %>'); 
-    
     vertical-align: middle;
 }
 .std-form .field .info .description {
-    display: none;
+    display: inline-block;
 
     max-width: 100%;
 
@@ -217,36 +224,29 @@ img {
 
     vertical-align: top;
 }
-.std-form .field .info:hover .description {
-    display: inline-block;
-}
 .std-form .field .error {
     display: inline-block;
 
-    max-width: 30%;
-    height: 2.5em;
-    
+    max-width: 65%;
+    height: 2em;
+
+    margin-left: 28%;    
     vertical-align: middle;
 }
 .std-form .field .error .icon {
     display: inline-block;
 
-    width: 1.7em;
-    height: 1.7em;
-    
     margin: .3em .1em;
-
-    background-image: url('<%= asset_path("error.gif") %>'); 
     
     vertical-align: middle;
 }
 .std-form .field .error .reason {
-    display: none;
+    display: inline-block;
 
     max-width: 100%;
 
     padding: .1em;
-    margin: .5em;
+    margin: .2em;
 
     border: 1px solid #EB8787;
     border-radius: .2em;
@@ -254,19 +254,16 @@ img {
 
     vertical-align: top;
 }
-.std-form .field .error:hover .reason {
-    display: inline-block;
-}
 
 .std-form input.submit {
     display: inherit;
     
     height: 3em;
-    width: 25%;
+    width: 35%;
     min-width: 10em;
     
     padding: .25em .2em;
-    margin: 1.5em 18%;
+    margin: 1.5em 40%;
 
     background-color: #FFFFFF;
     border: .12em solid #888888;
@@ -283,7 +280,38 @@ img {
     border: .18em solid #AAAAAA;
 }
 
-
+@media screen and (min-width: 600px)  {
+    .std-form .instructions .title {
+        margin: .5em 1.5em;
+    }
+    .std-form .instructions .description {
+        margin: .5em;
+    }
+    .std-form .field {
+        margin: 1% 2%;
+    }
+    .std-form .field .input {
+        width: 40%;
+    }
+    .std-form .field .info, .std-form .field .error {
+        display: inline-block;
+    
+        width: 20%;
+    
+        margin-left: 0;
+    }
+    .std-form .field .info .description, .std-form .field .error .reason {
+        display: none;
+    }
+    .std-form .field .info:hover .description, .std-form .field .error:hover .reason {
+        display: inline-block;
+    }
+    .std-form input.submit {
+        width: 25%;
+    
+        margin: 1.5em 18%;
+    }
+}
 
 
 
@@ -335,8 +363,8 @@ img {
 
     height: 100%;
 
-    text-align: right;
-}
+    text-align: right;}
+
 #header .primary-nav {
     display: inline-block;
 
