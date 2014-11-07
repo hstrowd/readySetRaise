@@ -9,7 +9,7 @@ var login = {
         var newMargin = this.formHeight;
         content.animate({'margin-top': newMargin});
 
-        var loginButton = $('a.login-btn');
+        var loginButton = $('#header .login-btn a');
         loginButton.unbind();
         loginButton.click($.proxy(this.hide, this));
         loginButton.children('.btn').text(this.cancelText);
@@ -23,7 +23,7 @@ var login = {
         var newMargin = 0;
         content.animate({'margin-top': newMargin});
 
-        var loginButton = $('a.login-btn');
+        var loginButton = $('#header .login-btn a');
         loginButton.unbind();
         loginButton.click($.proxy(this.show, this));
         loginButton.children('.btn').text(this.loginText);
@@ -33,7 +33,7 @@ var login = {
 }
 
 var onLoad = function () {
-    $('a.login-btn').click($.proxy(login.show, login));
+    $('#header .login-btn a').click($.proxy(login.show, login));
 };
 $(document).ready(onLoad);
 $(document).on('page:load', onLoad);

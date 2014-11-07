@@ -20,16 +20,3 @@
 
 //= require_tree .
 
-
-var onLoad = function () {
-    // Activate the header menu's on click.
-    $('#header .menu').click(function(event) {
-        var selectedMenu = $( event.target ).parents('.menu');
-        var turnOn = !selectedMenu.hasClass('active');
-        $('#header .menu').removeClass('active');
-        if (turnOn) { selectedMenu.addClass('active'); }
-    });
-};
-
-$(document).ready(onLoad);
-$(document).on('page:load', onLoad);

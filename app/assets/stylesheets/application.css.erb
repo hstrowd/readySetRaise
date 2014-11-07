@@ -326,7 +326,7 @@ img {
     top: 0px;
 
     width: 100%;
-    height: 3em;
+    height: 4em;
 
     /* Required to be above the Slick carousels. */
     z-index: 99;
@@ -369,7 +369,7 @@ img {
 #header .menu {
     display: inline-block;
 
-    width: 3em;
+    width: 4em;
     height: 100%;
 }
 #header .menu .vert-centerer {
@@ -389,7 +389,7 @@ img {
 
     background-color: #BBBBBB;
 }
-#header .menu.active .menu-btn {
+#header .menu:hover .menu-btn {
     background-color: #CCCCCC;
 }
 #header .menu-btn img {
@@ -410,7 +410,7 @@ img {
 
     background-color: #CCCCCC;
 }
-#header .menu.active .menu-dropdown {
+#header .menu:hover .menu-dropdown {
     display: initial;
 }
 /**
@@ -460,7 +460,7 @@ img {
 }
 
 
-#header .profile-nav .profile-intro {
+#header .profile-nav .profile-intro, #header .profile-nav .login-btn {
     display:none;
 }
 
@@ -497,7 +497,15 @@ img {
     #header .menu .menu-btn {
         display: none;
     }
-    #header .menu .menu-dropdown {
+    #header .menu-dropdown .vert-centerer {
+        display: inline-block;
+    }
+    #header .menu-dropdown .nav-item {
+        height: 100%;
+    }
+
+
+    #header .menu.primary-nav .menu-dropdown {
         position: initial;
         display: inline-block;
         float: none;
@@ -507,25 +515,18 @@ img {
 
         background-color: transparent;
     }
-    #header .menu-dropdown .vert-centerer {
-        display: inline-block;
-    }
-    #header .menu-dropdown .nav-items {
+    #header .menu.primary-nav .menu-dropdown .nav-items {
         display: inline-block;
 
         height: 80%;
     }
-    #header .menu-dropdown a {
+    #header .menu.primary-nav .menu-dropdown a {
         display: inline-block;
 
         height: 100%;
 
         background-color: transparent;
     }
-    #header .menu-dropdown .nav-item {
-        height: 100%;
-    }
-
     #header .menu.primary-nav .menu-dropdown .nav-item {
         height: 100%;
 
@@ -542,38 +543,71 @@ img {
     }
 
     #header .menu.profile-nav {
+        position: relative;
+
         width: 6em;
     }
-    #header .profile-nav .menu-dropdown {
-        display: none;
-    }
-    #header .profile-nav .profile-intro {
-        display: initial;
-    }
-
-    #header .profile-nav .nav-items {
-        display: inline-block;
-    
-        width: 5em;
-        height: 80%;
-    
-        vertical-align: middle;
-        text-align: center;
-    }
     #header .profile-nav .welcome {
-        margin: .25em 0;
-    
+        display: inline-block;
+
+        margin: 2% 0;
+        vertical-align: middle;    
+
         font-size: .6em;
         text-align: center;
     }
-    #header .profile-nav .welcome .account-name {
+
+    #header .profile-nav .login-btn {
+        display: block;
+    }
+
+    #header .menu.profile-nav .profile-intro {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+    }
+    #header .menu.profile-nav .profile-intro:hover {
+        background-color: #BCFFA2;
+        cursor: pointer;
+    }
+    #header .menu.profile-nav .welcome .account-name {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     
         font-size: 1.66em;
     }
-    #header .profile-nav .login-btn {
+    #header .menu.profile-nav .profile-intro:hover + .menu-dropdown {
+        display: initial;
+    }
+
+    #header .menu.profile-nav .menu-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: -6em;
+
+        width: 12em;
+    }
+    #header .menu.profile-nav .menu-dropdown:hover {
+        display: initial;
+    }
+    #header .menu.profile-nav .menu-dropdown .vert-centerer {
+        display: none;
+    }
+    #header .menu.profile-nav .menu-dropdown .nav-items {
+        display: inline-block;
+
+        width: 100%;
+
+        text-align: center;
+    }
+    #header .profile-nav .nav-items .nav-item {
+        height: initial;
+    }
+
+    #header .profile-nav .login-btn a {
         display: inline-block;
     
         width: 90%;
@@ -732,7 +766,7 @@ img {
  **/
 
 #header-stub {
-    height: 3em;
+    height: 4em;
     font-size: .9em;
 }
 #page-content {
