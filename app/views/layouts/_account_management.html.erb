@@ -1,17 +1,17 @@
-<div class="account-management">
+<div class="nav-items">
   <% if current_user %>
 
-    <div class="welcome">
-      Welcome back, 
-      <div class="account-name"><%= link_to current_user.first_name, show_user_path(current_user.id) %></div>
-    </div>
+    <%= link_to organizations_path do %>
+      <div class="nav-item">My Organizations</div>
+    <% end %>
+    <%= link_to destroy_session_path(:user), method: :delete do %>
+      <div class="nav-item">Log Out</div>
+    <% end %>
 
   <% else %>
 
-    <div class="vert-centerer"></div>
-
-    <%= link_to new_session_path(:user), class: 'login-btn' do %>
-      <div class="btn">Log In</div>
+    <%= link_to new_session_path(:user) do %>
+      <div class="nav-item">Log In</div>
     <% end %>
 
   <% end %>

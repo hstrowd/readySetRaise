@@ -1,7 +1,22 @@
-<div class="primary-nav">
-  <div class="vert-centerer"></div>
-  <%= link_to 'Home', root_url %>
-  <%= link_to 'Start Raising', new_organization_path %>
-  <%= link_to 'Find Events', organizations_path %>
-  <%= link_to 'About Us', about_url %>  
+<div class="nav-items">
+  <%= link_to root_url do %>
+    <div class="nav-item home">
+      <div class="vert-centerer"></div>Home
+    </div>
+  <% end %>
+  <%= link_to new_organization_path do %>
+    <div class="nav-item org-new">
+      <div class="vert-centerer"></div>Start Raising
+    </div>
+  <% end %>
+  <%= link_to organizations_path do %>
+    <div class="nav-item org-index">
+      <div class="vert-centerer"></div>Get Involved
+    </div>
+  <% end %>
+  <%= link_to about_url do %>
+    <div class="nav-item about">
+      <div class="vert-centerer"></div>About Us
+    </div>
+  <% end %>
 </div>
