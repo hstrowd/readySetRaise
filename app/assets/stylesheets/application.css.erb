@@ -326,8 +326,7 @@ img {
     top: 0px;
 
     width: 100%;
-    /* TODO: Update this to be less for restricted height displays. */
-    height: 5em;
+    height: 3em;
 
     /* Required to be above the Slick carousels. */
     z-index: 99;
@@ -370,7 +369,7 @@ img {
 #header .menu {
     display: inline-block;
 
-    width: 5em;
+    width: 3em;
     height: 100%;
 }
 #header .menu .vert-centerer {
@@ -378,7 +377,7 @@ img {
 #header .menu-btn {
     display: inline-block;
     
-    width: 5em;
+    width: 100%;
     height: 100%;
 
     text-align: center;
@@ -396,8 +395,10 @@ img {
 #header .menu-btn img {
     display: inline-block;
     
-    width: 3em;
-    height: 3em;
+    width: 55%;
+    min-width: 2em;
+    height: 55%;
+    min-height: 2em;
 
     vertical-align: middle;
 }
@@ -405,7 +406,7 @@ img {
     position: fixed;
     display: none;
 
-    min-width: 12em;
+    min-width: 9em;
 
     background-color: #CCCCCC;
 }
@@ -473,6 +474,10 @@ img {
 }
 
 @media screen and (min-width: 700px)  {
+    #header {
+        height: 5em;
+    }
+
     #header .main-logo {
         float:left;
         width: 32%;
@@ -727,7 +732,7 @@ img {
  **/
 
 #header-stub {
-    height: 5em;
+    height: 3em;
     font-size: .9em;
 }
 #page-content {
@@ -739,6 +744,12 @@ img {
 #footer-stub {
     height: 4em;
     font-size: .7em;
+}
+
+@media screen and (min-width: 700px)  {
+    #header-stub {
+        height: 5em;
+    }
 }
 
 
