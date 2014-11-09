@@ -4,15 +4,17 @@
 
 
 #org-new .centerer {
-    width: 940px;
+    max-width: 940px;
 }
 
 #org-new .progress-indicator {
-    height: 1px;
+    height: .1em;
 }
 
 .org-form .field.name input {
-    font-size: 16px;
+    font-size: 1.1em;
+
+    padding: 0.75em 0.4em
 }
 .org-form .field .info .variable {
     display: inline-block;

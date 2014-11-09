@@ -189,7 +189,7 @@ img {
     height: 2.5em;
     max-height: 200px;
 
-    padding: .75em;
+    padding: 1em;
 
     vertical-align: middle;
 
@@ -197,19 +197,20 @@ img {
 }
 .std-form .field .info {
     display: inline-block;
+    position: relative;
 
     width: 65%;
-    height: 2em;
 
-    margin-left: 29%;    
-    vertical-align: middle;
+    margin-left: 28%;    
+    vertical-align: top;
 
     font-size: .5em;
 }
 .std-form .field .info .icon {
     display: inline-block;
-    float: left;
+    position: absolute;
 
+    width: 1.7em;
     margin: .3em .1em;
 
     vertical-align: middle;
@@ -217,42 +218,22 @@ img {
 .std-form .field .info .description {
     display: inline-block;
 
-    max-width: 100%;
+    max-width: 94%;
 
-    padding: .1em;
-    margin: .5em;
+    padding: 1%;
+    margin: 1%;
+    margin-left: 2.5em;
 
     vertical-align: top;
 }
-.std-form .field .error {
-    display: inline-block;
+.std-form .field .info.error .description {
+    margin-left: 1.5em;
 
-    max-width: 65%;
-    height: 2em;
-
-    margin-left: 28%;    
-    vertical-align: middle;
-}
-.std-form .field .error .icon {
-    display: inline-block;
-
-    margin: .3em .1em;
-    
-    vertical-align: middle;
-}
-.std-form .field .error .reason {
-    display: inline-block;
-
-    max-width: 100%;
-
-    padding: .1em;
-    margin: .2em;
-
-    border: 1px solid #EB8787;
+    border: .1em solid #EB8787;
     border-radius: .2em;
     background-color: #FFBDBD;
 
-    vertical-align: top;
+    font-size: 2em;
 }
 
 .std-form input.submit {
@@ -293,17 +274,19 @@ img {
     .std-form .field .input {
         width: 40%;
     }
-    .std-form .field .info, .std-form .field .error {
+    .std-form .field .info {
         display: inline-block;
     
         width: 20%;
+        height: 2em;
+        overflow-y: visible;
     
         margin-left: 0;
     }
-    .std-form .field .info .description, .std-form .field .error .reason {
+    .std-form .field .info .description {
         display: none;
     }
-    .std-form .field .info:hover .description, .std-form .field .error:hover .reason {
+    .std-form .field .info:hover .description {
         display: inline-block;
     }
     .std-form input.submit {
