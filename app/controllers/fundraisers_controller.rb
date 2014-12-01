@@ -48,12 +48,12 @@ class FundraisersController < ApplicationController
     input_params = params.require(:fundraiser).permit(:title, :description, :organization_id, :pledge_start_time, :pledge_end_time)
 
     # Parse date values.
-#    if input_params.has_key?(:pledge_start_time)
-#      input_params[:pledge_start_time] = DateTime.iso8601(input_params[:pledge_start_time])
-#    end
-#    if input_params.has_key?(:pledge_end_time)
-#      input_params[:pledge_end_time] = DateTime.iso8601(input_params[:pledge_end_time])
-#    end
+    if input_params.has_key?(:pledge_start_time)
+      input_params[:pledge_start_time] = DateTime.iso8601(input_params[:pledge_start_time])
+    end
+    if input_params.has_key?(:pledge_end_time)
+      input_params[:pledge_end_time] = DateTime.iso8601(input_params[:pledge_end_time])
+    end
 
     input_params
   end

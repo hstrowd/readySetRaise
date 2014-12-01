@@ -81,12 +81,20 @@ body {
 
     color: #777777;
     text-align: center;
+
+    cursor: pointer;
 }
 .btn:hover {
     background-color: #A3EB87;
     border: .1em solid #444444;
 
     color: #666666;
+}
+.btn:active {
+    background-color: #75C357;
+    border: .1em solid #333333;
+
+    color: #555555;
 }
 
 a {
@@ -161,6 +169,7 @@ img {
 
     /* To account for the padding in the input field. */
     margin-right: 1.5em;
+    vertical-align: middle;
 }
 .std-form .field .field_with_errors {
     display: inline-block;

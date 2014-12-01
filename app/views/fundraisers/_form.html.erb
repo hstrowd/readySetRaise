@@ -36,9 +36,9 @@
       <% if !@fundraiser.errors[:pledge_start_time].empty? %>
         <div class="field_with_errors">
       <% end %>
-      <%= text_field_tag :date_pledge_start %>
-      at
-      <%= select_tag :time_pledge_start, options_for_select(thirty_minute_internvals) %>
+      <%= text_field_tag :date_pledge_start, nil, class: 'datetime date' %>
+      <div class="datetime-separator">at</div>
+      <%= text_field_tag :time_pledge_start, nil, class: 'datetime time' %>
       <% if !@fundraiser.errors[:pledge_start_time].empty? %>
         </div>
       <% end %>
@@ -55,9 +55,9 @@
        <% if !@fundraiser.errors[:pledge_end_time].empty? %>
          <div class="field_with_errors">
        <% end %>
-       <%= text_field_tag :date_pledge_end %>
-       at
-       <%= select_tag :time_pledge_end, options_for_select(thirty_minute_internvals) %>
+       <%= text_field_tag :date_pledge_end, nil, class: 'datetime date' %>
+       <div class="datetime-separator">at</div>
+       <%= text_field_tag :time_pledge_end, nil, class: 'datetime time' %>
        <% if !@fundraiser.errors[:pledge_end_time].empty? %>
          </div>
        <% end %>
@@ -70,45 +70,24 @@
                  attr: :pledge_end_time
                }) %>
 
+    <!-- TODO: Add a multi-select field for single event vs multi event fundraisers. -->
+
     <div class="actions">
       <%= f.submit "Schedule Fundraiser", class: :submit %>
     </div>
 
+    <!-- TODO: Move this into the assets. -->
     <script>
       $(function() {
         var curDate = new Date();
         var defaultDate = (curDate.getMonth() + 1) + "/" + curDate.getDate() + "/" + curDate.getFullYear();
-        var defaultTime = '12:00 pm';
-
-      
-        var orgField = $( "#fundraiser_organization_id" );
-        if (orgField && orgField.attr('type') != 'hidden') {
-          orgField.combobox({
-            editable: false
-          });
-        }
-
-        $.datepicker.setDefaults({
-          showAnim: "slideDown"
-        });
-        $( "#date_pledge_start" ).datepicker();
-        $( "#date_pledge_end" ).datepicker();
-
-        $( "#time_pledge_start" ).combobox({
-          clearIfNotIncluded: false,
-          customValidation: function() { }
-        });
-        $( "#time_pledge_end" ).combobox({
-          clearIfNotIncluded: false,
-          customValidation: function() { }
-        });
-
+        var defaultTime = '12:00 PM';
 
         // Set the initial composite datetime values based on the raw value.
         var initPledgeDateTime = function(type) {
           var rawField = $('#fundraiser_pledge_' + type + '_time');
           var dateField = $('#date_pledge_' + type);
-          var timeField = $('form .pledge-' + type + '-time input.custom-combobox-input');
+          var timeField = $('#time_pledge_' + type);
 
           var rawDate = new Date(rawField.val());
           if (!rawDate || isNaN( rawDate.getTime() )) {
@@ -120,11 +99,14 @@
 
             var hours = rawDate.getHours();
             var minutes = rawDate.getMinutes();
-            var period = 'am';
+            var period = 'AM';
 
             if (hours > 12) {
               hours = hours % 12;
-              period = 'pm';
+              period = 'PM';
+            }
+            if (minutes < 10) {
+              minutes = "0" + minutes;
             }
 
             var timeString = hours + ':' + minutes + ' ' + period;
@@ -134,38 +116,64 @@
         initPledgeDateTime('start');
         initPledgeDateTime('end');
 
+        var orgField = $( "#fundraiser_organization_id" );
+        if (orgField && orgField.attr('type') != 'hidden') {
+          orgField.combobox({
+            editable: false
+          });
+        }
+
+        var datePickerOptions = {
+          format: 'mm/dd/yyyy'
+        };
+        $( "#date_pledge_start" ).pickadate(datePickerOptions);
+        $( "#date_pledge_end" ).pickadate(datePickerOptions);
+
+        var timePickerOptions = {
+          editable: true,
+          format: 'h:i A',
+          min: [8,00]
+        };
+        $( "#time_pledge_start" ).pickatime(timePickerOptions);
+        $( "#time_pledge_end" ).pickatime(timePickerOptions);
+
 
         // Update the raw datetime value every time the composite values change.
         var updatePledgeTime = function(type) {
           return function(event) {
             var dateField = $('#date_pledge_' + type);
-            var timeField = $('form .pledge-' + type + '-time input.custom-combobox-input');
+            var timeField = $('#time_pledge_' + type);
             var rawField = $('#fundraiser_pledge_' + type + '_time');
+            var dateValue;
             
-            var dateValue = dateField.val();
+            var dateString = dateField.val();
             var dateCheck = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/
-            if (!dateCheck.test(dateValue)) {
-              daveValue = null;
+            if (!dateCheck.test(dateString)) {
+              dateString = null;
               dateField.val(defaultDate);
+            } else {
+              dateValue = new Date(Date.parse(dateString));
             }
           
-            var timeValue = timeField.val();
-            var timeCheck = /^[0-1]?[0-9]:[0-5][0-9] (am|pm)$/;
-            if (!timeCheck.test(timeValue)) {
-              timeValue = null;
+            var timeString = timeField.val();
+            var timeCheck = /^[0-1]?[0-9]:[0-5][0-9] (am|pm|AM|PM)$/;
+            if (!timeCheck.test(timeString)) {
               timeField.val(defaultTime);
+            } else if (dateString) {
+              dateValue = new Date(Date.parse(dateString + " " + timeString));
             }
           
-            if (dateValue && timeValue) {
-              rawField.val(dateField.val() + " " + timeField.val());
+            if (dateValue) {
+              rawField.val(dateValue.toISOString());
             }
           };
         };
+        // TODO: Update the end date/time if needed.
         $( "#date_pledge_start" ).change(updatePledgeTime('start'));
-        $( "form .pledge-start-time input.custom-combobox-input" ).focusout(updatePledgeTime('start'));
+        $( "#time_pledge_start" ).change(updatePledgeTime('start'));
 
         $( "#date_pledge_end" ).change(updatePledgeTime('end'));
-        $( "form .pledge-end-time input.custom-combobox-input" ).focusout(updatePledgeTime('end'));
+        $( "#time_pledge_end" ).change(updatePledgeTime('end'));
 
         // Ensure the underlying raw datetime values are up to date with the displayed composite values.
         updatePledgeTime('start')();

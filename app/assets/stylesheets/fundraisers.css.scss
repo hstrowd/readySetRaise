@@ -2,21 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#new-fundraiser form .pledge-start-time #date_pledge_start {
-    width: 150px;
+//= require pickdate/default
+//= require pickdate/default.date
+//= require pickdate/default.time
+
+.fundraiser-form .field input.datetime {
+    display: inline-block;
+
+    width: 40%;
+
+    padding: 2%;
 }
-#new-fundraiser form .pledge-start-time .custom-combobox-input {
-    width: 82px;
+.fundraiser-form .field .picker--time .picker__frame {
+    min-width: 180px;
+    max-width: 200px;
 }
-#new-fundraiser form .pledge-end-time #date_pledge_end {
-    width: 150px;
-}
-#new-fundraiser form .pledge-end-time .custom-combobox-input {
-    width: 82px;
+.fundraiser-form .field .datetime-separator {
+    display: none;
 }
 
-#new-fundraiser form .organization .custom-combobox-input {
-    width: 268px;
+@media screen and (min-width: 450px)  {
+  .fundraiser-form .field input.datetime {
+      display: inline-block;
+  
+      width: 35%;
+  }
+  .fundraiser-form .field .datetime-separator {
+      display: inline-block;
+
+      width: 10%;
+      max-width: 1em;
+
+      margin: 0 auto;
+
+      text-align: center;
+  }
+}
+
+.fundraiser-form form input.submit {
+    min-width: 12em;
+
+    margin: 1.5em 30%;
 }
 
 div.ui-datepicker{
