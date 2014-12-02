@@ -88,3 +88,60 @@ ul.ui-autocomplete {
     overflow-y: scroll;
     font-size: 12px;
 }
+
+
+
+/**
+ *  ==== Show Page ====
+ */
+
+#fundraiser-show .title {
+    width: 95%;
+    margin: 2% auto;
+}
+#fundraiser-show .title .icon {
+    display: inline-block;
+    
+    width: 30%;
+    margin: 2%;
+
+    vertical-align: middle;
+}
+#fundraiser-show .title .name {
+    display: inline-block;
+
+    width: 60%;
+
+    vertical-align: middle;
+    
+    font-size: 1.5em;
+}
+
+#fundraiser-show .member-controls {
+    margin: 2%;
+
+    text-align: center;
+}
+#fundraiser-show .member-controls .action {
+    display: inline-block;
+    
+    width: 10em;
+    max-width: 40%;
+}
+
+#fundraiser-show .details {
+    width: 85%;
+    margin: 2% auto;
+}
+#fundraiser-show .details .attribute {
+    margin: 1% 1% 1% 5%;
+}
+#fundraiser-show .details .attribute .label{
+    position: relative;
+    display: inline-block;
+
+    width: 7em;
+    right: 4%;
+    
+    font-weight: bold;
+}

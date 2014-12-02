@@ -11,5 +11,7 @@ class Organization < ActiveRecord::Base
     uniqueness: true
   }
 
+  has_many :fundraisers
+
   # TODO: Add fields for primary color, secondary color, logo, key
 end

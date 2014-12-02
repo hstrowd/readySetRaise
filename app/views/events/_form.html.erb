@@ -1,61 +1,78 @@
 <div class="event-form">
-  <%= form_for(@event) do |f| %>
+  <%= form_for @event do |f| %>
 
-    <div class="field title">
-      <div class="label">
-        <%= f.label :title %>
-      </div>
-      <%= f.text_field :title, autofocus: true %>
-      <% if !@fundraiser.errors[:title].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:title][0].humanize %></div>
+    <%= f.hidden_field :fundraiser_id %>
+
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @event, 
+                 attr: :title
+               }) %>
+
+    <% content_for 'description_field' do %>
+      <%= f.text_area :description %>
+    <% end %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @event, 
+                 attr: :description
+               }) %>
+
+
+    <!-- TODO: Enforce that the event start and end date are within the fundraiser's pledge timeframe. -->
+
+    <% content_for 'start_time_field' do %>
+      <%= f.hidden_field(:start_time) %>
+      <% if !@event.errors[:start_time].empty? %>
+        <div class="field_with_errors">
+      <% end %>
+      <%= text_field_tag :date_start, nil, class: 'datetime date' %>
+      <div class="datetime-separator">at</div>
+      <%= text_field_tag :time_start, nil, class: 'datetime time' %>
+      <% if !@event.errors[:start_time].empty? %>
         </div>
       <% end %>
-    </div>
+    <% end %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @event, 
+                 field_label: 'Starts on',
+                 attr: :start_time
+               }) %>
 
-    <div class="field description">
-      <div class="label">
-        <%= f.label :description %>
-      </div>
-      <%= f.text_field :description, autofocus: true %>
-      <% if !@fundraiser.errors[:description].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:description][0].humanize %></div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="field start-time">
-      <div class="label">
-        <%= f.label :start_time %>
-      </div>
-      <%= f.text_field :start_time, autofocus: true %>
-      <% if !@fundraiser.errors[:start_time].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:start_time][0].humanize %></div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="field end-time">
-      <div class="label">
-        <%= f.label :end_time %>
-      </div>
-      <%= f.text_field :end_time, autofocus: true %>
-      <% if !@fundraiser.errors[:end_time].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:end_time][0].humanize %></div>
-        </div>
-      <% end %>
-    </div>
+    <% content_for 'end_time_field' do %>
+      <%= f.hidden_field(:end_time) %>
+       <% if !@event.errors[:end_time].empty? %>
+         <div class="field_with_errors">
+       <% end %>
+       <%= text_field_tag :date_end, nil, class: 'datetime date' %>
+       <div class="datetime-separator">at</div>
+       <%= text_field_tag :time_end, nil, class: 'datetime time' %>
+       <% if !@event.errors[:end_time].empty? %>
+         </div>
+       <% end %>
+    <% end %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @event,
+                 field_label: 'Ends on',
+                 attr: :end_time
+               }) %>
 
     <div class="actions">
-      <%= f.submit class: :submit %>
+      <%= f.submit "Schedule Event", class: :submit %>
     </div>
+
+    <script>
+      $(function() {
+        initDateTimeField('event', 'start');
+        initDateTimeField('event', 'end');
+      });
+    </script>
 
   <% end %>
 </div>

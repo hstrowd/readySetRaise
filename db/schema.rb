@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20141012181452) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer  "fundraiser_id", null: false
-    t.integer  "user_id",       null: false
+    t.integer  "creator_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

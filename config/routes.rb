@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :organizations
-  resources :fundraisers
+  resources :fundraisers do
+    resources :events, only: [:new]
+    resources :teams, only: [:new]
+    resources :pledges
+  end
+
   resources :events
   resources :teams
   resources :pledges

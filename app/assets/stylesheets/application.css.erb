@@ -42,7 +42,7 @@ body {
 #page-container {
     position: relative;
     
-    min-height: 100%;
+    height: 100%;
 }
 
 @media screen and (min-width: 1024px)  {
@@ -763,13 +763,10 @@ img {
 }
 #page-content {
     width: 100%;
+    min-height: 100%;
 
     margin: 0 auto;
     padding: .1em;  /* Prevents margins from collapsing. */
-}
-#footer-stub {
-    height: 4em;
-    font-size: .7em;
 }
 
 @media screen and (min-width: 700px)  {
@@ -789,7 +786,7 @@ img {
  **/
 
 #footer {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     
     width: 100%;

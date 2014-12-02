@@ -7,9 +7,7 @@
       <% end %>
     </div>
     <div class="name">
-      <%= link_to @org do %>
-        <%= @org.name %>
-      <% end %>
+      <%= @org.name %>
     </div>
   </div>
 
@@ -34,6 +32,14 @@
   </div>
 
   <div class="current-fundraisers">
+    <% @org.fundraisers.each do |f| %>
+      <div class="fundraiser">
+        <%= link_to f do %>
+          <div class="title"><%= f.title %></div>
+        <% end %>
+        <div class="description"><%= f.description %></div>
+      </div>
+    <% end %>
   </div>
   
   <div class="past-fundraisers">

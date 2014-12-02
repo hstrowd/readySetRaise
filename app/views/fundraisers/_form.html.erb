@@ -76,46 +76,8 @@
       <%= f.submit "Schedule Fundraiser", class: :submit %>
     </div>
 
-    <!-- TODO: Move this into the assets. -->
     <script>
       $(function() {
-        var curDate = new Date();
-        var defaultDate = (curDate.getMonth() + 1) + "/" + curDate.getDate() + "/" + curDate.getFullYear();
-        var defaultTime = '12:00 PM';
-
-        // Set the initial composite datetime values based on the raw value.
-        var initPledgeDateTime = function(type) {
-          var rawField = $('#fundraiser_pledge_' + type + '_time');
-          var dateField = $('#date_pledge_' + type);
-          var timeField = $('#time_pledge_' + type);
-
-          var rawDate = new Date(rawField.val());
-          if (!rawDate || isNaN( rawDate.getTime() )) {
-            dateField.val(defaultDate);
-            timeField.val(defaultTime);
-          } else {
-            var dateString = (rawDate.getMonth() + 1) + "/" + rawDate.getDate() + "/" + rawDate.getFullYear();
-            dateField.val(dateString);
-
-            var hours = rawDate.getHours();
-            var minutes = rawDate.getMinutes();
-            var period = 'AM';
-
-            if (hours > 12) {
-              hours = hours % 12;
-              period = 'PM';
-            }
-            if (minutes < 10) {
-              minutes = "0" + minutes;
-            }
-
-            var timeString = hours + ':' + minutes + ' ' + period;
-            timeField.val(timeString);
-          }
-        };
-        initPledgeDateTime('start');
-        initPledgeDateTime('end');
-
         var orgField = $( "#fundraiser_organization_id" );
         if (orgField && orgField.attr('type') != 'hidden') {
           orgField.combobox({
@@ -123,61 +85,8 @@
           });
         }
 
-        var datePickerOptions = {
-          format: 'mm/dd/yyyy'
-        };
-        $( "#date_pledge_start" ).pickadate(datePickerOptions);
-        $( "#date_pledge_end" ).pickadate(datePickerOptions);
-
-        var timePickerOptions = {
-          editable: true,
-          format: 'h:i A',
-          min: [8,00]
-        };
-        $( "#time_pledge_start" ).pickatime(timePickerOptions);
-        $( "#time_pledge_end" ).pickatime(timePickerOptions);
-
-
-        // Update the raw datetime value every time the composite values change.
-        var updatePledgeTime = function(type) {
-          return function(event) {
-            var dateField = $('#date_pledge_' + type);
-            var timeField = $('#time_pledge_' + type);
-            var rawField = $('#fundraiser_pledge_' + type + '_time');
-            var dateValue;
-            
-            var dateString = dateField.val();
-            var dateCheck = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/
-            if (!dateCheck.test(dateString)) {
-              dateString = null;
-              dateField.val(defaultDate);
-            } else {
-              dateValue = new Date(Date.parse(dateString));
-            }
-          
-            var timeString = timeField.val();
-            var timeCheck = /^[0-1]?[0-9]:[0-5][0-9] (am|pm|AM|PM)$/;
-            if (!timeCheck.test(timeString)) {
-              timeField.val(defaultTime);
-            } else if (dateString) {
-              dateValue = new Date(Date.parse(dateString + " " + timeString));
-            }
-          
-            if (dateValue) {
-              rawField.val(dateValue.toISOString());
-            }
-          };
-        };
-        // TODO: Update the end date/time if needed.
-        $( "#date_pledge_start" ).change(updatePledgeTime('start'));
-        $( "#time_pledge_start" ).change(updatePledgeTime('start'));
-
-        $( "#date_pledge_end" ).change(updatePledgeTime('end'));
-        $( "#time_pledge_end" ).change(updatePledgeTime('end'));
-
-        // Ensure the underlying raw datetime values are up to date with the displayed composite values.
-        updatePledgeTime('start')();
-        updatePledgeTime('end')();
+        initDateTimeField('fundraiser', 'pledge_start');
+        initDateTimeField('fundraiser', 'pledge_end');
       });
     </script>
 
