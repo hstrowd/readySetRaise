@@ -1,13 +1,40 @@
 <div class="item">
+  <div class="header">
+    <div class="name">
+      <%= link_to org do %>
+        <%= org.name %>
+      <% end %>
+    </div>
+    <div class="member-count">(<%= org.members.count %> members)</div>
+  </div>
   <div class="icon">
     <%= link_to org do %>
       <%= image_tag 'org/defaultIcon.png' %>
     <% end %>
   </div>
-  <div class="name">
-    <%= link_to org do %>
-      <%= org.name %>
+  <div class="attr description">
+    <div class="value"><div class="label">Description:</div> <%= org.description %></div>
+  </div>
+  <div class="attr fundraiser-snapshot">
+    <% if (nextFundraiser = org.fundraisers.first) %> 
+      <% if (nextFundraiser.pledge_start_time < DateTime.now) %>
+        <% if (nextFundraiser.pledge_end_time > DateTime.now) %>
+          <div class="in-progress">
+            <div class="label">Current Fundraiser</div>
+            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
+          </div>
+        <% else %>
+          <div class="completed">
+            <div class="label">Previous Fundraiser</div>
+            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
+          </div>
+        <% end %>
+      <% else %>
+          <div class="upcoming">
+            <div class="label">Upcoming Fundraiser</div>
+            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
+          </div>
+      <% end %>
     <% end %>
   </div>
-  <div class="description"><%= org.description %></div>
 </div>
