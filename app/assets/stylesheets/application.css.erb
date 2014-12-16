@@ -39,6 +39,18 @@ body {
     font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
 
+#page-container {
+    position: relative;
+    
+    height: 100%;
+}
+
+@media screen and (min-width: 1024px)  {
+    #page-container {
+        background-image: url('<%= asset_path("bg-texture.png"); %>');
+    }
+}
+
 /**
  * Site Wide Styles
  **/
@@ -51,10 +63,38 @@ body {
     margin-right: auto;
 }
 
-#page-container {
-    position: relative;
-    
-    min-height: 100%;
+.vert-centerer {
+    display: inline-block;
+
+    height: 100%;
+
+    vertical-align: middle;
+}
+
+.btn {
+    padding: .3em .25em;
+    margin: .2em .3em;
+
+    background-color: #FFFFFF;
+    border: .1em solid #888888;
+    border-radius: .4em;
+
+    color: #777777;
+    text-align: center;
+
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #A3EB87;
+    border: .1em solid #444444;
+
+    color: #666666;
+}
+.btn:active {
+    background-color: #75C357;
+    border: .1em solid #333333;
+
+    color: #555555;
 }
 
 a {
@@ -66,6 +106,12 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Ensures images size properly to fit within their parent containers. */
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 
 
 /**
@@ -73,166 +119,191 @@ a:hover {
  **/
 
 /* TODO: Rename this to just form. */
-.setup-form .centerer {
-    width: 940px;
+.std-form .centerer {
+    max-width: 940px;
+    width: 95%;
 }
 
-.setup-form .instructions {
-    width: 800px;
-}
-.setup-form .instructions .title {
-    margin: 20px;
-    font-size: 24px;
+.std-form .instructions .title {
+    margin: 4% 6%;
+    font-size: 1.5em;
     font-weight: bold;
 }
-.setup-form .instructions .description {
-    margin: 10px 20px;
+.std-form .instructions .description {
+    margin: 4% 2%;
 }
 
-.setup-form form {
-    margin: 20px 0;
+.std-form form {
+    margin: .75em 0;
 }
-.setup-form .field {
-    margin: 10px 50px;
+.std-form .field {
+    margin: 2% 4%;
 
     vertical-align: middle;
 }
-.setup-form .field .label {
+.std-form .field .label {
     display: inline-block;
     
-    width: 150px;
+    width: 25%;
+    max-width: 150px;
 
-    margin-right: 15px;
+    margin-right: .6em;
 
     color: #444444;
-    font-size: 18px;
+    font-size: 0.9em;
     
     vertical-align: middle;
     text-align: right;
 }
-.setup-form .field .label .help-text {
-    font-size: 12px;
+.std-form .field .label .help-text {
+    font-size: .5em;
 }
-.setup-form .field .field_with_errors {
+.std-form .field .label .field_with_errors {
+    width: 100%;
+}
+.std-form .field .input {
     display: inline-block;
 
+    width: 60%;
+    max-width: 300px;
+
+    /* To account for the padding in the input field. */
+    margin-right: 1.5em;
     vertical-align: middle;
 }
-.setup-form .field input {
-    width: 300px;
+.std-form .field .field_with_errors {
+    display: inline-block;
 
-    padding: 5px;
+    width: 100%;
 
     vertical-align: middle;
 }
-.setup-form .field .field_with_errors input {
+.std-form .field input {
+    width: 100%;
+
+    padding: .75em;
+
+    vertical-align: middle;
+}
+.std-form .field .field_with_errors input {
     border-color: #EB8787;
     background-color: #FFBDBD;
 }
-.setup-form .field .field_with_errors textarea {
+.std-form .field .field_with_errors textarea {
     border-color: #EB8787;
     background-color: #FFBDBD;
 }
-.setup-form .field textarea {
-    width: 300px;
-    max-width: 469px;
-    height: 50px;
+.std-form .field textarea {
+    width: 100%;
+    height: 2.5em;
     max-height: 200px;
 
-    padding: 5px;
+    padding: 1em;
 
     vertical-align: middle;
 
-    font-size: 12px;
+    font-size: .5em;
 }
-.setup-form .field .info {
+.std-form .field .info {
+    display: inline-block;
+    position: relative;
+
+    width: 65%;
+
+    margin-left: 28%;    
+    vertical-align: top;
+
+    font-size: .5em;
+}
+.std-form .field .info .icon {
+    display: inline-block;
+    position: absolute;
+
+    width: 1.7em;
+    margin: .3em .1em;
+
+    vertical-align: middle;
+}
+.std-form .field .info .description {
     display: inline-block;
 
-    height: 32px;
+    max-width: 94%;
 
-    font-size: 12px;
-    
-    vertical-align: middle;
-}
-.setup-form .field .info .icon {
-    display: inline-block;
-
-    width: 10px;
-    height: 10px;
-    
-    padding: 3px;
-    margin: 8px 2px;
-
-    background-image: url('<%= asset_path("info.png") %>'); 
-    
-    vertical-align: middle;
-}
-.setup-form .field .error {
-    display: inline-block;
-
-    height: 32px;
-    
-    vertical-align: middle;
-}
-.setup-form .field .error .icon {
-    display: inline-block;
-
-    width: 10px;
-    height: 10px;
-    
-    padding: 3px;
-    margin: 8px 2px;
-
-    background-image: url('<%= asset_path("error.gif") %>'); 
-    
-    vertical-align: middle;
-}
-.setup-form .field .error .reason {
-    display: none;
-
-    max-width: 324px;
-
-    padding: 2px;
-    margin: 3px 0;
-
-    border: 1px solid #EB8787;
-    border-radius: 4px;
-    background-color: #FFBDBD;
+    padding: 1%;
+    margin: 1%;
+    margin-left: 2.5em;
 
     vertical-align: top;
 }
-.setup-form .field .error:hover .reason {
-    display: inline-block;
+.std-form .field .info.error .description {
+    margin-left: 1.5em;
+
+    border: .1em solid #EB8787;
+    border-radius: .2em;
+    background-color: #FFBDBD;
+
+    font-size: 2em;
 }
 
-.setup-form submit {
-    width: 535px;
-}
-.setup-form input.submit {
+.std-form input.submit {
     display: inherit;
     
-    height: 40px;
-    width: 240px;
+    height: 3em;
+    width: 35%;
+    min-width: 10em;
     
-    padding: 6px 4px;
-    margin: 20px 170px;
+    padding: .25em .2em;
+    margin: 1.5em 40%;
 
     background-color: #FFFFFF;
-    border: 1px solid #888888;
-    border-radius: 5px;
+    border: .12em solid #888888;
+    border-radius: .5em;
 
-    font-size: 14px;
+    font-size: .75em;
     font-weight: bold;
     text-align: center;
 }
-.setup-form input.submit:hover {
-    padding: 5px 4px;
+.std-form input.submit:hover {
+    padding: .3em .2em;
 
     background-color: #A3EB87;
-    border: 2px solid #AAAAAA;
+    border: .18em solid #AAAAAA;
 }
 
-
+@media screen and (min-width: 600px)  {
+    .std-form .instructions .title {
+        margin: .5em 1.5em;
+    }
+    .std-form .instructions .description {
+        margin: .5em;
+    }
+    .std-form .field {
+        margin: 1% 2%;
+    }
+    .std-form .field .input {
+        width: 40%;
+    }
+    .std-form .field .info {
+        display: inline-block;
+    
+        width: 20%;
+        height: 2em;
+        overflow-y: visible;
+    
+        margin-left: 0;
+    }
+    .std-form .field .info .description {
+        display: none;
+    }
+    .std-form .field .info:hover .description {
+        display: inline-block;
+    }
+    .std-form input.submit {
+        width: 25%;
+    
+        margin: 1.5em 18%;
+    }
+}
 
 
 
@@ -247,6 +318,7 @@ a:hover {
     top: 0px;
 
     width: 100%;
+    height: 4em;
 
     /* Required to be above the Slick carousels. */
     z-index: 99;
@@ -254,146 +326,388 @@ a:hover {
     background-color: rgba(255,255,255,0.80);
 
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-    font-size: 14px;
+    font-size: .9em;
 }
 
 #header .centerer {
-    width: 800px;
-    height: 60px;
+    width: 100%;
+    max-width: 940px;
+    height: 100%;
+
+    text-align: center;
 }
 
 #header .main-logo {
     display: inline-block;
-    
-    width: 300px;
-    height: 50px;
 
-    margin: 5px 0;
-
-    background-image: url('<%= asset_path("logo-small.png"); %>');
+    width: 50%;
+    max-width: 300px;
+    height: 100%;
 }
-
-#header .primary-nav {
+#header .main-logo img {
     display: inline-block;
-    float: right;
 
-    height: 20px;
+    max-width: 95%;
 
-    margin: 20px 10px;
-}
-#header .primary-nav a {
-    margin: 5px;
-    
-    color: #666666;
-    text-decoration: none;
-}
-#header .primary-nav a:hover {
-    color: #92D279;
-    text-decoration: underline;
+    vertical-align: middle;
 }
 
-#header .account-management {
-    display: inline-block;
-    float: right;
-
-    width: 70px;
-    height: 40px;
-
-    margin: 10px 5px;
-}
-#header .account-management .current-user {
-    display: inline-block;
-    
-    width: 60px
-}
-#header .account-management .current-user .user-welcome {
-    font-size: 10px;
-}
-#header .account-management .btn {
-    display: inline-block;
-    
-    width: 58px;
-    padding: 6px 4px;
-    margin: 3px 5px;
-
-    border: 1px solid #888888;
-    border-radius: 5px;
-
-    text-align: center;
-}
-#header .account-management .btn:hover {
-    display: inline-block;
-    
-    padding: 5px 4px;
-    margin: 3px 4px;
-
-    background-color: #A3EB87;
-    border: 2px solid #AAAAAA;
-}
-#header .account-management a {
-    color: #666666;
-    text-decoration: none;
-}
-#header .account-management a:hover {
-    color: #444444;
-}
-
-#header .login {
+#header .controls {
     display: none;
-    
-    height: 31px;
-
-    background-color: #A3EB87;
-
-    font-size: 12px;
-}
-#header .login .align-helper {
-    width: 800px;
-
-    margin: 0 auto;
-
-    text-align:right;
 }
 
-#header .login .field {
-    display:inline-block;
 
-    margin: 4px 5px;
-}
-#header .login .field .label {
-    display:inline-block;
 
-    margin: 0 3px;
-}
-#header .login input {
+#header .menu {
     display: inline-block;
 
-    padding: 3px;
+    width: 4em;
+    height: 100%;
 }
-
-#header .login .actions {
-    display:inline-block;
+#header .menu .vert-centerer {
 }
-#header .login .actions input.submit {
+#header .menu-btn {
     display: inline-block;
     
-    width: 48px;
-    height: 26px;
-    padding: 3px 2px;
-    margin: 1px 2px;
-
-    background-color: #FFFFFF;
-    border: 1px solid #888888;
-    border-radius: 5px;
+    width: 100%;
+    height: 100%;
 
     text-align: center;
+
+    background-color: #DDDDDD;
 }
-#header .login .actions input.submit:hover {
-    background-color: #A0CAFF;
-    border: 1px solid #666666;
+#header .menu-btn:hover {
+    cursor: pointer;
+
+    background-color: #BBBBBB;
+}
+#header .menu:hover .menu-btn {
+    background-color: #CCCCCC;
+}
+#header .menu-btn img {
+    display: inline-block;
+    
+    width: 55%;
+    min-width: 2em;
+    height: 55%;
+    min-height: 2em;
+
+    vertical-align: middle;
+}
+#header .menu .menu-dropdown {
+    position: fixed;
+    display: none;
+
+    min-width: 9em;
+
+    background-color: #CCCCCC;
+}
+#header .menu:hover .menu-dropdown {
+    display: initial;
+}
+/**
+ * TODO: This seems like a hack, but I couldn't figure out any other way to 
+ * get all of this to align properly for both mobile and desktop resolutions. 
+ **/
+#header .menu-dropdown .vert-centerer {
+    display: none;
+}
+#header .menu-dropdown a {
+    color: #666666;
+    text-decoration: none;
+}
+#header .menu-dropdown a:hover {
+        color: #888888;
+}
+#header .menu-dropdown .nav-item {
+    min-height: 1.5em;
+    padding: .5em;
+}
+#header .menu-dropdown .nav-item:hover {
+    background-color: #BCFFA2;
+}
+
+#header .menu-dropdown .btn {
+    padding: initial;
+    margin: initial;
+
+    background-color: none;
+    border: none;
+    border-radius: initial;
+
+    color: initial;
+}
+
+#header .menu.profile-nav {
+    float: left;
+}
+#header .menu.primary-nav {
+    float: right;
+}
+#header .profile-nav .menu-dropdown {
+    left: 0;
+}
+#header .primary-nav .menu-dropdown {
+    right: 0;
 }
 
 
+#header .profile-nav .profile-intro, #header .profile-nav .login-btn {
+    display:none;
+}
+
+
+
+@media screen and (max-width: 700px)  {
+    /* This will simply not display right at these resolutions. */
+    #header .login {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 700px)  {
+    #header {
+        height: 5em;
+    }
+
+    #header .main-logo {
+        float:left;
+        width: 32%;
+    }
+    #header .centerer {
+        width: 97%;
+    }
+
+    #header .menu {
+        display: inline-block;
+
+        width: initial;
+    }
+    #header .menu.profile-nav, #header .menu.primary-nav {
+        float: right;
+    }
+    #header .menu .menu-btn {
+        display: none;
+    }
+    #header .menu-dropdown .vert-centerer {
+        display: inline-block;
+    }
+    #header .menu-dropdown .nav-item {
+        height: 100%;
+    }
+
+
+    #header .menu.primary-nav .menu-dropdown {
+        position: initial;
+        display: inline-block;
+        float: none;
+
+        height: 100%;
+        width: initial;
+
+        background-color: transparent;
+    }
+    #header .menu.primary-nav .menu-dropdown .nav-items {
+        display: inline-block;
+
+        height: 80%;
+    }
+    #header .menu.primary-nav .menu-dropdown a {
+        display: inline-block;
+
+        height: 100%;
+
+        background-color: transparent;
+    }
+    #header .menu.primary-nav .menu-dropdown .nav-item {
+        height: 100%;
+
+        margin: 0 .2em;
+        padding: 0 .3em;
+    }
+
+    #header .controls {
+        display: inline-block;
+
+        width: 64%;
+
+        text-align: right;
+    }
+
+    #header .menu.profile-nav {
+        position: relative;
+
+        width: 6em;
+    }
+    #header .profile-nav .welcome {
+        display: inline-block;
+
+        margin: 2% 0;
+        vertical-align: middle;    
+
+        font-size: .6em;
+        text-align: center;
+    }
+
+    #header .profile-nav .login-btn {
+        display: block;
+    }
+
+    #header .menu.profile-nav .profile-intro {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+    }
+    #header .menu.profile-nav .profile-intro:hover {
+        background-color: #BCFFA2;
+        cursor: pointer;
+    }
+    #header .menu.profile-nav .welcome .account-name {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    
+        font-size: 1.66em;
+    }
+    #header .menu.profile-nav .profile-intro:hover + .menu-dropdown {
+        display: initial;
+    }
+
+    #header .menu.profile-nav .menu-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: -6em;
+
+        width: 12em;
+    }
+    #header .menu.profile-nav .menu-dropdown:hover {
+        display: initial;
+    }
+    #header .menu.profile-nav .menu-dropdown .vert-centerer {
+        display: none;
+    }
+    #header .menu.profile-nav .menu-dropdown .nav-items {
+        display: inline-block;
+
+        width: 100%;
+
+        text-align: center;
+    }
+    #header .profile-nav .nav-items .nav-item {
+        height: initial;
+    }
+
+    #header .profile-nav .login-btn a {
+        display: inline-block;
+    
+        width: 90%;
+    }
+    #header .profile-nav .btn {
+        display: inline-block;
+        
+        width: 90%;
+        padding: .3em 0;
+        margin: .15em .05em;
+    
+        border-radius: .5em;
+    
+        text-align: center;
+    }
+    #header .profile-nav .btn:hover {
+        display: inline-block;
+        
+        padding: .25em 0;
+        margin: .15em 0;
+    }
+    #header .profile-nav a {
+        color: #666666;
+        text-decoration: none;
+    }
+    #header .profile-nav a:hover {
+        color: #222222;
+        text-decoration: underline;
+    }
+    
+    #header .login {
+        display: none;
+        
+        height: 2.2em;
+    
+        background-color: #A3EB87;
+    
+        font-size: .8em;
+    }
+    #header .login .align-helper {
+        width: 95%;
+        max-width: 920px;
+    
+        margin: 0 auto;
+    
+        text-align:right;
+    }
+    
+    #header .login .field {
+        display:inline-block;
+    
+        margin: .2em .25em;
+    }
+    #header .login .field .label {
+        display:inline-block;
+    
+        margin: 0 .15em;
+    }
+    #header .login input {
+        display: inline-block;
+    
+        padding: .15em;
+    }
+    
+    #header .login .actions {
+        display:inline-block;
+    }
+    #header .login .actions input.submit {
+        display: inline-block;
+        
+        width: 5em;
+        height: 2em;
+        padding: .15em .1em;
+        margin: .05em .1em;
+    
+        background-color: #FFFFFF;
+        border: .1em solid #888888;
+        border-radius: .5em;
+    
+        text-align: center;
+    }
+    #header .login .actions input.submit:hover {
+        background-color: #A0CAFF;
+        border: .1em solid #666666;
+    }
+    
+}
+
+
+
+
+#user-nav {
+    padding: .15em;
+
+    background-color: #DDDDDD;
+}
+#user-nav .centerer {
+    width: 95%;
+    max-width: 940px;
+}
+#user-nav .btn {
+    display: inline-block;
+    
+    width: 4em;
+}
+#user-nav .logout-btn {
+    float: right;
+}
 
 
 /**
@@ -410,13 +724,14 @@ a:hover {
     background-color: #E7EB87;
 
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-    font-size: 14px;
+    font-size: .9em;
     text-align: center;
 }
 #notifications .notice .centerer {
-    width: 800px;
+    width: 95%;
+    max-width: 940px;
 
-    padding: 10px 0;
+    padding: .7em 0;
     margin: 0 auto;
 }
 
@@ -425,13 +740,14 @@ a:hover {
 
     background-color: #EB8787;
 
-    font-size: 14px;
+    font-size: .9em;
     text-align: center;
 }
 #notifications .alert .centerer {
-    width: 800px;
+    width: 95%;
+    max-width: 940px;
 
-    padding: 10px 0;
+    padding: .7em 0;
     margin: 0 auto;
 }
 
@@ -441,14 +757,22 @@ a:hover {
  * Page Content Styles
  **/
 
+#header-stub {
+    height: 4em;
+    font-size: .9em;
+}
 #page-content {
     width: 100%;
+    min-height: 100%;
 
-    margin: 59px auto 0;
-    padding: 1px;  /* Prevents margins from collapsing. */
-    padding-bottom: 40px;
+    margin: 0 auto;
+    padding: .1em;  /* Prevents margins from collapsing. */
+}
 
-    background-image: url('<%= asset_path("bg-texture.png"); %>');
+@media screen and (min-width: 700px)  {
+    #header-stub {
+        height: 5em;
+    }
 }
 
 
@@ -462,45 +786,61 @@ a:hover {
  **/
 
 #footer {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     
     width: 100%;
-    height: 40px;
+    height: 4em;
     
     background-color: rgba(100,100,100,0.90);
 
     color: #CCCCCC;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-    font-size: 12px;
+    font-size: .7em;
 }
 
 #footer .centerer {
-    width: 800px;
+    width: 95%;
+    max-width: 800px;
+
+    text-align: center;
 }
 
 #footer .copyright {
-    display: inline-block;
-
-    height: 12px;
+    height: 1em;
     
-    margin: 14px 0;
+    margin: .5em 0;
 }
 
 #footer .links {
-    display: inline-block;
-    float: right;
-
-    height: 12px;
+    height: 1em;
     
-    margin: 14px 10px;
+    margin: .5em .8em;
 }
 #footer .links a {
-    margin: 2px;
+    margin: .2em;
     
     color: #FFFFFF;
     text-decoration: none;
 }
 #footer .links a:hover {
     text-decoration: underline;
+}
+
+@media screen and (min-width: 700px)  {
+    #footer .centerer {
+        width: 90%;
+    }
+    #footer .copyright {
+        display: inline-block;
+        float: left;
+
+        margin: 1.5em 0;
+    }
+    #footer .links {
+        display: inline-block;
+        float: right;
+    
+        margin: 1.5em .8em;
+    }
 }

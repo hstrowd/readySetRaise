@@ -1,31 +1,14 @@
-<h1>Listing organizations</h1>
+<div id="org-index">
+  <div class="centerer">
+    <div class="intro">
+      <div class="title">Your Oganizations</div>
+      <div class="description">The following is a list of all organizations that you are involved in.</div>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Homepage url</th>
-      <th>Donation url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orgs.each do |organization| %>
-      <tr>
-        <td><%= organization.name %></td>
-        <td><%= organization.description %></td>
-        <td><%= organization.homepage_url %></td>
-        <td><%= organization.donation_url %></td>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Organization', new_organization_path %>
+    <div class="list">
+      <% @orgs.each do |organization| %>
+          <%= render partial: 'list_item', locals: { org: organization } %>
+      <% end %>      
+    </div>
+  </div>
+</div>

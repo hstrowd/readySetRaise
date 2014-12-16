@@ -1,6 +1,5 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
-  before_action :organization_params, only: [:create, :update]
 
   def index
     @orgs = Organization.all
@@ -14,6 +13,7 @@ class OrganizationsController < ApplicationController
     if !@org
       flash[:alert] = 'Unable to find requested organization.'
       redirect_to action: "index"
+      return
     end
   end
 
@@ -28,8 +28,12 @@ class OrganizationsController < ApplicationController
 
   def create
     @org = Organization.new(organization_params)
+    @org.creator = current_user
     @org.is_verified = false
     if @org.save
+      # Make the current user a member.
+      @org.members << current_user
+
       redirect_to new_fundraiser_path
     else
       render :new

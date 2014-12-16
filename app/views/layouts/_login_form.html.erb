@@ -5,18 +5,18 @@
         <div class="label">
           <%= label_tag :email %>
         </div>
-        <%= email_field_tag :email, '', autofocus: true %>
+        <%= email_field_tag 'user[email]', '', autofocus: true %>
       </div>
 
       <div class="field">
         <div class="label">
-          <%= label_tag :password %><br />
+          <%= label_tag :password %>
         </div>
-        <%= password_field_tag :password, '', autocomplete: "off" %>
+        <%= password_field_tag 'user[password]', '', autocomplete: "off" %>
       </div>
 
       <div class="field">
-        <%= check_box_tag :remember_me %> 
+        <%= check_box_tag 'user[remember_me]' %>
         <div class="label">
           <%= label_tag :remember_me %>
         </div>

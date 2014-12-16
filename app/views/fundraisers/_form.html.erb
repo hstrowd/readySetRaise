@@ -1,6 +1,20 @@
 <div class="fundraiser-form">
   <%= form_for(@fundraiser) do |f| %>
 
+    <% if (@organizations.size == 1) %>
+      <%= f.hidden_field(:organization_id, value: @organizations[0].id) %>
+    <% else %>
+      <% content_for 'organization_field' do %>
+        <%= collection_select(:fundraiser, :organization_id, @organizations, :id, :name) %>
+      <% end %>
+      <%= render(partial: "shared/form_field", 
+                 locals: { 
+                   form: f, 
+                   model: @fundraiser, 
+                   attr: :organization
+                 }) %>
+    <% end %>
+
     <%= render(partial: "shared/form_field", 
                locals: { 
                  form: f, 
@@ -16,16 +30,18 @@
                  model: @fundraiser, 
                  attr: :description
                }) %>
+
     <% content_for 'pledge_start_time_field' do %>
-       <% if !@fundraiser.errors[:pledge_start_time].empty? %>
-         <div class="field_with_errors">
-       <% end %>
-       <%= text_field_tag :pledge_start_date %>
-       at
-       <%= select_tag :pledge_start_time, options_for_select(thirty_minute_internvals) %>
-       <% if !@fundraiser.errors[:pledge_start_time].empty? %>
-         </div>
-       <% end %>
+      <%= f.hidden_field(:pledge_start_time) %>
+      <% if !@fundraiser.errors[:pledge_start_time].empty? %>
+        <div class="field_with_errors">
+      <% end %>
+      <%= text_field_tag :date_pledge_start, nil, class: 'datetime date' %>
+      <div class="datetime-separator">at</div>
+      <%= text_field_tag :time_pledge_start, nil, class: 'datetime time' %>
+      <% if !@fundraiser.errors[:pledge_start_time].empty? %>
+        </div>
+      <% end %>
     <% end %>
     <%= render(partial: "shared/form_field", 
                locals: { 
@@ -35,12 +51,13 @@
                  attr: :pledge_start_time
                }) %>
     <% content_for 'pledge_end_time_field' do %>
+      <%= f.hidden_field(:pledge_end_time) %>
        <% if !@fundraiser.errors[:pledge_end_time].empty? %>
          <div class="field_with_errors">
        <% end %>
-       <%= text_field_tag :pledge_end_date %>
-       at
-       <%= select_tag :pledge_end_time, options_for_select(thirty_minute_internvals) %>
+       <%= text_field_tag :date_pledge_end, nil, class: 'datetime date' %>
+       <div class="datetime-separator">at</div>
+       <%= text_field_tag :time_pledge_end, nil, class: 'datetime time' %>
        <% if !@fundraiser.errors[:pledge_end_time].empty? %>
          </div>
        <% end %>
@@ -53,151 +70,23 @@
                  attr: :pledge_end_time
                }) %>
 
+    <!-- TODO: Add a multi-select field for single event vs multi event fundraisers. -->
+
     <div class="actions">
       <%= f.submit "Schedule Fundraiser", class: :submit %>
     </div>
 
     <script>
-      (function( $ ) {
-        $.widget( "custom.combobox", {
-          _create: function() {
-            this.wrapper = $( "<span>" )
-              .addClass( "custom-combobox" )
-              .insertAfter( this.element );
-     
-            this.element.hide();
-            this._createAutocomplete();
-            this._createShowAllButton();
-          },
-     
-          _createAutocomplete: function() {
-            var selected = this.element.children( ":selected" ),
-              value = selected.val() ? selected.text() : "";
-     
-            this.input = $( "<input>" )
-              .appendTo( this.wrapper )
-              .val( value )
-              .attr( "title", "" )
-              .addClass( "custom-combobox-input ui-widget ui-widget-content ui-corner-left" )
-              .autocomplete({
-                delay: 0,
-                minLength: 0,
-                source: $.proxy( this, "_source" )
-              })
-              .tooltip({
-                tooltipClass: "ui-state-highlight"
-              });
-     
-            this._on( this.input, {
-              autocompleteselect: function( event, ui ) {
-                ui.item.option.selected = true;
-                this._trigger( "select", event, {
-                  item: ui.item.option
-                });
-              },
-     
-              autocompletechange: "_reformatToTime"
-            });
-          },
-     
-          _createShowAllButton: function() {
-            var input = this.input,
-              wasOpen = false;
-     
-            $( "<a>" )
-              .attr( "tabIndex", -1 )
-              .attr( "title", "Show All Items" )
-              .tooltip()
-              .appendTo( this.wrapper )
-              .button({
-                icons: {
-                  primary: "ui-icon-triangle-1-s"
-                },
-                text: false
-              })
-              .removeClass( "ui-corner-all" )
-              .addClass( "custom-combobox-toggle ui-corner-right" )
-              .mousedown(function() {
-                wasOpen = input.autocomplete( "widget" ).is( ":visible" );
-              })
-              .click(function() {
-                input.focus();
-     
-                // Close if already visible
-                if ( wasOpen ) {
-                  return;
-                }
-     
-                // Pass empty string as value to search for, displaying all results
-                input.autocomplete( "search", "" );
-              });
-          },
-     
-          _source: function( request, response ) {
-            var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
-            response( this.element.children( "option" ).map(function() {
-              var text = $( this ).text();
-              if ( this.value && ( !request.term || matcher.test(text) ) )
-                return {
-                  label: text,
-                  value: text,
-                  option: this
-                };
-            }) );
-          },
-     
-          _reformatToTime: function( event, ui ) {
-              // TODO: Inspect the value and if it's not a valid time update it to match our expected format.
-
-//            // Selected an item, nothing to do
-//            if ( ui.item ) {
-//              return;
-//            }
-//     
-//            // Search for a match (case-insensitive)
-//            var value = this.input.val(),
-//              valueLowerCase = value.toLowerCase(),
-//              valid = false;
-//            this.element.children( "option" ).each(function() {
-//              if ( $( this ).text().toLowerCase() === valueLowerCase ) {
-//                this.selected = valid = true;
-//                return false;
-//              }
-//            });
-//     
-//            // Found a match, nothing to do
-//            if ( valid ) {
-//              return;
-//            }
-//     
-//            // Remove invalid value
-//            this.input
-//              .val( "" )
-//              .attr( "title", value + " didn't match any item" )
-//              .tooltip( "open" );
-//            this.element.val( "" );
-//            this._delay(function() {
-//              this.input.tooltip( "close" ).attr( "title", "" );
-//            }, 2500 );
-//            this.input.autocomplete( "instance" ).term = "";
-          },
-     
-          _destroy: function() {
-            this.wrapper.remove();
-            this.element.show();
-          }
-        });
-      })( jQuery );
- 
       $(function() {
-        $.datepicker.setDefaults({
-          showAnim: "slideDown"
-        });
-        $( "#pledge_start_date" ).datepicker();
-        $( "#pledge_end_date" ).datepicker();
+        var orgField = $( "#fundraiser_organization_id" );
+        if (orgField && orgField.attr('type') != 'hidden') {
+          orgField.combobox({
+            editable: false
+          });
+        }
 
-        $( "#pledge_start_time" ).combobox();
-        $( "#pledge_end_time" ).combobox();
+        initDateTimeField('fundraiser', 'pledge_start');
+        initDateTimeField('fundraiser', 'pledge_end');
       });
     </script>
 

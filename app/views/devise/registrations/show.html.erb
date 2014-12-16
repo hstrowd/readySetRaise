@@ -1,0 +1,41 @@
+<div id="account-show" class="std-form">
+
+  <div class="account-details">
+    <div class="centerer">
+      <div class="title">Account Details</div>
+
+      <div class="attr first-name">
+        <div class="label">First Name</div>
+        <div class="value"><%= @user.first_name %></div>
+      </div>
+
+      <div class="attr last-name">
+        <div class="label">Last Name</div>
+        <div class="value"><%= @user.last_name %></div>
+      </div>
+
+      <div class="attr phone-number">
+        <div class="label">Phone Number</div>
+        <div class="value"><%= @user.phone_number %></div>
+      </div>
+
+      <div class="attr email">
+        <div class="label">Email</div>
+        <div class="value"><%= @user.email %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pledge-history">
+  </div>
+
+  <div class="org-activity">
+    <% @orgs.each do |org| %>
+      <div class="org">
+        <div class="name"><%= link_to org.homepage_url, org.name %></div>
+        <div class="description"><%= org.name %></div>
+      </div>
+    <% end %>
+  </div>
+
+</div>

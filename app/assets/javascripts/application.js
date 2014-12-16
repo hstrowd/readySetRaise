@@ -13,8 +13,36 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery-combobox
 //= require turbolinks
 
 //= require slick
 
 //= require_tree .
+
+
+
+function isoToLocalStrings(dateInput) {
+    var rawDate = new Date(dateInput);
+    if (!rawDate || isNaN( rawDate.getTime() )) { return null; }
+
+    var year = rawDate.getFullYear();
+    var month = (rawDate.getMonth() + 1);
+    var day = rawDate.getDate();
+    var hours = rawDate.getHours();
+    var minutes = rawDate.getMinutes();
+    var period = 'AM';
+
+    if (hours > 12) {
+        hours = hours % 12;
+        period = 'PM';
+    }
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+
+    var dateString = month + "/" + day + "/" + year;
+    var timeString = hours + ':' + minutes + ' ' + period;
+
+    return [dateString, timeString];
+}

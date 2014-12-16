@@ -1,24 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div id="fundraiser-show">
+  <div class="title">
+    <%= @fundraiser.title %>
+  </div>
+  <div class="subtitle">
+    by <%= link_to @fundraiser.organization.name, @fundraiser.organization %>
+  </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @fundraiser.title %>
-</p>
+  <div class="member-controls">
+    <%= link_to new_fundraiser_event_path(@fundraiser) do %>
+      <div class="action btn new-event">Schedule an Event</div>
+    <% end %>
+    <%= link_to edit_fundraiser_path(@fundraiser) do %>
+      <div class="action btn edit-org">Update Fundraiser</div>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @fundraiser.description %>
-</p>
+  <div class="details">
+    <div class="attribute description">
+      <div class="label">Description:</div>
+      <%= @fundraiser.description %>
+    </div>
+    <div class="attribute pledge-window">
+      <div class="label">Pledges Window: </div>
+      <!-- Note: The from and to times will be shown after they are formatted properly. -->
+      <div class="from-time">
+        From: <div class="start-time" style="display:none;"><%= @fundraiser.pledge_start_time.iso8601() %></div>
+      </div>
+      <div class="to-time">
+        To: <div class="end-time" style="display:none;"><%= @fundraiser.pledge_end_time.iso8601() %></div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Pledge start time:</strong>
-  <%= @fundraiser.pledge_start_time %>
-</p>
+  <div class="events">
+    <% @fundraiser.events.each do |e| %>
+      <div class="event">
+        <%= link_to e do %>
+          <div class="title"><%= e.title %></div>
+        <% end %>
+        <div class="description"><%= e.description %></div>
+      </div>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Pledge end time:</strong>
-  <%= @fundraiser.pledge_end_time %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_fundraiser_path(@fundraiser) %> |
-<%= link_to 'Back', fundraisers_path %>
+
+<script>
+  $(function() {
+    setPledgeWindow();
+  });
+</script>

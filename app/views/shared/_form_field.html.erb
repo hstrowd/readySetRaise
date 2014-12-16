@@ -8,22 +8,24 @@
     <% end %>
   </div>
 
-  <% if content_for?(attr.to_s + '_field') %>
-    <%= yield(attr.to_s + '_field') %>
-  <% else %>
-    <%= form.text_field attr %>
-  <% end %>
+  <div class="input">
+    <% if content_for?(attr.to_s + '_field') %>
+      <%= yield(attr.to_s + '_field') %>
+    <% else %>
+      <%= form.text_field attr %>
+    <% end %>
+  </div>
 
   <% if !model.errors[attr].empty? %>
-    <div class="error">
-      <div class="icon"></div>
-      <div class="reason"><%= model.errors[attr][0] %></div>
+    <div class="info error">
+      <div class="icon"><%= image_tag "error.gif" %></div>
+      <div class="description"><%= model.errors[attr][0] %></div>
     </div>
   <% else %>
     <% if(defined? info) %>
-      <div class="info">
-        <div class="icon"></div>
-        <%= info.html_safe %>
+      <div class="info notice">
+        <div class="icon"><%= image_tag "info.png" %></div>
+        <div class="description"><%= info.html_safe %></div>
       </div>
     <% end %>
   <% end %>

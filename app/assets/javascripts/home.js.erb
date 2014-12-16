@@ -1,0 +1,34 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+var launchHomeCarousel = function(){
+  $('#home .section.pitch .img-carousel').slick({
+    autoplay: true,
+    autoplaySpeed: 10000,
+    arrows: false,
+    asNavFor: '#home .section.pitch .text-carousel',
+    speed: 1000,
+    dots: true
+  });
+  $('#home .section.pitch .text-carousel').slick({
+    autoplay: true,
+    autoplaySpeed: 10000,
+    fade: true,
+    arrows: true,
+    asNavFor: '#home .section.pitch .img-carousel',
+    speed: 1000,
+    prevArrow: '<%= image_tag "leftArrow.png", class: 'slick-arrow prev' %>',
+    nextArrow: '<%= image_tag "rightArrow.png", class: 'slick-arrow next' %>'
+  });
+};
+
+var setupHomeMethodTransitions = function() {
+  $('#home .section.method .outline .step').click(function(event) {
+    var step = $(this).data('step');
+    var requestedStep = $('#home .section.method .steps .step.' + step);
+    if (requestedStep.css('opacity') == 0) {
+      $('#home .section.method .steps .step').fadeTo(300, 0);
+      requestedStep.fadeTo(300, 1);
+    }
+  });
+};

@@ -1,24 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div id="org-show">
 
-<p>
-  <strong>Name:</strong>
-  <%= @org.name %>
-</p>
+  <div class="title">
+    <div class="icon">
+      <%= link_to @org do %>
+        <%= image_tag 'org/defaultIcon.png' %>
+      <% end %>
+    </div>
+    <div class="name">
+      <%= @org.name %>
+    </div>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @org.description %>
-</p>
+  <div class="member-controls">
+    <%= link_to new_fundraiser_path do %>
+      <div class="action btn new-fundraiser">Start New Fundraiser</div>
+    <% end %>
+    <%= link_to edit_organization_path(@org) do %>
+      <div class="action btn edit-org">Update Organization</div>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Homepage url:</strong>
-  <%= @org.homepage_url %>
-</p>
+  <div class="details">
+    <div class="attribute homepage">
+      <div class="label">On the web:</div>
+      <%= link_to 'Click Here', @org.homepage_url %>
+    </div>
+    <div class="attribute description">
+      <div class="label">Description:</div>
+      <%= @org.description %>
+    </div>
+  </div>
 
-<p>
-  <strong>Donation url:</strong>
-  <%= @org.donation_url %>
-</p>
+  <div class="current-fundraisers">
+    <% @org.fundraisers.each do |f| %>
+      <div class="fundraiser">
+        <%= link_to f do %>
+          <div class="title"><%= f.title %></div>
+        <% end %>
+        <div class="description"><%= f.description %></div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="past-fundraisers">
+  </div>
 
-<%= link_to 'Edit', edit_organization_path(@org) %> |
-<%= link_to 'Back', organizations_path %>
+</div>

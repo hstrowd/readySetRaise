@@ -3,16 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+/**
+ *  ==== New Page ====
+ */
+
 #org-new .centerer {
-    width: 940px;
+    max-width: 940px;
 }
 
 #org-new .progress-indicator {
-    height: 1px;
+    height: .1em;
 }
 
 .org-form .field.name input {
-    font-size: 16px;
+    font-size: 1.1em;
+
+    padding: 0.75em 0.4em
 }
 .org-form .field .info .variable {
     display: inline-block;
@@ -21,3 +27,136 @@
     font-weight: bold;
     font-style: italic;
 }
+
+
+
+/**
+ *  ==== Index Page ====
+ */
+
+#org-index .intro .title {
+    margin: 4% 6%;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+#org-index .intro .description {
+    margin: 4% 2%;
+}
+
+#org-index .list .item {
+    width: 90%;
+    margin: auto;
+    padding: 2%;
+
+    border-radius: .3em;
+
+    background-color: #A3EB87;
+}
+
+#org-index .list .item .name {
+    display: inline-block;
+    
+    width: 70%;
+    margin: 2%;
+
+    vertical-align: middle;
+    
+    font-size: 1.2em;
+}
+#org-index .list .item .member-count {
+    display: inline-block;
+
+    width: 20%;
+    min-width: 6.5em;
+    
+    vertical-align: middle;
+    text-align: right;
+    
+    font-size: 0.7em;
+}
+
+#org-index .list .item .icon {
+    display: none;
+    
+    width: 60%;
+    max-width: 15em;
+    
+    margin: 2% auto;
+}
+
+#org-index .list .item .attr {
+    width: 100%;
+}
+#org-index .list .item .attr .label {
+    display: inline-block;
+    
+    font-weight: bold;
+}
+
+#org-index .list .item .attr.description .label {
+    position: relative;
+    right: 3%;
+}
+#org-index .list .item .attr.description .value {
+    display: inline-block;
+    margin-left: 3%;
+}
+
+
+
+/**
+ *  ==== Show Page ====
+ */
+
+#org-show .title {
+    width: 95%;
+    margin: 2% auto;
+}
+#org-show .title .icon {
+    display: inline-block;
+    
+    width: 30%;
+    margin: 2%;
+
+    vertical-align: middle;
+}
+#org-show .title .name {
+    display: inline-block;
+
+    width: 60%;
+
+    vertical-align: middle;
+    
+    font-size: 1.5em;
+}
+
+#org-show .member-controls {
+    margin: 2%;
+
+    text-align: center;
+}
+#org-show .member-controls .action {
+    display: inline-block;
+    
+    width: 10em;
+    max-width: 40%;
+}
+
+#org-show .details {
+    width: 85%;
+    margin: 2% auto;
+}
+#org-show .details .attribute {
+    margin: 1% 1% 1% 5%;
+}
+#org-show .details .attribute .label{
+    position: relative;
+    display: inline-block;
+
+    width: 7em;
+    right: 4%;
+    
+    font-weight: bold;
+}
+
+

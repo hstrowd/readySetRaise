@@ -1,4 +1,4 @@
-<div id="signup" class="setup-form">
+<div id="signup" class="std-form">
   <div class="centerer">
     <div class="instructions">
       <div class="title">Account Setup - Welcome!</div>
@@ -7,86 +7,49 @@
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-      <div class="field first-name">
-        <div class="label">
-          <%= f.label :first_name %>
-        </div>
-        <%= f.text_field :first_name, autofocus: true %>
-        <% if !resource.errors[:first_name].empty? %>
-          <div class="error">
-            <div class="icon"></div>
-            <div class="reason"><%= resource.errors[:first_name][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="field last-name">
-        <div class="label">
-          <%= f.label :last_name %>
-        </div>
-        <%= f.text_field :last_name %>
-        <% if !resource.errors[:last_name].empty? %>
-          <div class="error">
-            <div class="icon"></div>
-            <div class="reason"><%= resource.errors[:last_name][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="field phone-number">
-        <div class="label">
-          <%= f.label :phone_number %>
-        </div>
-        <%= f.telephone_field :phone_number %>
-        <% if !resource.errors[:phone_number].empty? %>
-          <div class="error">
-            <div class="icon"></div>
-            <div class="reason"><%= resource.errors[:phone_number][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="field email">
-        <div class="label">
-          <%= f.label :email %>
-        </div>
-        <%= f.email_field :email %>
-        <% if !resource.errors[:email].empty? %>
-          <div class="error">
-            <div class="icon"></div>
-            <div class="reason"><%= resource.errors[:email][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="field password">
-        <div class="label">
-          <%= f.label :password %> 
-          <% if @validatable %>
-            <div class="help-text">(<%= @minimum_password_length %> characters minimum)</div>
-          <% end %>
-          </div>
-          <%= f.password_field :password, autocomplete: "off" %>
-        <% if !resource.errors[:password].empty? %>
-          <div class="error">
-            <div class="icon"></div>
-            <div class="reason"><%= resource.errors[:password][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="field password-confirmation">
-        <div class="label">
-          <%= f.label :password_confirmation %>
-        </div>
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-        <% if !resource.errors[:password_confirmation].empty? %>
-          <div class="error">
-            <div class="icon"></div>
-            <div class="reason"><%= resource.errors[:password_confirmation][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: resource, 
+                 attr: :first_name
+               }) %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: resource, 
+                 attr: :last_name
+               }) %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: resource, 
+                 attr: :phone_number
+               }) %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: resource, 
+                 attr: :email
+               }) %>
+    <% content_for 'password_field' do %>
+      <%= f.password_field :password %>
+    <% end %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: resource, 
+                 attr: :password,
+                 info: "#{@minimum_password_length} characters minimum"
+               }) %>
+    <% content_for 'password_confirmation_field' do %>
+      <%= f.password_field :password_confirmation %>
+    <% end %>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: resource, 
+                 attr: :password_confirmation
+               }) %>
 
       <div><%= f.submit "Sign up", class: :submit %></div>
 

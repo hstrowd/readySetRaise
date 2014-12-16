@@ -6,15 +6,20 @@
 
 #home .section {
     width: 100%;
-
-    background-image: url('<%= asset_path("bg-texture.png"); %>');
 }
+
 #home .section .body {
-    width: 940px;
+    width: 95%;
     margin: 0 auto;
-    padding: 10px;
+    padding: 2%;
 
     text-align: center;
+}
+
+@media screen and (min-width: 1024px)  {
+    #home .section {
+        background-image: url('<%= asset_path("bg-texture.png"); %>');
+    }
 }
 
 
@@ -24,26 +29,30 @@
  **/
 
 #home .section.pitch {
-    height: 400px;
-
     background-color: #A3EB87;
 
     color: #FFFFFF;
+    text-align: center
+}
+#home .section.pitch .body {
+      font-size: .9em;
 }
 
 #home .section.pitch .text-carousel .slick-arrow {
-    margin: 10px;
+    margin: .75em;
 }
 #home .section.pitch .text-carousel .slick-arrow:hover {
     cursor: pointer;
     opacity: 0.4;
 }
 #home .section.pitch .body .text-container {
-    float: left;
-    
-    width: 390px;
+    display: inline-block;
 
-    margin: 30px 0;
+    width: 95%;
+
+    margin: 2%;
+
+    vertical-align: middle;
 }
 #home .section.pitch .body .text {
     display: table;
@@ -53,29 +62,30 @@
 #home .section.pitch .body .text .vert-align {
     display: table-cell;
 
-    height: 270px;
+    height: 13em;
 
     vertical-align: middle;
 }
 #home .section.pitch .heading {
-    margin: 25px;
+    margin: .9em;
 
-    font-size: 28px;
+    font-size: 2em;
 }
 #home .section.pitch .content {
-    margin: 25px;
+    margin: 1.8em;
 }
 #home .section.pitch .img-carousel {
-    float: right;
+    display: none;
     
-    width: 500px;
-    height: 330px;
+    width: 30%;
+    height: 60%;
 
-    margin: 25px;
+    margin: 1.8em;
+    vertical-align: middle
 }
 #home .section.pitch .body .img-carousel .img-container {
-    width: 500px;
-    height: 330px;
+    width: 100%;
+    height: 100%;
 
     vertical-align: middle;
     text-align: center;
@@ -100,62 +110,106 @@
 
 #home .section.pitch .img-carousel .slick-dots li button:before {
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 20px;
 }
+#home .section.pitch .img-carousel .slick-dots li.slick-active button:before {
+    opacity: 1;
+}                                   
+
+@media screen and (min-width: 600px)  {
+    #home .section.pitch .body {
+        font-size: .8em;
+    }
+    #home .section.pitch .body .text-container {
+        width: 50%;
+        max-width: 25em;
+    }
+    #home .section.pitch .img-carousel {
+        display: inline-block;
+    }
+}
+@media screen and (min-width: 800px)  {
+    #home .section.pitch .body {
+        font-size: .9em;
+    }
+}
+@media screen and (min-width: 1024px)  {
+    #home .section.pitch .body {
+        font-size: 1em;
+    }
+}
+
+
 
 
 
 
 #home .section.method .title {
-    margin: 10px auto;
+    margin: .3em auto;
 
     color: #5F97DE;
-    font-size: 28px;
+    font-size: 1.8em;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
 }
 
 #home .section.method .outline {
     display: inline-block;
-    
-    width: 200px;
 
-    margin: 0 10px;
+    width: 95%;
+    
+    margin: 0 .35em;
     vertical-align: top;
+
+    text-align: center;
 }
 #home .section.method .outline .step {
-    margin: 25px 0;
+    display: inline-block;
+
+    width: 24%;
+    min-width: 6em;
+
+    margin: .9em 0;
+
+    cursor: pointer;
 }
 #home .section.method .outline .title {
-    margin: 3px 10px;
+    margin: .4em .7em;
 
     color: #59A73B;
-    font-size: 14px;
+    font-size: .8em;
+    text-align: center;
+}
+#home .section.method .outline .title:hover {
+    color: #666666;
 }
 #home .section.method .outline .title .horiz-line {
-    display: inline-block;
+    display: none;
     
-    width: 40px;
-    height: 8px;
+    width: 20%;
+    height: .1em;
 
-    margin: 0 3px;
-    
-    border-bottom: 1px solid #AAAAAA;
+    margin: 0 1%;
+    vertical-align: middle;
+    border-bottom: .1em solid #AAAAAA;
 }
-#home .section.method .outline .title .horiz-line.left {
-    float: left;
-}
-#home .section.method .outline .title .horiz-line.right {
-    float: right;
+#home .section.method .outline .title .text {
+    display: inline-block;
+
+    font-size: 1.2em;
+    vertical-align: middle;
+
+    width: 100%;
+    height: 100%;
 }
 #home .section.method .outline .pic {
-    width: 120px;
-    height: 80px;
+    display: none;
+
+    width: 8em;
+    height: 5em;
 
     margin: 0 auto;
 
-    box-shadow: 4px 4px 10px #AAAAAA;
-
-    cursor: pointer;
+    box-shadow: .3em .3em .6em #AAAAAA;
 }
 #home .section.method .outline .pic img {
     width: 100%;
@@ -167,8 +221,8 @@
 #home .section.method .steps {
     display: inline-block;
 
-    width: 600px;
-    height: 580px;
+    width: 90%;
+    height: 55.5em;
 
     vertical-align: top;
     overflow: hidden;
@@ -177,7 +231,7 @@
 #home .section.method .steps .step {
     position: relative;
 
-    height: 580px;
+    height: 100%;
 
     opacity: 0.0;
 }
@@ -185,77 +239,122 @@
     opacity: 1.0;
 }
 #home .section.method .steps .step.recruit {
-    top: -590px;
+    top: -101%;
 }
 #home .section.method .steps .step.host {
-    top: -1180px;
+    top: -202%;
 }
 #home .section.method .steps .step.follow-up {
-    top: -1770px;
+    top: -303%;
 }
 
 #home .section.method .steps .step .title {
     color: #59A73B;
-    font-size: 20px;
+    font-size: 1.2em;
+}
+#home .section.method .steps .step .description {
+    font-size: .9em;
 }
 #home .section.method .steps .step .description .action {
-    margin: 15px;
+    margin: .7em;
 
     text-align: left;
 }
 #home .section.method .steps .step .description .action .title {
-    margin: 5px 15px;
+    margin: .3em 1.1em;
     
+    font-size: .9em;
     color: #5F97DE;
-    font-size: 12px;
     font-weight: bold;
 }
+
+@media screen and (min-width: 450px)  {
+    #home .section.method .steps {
+        height: 39.5em;
+    }
+}
+@media screen and (min-width: 650px)  {
+    #home .section.method .outline .title .horiz-line {
+        display: inline-block;
+    }
+    #home .section.method .outline .title {
+        background-color: transparent;
+        border: none;
+    }
+    #home .section.method .outline .title:hover {
+    }
+    #home .section.method .outline .title .text {
+        width: 49%;
+        max-width: 6em;
+
+        font-size: .8em;
+        vertical-align: bottom;
+    }
+    #home .section.method .outline .pic {
+        display: block;
+    }
+    #home .section.method .steps {
+        height: 34em;
+    }
+}
+@media screen and (min-width: 900px)  {
+    #home .section.method .outline {
+        width: 12em;
+    }
+    #home .section.method .outline .step {
+        width: 100%;
+    }
+    #home .section.method .outline .step {
+        display: block;
+    }
+
+    #home .section.method .steps {
+        width: 40em;
+    }
+}
+
+
 
 
 
 
 #home .section.get-started {
-    height: 200px;
-
     overflow: hidden;
 
     background-color: #A0CAFF;
 }
 #home .section.get-started .hook {
-    width: 440px;
+    width: 95%;
+    max-width: 35em;
 
-    margin: 20px auto;
+    margin: 1em auto;
     
-    font-size: 22px;
+    font-size: 1.4em;
     color: #444444;
 }
-#home .section.get-started .coming-soon {
-    width: 360px;
-
-    margin: 20px auto;
-    
-    font-size: 24px;
-    font-weight: bold;
-}
 #home .section.get-started a {
-        text-decoration: none;
+    text-decoration: none;
+}
+#home .section.get-started .centerer {
+    width: 15em;
+    margin: .9em auto;
 }
 #home .section.get-started .btn {
-    width: 200px;
-    height: 30px;
+    width: 9em;
+    height: 1.25em;
 
-    margin: 20px auto;
-    padding: 10px;
+    margin: .2em auto;
+    padding: .4em;
 
     background-color: #DDDDDD;
-    border: 2px solid #777777;
-    border-radius: 8px;
+    border: .1em solid #777777;
+    border-radius: .3em;
 
     color: #4982CB;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-    font-size: 24px;
+    font-size: 1.5em;
     font-weight: bold;
-    letter-spacing: 1.5px;
+    letter-spacing: .05em;
 }
 #home .section.get-started .btn:hover {
     background-color: #A3EB87;

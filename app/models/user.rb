@@ -4,5 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates :first_name, :last_name, :presence => true
+  has_many :organization_memberships, foreign_key: "member_id"
+  has_many :organizations, through: :organization_memberships
+
+  validates :first_name, :last_name, presence: true
 end

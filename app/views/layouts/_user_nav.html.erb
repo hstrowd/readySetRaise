@@ -1,0 +1,4 @@
+<div id="user-nav">
+  <%= link_to 'My Organizations', organizations_path %>
+  <%= link_to 'Log Out', destroy_session_path(:user), class: 'logout-btn', method: :delete %>
+</div>
