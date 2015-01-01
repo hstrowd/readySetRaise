@@ -35,16 +35,20 @@
  */
 
 #org-index .intro .title {
-    margin: 4% 6%;
+    margin: 3% 6%;
+
+    color: #5F97DE;
     font-size: 1.5em;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
     font-weight: bold;
 }
 #org-index .intro .description {
-    margin: 4% 2%;
+    margin: 2% 3%;
 }
 
 #org-index .list .item {
     width: 90%;
+    max-width: 50em;
     margin: auto;
     padding: 2%;
 
@@ -77,11 +81,6 @@
 
 #org-index .list .item .icon {
     display: none;
-    
-    width: 60%;
-    max-width: 15em;
-    
-    margin: 2% auto;
 }
 
 #org-index .list .item .attr {
@@ -92,6 +91,10 @@
     
     font-weight: bold;
 }
+#org-index .list .item .attr .value {
+    display: inline-block;
+    margin-left: 2%;
+}
 
 #org-index .list .item .attr.description .label {
     position: relative;
@@ -99,7 +102,49 @@
 }
 #org-index .list .item .attr.description .value {
     display: inline-block;
+
+    width: 97%;
     margin-left: 3%;
+}
+#org-index .list .item .attr.fundraiser-snapshot {
+    display: none;
+}
+
+@media screen and (min-width: 600px)  {
+    #org-index .list .item {
+        padding: .7em;
+    }
+    #org-index .list .item .name {
+        margin: .4em .7em;
+    }
+    #org-index .list .item .attr.description {
+        margin: .5em 0;
+    }
+    #org-index .list .item .attr.fundraiser-snapshot {
+        display: block;
+    }
+}
+@media screen and (min-width: 700px)  {
+    #org-index .intro .title {
+        margin: .8em 6%;
+    }
+    #org-index .intro .description {
+        margin: .8em 3%;
+    }
+
+    #org-index .list .item .icon {
+        display: inline-block;
+
+        width: 3em;
+        height: 3em;
+
+        vertical-align: middle;
+    }
+    #org-index .list .item .header .name {
+        width: 65%;
+
+        vertical-align: middle;
+    }
 }
 
 

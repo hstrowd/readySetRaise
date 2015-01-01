@@ -1,16 +1,16 @@
 <div class="item">
   <div class="header">
+    <div class="icon">
+      <%= link_to org do %>
+        <%= image_tag 'org/defaultIcon.png' %>
+      <% end %>
+    </div>
     <div class="name">
       <%= link_to org do %>
         <%= org.name %>
       <% end %>
     </div>
-    <div class="member-count">(<%= org.members.count %> members)</div>
-  </div>
-  <div class="icon">
-    <%= link_to org do %>
-      <%= image_tag 'org/defaultIcon.png' %>
-    <% end %>
+    <div class="member-count">(<%= org.members.count %> member<%= (org.members.count > 1) ? 's' : '' %>)</div>
   </div>
   <div class="attr description">
     <div class="value"><div class="label">Description:</div> <%= org.description %></div>
