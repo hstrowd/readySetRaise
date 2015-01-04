@@ -33,6 +33,12 @@ Rails.application.routes.draw do
 
   get 'about' => 'home#about'
 
+  # For A/B Framework Testing
+  get 'about-v2' => 'home#about-v2'
+  get 'about-v3' => 'home#about-v3'
+  get 'index-v2' => 'home#index-v2'
+  get 'index-v3' => 'home#index-v3'
+
   # You can have the root of your site routed with "root"
   root 'home#index'
 
