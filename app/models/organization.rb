@@ -11,7 +11,17 @@ class Organization < ActiveRecord::Base
     uniqueness: true
   }
 
-  has_many :fundraisers
+  has_many :fundraisers do
+    def past
+      where("pledge_end_time <= ?", DateTime.now)
+    end
+    def present
+      where("pledge_end_time > ? AND pledge_start_time <= ?", DateTime.now, DateTime.now)
+    end
+    def future
+      where("pledge_start_time > ?", DateTime.now)
+    end
+  end
 
   # TODO: Add fields for primary color, secondary color, logo, key
 end

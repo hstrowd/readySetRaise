@@ -31,22 +31,37 @@
     </div>
   </div>
 
-  <div class="fundraisers current">
-    <div class="title">Current Fundraisers</div>
-    <div class="list">
-      <% @org.fundraisers.each do |f| %>
-        <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
-      <% end %>
+  <% if !@org.fundraisers.present.empty? %>
+    <div class="fundraisers current">
+      <div class="title">Active Fundraisers</div>
+      <div class="list">
+        <% @org.fundraisers.present.each do |f| %>
+          <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
+
+  <% if !@org.fundraisers.future.empty? %>
+    <div class="fundraisers future">
+      <div class="title">Upcoming Fundraisers</div>
+      <div class="list">
+        <% @org.fundraisers.future.each do |f| %>
+          <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
   
-  <div class="fundraisers past">
-    <div class="title">Past Fundraisers</div>
-    <div class="list">
-      <% @org.fundraisers.each do |f| %>
-        <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
-      <% end %>
+  <% if !@org.fundraisers.past.empty? %>
+    <div class="fundraisers past">
+      <div class="title">Completed Fundraisers</div>
+      <div class="list">
+        <% @org.fundraisers.past.each do |f| %>
+          <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
 </div>
