@@ -1,6 +1,8 @@
 // Place all the styles related to the Organizations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+//  require fundraiser_items
 
 
 /**
@@ -160,7 +162,8 @@
 #org-show .title .icon {
     display: inline-block;
     
-    width: 30%;
+    width: 8em;
+    max-width: 30%;
     margin: 2%;
 
     vertical-align: middle;
@@ -194,7 +197,7 @@
 #org-show .details .attribute {
     margin: 1% 1% 1% 5%;
 }
-#org-show .details .attribute .label{
+#org-show .details .attribute .label {
     position: relative;
     display: inline-block;
 
@@ -204,4 +207,65 @@
     font-weight: bold;
 }
 
+#org-show .fundraisers {
+    margin: 4%;
+}
+#org-show .fundraisers .title {
+    text-align: center;
+    font-size: 1.2em;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+#org-show .fundraisers .list .title {
+    margin: 1%;
+    
+    text-align: left;
+    font-size: 1.1em;
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
 
+@media screen and (min-width: 600px)  {
+    #org-show .title {
+        margin: .8em auto;
+    }
+    #org-show .title .icon {
+        margin: .8em;
+    }
+    #org-show .member-controls {
+        margin: .8em;
+    }
+    #org-show .details {
+        margin: .8em auto;
+    }
+    #org-show .details .attribute {
+        margin: .4em .4em .4em 2em;
+    }
+    #org-show .fundraisers {
+        margin: 1.6em;
+    }
+    #org-show .fundraisers .list .title {
+        margin: .2em;
+    }
+}
+@media screen and (min-width: 900px)  {
+    #org-show .title {
+        display: inline-block;
+        
+        width: 65%;
+        margin: .8em 1.4em;
+    }
+    #org-show .member-controls {
+        display: inline-block;
+        
+        width: 25%;
+        
+        vertical-align: middle;
+        text-align: center;
+    }
+    #org-show .member-controls .action {
+        display: block;
+
+        max-width: 80%;
+
+        margin: .3em auto;
+    }
+}

@@ -31,18 +31,22 @@
     </div>
   </div>
 
-  <div class="current-fundraisers">
-    <% @org.fundraisers.each do |f| %>
-      <div class="fundraiser">
-        <%= link_to f do %>
-          <div class="title"><%= f.title %></div>
-        <% end %>
-        <div class="description"><%= f.description %></div>
-      </div>
-    <% end %>
+  <div class="fundraisers current">
+    <div class="title">Current Fundraisers</div>
+    <div class="list">
+      <% @org.fundraisers.each do |f| %>
+        <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
+      <% end %>
+    </div>
   </div>
   
-  <div class="past-fundraisers">
+  <div class="fundraisers past">
+    <div class="title">Past Fundraisers</div>
+    <div class="list">
+      <% @org.fundraisers.each do |f| %>
+        <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
+      <% end %>
+    </div>
   </div>
 
 </div>
