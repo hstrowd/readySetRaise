@@ -1,8 +1,14 @@
 <div class="item fundraiser">
   <div class="header">
-  <%= link_to fundraiser do %>
-    <div class="title"><%= fundraiser.title %></div>
-  <% end %>
+    <div class="icon">
+      <%= link_to fundraiser do %>
+        <%= image_tag 'org/defaultIcon.png' %>
+      <% end %>
+    </div>
+    <%= link_to fundraiser do %>
+      <div class="title"><%= fundraiser.title %></div>
+    <% end %>
+    <div class="assoc-count">(<%= fundraiser.events.count %> <%= (fundraiser.events.count > 1) ? 'event'.pluralize : 'event' %>)</div>
   </div>
   <div class="attr description">
     <div class="value"><div class="label">Description:</div> <%= fundraiser.description %></div>

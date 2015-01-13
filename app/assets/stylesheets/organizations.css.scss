@@ -50,46 +50,14 @@
     max-width: 50em;
 }
 
-#org-index .list .item .name {
-    display: inline-block;
-    
-    width: 70%;
-    margin: 2%;
-
-    vertical-align: middle;
-    
+#org-index .list .item .title {
     font-size: 1.2em;
 }
-#org-index .list .item .member-count {
-    display: inline-block;
-
-    width: 20%;
-    min-width: 6.5em;
-    
-    vertical-align: middle;
-    text-align: right;
-    
-    font-size: 0.7em;
-}
-
-#org-index .list .item .icon {
-    display: none;
-}
-
 #org-index .list .item .attr.fundraiser-snapshot {
     display: none;
 }
 
 @media screen and (min-width: 600px)  {
-    #org-index .list .item {
-        padding: .7em;
-    }
-    #org-index .list .item .name {
-        margin: .4em .7em;
-    }
-    #org-index .list .item .attr.description {
-        margin: .5em 0;
-    }
     #org-index .list .item .attr.fundraiser-snapshot {
         display: block;
     }
@@ -101,20 +69,6 @@
     #org-index .intro .description {
         margin: .8em 3%;
     }
-
-    #org-index .list .item .icon {
-        display: inline-block;
-
-        width: 3em;
-        height: 3em;
-
-        vertical-align: middle;
-    }
-    #org-index .list .item .header .name {
-        width: 65%;
-
-        vertical-align: middle;
-    }
 }
 
 
@@ -123,11 +77,11 @@
  *  ==== Show Page ====
  */
 
-#org-show .header {
+#org-show>.header {
     width: 95%;
     margin: 2% auto;
 }
-#org-show .header .icon {
+#org-show>.header .icon {
     display: inline-block;
     
     width: 8em;
@@ -136,7 +90,7 @@
 
     vertical-align: middle;
 }
-#org-show .header .name {
+#org-show>.header .name {
     display: inline-block;
 
     width: 60%;
@@ -194,10 +148,10 @@
 }
 
 @media screen and (min-width: 600px)  {
-    #org-show .header {
+    #org-show>.header {
         margin: .8em auto;
     }
-    #org-show .header .icon {
+    #org-show>.header .icon {
         margin: .8em;
     }
     #org-show .member-controls {
@@ -217,7 +171,7 @@
     }
 }
 @media screen and (min-width: 900px)  {
-    #org-show .header {
+    #org-show>.header {
         display: inline-block;
         
         width: 65%;

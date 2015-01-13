@@ -1,31 +1,15 @@
-<h1>Listing fundraisers</h1>
+<div id="fundraiser-index">
+  <div class="centerer">
+    <div class="intro">
+      <div class="title">Check out these Fundraisers</div>
+      <div class="description">The following fundraisers are currently currently active or getting started soon. This is a great way to find new opportunities to get involved with and great causes to support.</div>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Pledge start time</th>
-      <th>Pledge end time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fundraisers.each do |fundraiser| %>
-      <tr>
-        <td><%= fundraiser.title %></td>
-        <td><%= fundraiser.description %></td>
-        <td><%= fundraiser.pledge_start_time %></td>
-        <td><%= fundraiser.pledge_end_time %></td>
-        <td><%= link_to 'Show', fundraiser %></td>
-        <td><%= link_to 'Edit', edit_fundraiser_path(fundraiser) %></td>
-        <td><%= link_to 'Destroy', fundraiser, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Fundraiser', new_fundraiser_path %>
+    <div class="list">
+      <!-- TODO: Add paging -->
+      <% @fundraisers.each do |f| %>
+          <%= render partial: 'list_item', locals: { fundraiser: f } %>
+      <% end %>
+    </div>
+  </div>
+</div>

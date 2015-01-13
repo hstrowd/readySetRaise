@@ -15,4 +15,6 @@ class Fundraiser < ActiveRecord::Base
       where("start_time > ?", DateTime.now)
     end
   end
+
+  # TODO: Add a pledge target attribute.
 end

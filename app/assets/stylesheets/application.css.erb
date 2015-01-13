@@ -329,6 +329,29 @@ img {
     background-color: #A3EB87;
 }
 
+.list .item .icon {
+    display: none;
+}
+.list .item .title {
+    display: inline-block;
+
+    width: 70%;
+    margin: 2%;
+
+    vertical-align: middle;
+}
+.list .item .assoc-count {
+    display: inline-block;
+
+    width: 20%;
+    min-width: 6.5em;
+
+    vertical-align: middle;
+    text-align: right;
+
+    font-size: 0.7em;
+}
+
 .list .item .attr {
     width: 100%;
 }
@@ -357,8 +380,29 @@ img {
     .list .item {
         padding: .7em;
     }
+    .list .item .title {
+        margin: .4em .7em;
+    }
     .list .item .attr.description {
         margin: .5em 0;
+    }
+}
+@media screen and (min-width: 700px)  {
+    .list .item .icon {
+        display: inline-block;
+
+        width: 3em;
+        height: 3em;
+
+        vertical-align: middle;
+    }
+    .list .item .title {
+        display: inline-block;
+    }
+    .list .item .header .title {
+        width: 65%;
+
+        vertical-align: middle;
     }
 }
 

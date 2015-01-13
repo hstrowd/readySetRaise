@@ -5,12 +5,12 @@
         <%= image_tag 'org/defaultIcon.png' %>
       <% end %>
     </div>
-    <div class="name">
+    <div class="title">
       <%= link_to org do %>
         <%= org.name %>
       <% end %>
     </div>
-    <div class="member-count">(<%= org.members.count %> member<%= (org.members.count > 1) ? 's' : '' %>)</div>
+    <div class="assoc-count">(<%= org.members.count %> member<%= (org.members.count > 1) ? 's' : '' %>)</div>
   </div>
   <div class="attr description">
     <div class="value"><div class="label">Description:</div> <%= org.description %></div>
