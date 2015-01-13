@@ -53,7 +53,7 @@ var initDateTimeField = function (model, field, options) {
             var dateCheck = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/
             if (!dateCheck.test(dateString)) {
                 dateString = null;
-                dateField.val(defaultDate);
+                dateField.val(options.defaultDate);
             } else {
                 dateValue = new Date(Date.parse(dateString));
             }
@@ -61,7 +61,7 @@ var initDateTimeField = function (model, field, options) {
             var timeString = timeField.val();
             var timeCheck = /^[0-1]?[0-9]:[0-5][0-9] (am|pm|AM|PM)$/;
             if (!timeCheck.test(timeString)) {
-                timeField.val(defaultTime);
+                timeField.val(options.defaultTime);
             } else if (dateString) {
                 dateValue = new Date(Date.parse(dateString + " " + timeString));
             }

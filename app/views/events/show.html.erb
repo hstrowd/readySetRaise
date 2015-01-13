@@ -1,24 +1,52 @@
-<p id="notice"><%= notice %></p>
+<div id="event-show">
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+  <div class="header">
+    <div class="icon">
+      <%= link_to @org do %>
+        <%= image_tag 'org/defaultIcon.png' %>
+      <% end %>
+    </div>
+    <div class="text">
+      <div class="title">
+        <%= @event.title %>
+      </div>
+      <div class="subtitle">
+        for <%= link_to @event.fundraiser.title, @event.fundraiser %>
+        by <%= link_to @event.fundraiser.organization.name, @event.fundraiser.organization %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+  <!-- TODO: Restrict these to members only. -->
+  <div class="member-controls">
+    <%= link_to edit_event_path(@event) do %>
+      <div class="action btn edit-org">Update Event</div>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
-</p>
+  <div class="details">
+    <div class="attribute description">
+      <div class="label">Description:</div>
+      <%= @event.description %>
+    </div>
+    <div class="attribute time">
+      <div class="label">Time: </div>
+      <!-- Note: The from and to times will be shown after they are formatted properly. -->
+      <div class="timeframe" style="display:none;">
+        <div class="start time"><%= @event.start_time.iso8601() %></div>
+        <div class="single-line">-</div>
+        <div class="multi-line">to</div>
+        <div class="end time"><%= @event.end_time.iso8601() %></div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>End time:</strong>
-  <%= @event.end_time %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<script>
+  $(function() {
+    convertToLocalTime('#event-show .time .start.time');
+    convertToLocalTime('#event-show .time .end.time');
+    $('#event-show .time .timeframe').show();
+  });
+</script>

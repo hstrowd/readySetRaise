@@ -1,3 +1,208 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//= require pickdate/default
+//= require pickdate/default.date
+//= require pickdate/default.time
+
+
+.event-form .field input.datetime {
+    display: inline-block;
+
+    width: 40%;
+
+    padding: 2%;
+}
+.event-form .field .picker--time .picker__frame {
+    min-width: 180px;
+    max-width: 200px;
+}
+.event-form .field .datetime-separator {
+    display: none;
+}
+
+@media screen and (min-width: 450px)  {
+  .event-form .field input.datetime {
+      display: inline-block;
+
+      width: 35%;
+  }
+  .event-form .field .datetime-separator {
+      display: inline-block;
+
+      width: 10%;
+      max-width: 1em;
+
+      margin: 0 auto;
+
+      text-align: center;
+  }
+}
+
+.event-form form input.submit {
+    min-width: 12em;
+
+    margin: 1.5em 30%;
+}
+
+
+
+
+
+/**
+ *  ==== New Styles ====
+ */
+
+#new-event form .description .input textarea {
+    height: 8em;
+}
+
+
+
+
+
+
+/**
+ *  ==== Show Styles ====
+ */
+
+#event-show .header {
+    width: 95%;
+    margin: 2% auto;
+}
+#event-show .header .icon {
+    display: inline-block;
+
+    width: 4em;
+    max-width: 30%;
+    margin: 2%;
+
+    vertical-align: middle;
+}
+#event-show .header .text {
+    display: inline-block;
+
+    width: 60%;
+
+    vertical-align: middle;
+}
+#event-show .header .title {
+    font-size: 1.5em;
+}
+
+#event-show .member-controls {
+    margin: 2%;
+
+    text-align: center;
+}
+#event-show .member-controls .action {
+    display: inline-block;
+
+    width: 10em;
+    max-width: 40%;
+}
+
+#event-show .details {
+    width: 85%;
+    margin: 2% auto;
+}
+#event-show .details .attribute {
+    margin: 1% 1% 1% 5%;
+}
+#event-show .details .attribute .label {
+    position: relative;
+    display: inline-block;
+
+    width: 6em;
+    right: 4%;
+
+    font-weight: bold;
+}
+
+#event-show .details .attribute.time .timeframe {
+    display: inline-block;
+    width: 60%;
+
+    text-align: center;
+
+    vertical-align: middle;
+}
+#event-show .details .attribute.time .timeframe .time {
+    width: 100%;
+
+    text-align: center;
+}
+#event-show .details .attribute.time .timeframe .time .date {
+    display: inline-block;
+}
+#event-show .details .attribute.time .timeframe .time .time {
+    display: inline-block;
+
+    width: auto;
+}
+#event-show .details .attribute.time .timeframe .single-line {
+    display: none;
+}
+
+@media screen and (min-width: 500px)  {
+    #event-show .details .attribute.time .timeframe {
+        width: 65%;
+
+        text-align: left;
+    }
+    #event-show .details .attribute.time .timeframe .time {
+        display: inline-block;
+        width: 7.8em;
+
+        text-align: center;
+
+        vertical-align: middle;
+    }
+    #event-show .details .attribute.time .timeframe .single-line {
+        display: inline-block;
+    }
+    #event-show .details .attribute.time .timeframe .multi-line {
+        display: none;
+    }
+}
+@media screen and (min-width: 600px)  {
+    #event-show .header {
+        margin: .8em auto;
+    }
+    #event-show .header .icon {
+        margin: .8em;
+    }
+    #event-show .member-controls {
+        margin: .8em;
+    }
+    #event-show .details {
+        margin: .8em auto;
+    }
+    #event-show .details .attribute {
+        margin: .4em .4em .4em 2em;
+    }
+}
+@media screen and (min-width: 900px)  {
+    #event-show .header {
+        display: inline-block;
+
+        width: 65%;
+        margin: .8em 1.4em;
+    }
+    #event-show .member-controls {
+        display: inline-block;
+
+        width: 25%;
+
+        vertical-align: middle;
+        text-align: center;
+    }
+    #event-show .member-controls .action {
+        display: block;
+
+        max-width: 80%;
+
+        margin: .3em auto;
+    }
+}

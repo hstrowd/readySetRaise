@@ -34,10 +34,11 @@
     <div class="attribute pledge-window">
       <div class="label">Pledge Window: </div>
       <!-- Note: The from and to times will be shown after they are formatted properly. -->
-      <div class="window">
-        <div class="start time" style="display:none;"><%= @fundraiser.pledge_start_time.iso8601() %></div>
-        -
-        <div class="end time" style="display:none;"><%= @fundraiser.pledge_end_time.iso8601() %></div>
+      <div class="timeframe" style="display:none;">
+        <div class="start time"><%= @fundraiser.pledge_start_time.iso8601() %></div>
+        <div class="single-line">-</div>
+        <div class="multi-line">to</div>
+        <div class="end time"><%= @fundraiser.pledge_end_time.iso8601() %></div>
       </div>
     </div>
   </div>
@@ -80,6 +81,8 @@
 
 <script>
   $(function() {
-    setPledgeWindow();
+    convertToLocalTime('#fundraiser-show .pledge-window .start.time');
+    convertToLocalTime('#fundraiser-show .pledge-window .end.time');
+    $('#fundraiser-show .pledge-window .timeframe').show();
   });
 </script>

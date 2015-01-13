@@ -7,28 +7,17 @@
 //= require pickdate/legacy
 
 
-setPledgeWindow = function() {
-    var $startTime = $('#fundraiser-show .pledge-window .start.time');
-    var $endTime = $('#fundraiser-show .pledge-window .end.time');
-    var fromString = $startTime.text();
-    var toString = $endTime.text();
+// TODO: Move this to a more generic location.
+convertToLocalTime = function(cssSelector) {
+    var $timeEl = $(cssSelector);
+    var isoString = $timeEl.text();
 
-    var fromDateTimeStrings = isoToLocalStrings(fromString);
-    var toDateTimeStrings = isoToLocalStrings(toString);
+    var dateTimeStrings = isoToLocalStrings(isoString);
 
-    if (fromDateTimeStrings) {
-        $startTime.html('<div class="date">' + fromDateTimeStrings[0] + '</div>' +
-                        '<div class="time"> at ' + fromDateTimeStrings[1] + '</div>');
+    if (dateTimeStrings) {
+        $timeEl.html('<div class="date">' + dateTimeStrings[0] + '</div> ' +
+                     '<div class="time"> at ' + dateTimeStrings[1] + '</div>');
     } else {
-        $startTime.text('TBD');
+        $timeEl.text('TBD');
     }
-    if (toDateTimeStrings) {
-        $endTime.html('<div class="date">' + toDateTimeStrings[0] + '</div>' +
-                      '<div class="time"> at ' + toDateTimeStrings[1] + '</div>');
-    } else {
-        $endTime.text('TBD');
-    }
-
-    $startTime.show();
-    $endTime.show();
 };
