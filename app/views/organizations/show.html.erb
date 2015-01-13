@@ -1,6 +1,6 @@
 <div id="org-show">
 
-  <div class="title">
+  <div class="header">
     <div class="icon">
       <%= link_to @org do %>
         <%= image_tag 'org/defaultIcon.png' %>
@@ -11,6 +11,7 @@
     </div>
   </div>
 
+  <!-- TODO: Restrict these to members only. -->
   <div class="member-controls">
     <%= link_to new_fundraiser_path do %>
       <div class="action btn new-fundraiser">Start New Fundraiser</div>

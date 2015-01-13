@@ -309,6 +309,63 @@ img {
 
 
 
+
+
+
+/**
+ * Header Styles
+ **/
+
+.list .item {
+    width: 90%;
+    max-width: 40em;
+    margin: auto;
+    padding: 2%;
+
+    border-radius: .3em;
+
+    background-color: #A3EB87;
+}
+
+.list .item .attr {
+    width: 100%;
+}
+.list .item .attr .label {
+    display: inline-block;
+
+    font-weight: bold;
+}
+.list .item .attr .value {
+    display: inline-block;
+    margin-left: 2%;
+}
+
+.list .item .attr.description .label {
+    position: relative;
+    right: 3%;
+}
+.list .item .attr.description .value {
+    display: inline-block;
+
+    width: 97%;
+    margin-left: 3%;
+}
+
+@media screen and (min-width: 600px)  {
+    .list .item {
+        padding: .7em;
+    }
+    .list .item .attr.description {
+        margin: .5em 0;
+    }
+}
+
+
+
+
+
+
+
 /**
  * Header Styles
  **/

@@ -1,8 +1,6 @@
 // Place all the styles related to the Organizations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-//
-//  require fundraiser_items
 
 
 /**
@@ -49,14 +47,7 @@
 }
 
 #org-index .list .item {
-    width: 90%;
     max-width: 50em;
-    margin: auto;
-    padding: 2%;
-
-    border-radius: .3em;
-
-    background-color: #A3EB87;
 }
 
 #org-index .list .item .name {
@@ -85,29 +76,6 @@
     display: none;
 }
 
-#org-index .list .item .attr {
-    width: 100%;
-}
-#org-index .list .item .attr .label {
-    display: inline-block;
-    
-    font-weight: bold;
-}
-#org-index .list .item .attr .value {
-    display: inline-block;
-    margin-left: 2%;
-}
-
-#org-index .list .item .attr.description .label {
-    position: relative;
-    right: 3%;
-}
-#org-index .list .item .attr.description .value {
-    display: inline-block;
-
-    width: 97%;
-    margin-left: 3%;
-}
 #org-index .list .item .attr.fundraiser-snapshot {
     display: none;
 }
@@ -155,11 +123,11 @@
  *  ==== Show Page ====
  */
 
-#org-show .title {
+#org-show .header {
     width: 95%;
     margin: 2% auto;
 }
-#org-show .title .icon {
+#org-show .header .icon {
     display: inline-block;
     
     width: 8em;
@@ -168,7 +136,7 @@
 
     vertical-align: middle;
 }
-#org-show .title .name {
+#org-show .header .name {
     display: inline-block;
 
     width: 60%;
@@ -211,6 +179,8 @@
     margin: 4%;
 }
 #org-show .fundraisers .title {
+    margin: 0.5em auto;
+
     text-align: center;
     font-size: 1.2em;
     font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
@@ -224,10 +194,10 @@
 }
 
 @media screen and (min-width: 600px)  {
-    #org-show .title {
+    #org-show .header {
         margin: .8em auto;
     }
-    #org-show .title .icon {
+    #org-show .header .icon {
         margin: .8em;
     }
     #org-show .member-controls {
@@ -247,7 +217,7 @@
     }
 }
 @media screen and (min-width: 900px)  {
-    #org-show .title {
+    #org-show .header {
         display: inline-block;
         
         width: 65%;

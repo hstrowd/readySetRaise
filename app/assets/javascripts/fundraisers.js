@@ -8,8 +8,8 @@
 
 
 setPledgeWindow = function() {
-    var $startTime = $('#fundraiser-show .pledge-window .start-time');
-    var $endTime = $('#fundraiser-show .pledge-window .end-time');
+    var $startTime = $('#fundraiser-show .pledge-window .start.time');
+    var $endTime = $('#fundraiser-show .pledge-window .end.time');
     var fromString = $startTime.text();
     var toString = $endTime.text();
 
@@ -17,12 +17,14 @@ setPledgeWindow = function() {
     var toDateTimeStrings = isoToLocalStrings(toString);
 
     if (fromDateTimeStrings) {
-        $startTime.text(fromDateTimeStrings[0] + " " + fromDateTimeStrings[1]); 
+        $startTime.html('<div class="date">' + fromDateTimeStrings[0] + '</div>' +
+                        '<div class="time"> at ' + fromDateTimeStrings[1] + '</div>');
     } else {
         $startTime.text('TBD');
     }
     if (toDateTimeStrings) {
-        $endTime.text(toDateTimeStrings[0] + " " + toDateTimeStrings[1]); 
+        $endTime.html('<div class="date">' + toDateTimeStrings[0] + '</div>' +
+                      '<div class="time"> at ' + toDateTimeStrings[1] + '</div>');
     } else {
         $endTime.text('TBD');
     }
