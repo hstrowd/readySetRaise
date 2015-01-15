@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
     if !@event
       flash[:alert] = 'Unable to find requested event.'
-      redirect_to action: "index"
+      redirect_to organization_path
     end
   end
 

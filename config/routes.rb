@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   resources :organizations
   resources :fundraisers do
     resources :events, only: [:new]
-    resources :teams, only: [:new]
-    resources :pledges
   end
-
-  resources :events
-  resources :teams
+  resources :events do
+    resources :teams, only: [:new]
+  end
+  resources :teams do
+    resources :pledges, only: [:new]
+  end
   resources :pledges
 
   devise_for :users, :controllers => { registrations: 'users/registrations' },

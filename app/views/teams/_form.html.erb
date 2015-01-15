@@ -1,34 +1,24 @@
 <div class="team-form">
   <%= form_for(@team) do |f| %>
 
-    <div class="field name">
-      <div class="label">
-        <%= f.label :name %>
-      </div>
-      <%= f.text_field :name, autofocus: true %>
-      <% if !@fundraiser.errors[:name].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:name][0].humanize %></div>
-        </div>
-      <% end %>
-    </div>
+    <%= f.hidden_field :event_id %>
 
-    <div class="field pledge-target">
-      <div class="label">
-        <%= f.label :pledge_target %>
-      </div>
-      <%= f.text_field :pledge_target, autofocus: true %>
-      <% if !@fundraiser.errors[:pledge_target].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:pledge_target][0].humanize %></div>
-        </div>
-      <% end %>
-    </div>
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @team, 
+                 attr: :name
+               }) %>
+
+    <%= render(partial: "shared/form_field", 
+               locals: { 
+                 form: f, 
+                 model: @team, 
+                 attr: :pledge_target
+               }) %>
 
     <div class="actions">
-      <%= f.submit class: :submit %>
+      <%= f.submit "Register Team", class: :submit %>
     </div>
 
   <% end %>

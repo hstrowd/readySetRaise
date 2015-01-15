@@ -145,6 +145,34 @@
     display: none;
 }
 
+#event-show .teams {
+    margin: 4%;
+}
+#event-show .teams .title {
+    margin: 0.5em auto;
+
+    text-align: center;
+    font-size: 1.2em;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+#event-show .teams .list .title {
+    margin: 1%;
+
+    text-align: left;
+    font-size: 1.1em;
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+#event-show .teams .notice {
+    width: 80%;
+    margin: auto;
+    padding: 1em;
+
+    background-color: #A0CAFF;
+
+    text-align:center;
+    color: #EE6060;
+}
+
 @media screen and (min-width: 500px)  {
     #event-show .details .attribute.time .timeframe {
         width: 65%;
@@ -164,6 +192,9 @@
     }
     #event-show .details .attribute.time .timeframe .multi-line {
         display: none;
+    }
+    #event-show .teams .notice {
+        width: 50%;
     }
 }
 @media screen and (min-width: 600px)  {
@@ -204,5 +235,8 @@
         max-width: 80%;
 
         margin: .3em auto;
+    }
+    #event-show .teams .notice {
+        width: 40%;
     }
 }

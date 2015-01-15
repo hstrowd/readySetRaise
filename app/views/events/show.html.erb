@@ -19,6 +19,9 @@
 
   <!-- TODO: Restrict these to members only. -->
   <div class="member-controls">
+    <%= link_to new_event_team_path(@event) do %>
+      <div class="action btn new-team">Add a Team</div>
+    <% end %>
     <%= link_to edit_event_path(@event) do %>
       <div class="action btn edit-org">Update Event</div>
     <% end %>
@@ -40,6 +43,19 @@
       </div>
     </div>
   </div>
+
+  <div class="teams">
+    <div class="title">Teams</div>
+    <% if !@event.teams.empty? %>
+      <div class="list">
+        <% @event.teams.each do |t| %>
+          <%= render partial: 'teams/list_item', locals: { team: t } %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="notice">No teams registered yet!</div>
+    <% end %>
+   </div>
 
 </div>
 
