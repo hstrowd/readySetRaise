@@ -1,14 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div id="team-show">
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+  <div class="header">
+    <div class="icon">
+      <%= link_to @team.organization do %>
+        <%= image_tag 'org/defaultIcon.png' %>
+      <% end %>
+    </div>
+    <div class="text">
+      <div class="title">
+        <%= @team.name %> in <%= link_to @team.event.title, @team.event %>
+      </div>
+      <div class="subtitle">
+        for <%= link_to @team.fundraiser.title, @team.fundraiser %>
+        by <%= link_to @team.organization.name, @team.organization %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Pledge target:</strong>
-  <%= @team.pledge_target %>
-</p>
+  <div class="member-controls">
+    <%= link_to new_team_pledge_path(@team) do %>
+      <div class="action btn new-pledge">Make a Pledge</div>
+    <% end %>
+    <!-- TODO: Restrict this to organization members only. -->
+    <%= link_to edit_team_path(@team) do %>
+      <div class="action btn edit-team">Update Team</div>
+    <% end %>
+  </div>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+  <div class="details">
+    <div class="attribute pledge-target">
+      <div class="label">Pledge Target:</div>
+      <%= @team.pledge_target %>
+    </div>
+  </div>
+</div>

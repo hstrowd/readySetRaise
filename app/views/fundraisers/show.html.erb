@@ -2,7 +2,7 @@
 
   <div class="header">
     <div class="icon">
-      <%= link_to @org do %>
+      <%= link_to @fundraiser.organization do %>
         <%= image_tag 'org/defaultIcon.png' %>
       <% end %>
     </div>
@@ -21,9 +21,8 @@
     <%= link_to new_fundraiser_event_path(@fundraiser) do %>
       <div class="action btn new-event">Schedule an Event</div>
     <% end %>
-    <!-- TODO: Add 'Add Team' action. -->
     <%= link_to edit_fundraiser_path(@fundraiser) do %>
-      <div class="action btn edit-org">Update Fundraiser</div>
+      <div class="action btn edit-fundraiser">Update Fundraiser</div>
     <% end %>
   </div>
 
