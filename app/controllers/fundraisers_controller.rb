@@ -28,9 +28,11 @@ class FundraisersController < ApplicationController
     if @fundraiser.save
       # TODO: Redirect them to creating an event
       redirect_to @fundraiser
+      return
     else
       return if redirect_to_new_org?
       render :new
+      return
     end
   end
 

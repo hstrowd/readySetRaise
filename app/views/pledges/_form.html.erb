@@ -1,35 +1,30 @@
 <div class="pledge-form">
   <%= form_for(@pledge) do |f| %>
 
-    <div class="field team">
-      <div class="label">
-        <%= f.label :team %>
-      </div>
-      <!-- TODO: Update this to be a dropdown. -->
-      <%= f.text_field :team, autofocus: true %>
-      <% if !@fundraiser.errors[:team].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:team][0].humanize %></div>
-        </div>
-      <% end %>
+    <%= f.hidden_field :team_id %>
+
+    <div class="field event">
+      <div class="label">Event</div>
+      <div class="input"><%= @pledge.event.title %></div>
     </div>
 
-    <div class="field amount">
-      <div class="label">
-        <%= f.label :amount %>
-      </div>
-      <%= f.number_field :amount, autofocus: true %>
-      <% if !@fundraiser.errors[:amount].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:amount][0].humanize %></div>
-        </div>
-      <% end %>
+    <div class="field team">
+      <div class="label">Team</div>
+      <div class="input"><%= @pledge.team.name %></div>
     </div>
+
+    <% content_for 'amount_field' do %>
+      <%= f.number_field :amount %>
+    <% end %>
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @pledge,
+                 attr: :amount
+               }) %>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Make Pledge", class: :submit %>
     </div>
   <% end %>
 </div>

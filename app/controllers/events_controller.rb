@@ -22,12 +22,20 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    params = event_params
+    @event = Event.new(params)
     @event.creator = current_user
     if @event.save
       redirect_to @event
     else
-      prep_new_event(params.event.try(:fundraiser_id))
+      if params.has_key?(:fundraiser_id)
+        render :new
+        return
+      else
+        flash[:alert] = 'Please select a fundraiser before creating an event.'
+        redirect_to organizations_path
+        return
+      end
     end
   end
 
@@ -35,10 +43,13 @@ private
 
   def prep_new_event(fundraiser_id)
     if !Fundraiser.find_by_id(fundraiser_id)
-      flash[:alert] = 'No fundraiser specified for new event.'
-      redirect_to organization_path
+      flash[:alert] = 'Unable to find fundraiser. Please try again.'
+      redirect_to organizations_path
+      return
     end
     @event = Event.new(fundraiser_id: fundraiser_id)
+    render :new
+    return
   end
 
   def event_params

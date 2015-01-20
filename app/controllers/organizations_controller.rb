@@ -35,8 +35,10 @@ class OrganizationsController < ApplicationController
       @org.members << current_user
 
       redirect_to new_fundraiser_path
+      return
     else
       render :new
+      return
     end
   end
 

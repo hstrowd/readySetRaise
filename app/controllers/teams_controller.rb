@@ -24,8 +24,10 @@ class TeamsController < ApplicationController
     @team = Team.new(team_params)
     if @team.save
       redirect_to @team.event
+      return
     else
-      prep_new_team(params.team.try(:event_id))
+      render :new
+      return
     end
   end
 

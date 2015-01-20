@@ -3,17 +3,17 @@
 
     <%= f.hidden_field :event_id %>
 
-    <%= render(partial: "shared/form_field", 
-               locals: { 
-                 form: f, 
-                 model: @team, 
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @team,
                  attr: :name
                }) %>
 
-    <%= render(partial: "shared/form_field", 
-               locals: { 
-                 form: f, 
-                 model: @team, 
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @team,
                  attr: :pledge_target
                }) %>
 
