@@ -13,7 +13,7 @@
 
   <!-- TODO: Restrict these to members only. -->
   <div class="member-controls">
-    <%= link_to new_fundraiser_path do %>
+    <%= link_to new_organization_fundraiser_path(@org) do %>
       <div class="action btn new-fundraiser">Start New Fundraiser</div>
     <% end %>
     <%= link_to edit_organization_path(@org) do %>

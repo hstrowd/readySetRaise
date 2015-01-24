@@ -2,6 +2,10 @@
   <div class="centerer">
     <div class="intro">
       <div class="title">Your Organizations</div>
+      <%= link_to new_organization_path, class: 'action btn new-org' do %>
+        <%= image_tag 'add.png', class: 'icon' %>
+        <div class="text">Register New Organization</div>
+      <% end %>
       <div class="description">The following is a list of all organizations that you are involved in.</div>
     </div>
 

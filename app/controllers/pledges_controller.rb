@@ -1,40 +1,46 @@
 class PledgesController < ApplicationController
   before_action :authenticate_user!
+  before_action :lookup_pledge, only: [:show]
 
-  def show
-    if params[:id]
-      @pledge = Pledge.find_by_id(params[:id])
+  def new
+    team_id = params[:team_id]
+    return if !is_valid_team(team_id)
+
+    @pledge = Pledge.new(team_id: team_id)
+  end
+
+  def create
+    return if !is_valid_team?(pledge_params[:team_id])
+
+    @pledge = Pledge.new(pledge_params)
+
+    if !@pledge.save
+      render :new
+      return
     end
 
-    if !@pledge
+    redirect_to @pledge.team
+    return
+  end
+
+
+private
+
+  def lookup_pledge
+    @team = Team.find_by_id(params[:id]) if params[:id]
+
+    if !@team
       flash[:alert] = 'Unable to find requested team.'
       redirect_to organization_path
     end
   end
 
-  def new
-    prep_new_pledge(params[:team_id])
-  end
+  def is_valid_team?(team_id)
+    return true if team_id && Team.find_by_id(team_id)
 
-  def create
-    @pledge = Pledge.new(pledge_params)
-    if @pledge.save
-      redirect_to @pledge.team
-      return
-    else
-      render :new
-      return
-    end
-  end
-
-private
-
-  def prep_new_pledge(team_id)
-    if !Team.find_by_id(team_id)
-      flash[:alert] = 'No team specified for new pledge.'
-      redirect_to organization_path
-    end
-    @pledge = Pledge.new(team_id: team_id)
+    flash[:alert] = 'Please select the organization for which you\'d like to submit a new pledge.'
+    redirect_to organizations_path
+    return false
   end
 
   def pledge_params

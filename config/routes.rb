@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
 
-  resources :organizations
-  resources :fundraisers do
+  resources :organizations do
+    resources :fundraisers, only: [:new]
+  end
+  resources :fundraisers, except: [:new] do
     resources :events, only: [:new]
   end
-  resources :events do
+  resources :events, except: [:index] do
     resources :teams, only: [:new]
   end
-  resources :teams do
+  resources :teams, except: [:index] do
     resources :pledges, only: [:new]
   end
-  resources :pledges
+  resources :pledges, only: [:new, :create, :show]
 
   devise_for :users, :controllers => { registrations: 'users/registrations' },
                      :skip => [:passwords]

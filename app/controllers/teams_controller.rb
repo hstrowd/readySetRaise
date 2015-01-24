@@ -1,14 +1,42 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
+  before_action :lookup_team, only: [:show, :edit, :update]
 
-  def index
-    @teams = Team.all
+  def new
+    event_id = params[:event_id]
+    return if !is_valid_event?(event_id)
+
+    @team = Team.new(event_id: event_id)
   end
 
-  def show
-    if params[:id]
-      @team = Team.find_by_id(params[:id])
+  def create
+    return if !is_valid_event?(team_params[:event_id])
+
+    @team = Team.new(team_params)
+
+    if !@team.save
+      render :new
+      return
     end
+
+    redirect_to @team.event
+    return
+  end
+
+  def update
+    if !@team.update_attributes(team_params)
+      render :edit
+      return
+    end
+
+    redirect_to @team
+    return
+  end
+
+private
+
+  def lookup_team
+    @team = Team.find_by_id(params[:id]) if params[:id]
 
     if !@team
       flash[:alert] = 'Unable to find requested team.'
@@ -16,29 +44,12 @@ class TeamsController < ApplicationController
     end
   end
 
-  def new
-    prep_new_team(params[:event_id])
-  end
+  def is_valid_event?(event_id)
+    return true if event_id && Event.find_by_id(event_id)
 
-  def create
-    @team = Team.new(team_params)
-    if @team.save
-      redirect_to @team.event
-      return
-    else
-      render :new
-      return
-    end
-  end
-
-private
-
-  def prep_new_team(event_id)
-    if !Event.find_by_id(event_id)
-      flash[:alert] = 'No event specified for new team.'
-      redirect_to organization_path
-    end
-    @team = Team.new(event_id: event_id)
+    flash[:alert] = 'Please select the organization for which you\'d like to create a new team.'
+    redirect_to organizations_path
+    return false
   end
 
   def team_params

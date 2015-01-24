@@ -19,7 +19,7 @@
   <% if !model.errors[attr].empty? %>
     <div class="info error">
       <div class="icon"><%= image_tag "error.gif" %></div>
-      <div class="description"><%= model.errors[attr][0] %></div>
+      <div class="description"><%= model.errors[attr][0].humanize %></div>
     </div>
   <% else %>
     <% if(defined? info) %>
