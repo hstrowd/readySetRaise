@@ -1,11 +1,17 @@
 <div class="fundraiser-form">
   <%= form_for(@fundraiser) do |f| %>
 
+    <div class="field org">
+      <div class="label">Organization</div>
+      <div class="input"><%= link_to @fundraiser.organization.name, @fundraiser.organization %></div>
+    </div>
+
     <%= render(partial: "shared/form_field", 
                locals: { 
                  form: f, 
                  model: @fundraiser, 
-                 attr: :title
+                 attr: :title,
+                 field_label: 'Fundraiser Title'
                }) %>
     <% content_for 'description_field' do %>
       <%= f.text_area :description %>

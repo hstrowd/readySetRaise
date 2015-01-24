@@ -3,11 +3,22 @@
 
     <%= f.hidden_field :fundraiser_id %>
 
+    <div class="field org">
+      <div class="label">Organization</div>
+      <div class="input"><%= link_to @event.organization.name, @event.organization %></div>
+    </div>
+
+    <div class="field fundraiser">
+      <div class="label">Fundraiser</div>
+      <div class="input"><%= link_to @event.fundraiser.title, @event.fundraiser %></div>
+    </div>
+
     <%= render(partial: "shared/form_field", 
                locals: { 
                  form: f, 
                  model: @event, 
-                 attr: :title
+                 attr: :title,
+                 field_label: 'Event Title'
                }) %>
 
     <% content_for 'description_field' do %>

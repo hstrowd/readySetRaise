@@ -5,12 +5,12 @@
 
     <div class="field event">
       <div class="label">Event</div>
-      <div class="input"><%= @pledge.event.title %></div>
+      <div class="input"><%= link_to @pledge.event.title, @pledge.event %></div>
     </div>
 
     <div class="field team">
       <div class="label">Team</div>
-      <div class="input"><%= @pledge.team.name %></div>
+      <div class="input"><%= link_to @pledge.team.name, @pledge.team %></div>
     </div>
 
     <% content_for 'amount_field' do %>
