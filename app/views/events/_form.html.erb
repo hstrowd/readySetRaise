@@ -5,7 +5,7 @@
 
     <div class="field org">
       <div class="label">Organization</div>
-      <div class="input"><%= link_to @event.organization.name, @event.organization %></div>
+      <div class="input"><%= link_to @event.organization.name, show_org_path(@event.organization.url_key) %></div>
     </div>
 
     <div class="field fundraiser">

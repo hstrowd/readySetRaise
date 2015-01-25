@@ -2,7 +2,7 @@
 
   <div class="header">
     <div class="icon">
-      <%= link_to @event.organization do %>
+      <%= link_to show_org_path(@event.organization.url_key) do %>
         <%= image_tag 'org/defaultIcon.png' %>
       <% end %>
     </div>
@@ -12,7 +12,7 @@
       </div>
       <div class="subtitle">
         for <%= link_to @event.fundraiser.title, @event.fundraiser %>
-        by <%= link_to @event.organization.name, @event.organization %>
+        by <%= link_to @event.organization.name, show_org_path(@event.organization.url_key) %>
       </div>
     </div>
   </div>

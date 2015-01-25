@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  # Allows organizations to be looked up by key.
+  get 'orgs/:url_key' => 'organizations#show', as: 'show_org'
+
   get 'about' => 'home#about'
 
   # You can have the root of your site routed with "root"

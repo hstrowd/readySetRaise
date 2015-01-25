@@ -3,7 +3,7 @@
 
     <div class="field org">
       <div class="label">Organization</div>
-      <div class="input"><%= link_to @fundraiser.organization.name, @fundraiser.organization %></div>
+      <div class="input"><%= link_to @fundraiser.organization.name, show_org_path(@fundraiser.organization.url_key) %></div>
     </div>
 
     <%= render(partial: "shared/form_field", 

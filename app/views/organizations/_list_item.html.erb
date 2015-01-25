@@ -1,12 +1,12 @@
 <div class="item organization">
   <div class="header">
     <div class="icon">
-      <%= link_to org do %>
+      <%= link_to show_org_path(org.url_key) do %>
         <%= image_tag 'org/defaultIcon.png' %>
       <% end %>
     </div>
     <div class="title">
-      <%= link_to org do %>
+      <%= link_to show_org_path(org.url_key) do %>
         <%= org.name %>
       <% end %>
     </div>
