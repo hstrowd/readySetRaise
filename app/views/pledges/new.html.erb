@@ -5,6 +5,8 @@
       <div class="description">Thanks so much for supporting a worthy cause with your pledge. You will receive an email at the completion of the fundraiser with a complete summary of the pledges you have made and how you can submit you payment.</div>
     </div>
 
-    <%= render 'form' %>
+    <%= render(partial: 'form', locals: {
+                 cancel_path: team_path(@pledge.team)
+               }) %>
   </div>
 </div>

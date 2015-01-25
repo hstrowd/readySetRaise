@@ -7,6 +7,9 @@
       </div>
     </div>
 
-    <%= render(partial: 'form', locals: { action: 'Schedule' }) %>
+    <%= render(partial: 'form', locals: {
+                 action: 'Schedule',
+                 cancel_path: fundraiser_path(@event.fundraiser)
+               }) %>
   </div>
 </div>

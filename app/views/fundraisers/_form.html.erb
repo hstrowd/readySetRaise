@@ -41,7 +41,7 @@
     <% end %>
 
     <% content_for 'pledge_start_time_field' do %>
-      <%= f.hidden_field(:pledge_start_time) %>
+      <%= f.hidden_field(:pledge_start_time, value: @fundraiser.pledge_start_time) %>
       <% if !@fundraiser.errors[:pledge_start_time].empty? %>
         <div class="field_with_errors">
       <% end %>
@@ -60,8 +60,7 @@
                  attr: :pledge_start_time
                }) %>
     <% content_for 'pledge_end_time_field' do %>
-      <%= @fundraiser.pledge_end_time %>
-      <%= f.hidden_field(:pledge_end_time) %>
+      <%= f.hidden_field(:pledge_end_time, value: @fundraiser.pledge_end_time) %>
        <% if !@fundraiser.errors[:pledge_end_time].empty? %>
          <div class="field_with_errors">
        <% end %>
@@ -83,7 +82,12 @@
     <!-- TODO: Add a multi-select field for single event vs multi event fundraisers. -->
 
     <div class="actions">
-      <%= f.submit((action + " Fundraiser"), class: :submit) %>
+      <%= f.submit((action + " Fundraiser"), class: [:btn, :submit]) %>
+      <%= f.button("Cancel", {
+                     onClick: 'window.location.assign("' + cancel_path + '")', 
+                     type: :button, 
+                     class: [:btn, :cancel]
+                   }) %>
     </div>
 
     <script>

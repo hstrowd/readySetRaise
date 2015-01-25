@@ -247,15 +247,19 @@ img {
     font-size: 2em;
 }
 
-.std-form input.submit {
+.std-form .actions {
     display: inherit;
+
+    width: 90%;
+    margin: 1.5em auto;
+
+    text-align: center;
+}
+.std-form .actions .btn {
+    display: inline-block;
     
-    height: 3em;
-    width: 35%;
-    min-width: 10em;
-    
+    height: 3em;    
     padding: .25em .2em;
-    margin: 1.5em 40%;
 
     background-color: #FFFFFF;
     border: .12em solid #888888;
@@ -265,11 +269,23 @@ img {
     font-weight: bold;
     text-align: center;
 }
-.std-form input.submit:hover {
+.std-form .actions .btn.submit {
+    width: 35%;
+    min-width: 12em;
+}
+.std-form .actions .btn.cancel {
+    width: 20%;
+    min-width: 5em;
+}
+.std-form .actions .btn:hover {
     padding: .3em .2em;
 
     background-color: #A3EB87;
     border: .18em solid #AAAAAA;
+}
+.std-form .actions .btn.cancel:hover {
+    background-color: #FEA8A8;
+    border: .18em solid #999999;
 }
 
 @media screen and (min-width: 600px)  {
@@ -300,10 +316,8 @@ img {
     .std-form .field .info:hover .description {
         display: inline-block;
     }
-    .std-form input.submit {
-        width: 25%;
-    
-        margin: 1.5em 18%;
+    .std-form .actions {
+        width: 60%;
     }
 }
 

@@ -5,6 +5,9 @@
       <div class="description">Let the games begin! Recruit some of your committed supporters to be team captains and put them to work drumming up interest and excitement for your event. Teams could be individuals or groups of supporters depending upon the nature of your event.</div>
     </div>
 
-    <%= render(partial: 'form', locals: { action: 'Register' }) %>
+    <%= render(partial: 'form', locals: {
+                 action: 'Register',
+                 cancel_path: event_path(@team.event)
+               }) %>
   </div>
 </div>

@@ -35,7 +35,7 @@
     <!-- TODO: Enforce that the event start and end date are within the fundraiser's pledge timeframe. -->
 
     <% content_for 'start_time_field' do %>
-      <%= f.hidden_field(:start_time) %>
+      <%= f.hidden_field(:start_time, value: @event.start_time) %>
       <% if !@event.errors[:start_time].empty? %>
         <div class="field_with_errors">
       <% end %>
@@ -55,7 +55,7 @@
                }) %>
 
     <% content_for 'end_time_field' do %>
-      <%= f.hidden_field(:end_time) %>
+      <%= f.hidden_field(:end_time, value: @event.end_time) %>
        <% if !@event.errors[:end_time].empty? %>
          <div class="field_with_errors">
        <% end %>
@@ -75,7 +75,12 @@
                }) %>
 
     <div class="actions">
-      <%= f.submit((action + " Event"), class: :submit) %>
+      <%= f.submit((action + " Event"), class: [:btn, :submit]) %>
+      <%= f.button("Cancel", {
+                     onClick: 'window.location.assign("' + cancel_path + '")', 
+                     type: :button, 
+                     class: [:btn, :cancel]
+                   }) %>
     </div>
 
     <script>

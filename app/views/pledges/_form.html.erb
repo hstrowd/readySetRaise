@@ -24,7 +24,12 @@
                }) %>
 
     <div class="actions">
-      <%= f.submit "Make Pledge", class: :submit %>
+      <%= f.submit "Make Pledge", class: [:btn, :submit] %>
+      <%= f.button("Cancel", {
+                     onClick: 'window.location.assign("' + cancel_path + '")', 
+                     type: :button, 
+                     class: [:btn, :cancel]
+                   }) %>
     </div>
   <% end %>
 </div>

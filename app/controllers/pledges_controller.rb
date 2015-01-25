@@ -4,7 +4,7 @@ class PledgesController < ApplicationController
 
   def new
     team_id = params[:team_id]
-    return if !is_valid_team(team_id)
+    return if !is_valid_team?(team_id)
 
     @pledge = Pledge.new(team_id: team_id)
   end
