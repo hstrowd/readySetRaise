@@ -32,5 +32,18 @@
       <div class="label">Pledge Target:</div>
       <%= @team.pledge_target %>
     </div>
+
+    <% if @team.event.has_started? %>
+      <div class="attribute pledge-total">
+        <div class="label">
+          <% if @team.event.has_ended? %>
+            Pledge Total:
+          <% else %>
+            Current Pledges:
+          <% end %>
+        </div>
+        <%= @team.pledge_total %>
+      </div>
+    <% end %>
   </div>
 </div>

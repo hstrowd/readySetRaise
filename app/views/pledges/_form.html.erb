@@ -24,7 +24,7 @@
     </div>
 
     <% content_for 'amount_field' do %>
-      <%= f.number_field :amount %>
+      <%= f.number_field :amount, :step => 0.01 %>
     <% end %>
     <%= render(partial: "shared/form_field",
                locals: {

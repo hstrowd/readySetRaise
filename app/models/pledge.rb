@@ -6,4 +6,6 @@ class Pledge < ActiveRecord::Base
 
   validates :amount, :presence => true
   validates_numericality_of :amount
+
+  # TODO: Add annonymous flag.
 end

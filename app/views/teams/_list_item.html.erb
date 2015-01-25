@@ -6,8 +6,23 @@
       <% end %>
     </div>
   </div>
+
   <div class="attr pledge-target">
     <div class="label">Target:</div>
     <div class="value"><%= team.pledge_target %></div>
   </div>
+
+  <% if team.event.has_started? %>
+    <div class="attr pledge-total">
+      <div class="label">
+        <% if team.event.has_ended? %>
+          Total:
+        <% else %>
+          Current:
+        <% end %>
+      </div>
+      <div class="value"><%= team.pledge_total %></div>
+    </div>
+  <% end %>
+
 </div>
