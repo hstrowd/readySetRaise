@@ -52,28 +52,33 @@
     font-size: 1.5em;
 }
 
-#team-show .member-controls {
+#team-show .controls {
+    text-align: center;
+}
+#team-show .controls .members {
+    display: inline-block;
     margin: 0 2%;
 
     text-align: center;
 }
-#team-show .member-controls .action {
+#team-show .controls .members .action {
     display: inline-block;
 
     width: 10em;
-    max-width: 40%;
+    max-width: 100%;
 }
 
-#team-show .public-controls {
+#team-show .controls .public {
+    display: inline-block;
     margin: 0 2%;
 
     text-align: center;
 }
-#team-show .public-controls .action {
+#team-show .controls .public .action {
     display: inline-block;
 
     width: 10em;
-    max-width: 40%;
+    max-width: 100%;
 }
 
 #team-show .details {
@@ -100,10 +105,10 @@
     #team-show .header .icon {
         margin: .8em;
     }
-    #team-show .member-controls {
+    #team-show .controls .members {
         margin: 0  .8em;
     }
-    #team-show .public-controls {
+    #team-show .controls .public {
         margin: 0 .8em;
     }
     #team-show .details {
@@ -120,30 +125,32 @@
         width: 65%;
         margin: .8em 1.4em;
     }
-    #team-show .member-controls {
+    #team-show .controls {
         display: inline-block;
 
         width: 25%;
+        margin: .8em;
+    }
+    #team-show .controls .members {
+        margin: auto;
 
         vertical-align: middle;
         text-align: center;
     }
-    #team-show .member-controls .action {
+    #team-show .controls .members .action {
         display: block;
 
         max-width: 80%;
 
         margin: .3em auto;
     }
-    #team-show .public-controls {
-        display: inline-block;
-
-        width: 25%;
+    #team-show .controls .public {
+        margin: auto;
 
         vertical-align: middle;
         text-align: center;
     }
-    #team-show .public-controls .action {
+    #team-show .controls .public .action {
         display: block;
 
         max-width: 80%;

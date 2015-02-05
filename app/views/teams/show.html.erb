@@ -17,18 +17,20 @@
     </div>
   </div>
 
-  <% if @team.organization.members.include?(current_user) %>
-    <div class="member-controls">
-      <%= link_to edit_team_path(@team) do %>
-        <div class="action btn edit-team">Update Team</div>
+  <div class="controls">
+    <% if @team.organization.members.include?(current_user) %>
+      <div class="members">
+        <%= link_to edit_team_path(@team) do %>
+          <div class="action btn edit-team">Update Team</div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="public">
+      <%= link_to new_team_pledge_path(@team) do %>
+        <div class="action btn new-pledge">Make a Pledge</div>
       <% end %>
     </div>
-  <% end %>
-
-  <div class="public-controls">
-    <%= link_to new_team_pledge_path(@team) do %>
-      <div class="action btn new-pledge">Make a Pledge</div>
-    <% end %>
   </div>
 
   <div class="details">
