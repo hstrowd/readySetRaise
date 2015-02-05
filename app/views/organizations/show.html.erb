@@ -11,16 +11,18 @@
     </div>
   </div>
 
-  <% if @org.members.include?(current_user) %>
-    <div class="member-controls">
-      <%= link_to new_organization_fundraiser_path(@org) do %>
-        <div class="action btn new-fundraiser">Start New Fundraiser</div>
-      <% end %>
-      <%= link_to edit_organization_path(@org) do %>
-        <div class="action btn edit-org">Update Organization</div>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="controls">
+    <% if @org.members.include?(current_user) %>
+      <div class="members">
+        <%= link_to new_organization_fundraiser_path(@org) do %>
+          <div class="action btn new-fundraiser">Start New Fundraiser</div>
+        <% end %>
+        <%= link_to edit_organization_path(@org) do %>
+          <div class="action btn edit-org">Update Organization</div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
   <div class="details">
     <div class="attribute homepage">

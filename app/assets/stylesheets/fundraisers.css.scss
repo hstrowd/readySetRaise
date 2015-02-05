@@ -163,12 +163,16 @@ ul.ui-autocomplete {
     font-size: 1.5em;
 }
 
-#fundraiser-show .member-controls {
+#fundraiser-show .controls {
+    text-align: center;
+}
+#fundraiser-show .controls .members {
+    display: inline-block;
     margin: 2%;
 
     text-align: center;
 }
-#fundraiser-show .member-controls .action {
+#fundraiser-show .controls .members .action {
     display: inline-block;
     
     width: 10em;
@@ -270,7 +274,7 @@ ul.ui-autocomplete {
     #fundraiser-show>.header .icon {
         margin: .8em;
     }
-    #fundraiser-show .member-controls {
+    #fundraiser-show .controls {
         margin: .8em;
     }
     #fundraiser-show .details {
@@ -293,15 +297,19 @@ ul.ui-autocomplete {
         width: 65%;
         margin: .8em 1.4em;
     }
-    #fundraiser-show .member-controls {
+    #fundraiser-show .controls {
         display: inline-block;
 
         width: 25%;
+    }
+    #fundraiser-show .controls .members {
+        width: 100%;
+        margin: auto;
 
         vertical-align: middle;
         text-align: center;
     }
-    #fundraiser-show .member-controls .action {
+    #fundraiser-show .controls .members .action {
         display: block;
 
         max-width: 80%;

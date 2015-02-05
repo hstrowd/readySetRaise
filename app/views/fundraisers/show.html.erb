@@ -16,16 +16,18 @@
     </div>
   </div>
 
-  <% if @fundraiser.organization.members.include?(current_user) %>
-    <div class="member-controls">
-      <%= link_to new_fundraiser_event_path(@fundraiser) do %>
-        <div class="action btn new-event">Schedule an Event</div>
-      <% end %>
-      <%= link_to edit_fundraiser_path(@fundraiser) do %>
-        <div class="action btn edit-fundraiser">Update Fundraiser</div>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="controls">
+    <% if @fundraiser.organization.members.include?(current_user) %>
+      <div class="members">
+        <%= link_to new_fundraiser_event_path(@fundraiser) do %>
+          <div class="action btn new-event">Schedule an Event</div>
+        <% end %>
+        <%= link_to edit_fundraiser_path(@fundraiser) do %>
+          <div class="action btn edit-fundraiser">Update Fundraiser</div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
   <div class="details">
     <div class="attribute description">

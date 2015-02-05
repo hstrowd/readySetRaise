@@ -154,12 +154,16 @@
     font-size: 1.5em;
 }
 
-#org-show .member-controls {
+#org-show .controls {
+    text-align: center;
+}
+#org-show .controls .members {
+    display: inline-block;
     margin: 2%;
 
     text-align: center;
 }
-#org-show .member-controls .action {
+#org-show .controls .members .action {
     display: inline-block;
     
     width: 10em;
@@ -208,7 +212,7 @@
     #org-show>.header .icon {
         margin: .8em;
     }
-    #org-show .member-controls {
+    #org-show .controls {
         margin: .8em;
     }
     #org-show .details {
@@ -231,15 +235,19 @@
         width: 65%;
         margin: .8em 1.4em;
     }
-    #org-show .member-controls {
+    #org-show .controls {
         display: inline-block;
         
         width: 25%;
+    }
+    #org-show .controls .members {
+        width: 100%;
+        margin: auto;
         
         vertical-align: middle;
         text-align: center;
     }
-    #org-show .member-controls .action {
+    #org-show .controls .members .action {
         display: block;
 
         max-width: 80%;
