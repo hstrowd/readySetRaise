@@ -12,7 +12,13 @@
       <div class="label">Progress:</div>
       <div class="value">
         <!-- TODO: Find a way to format this percent and two decimal numbers properly. -->
-        <div class="percent"><%= (team.pledge_total / team.pledge_target) %></div>
+        <div class="percent">
+          <% if (team.pledge_target > 0) %>
+            <%= (team.pledge_total / team.pledge_target * 100).round() %>%
+          <% else %>
+            0%
+          <% end %>
+        </div>
         <!-- TODO: Look into more efficient ways to handle pluralization. -->
         (<div class="total"><%= team.pledge_total %></div> / <div class="target"><%= team.pledge_target %></div>
         <div class="count">from <%= team.pledges.count %> <%= (team.pledges.count == 1) ? 'pledge' : 'pledges' %></div>)

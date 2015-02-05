@@ -30,8 +30,13 @@
     <div class="attr pledges">
       <div class="label">Progress:</div>
       <div class="value">
-        <!-- TODO: Find a way to format this percent and two decimal numbers properly. -->
-        <div class="percent"><%= (event.pledge_total / event.pledge_target) %></div>
+        <div class="percent">
+          <% if (event.pledge_target > 0) %>
+            <%= (event.pledge_total / event.pledge_target * 100).round() %>%
+          <% else %>
+            0%
+          <% end %>
+        </div>
         <!-- TODO: Look into more efficient ways to handle pluralization. -->
         (<div class="total"><%= event.pledge_total %></div> / <div class="target"><%= event.pledge_target %></div>
         <div class="count">from <%= event.pledges.count %> <%= (event.pledges.count == 1) ? 'pledge' : 'pledges' %></div>)
