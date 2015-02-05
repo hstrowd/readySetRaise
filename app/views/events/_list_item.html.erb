@@ -1,7 +1,51 @@
 <div class="item event">
-  <%= link_to event do %>
-    <div class="title"><%= event.title %></div>
-  <% end %>
+  <div class="header">
+    <%= link_to event do %>
+      <div class="title"><%= event.title %></div>
+    <% end %>
+    <div class="assoc-count">
+      (<%= event.teams.count %> <%= (event.teams.count > 1) ? 'team'.pluralize : 'team' %>)
+    </div>
+  </div>
   <div class="description"><%= event.description %></div>
-  <!-- TODO: Add the date -->
+
+  <% if event.has_ended? %>
+    <div class="attr date ended">
+      <div class="label">Ended At:</div>
+      <div class="value"><%= event.end_time %></div>
+    </div>
+  <% elsif event.has_started? %>
+    <div class="attr date ending">
+      <div class="label">Ending At:</div>
+      <div class="value"><%= event.end_time %></div>
+    </div>
+  <% else %>
+    <div class="attr date starting">
+      <div class="label">Starts At:</div>
+      <div class="value"><%= event.start_time %></div>
+    </div>
+  <% end %>
+
+  <% if event.has_started? %>
+    <div class="attr pledges">
+      <div class="label">Progress:</div>
+      <div class="value">
+        <!-- TODO: Find a way to format this percent and two decimal numbers properly. -->
+        <div class="percent"><%= (event.pledge_total / event.pledge_target) %></div>
+        <!-- TODO: Look into more efficient ways to handle pluralization. -->
+        (<div class="total"><%= event.pledge_total %></div> / <div class="target"><%= event.pledge_target %></div>
+        <div class="count">from <%= event.pledges.count %> <%= (event.pledges.count == 1) ? 'pledge' : 'pledges' %></div>)
+      </div>
+    </div>
+  <% else %>
+    <div class="attr plegde-target">
+      <div class="label">Pledge Target:</div>
+      <div class="value"><%= event.pledge_target %></div>
+    </div>
+  <% end %>
+
 </div>
+
+<script>
+  $(function() { convertToLocalTime('.item.event .attr.date .value').show(); });
+</script>

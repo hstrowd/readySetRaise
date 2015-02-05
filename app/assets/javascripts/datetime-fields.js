@@ -1,3 +1,22 @@
+var convertToLocalTime = function(cssSelector) {
+    var $timeEls = $(cssSelector);
+    $timeEls.each(function(index, timeHtml) {
+        var $timeEl = $(timeHtml);
+        if (!$timeEl || ($timeEl.children('.date').length > 0)) { return; }
+        var isoString = $timeEl.text();
+
+        var dateTimeStrings = isoToLocalStrings(isoString);
+
+        if (dateTimeStrings) {
+            $timeEl.html('<div class="date">' + dateTimeStrings[0] + '</div> ' +
+                         '<div class="time"> at ' + dateTimeStrings[1] + '</div>');
+        } else {
+            $timeEl.text('TBD');
+        }
+    });
+    return $timeEls;
+};
+
 var initDateTimeField = function (model, field, options) {
     var curDate = new Date();
     var options = $.extend(options, {

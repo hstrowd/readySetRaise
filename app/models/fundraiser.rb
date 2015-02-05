@@ -16,5 +16,29 @@ class Fundraiser < ActiveRecord::Base
     end
   end
 
-  # TODO: Add a pledge target attribute.
+  has_many :teams, :through => :events
+  has_many :pledges, :through => :events
+
+
+  def has_started?
+    self.pledge_start_time < DateTime.now
+  end
+
+  def has_ended?
+    self.pledge_end_time < DateTime.now
+  end
+
+  def is_active?
+    has_started? && !has_ended?
+  end
+
+
+  def pledge_target
+    self.teams.sum(:pledge_target)
+  end
+
+  def pledge_total
+    self.pledges.sum(:amount)
+  end
+
 end

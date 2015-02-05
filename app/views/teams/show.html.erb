@@ -17,13 +17,17 @@
     </div>
   </div>
 
-  <div class="member-controls">
+  <% if @team.organization.members.include?(current_user) %>
+    <div class="member-controls">
+      <%= link_to edit_team_path(@team) do %>
+        <div class="action btn edit-team">Update Team</div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="public-controls">
     <%= link_to new_team_pledge_path(@team) do %>
       <div class="action btn new-pledge">Make a Pledge</div>
-    <% end %>
-    <!-- TODO: Restrict this to organization members only. -->
-    <%= link_to edit_team_path(@team) do %>
-      <div class="action btn edit-team">Update Team</div>
     <% end %>
   </div>
 
@@ -46,4 +50,6 @@
       </div>
     <% end %>
   </div>
+
+  <!-- TODO: Add a pledge log -->
 </div>

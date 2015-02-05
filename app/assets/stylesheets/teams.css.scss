@@ -37,11 +37,23 @@
 }
 
 #team-show .member-controls {
-    margin: 2%;
+    margin: 0 2%;
 
     text-align: center;
 }
 #team-show .member-controls .action {
+    display: inline-block;
+
+    width: 10em;
+    max-width: 40%;
+}
+
+#team-show .public-controls {
+    margin: 0 2%;
+
+    text-align: center;
+}
+#team-show .public-controls .action {
     display: inline-block;
 
     width: 10em;
@@ -73,7 +85,10 @@
         margin: .8em;
     }
     #team-show .member-controls {
-        margin: .8em;
+        margin: 0  .8em;
+    }
+    #team-show .public-controls {
+        margin: 0 .8em;
     }
     #team-show .details {
         margin: .8em auto;
@@ -98,6 +113,21 @@
         text-align: center;
     }
     #team-show .member-controls .action {
+        display: block;
+
+        max-width: 80%;
+
+        margin: .3em auto;
+    }
+    #team-show .public-controls {
+        display: inline-block;
+
+        width: 25%;
+
+        vertical-align: middle;
+        text-align: center;
+    }
+    #team-show .public-controls .action {
         display: block;
 
         max-width: 80%;

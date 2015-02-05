@@ -7,21 +7,21 @@
     </div>
   </div>
 
-  <div class="attr pledge-target">
-    <div class="label">Target:</div>
-    <div class="value"><%= team.pledge_target %></div>
-  </div>
-
   <% if team.event.has_started? %>
-    <div class="attr pledge-total">
-      <div class="label">
-        <% if team.event.has_ended? %>
-          Total:
-        <% else %>
-          Current:
-        <% end %>
+    <div class="attr pledges">
+      <div class="label">Progress:</div>
+      <div class="value">
+        <!-- TODO: Find a way to format this percent and two decimal numbers properly. -->
+        <div class="percent"><%= (team.pledge_total / team.pledge_target) %></div>
+        <!-- TODO: Look into more efficient ways to handle pluralization. -->
+        (<div class="total"><%= team.pledge_total %></div> / <div class="target"><%= team.pledge_target %></div>
+        <div class="count">from <%= team.pledges.count %> <%= (team.pledges.count == 1) ? 'pledge' : 'pledges' %></div>)
       </div>
-      <div class="value"><%= team.pledge_total %></div>
+    </div>
+  <% else %>
+    <div class="attr plegde-target">
+      <div class="label">Pledge Target:</div>
+      <div class="value"><%= team.pledge_target %></div>
     </div>
   <% end %>
 

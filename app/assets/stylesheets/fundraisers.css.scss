@@ -40,6 +40,20 @@
 }
 
 
+.item.fundraiser .attr.pledges .value .percent {
+    display: inline-block;
+}
+.item.fundraiser .attr.pledges .value .total {
+    display: inline-block;
+}
+.item.fundraiser .attr.pledges .value .target {
+    display: inline-block;
+}
+.item.fundraiser .attr.pledges .value .count {
+    display: inline-block;
+}
+
+
 
 
 
@@ -125,11 +139,11 @@ ul.ui-autocomplete {
  *  ==== Show Page ====
  */
 
-#fundraiser-show .header {
+#fundraiser-show>.header {
     width: 95%;
     margin: 2% auto;
 }
-#fundraiser-show .header .icon {
+#fundraiser-show>.header .icon {
     display: inline-block;
     
     width: 4em;
@@ -138,14 +152,14 @@ ul.ui-autocomplete {
 
     vertical-align: middle;
 }
-#fundraiser-show .header .text {
+#fundraiser-show>.header .text {
     display: inline-block;
 
     width: 60%;
 
     vertical-align: middle;
 }
-#fundraiser-show .header .title {
+#fundraiser-show>.header .title {
     font-size: 1.5em;
 }
 
@@ -250,10 +264,10 @@ ul.ui-autocomplete {
     }
 }
 @media screen and (min-width: 600px)  {
-    #fundraiser-show .header {
+    #fundraiser-show>.header {
         margin: .8em auto;
     }
-    #fundraiser-show .header .icon {
+    #fundraiser-show>.header .icon {
         margin: .8em;
     }
     #fundraiser-show .member-controls {
@@ -273,7 +287,7 @@ ul.ui-autocomplete {
     }
 }
 @media screen and (min-width: 900px)  {
-    #fundraiser-show .header {
+    #fundraiser-show>.header {
         display: inline-block;
 
         width: 65%;

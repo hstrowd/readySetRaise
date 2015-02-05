@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   validates :title, :start_time, :end_time, :presence => true
 
   has_many :teams
+  has_many :pledges, :through => :teams
 
   def has_started?
     self.start_time < DateTime.now
@@ -19,5 +20,13 @@ class Event < ActiveRecord::Base
     has_started? && !has_ended?
   end
 
+
+  def pledge_target
+    self.teams.sum(:pledge_target)
+  end
+
+  def pledge_total
+    self.pledges.sum(:amount)
+  end
 
 end

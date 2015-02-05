@@ -11,15 +11,16 @@
     </div>
   </div>
 
-  <!-- TODO: Restrict these to members only. -->
-  <div class="member-controls">
-    <%= link_to new_organization_fundraiser_path(@org) do %>
-      <div class="action btn new-fundraiser">Start New Fundraiser</div>
-    <% end %>
-    <%= link_to edit_organization_path(@org) do %>
-      <div class="action btn edit-org">Update Organization</div>
-    <% end %>
-  </div>
+  <% if @org.members.include?(current_user) %>
+    <div class="member-controls">
+      <%= link_to new_organization_fundraiser_path(@org) do %>
+        <div class="action btn new-fundraiser">Start New Fundraiser</div>
+      <% end %>
+      <%= link_to edit_organization_path(@org) do %>
+        <div class="action btn edit-org">Update Organization</div>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="details">
     <div class="attribute homepage">
@@ -34,7 +35,7 @@
 
   <% if !@org.fundraisers.present.empty? %>
     <div class="fundraisers current">
-      <div class="title">Active Fundraisers</div>
+      <div class="title">Active Fundraisers (<%= @org.fundraisers.present.count %>)</div>
       <div class="list">
         <% @org.fundraisers.present.each do |f| %>
           <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
@@ -45,7 +46,7 @@
 
   <% if !@org.fundraisers.future.empty? %>
     <div class="fundraisers future">
-      <div class="title">Upcoming Fundraisers</div>
+      <div class="title">Upcoming Fundraisers (<%= @org.fundraisers.future.count %>)</div>
       <div class="list">
         <% @org.fundraisers.future.each do |f| %>
           <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
@@ -56,7 +57,7 @@
   
   <% if !@org.fundraisers.past.empty? %>
     <div class="fundraisers past">
-      <div class="title">Completed Fundraisers</div>
+      <div class="title">Completed Fundraisers (<%= @org.fundraisers.past.count %>)</div>
       <div class="list">
         <% @org.fundraisers.past.each do |f| %>
           <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>

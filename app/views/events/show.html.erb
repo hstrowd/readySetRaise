@@ -17,15 +17,16 @@
     </div>
   </div>
 
-  <!-- TODO: Restrict these to members only. -->
-  <div class="member-controls">
-    <%= link_to new_event_team_path(@event) do %>
-      <div class="action btn new-team">Add a Team</div>
-    <% end %>
-    <%= link_to edit_event_path(@event) do %>
-      <div class="action btn edit-event">Update Event</div>
-    <% end %>
-  </div>
+  <% if @event.organization.members.include?(current_user) %>
+    <div class="member-controls">
+      <%= link_to new_event_team_path(@event) do %>
+        <div class="action btn new-team">Add a Team</div>
+      <% end %>
+      <%= link_to edit_event_path(@event) do %>
+        <div class="action btn edit-event">Update Event</div>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="details">
     <div class="attribute description">
