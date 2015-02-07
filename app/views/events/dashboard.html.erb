@@ -1,0 +1,76 @@
+
+  <%= javascript_include_tag "//code.highcharts.com/highcharts.js", "chartkick" %>
+
+
+<div id="event-dashboard">
+  <div class="header">
+    <div class="logo">
+      <%= link_to show_org_path(@event.organization.url_key) do %>
+        <%= image_tag 'org/defaultIcon.png' %>
+      <% end %>
+    </div>
+    <div class="text">
+      <div class="title">
+        <%= @event.title %>
+      </div>
+      <div class="subtitle">
+        for <%= link_to @event.fundraiser.title, @event.fundraiser %>
+        by <%= link_to @event.organization.name, show_org_path(@event.organization.url_key) %>
+      </div>
+    </div>
+    <% if !@event.has_started? %>
+      <div class="clock start">
+        Starts in <span id="start-countdown" class="countdown"></span>
+      </div>
+    <% elsif @event.is_active? %>
+      <div class="clock end">
+        Ends in <span id="end-countdown" class="countdown"></span>
+      </div>
+    <% else %>
+      <div class="clock done">
+        Finished!
+      </div>
+    <% end %>
+  </div>
+
+  <div class="event-details">
+    <div class="pledge-breakdown">
+      <div class="title">Pledge Totals per Team</div>
+      <%= column_chart pledge_total_by_team(@event), height: "20em" %>
+      <!-- TODO: Add number of pledges to this chart. -->
+    </div>
+    <div class="pledge-log">
+      <div class="title">Recent Pledges</div>
+      <div class="headers">
+        <div class="column donor">Donor</div>
+        <div class="column team">Team</div>
+        <div class="column amount">Amount</div>
+      </div>
+      <div>
+        <% @event.pledges.order(created_at: :desc).limit(10).each do |pledge| %>
+          <div class="pledge">
+            <div class="attr donor"><%= pledge.donor.full_name %></div>
+            <div class="attr team"><%= pledge.team.name %></div>
+            <div class="attr amount"><%= pledge.amount %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="overall">
+    <div class="title">Overall Progress</div>
+    <div class="progress-bar">
+      <div class="pct-complete" style="width: <%= plegde_progress_percent(@event) %>%">
+        <div class="label"><%= plegde_progress_percent(@event) %>%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    setupCountdown('#start-countdown', '<%= @event.start_time %>');
+    setupCountdown('#end-countdown', '<%= @event.end_time %>');
+  })
+</script>

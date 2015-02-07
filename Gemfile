@@ -42,6 +42,9 @@ gem 'devise'
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Use ChartKick for dashboard graphs.
+gem "chartkick"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

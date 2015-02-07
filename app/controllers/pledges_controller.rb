@@ -13,6 +13,7 @@ class PledgesController < ApplicationController
     return if !is_valid_team?(pledge_params[:team_id])
 
     @pledge = Pledge.new(pledge_params)
+    @pledge.donor = current_user
 
     if !@pledge.save
       render :new

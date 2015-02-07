@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :lookup_event, only: [:show, :edit, :update]
+  before_action :lookup_event, only: [:show, :edit, :update, :dashboard]
 
   def new
     fundraiser_id = params[:fundraiser_id]
@@ -34,6 +34,8 @@ class EventsController < ApplicationController
     return
   end
 
+  def dashboard
+  end
 
 private
 

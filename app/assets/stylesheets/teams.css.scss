@@ -105,11 +105,8 @@
     #team-show .header .icon {
         margin: .8em;
     }
-    #team-show .controls .members {
-        margin: 0  .8em;
-    }
-    #team-show .controls .public {
-        margin: 0 .8em;
+    #team-show .controls {
+        margin: .8em;
     }
     #team-show .details {
         margin: .8em auto;
@@ -129,7 +126,8 @@
         display: inline-block;
 
         width: 25%;
-        margin: .8em;
+
+        vertical-align: top;
     }
     #team-show .controls .members {
         width: 100%;

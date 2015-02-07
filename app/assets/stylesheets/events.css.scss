@@ -235,6 +235,8 @@
         display: inline-block;
 
         width: 25%;
+
+        vertical-align: top;
     }
     #event-show .controls .members {
         width: 100%;
@@ -252,5 +254,193 @@
     }
     #event-show .teams .notice {
         width: 40%;
+    }
+}
+
+
+
+
+/**
+ *  ==== Dashboard Styles ====
+ */
+
+#event-dashboard .title {
+    padding: 1%;
+
+    text-align: center;
+
+    font-size: 1.2em;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+
+#event-dashboard .header {
+    width: 95%;
+    margin: 2% auto;
+}
+#event-dashboard .header .logo {
+    display: none;
+
+    width: 10%;
+    margin: 0 1%;
+
+    vertical-align: middle;
+}
+#event-dashboard .header .text .title {
+    margin: 1% 0;
+    padding: 0;
+
+    font-size: 2em;
+}
+#event-dashboard .header .text .subtitle {
+    text-align:center;
+}
+#event-dashboard .header .clock {
+    margin: 2%;
+    padding: 1%;
+
+    text-align: center;
+}
+#event-dashboard .header .clock.start {
+    background-color: #A3EB87;
+}
+#event-dashboard .header .clock.end {
+    background-color: #FDA8A8;
+}
+#event-dashboard .header .clock.done {
+    background-color: #FDA8A8;
+}
+
+#event-dashboard .event-details {
+    width: 95%;
+    margin: 2% auto;
+}
+
+#event-dashboard .pledge-breakdown {
+    margin: .5em;
+    padding: .5em;
+
+    vertical-align: top;
+}
+#event-dashboard .pledge-breakdown .title {
+    background-color: #93BFF6;
+}
+
+#event-dashboard .pledge-log {
+    margin: .5em;
+
+    vertical-align: top;
+
+    text-align: center;
+}
+#event-dashboard .pledge-log .headers .column {
+    display: inline-block;
+
+    font-size: .9em;
+    text-align: center;
+}
+#event-dashboard .pledge-log .headers .column.donor {
+    width: 40%;
+    min-width: 9.5em;
+    margin: 1%;
+}
+#event-dashboard .pledge-log .headers .column.team {
+    width: 30%;
+    min-width: 7.5em;
+    margin: 1%;
+}
+#event-dashboard .pledge-log .headers .column.amount {
+    width: 10%;
+    min-width: 4em;
+    margin: 1%;
+}
+#event-dashboard .pledge-log .pledge {
+    width: 96%;
+    margin: 1%;
+    padding: 1%;
+}
+#event-dashboard .pledge-log .pledge {
+    background-color: #A3EB87;
+}
+#event-dashboard .pledge-log .pledge .attr {
+    display: inline-block;
+}
+#event-dashboard .pledge-log .pledge .attr.donor {
+    width: 40%;
+    min-width: 9.5em;
+    margin: 1%;
+}
+#event-dashboard .pledge-log .pledge .attr.team {
+    width: 30%;
+    min-width: 7.5em;
+    margin: 1%;
+}
+#event-dashboard .pledge-log .pledge .attr.amount {
+    width: 10%;
+    min-width: 4em;
+    margin: 1%;
+}
+
+#event-dashboard .overall {
+    width: 80%;
+
+    margin: 1% auto;
+}
+#event-dashboard .overall .title {
+    padding: 1%;
+
+    background-color: #A3EB87;
+}
+#event-dashboard .overall .progress-bar {
+    width: 100%;
+    height: 3em;
+
+    background-color: #FFFFFF;
+}
+#event-dashboard .overall .progress-bar .pct-complete {
+    height: 100%;
+
+    background-color: #A0CAFF;
+
+    text-align: right;
+}
+#event-dashboard .overall .progress-bar .pct-complete .label {
+    padding: .9em .4em;
+}
+
+@media screen and (min-width: 600px)  {
+    #event-dashboard .header {
+        margin: .7em auto;
+    }
+    #event-dashboard .header .logo {
+        display: inline-block;
+    }
+    #event-dashboard .header .text {
+        display: inline-block;
+
+        width: 70%;
+
+        vertical-align: middle;
+    }
+}
+@media screen and (min-width: 800px)  {
+    #event-dashboard .header .clock {
+        display: inline-block;
+
+        width: 13%;
+        margin: 1%;
+
+        vertical-align: middle;
+    }
+}
+@media screen and (min-width: 1200px)  {
+    #event-dashboard .pledge-breakdown {
+        display: inline-block;
+
+        width: 60%;
+    }
+    #event-dashboard .pledge-log {
+        display: inline-block;
+
+        width: 35%;
     }
 }

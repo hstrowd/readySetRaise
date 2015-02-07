@@ -26,6 +26,9 @@
         <%= link_to edit_event_path(@event) do %>
           <div class="action btn edit-event">Update Event</div>
         <% end %>
+        <%= link_to event_dashboard_path(@event) do %>
+          <div class="action btn launch-dashboard">Launch Dashboard</div>
+        <% end %>
       </div>
     <% end %>
   </div>
