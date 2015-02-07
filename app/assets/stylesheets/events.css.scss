@@ -324,6 +324,11 @@
 #event-dashboard .pledge-breakdown .title {
     background-color: #93BFF6;
 }
+#event-dashboard #chart-pledge-breakdown {
+    height: 20em;
+
+    color: #999999;
+}
 
 #event-dashboard .pledge-log {
     margin: .5em;
@@ -353,6 +358,10 @@
     min-width: 4em;
     margin: 1%;
 }
+#event-dashboard .pledge-log .list {
+    max-height: 16em;
+    overflow-y: scroll;
+}
 #event-dashboard .pledge-log .pledge {
     width: 96%;
     margin: 1%;
@@ -363,6 +372,10 @@
 }
 #event-dashboard .pledge-log .pledge .attr {
     display: inline-block;
+
+    vertical-align: middle;
+}
+#event-dashboard .pledge-log .pledge .attr.time {
 }
 #event-dashboard .pledge-log .pledge .attr.donor {
     width: 40%;
@@ -398,6 +411,8 @@
 }
 #event-dashboard .overall .progress-bar .pct-complete {
     height: 100%;
+    width: 0;
+    max-width: 100%;
 
     background-color: #A0CAFF;
 

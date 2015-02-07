@@ -1,6 +1,4 @@
-
-  <%= javascript_include_tag "//code.highcharts.com/highcharts.js", "chartkick" %>
-
+<%= javascript_include_tag "//code.highcharts.com/highcharts.js", "chartkick" %>
 
 <div id="event-dashboard">
   <div class="header">
@@ -36,7 +34,7 @@
   <div class="event-details">
     <div class="pledge-breakdown">
       <div class="title">Pledge Totals per Team</div>
-      <%= column_chart pledge_total_by_team(@event), height: "20em" %>
+      <div id="chart-pledge-breakdown">Loading...</div>
       <!-- TODO: Add number of pledges to this chart. -->
     </div>
     <div class="pledge-log">
@@ -46,14 +44,8 @@
         <div class="column team">Team</div>
         <div class="column amount">Amount</div>
       </div>
-      <div>
-        <% @event.pledges.order(created_at: :desc).limit(10).each do |pledge| %>
-          <div class="pledge">
-            <div class="attr donor"><%= pledge.donor.full_name %></div>
-            <div class="attr team"><%= pledge.team.name %></div>
-            <div class="attr amount"><%= pledge.amount %></div>
-          </div>
-        <% end %>
+      <div class="list">
+        <!-- Pledge records get added here dynamically. -->
       </div>
     </div>
   </div>
@@ -61,16 +53,28 @@
   <div class="overall">
     <div class="title">Overall Progress</div>
     <div class="progress-bar">
-      <div class="pct-complete" style="width: <%= plegde_progress_percent(@event) %>%">
-        <div class="label"><%= plegde_progress_percent(@event) %>%</div>
+      <div class="pct-complete">
+        <div class="label"></div>
       </div>
     </div>
   </div>
 </div>
 
+<script id="pledge-item" type="x-tmpl-mustache">
+  <div class="pledge" data-pledge-id="{{ pledgeID }}">
+    <div class="attr donor">{{ donor.firstName }} {{ donor.lastName }}</div>
+    <div class="attr team">{{ team.name }}</div>
+    <div class="attr amount">{{ amount }}</div>
+  </div>
+</script>
 <script>
   $(function() {
-    setupCountdown('#start-countdown', '<%= @event.start_time %>');
-    setupCountdown('#end-countdown', '<%= @event.end_time %>');
-  })
+    var template = $('#pledge-item').html();
+    Mustache.parse(template);   // speeds up future uses
+
+    setupCountdown('#start-countdown', '<%= @event.start_time.iso8601() %>');
+    setupCountdown('#end-countdown', '<%= @event.end_time.iso8601() %>');
+
+    setupAutoRefresh(<%= @event.id %>);
+  });
 </script>

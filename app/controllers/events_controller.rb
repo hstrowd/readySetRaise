@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
+  respond_to :html, :json
   before_action :authenticate_user!
-  before_action :lookup_event, only: [:show, :edit, :update, :dashboard]
+  before_action :lookup_event, only: [:show, :edit, :update, :dashboard, :pledge_breakdown]
 
   def new
     fundraiser_id = params[:fundraiser_id]
@@ -35,6 +36,15 @@ class EventsController < ApplicationController
   end
 
   def dashboard
+  end
+
+  def pledge_breakdown
+    pledge_breakdown = @event.teams.inject({}) do |donations, team|
+      donations[team.name] = team.pledge_total
+      donations
+    end
+
+    respond_with(pledge_breakdown)
   end
 
 private

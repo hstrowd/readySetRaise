@@ -1,0 +1,7 @@
+{
+  "pledgeID": <%= pledge.id %>,
+  "createdAt": "<%= pledge.created_at %>",
+  "donor": <%= render partial: 'devise/registrations/brief', locals: {user: pledge.donor} %>,
+  "team": <%= render partial: 'teams/brief', locals: {team: pledge.team} %>,
+  "amount": <%= pledge.amount %>
+}

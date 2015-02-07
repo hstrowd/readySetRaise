@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     resources :events, only: [:new]
   end
 
-  get 'event/:id/dashboard', to: 'events#dashboard', id: /\d/, as: 'event_dashboard'
+  get 'events/:id/dashboard', to: 'events#dashboard', id: /\d/, as: 'event_dashboard'
+  get 'events/:id/pledge-breakdown', to: 'events#pledge_breakdown', id: /\d/, as: 'event_pledge_breakdown'
   resources :events, except: [:index] do
     resources :teams, only: [:new]
   end
