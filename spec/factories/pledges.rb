@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :pledge do
-    donor ""
-    team ""
-    amount 1.5
+    association :donor
+    association :team
+    amount 3.25
   end
 end

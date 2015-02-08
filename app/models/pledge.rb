@@ -5,7 +5,7 @@ class Pledge < ActiveRecord::Base
   has_one :fundraiser, :through => :team
   has_one :organization, :through => :team
 
-  validates :amount, :presence => true
+  validates :amount, :team, :donor, :presence => true
   validates_numericality_of :amount
 
   # TODO: Add annonymous flag.

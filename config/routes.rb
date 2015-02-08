@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :teams, except: [:index] do
     resources :pledges, only: [:new]
   end
-  resources :pledges, only: [:new, :create, :show]
+  resources :pledges, only: [:create, :show]
 
   devise_for :users, :controllers => { registrations: 'users/registrations' },
                      :skip => [:passwords]

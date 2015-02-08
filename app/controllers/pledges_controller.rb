@@ -28,16 +28,23 @@ class PledgesController < ApplicationController
 private
 
   def lookup_pledge
-    @team = Team.find_by_id(params[:id]) if params[:id]
+    @pledge = Pledge.find_by_id(params[:id]) if params[:id]
 
-    if !@team
-      flash[:alert] = 'Unable to find requested team.'
-      redirect_to organization_path
+    if !@pledge
+      flash[:alert] = 'Unable to find requested pledge.'
+      if current_user
+        redirect_to organizations_path
+      else
+        redirect_to root_path
+      end
     end
   end
 
   def is_valid_team?(team_id)
-    return true if team_id && Team.find_by_id(team_id)
+    if team_id && (team = Team.find_by_id(team_id))
+      members = team.event.fundraiser.organization.members
+      return true if members.to_a.index { |user| user.id == current_user.id }
+    end
 
     flash[:alert] = 'Please select the organization for which you\'d like to submit a new pledge.'
     redirect_to organizations_path
@@ -45,8 +52,13 @@ private
   end
 
   def pledge_params
-    input_params = params.require(:pledge).permit(:team_id, :amount)
-
-    input_params
+    begin
+      params.require(:pledge)
+        .permit(:team_id,
+                :amount)
+    rescue ActionController::ParameterMissing => e
+      logger.info "Failed to parse pledge params from #{params.inspect}"
+      {}
+    end
   end
 end
