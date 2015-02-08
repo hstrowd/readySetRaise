@@ -11,13 +11,13 @@ RSpec.describe Devise::SessionsController do
     describe "when not logged in" do
       it "renders the new template" do
         get :new
-        expect(response).to render_template("new")
+        expect(response).to render_template :new
       end
     end
 
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
@@ -31,7 +31,7 @@ RSpec.describe Devise::SessionsController do
   describe "POST create" do
     describe "when not logged in" do
       it "logs the user in" do
-        user = create(:user)
+        user = create :user
         post :create, user: {
           email: user.email,
           password: 'abcd1234'
@@ -41,7 +41,7 @@ RSpec.describe Devise::SessionsController do
       end
 
       it "rejects improper passwords" do
-        user = create(:user)
+        user = create :user
         post :create, user: {
           email: user.email,
           password: 'abcd12345'
@@ -53,7 +53,7 @@ RSpec.describe Devise::SessionsController do
 
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
@@ -67,7 +67,7 @@ RSpec.describe Devise::SessionsController do
   describe "DELETE destroy" do
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
@@ -86,7 +86,6 @@ RSpec.describe Devise::SessionsController do
     describe "when not logged in" do
       it "redirects to the home page" do
         put :destroy
-        # TODO: Find a more maintainable way to assert this redirect location.
         expect(response).to redirect_to root_url
       end
     end

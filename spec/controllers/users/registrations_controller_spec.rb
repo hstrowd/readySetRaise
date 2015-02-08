@@ -10,7 +10,7 @@ RSpec.describe Users::RegistrationsController do
   describe "GET new" do
     it "renders the new template" do
       get :new
-      expect(response).to render_template("new")
+      expect(response).to render_template :new
     end
   end
 
@@ -68,18 +68,38 @@ RSpec.describe Users::RegistrationsController do
 
       expect(subject.current_user.email).to eq email
     end
+
+    it "rerenders the new template if request fails" do
+      existingUser = create :user
+      first_name = 'User'
+      last_name = 'Test'
+
+      post :create, user: {
+        first_name: first_name,
+        last_name: last_name,
+        email: existingUser.email,
+        password: 'test1234',
+        password_confirmation: 'test1234'
+      }
+
+      expect(response).to render_template :new
+      expect(assigns(:user).email).to eq existingUser.email
+      # Don't pass back the password to ensure proper security.
+      expect(assigns(:user).password).to be_nil
+    end
   end
 
   describe "GET edit" do
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
       it "renders the edit template" do
         get :edit
-        expect(response).to render_template("edit")
+        expect(response).to render_template :edit
+        expect(assigns(:user)).to eq @current_user
       end
     end
 
@@ -94,7 +114,7 @@ RSpec.describe Users::RegistrationsController do
   describe "PUT update" do
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
@@ -119,6 +139,9 @@ RSpec.describe Users::RegistrationsController do
         new_first_name = 'Test'
         new_last_name = 'User'
 
+        expect(@current_user.first_name).to_not eq new_first_name
+        expect(@current_user.last_name).to_not eq new_last_name
+
         put :update, user: {
           first_name: new_first_name,
           last_name: new_last_name,
@@ -140,8 +163,7 @@ RSpec.describe Users::RegistrationsController do
     describe "when not logged in" do
       it "redirects to the login page" do
         put :update
-        # TODO: Find a more maintainable way to assert this redirect location.
-        expect(response).to redirect_to('/users/sign_in')
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end
@@ -149,7 +171,7 @@ RSpec.describe Users::RegistrationsController do
   describe "DELETE destroy" do
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
@@ -161,7 +183,7 @@ RSpec.describe Users::RegistrationsController do
       it "deletes the current user's record" do
         delete :destroy
 
-        updated_user = User.find_by_email(@current_user.email)
+        updated_user = User.find_by_email @current_user.email
         expect(updated_user).to be_nil
       end
 
@@ -175,8 +197,7 @@ RSpec.describe Users::RegistrationsController do
     describe "when not logged in" do
       it "redirects to the login page" do
         put :destroy
-        # TODO: Find a more maintainable way to assert this redirect location.
-        expect(response).to redirect_to('/users/sign_in')
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end
