@@ -1,5 +1,5 @@
 class OrganizationsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :new]
+  before_action :authenticate_user!, except: [:show, :new]
   before_action :lookup_org, only: [:show, :edit, :update]
 
   def index
@@ -52,7 +52,11 @@ private
 
     if !@org
       flash[:alert] = 'Unable to find requested organization.'
-      redirect_to action: "index"
+      if current_user
+        redirect_to action: :index
+      else
+        redirect_to root_url
+      end
       return
     end
   end
