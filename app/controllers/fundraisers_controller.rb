@@ -60,8 +60,9 @@ private
     @organizations = current_user.organizations
     if @organizations.empty?
       redirect_to new_organization_path
-      return
+      return true
     end
+    return false
   end
 
   def is_valid_org?(org_id)

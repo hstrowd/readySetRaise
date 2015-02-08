@@ -63,7 +63,10 @@ RSpec.describe OrganizationsController do
         }
       }.to change{ Organization.count }.by(1)
 
-      expect(response).to redirect_to new_fundraiser_path
+      org = Organization.find_by_url_key('test-org');
+      expect(org).to_not be_nil
+
+      expect(response).to redirect_to new_organization_fundraiser_path(org.id)
 
     end
   end

@@ -11,7 +11,7 @@ RSpec.describe FundraisersController, :type => :controller do
       org = create(:org, creator: current_user)
       org.members << current_user
 
-      get :new
+      get :new, :organization_id => org.id
 
       expect(assigns(:organizations)).to eq(current_user.organizations)
       expect(assigns(:fundraiser)).to be_a_new(Fundraiser)
@@ -24,13 +24,15 @@ RSpec.describe FundraisersController, :type => :controller do
 
       expect(current_user.organizations).to be_empty
 
-      get :new
+      get :new, :organization_id => -1
 
       expect(response).to redirect_to new_organization_path
     end
 
     it "redirects to sign up if user not signed in" do
-      get :new
+      # This org ID does not need to exist because the user is not
+      # logged in and therefore it will never be checked.
+      get :new, :organization_id => 0
       expect(response).to redirect_to user_session_path
     end
   end
