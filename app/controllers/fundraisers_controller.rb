@@ -1,13 +1,9 @@
 class FundraisersController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:show]
   before_action :lookup_fundraiser, only: [:show, :edit, :update]
 
-  def index
-    # TODO: Make this only active fundraisers.
-    @fundraisers = Fundraiser.all
-  end
-
   def new
+    # TODO: Now that this is nested under an organization, should we still allow a fundraiser to be created for an arbitrary org?
     return if redirect_to_new_org?
 
     org_id = params[:organization_id]
@@ -23,8 +19,6 @@ class FundraisersController < ApplicationController
     @fundraiser.creator = current_user
 
     if !@fundraiser.save
-      return if redirect_to_new_org?
-
       render :new
       return
     end
@@ -51,7 +45,12 @@ private
 
     if !@fundraiser
       flash[:alert] = 'Unable to find requested fundraiser.'
-      redirect_to action: "index"
+      if current_user
+        redirect_to organizations_path
+      else
+        redirect_to root_path
+      end
+      return false
     end
   end
 
@@ -66,7 +65,10 @@ private
   end
 
   def is_valid_org?(org_id)
-    return true if org_id && Organization.find_by_id(org_id)
+    if org_id &&
+        (org = Organization.find_by_id(org_id))
+      return true if org.members.to_a.index { |user| user.id == current_user.id }
+    end
 
     flash[:alert] = 'Please select the organization for which you\'d like to create a new fundraiser.'
     redirect_to organizations_path

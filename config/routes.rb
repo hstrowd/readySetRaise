@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :organizations do
     resources :fundraisers, only: [:new]
   end
-  resources :fundraisers, except: [:new] do
+  resources :fundraisers, except: [:index, :new] do
     resources :events, only: [:new]
   end
 
