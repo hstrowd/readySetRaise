@@ -7,20 +7,16 @@
 
     <%= form_for(resource, as: resource_name, url: users_password_reset_path, html: { method: :post }) do |f| %>
 
-      <div class="field email">
-        <div class="label">
-          <%= f.label :email %>
-        </div>
-        <%= f.text_field :email, autofocus: true %>
-        <% if !resource.errors[:email].empty? %>
-          <div class="error">
-            <div class="icon"><%= image_tag "error.gif" %></div>
-            <div class="reason"><%= resource.errors[:email][0].humanize %></div>
-          </div>
-        <% end %>
-      </div>
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: resource,
+                   attr: :email
+                 }) %>
 
-      <div><%= f.submit "Email Me", class: :submit %></div>
+      <div class="actions">
+        <%= f.submit "Email Me", class: [:btn, :submit] %>
+      </div>
     <% end %>
 
   </div>
