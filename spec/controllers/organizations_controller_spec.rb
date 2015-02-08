@@ -242,4 +242,15 @@ RSpec.describe OrganizationsController do
       end
     end
   end
+
+
+  # ======== Destroy Action ========
+
+  describe "DELETE destroy" do
+    it "should not be routable" do
+      org = create :org
+      expect(:destroy => '/organizations/#{org.id}').not_to be_routable
+    end
+  end
+
 end

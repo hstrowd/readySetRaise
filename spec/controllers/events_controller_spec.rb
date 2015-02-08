@@ -3,6 +3,15 @@ require 'rails_helper'
 RSpec.describe EventsController, :type => :controller do
   render_views
 
+  # ======== Index Action ========
+
+  describe "GET index" do
+    it "should not be routable" do
+      expect(:get => '/events').not_to be_routable
+    end
+  end
+
+
   # ======== New Action ========
 
   describe "GET new" do
@@ -278,6 +287,16 @@ RSpec.describe EventsController, :type => :controller do
         put :update, id: 0
         expect(response).to redirect_to user_session_path
       end
+    end
+  end
+
+
+  # ======== Destroy Action ========
+
+  describe "DELETE destroy" do
+    it "should not be routable" do
+      event = create :event
+      expect(:destroy => '/events/#{event.id}').not_to be_routable
     end
   end
 

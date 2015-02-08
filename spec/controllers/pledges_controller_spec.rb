@@ -3,6 +3,15 @@ require 'rails_helper'
 RSpec.describe PledgesController, :type => :controller do
   render_views
 
+  # ======== Index Action ========
+
+  describe "GET index" do
+    it "should not be routable" do
+      expect(:get => '/pledges').not_to be_routable
+    end
+  end
+
+
   # ======== New Action ========
 
   describe "GET new" do
@@ -147,36 +156,71 @@ RSpec.describe PledgesController, :type => :controller do
   # ======== Show Action ========
 
   describe "GET show" do
-    describe "when user is logged in" do
-      before :each do
-        @current_user = create :user
-        sign_in @current_user
-      end
-
-      describe "when requested record is found" do
-        # TODO: Add check that only donor and org members can view pledges.
-        it "renders the show template" do
-          pledge = create :pledge
-          get :show, id: pledge.id
-
-          expect(response).to render_template :show
-          expect(assigns(:pledge)).to eq pledge
-        end
-      end
-
-      describe "when requested record is not found" do
-        it "redirects to orgs index" do
-          get :show, id: -1
-          expect(response).to redirect_to organizations_path
-        end
-      end
+    it "should not be routable" do
+      pledge = create :pledge
+      expect(:get => '/pledges/#{pledge.id}').not_to be_routable
     end
 
-    describe "when user is not logged in" do
-      it "redirects to home page" do
-        get :show, id: -1
-        expect(response).to redirect_to user_session_path
-      end
+#    describe "when user is logged in" do
+#      before :each do
+#        @current_user = create :user
+#        sign_in @current_user
+#      end
+#
+#      describe "when requested record is found" do
+#        # TODO: Add check that only donor and org members can view pledges.
+#        it "renders the show template" do
+#          pledge = create :pledge
+#          get :show, id: pledge.id
+#
+#          expect(response).to render_template :show
+#          expect(assigns(:pledge)).to eq pledge
+#        end
+#      end
+#
+#      describe "when requested record is not found" do
+#        it "redirects to orgs index" do
+#          get :show, id: -1
+#          expect(response).to redirect_to organizations_path
+#        end
+#      end
+#    end
+#
+#    describe "when user is not logged in" do
+#      it "redirects to home page" do
+#        get :show, id: -1
+#        expect(response).to redirect_to user_session_path
+#      end
+#    end
+  end
+
+
+  # ======== Edit Action ========
+
+  describe "GET edit" do
+    it "should not be routable" do
+      pledge = create :pledge
+      expect(:get => '/pledges/#{pledge.id}/edit').not_to be_routable
+    end
+  end
+
+
+  # ======== Update Action ========
+
+  describe "PUT update" do
+    it "should not be routable" do
+      pledge = create :pledge
+      expect(:put => '/pledges/#{pledge.id}').not_to be_routable
+    end
+  end
+
+
+  # ======== Destroy Action ========
+
+  describe "DELETE destroy" do
+    it "should not be routable" do
+      pledge = create :pledge
+      expect(:destroy => '/pledges/#{pledge.id}').not_to be_routable
     end
   end
 

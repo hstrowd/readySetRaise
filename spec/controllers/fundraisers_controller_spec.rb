@@ -4,6 +4,15 @@ RSpec.describe FundraisersController, :type => :controller do
   render_views
 
 
+  # ======== Index Action ========
+
+  describe "GET index" do
+    it "should not be routable" do
+      expect(:get => '/fundraisers').not_to be_routable
+    end
+  end
+
+
   # ======== New Action ========
 
   describe "GET new" do
@@ -290,4 +299,15 @@ RSpec.describe FundraisersController, :type => :controller do
       end
     end
   end
+
+
+  # ======== Destroy Action ========
+
+  describe "DELETE destroy" do
+    it "should not be routable" do
+      fundraiser = create :fundraiser
+      expect(:destroy => '/fundraisers/#{fundraiser.id}').not_to be_routable
+    end
+  end
+
 end

@@ -3,6 +3,15 @@ require 'rails_helper'
 RSpec.describe TeamsController, :type => :controller do
   render_views
 
+  # ======== Index Action ========
+
+  describe "GET index" do
+    it "should not be routable" do
+      expect(:get => '/teams').not_to be_routable
+    end
+  end
+
+
   # ======== New Action ========
 
   describe "GET new" do
@@ -274,6 +283,16 @@ RSpec.describe TeamsController, :type => :controller do
         put :update, id: 0
         expect(response).to redirect_to user_session_path
       end
+    end
+  end
+
+
+  # ======== Destroy Action ========
+
+  describe "DELETE destroy" do
+    it "should not be routable" do
+      team = create :team
+      expect(:destroy => '/teams/#{team.id}').not_to be_routable
     end
   end
 
