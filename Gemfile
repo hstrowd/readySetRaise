@@ -48,9 +48,17 @@ gem "chartkick"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Test support tools
-gem "rspec-rails", :group => [:development, :test]
-gem "factory_girl_rails", "~> 4.0", :group => [:development, :test]
+
+
+# ==== Test Tools ====
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', "~> 4.0"
+  gem 'simplecov'
+end
+
+
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
