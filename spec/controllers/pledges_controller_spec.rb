@@ -77,7 +77,7 @@ RSpec.describe PledgesController, :type => :controller do
                 post :create, pledge: {
                   team_id: @team.id,
                   amount: 10
-                }, team_id: @team.id
+                }
               }.to change{ Pledge.count }.by 1
 
               expect(response).to redirect_to @team
@@ -90,7 +90,7 @@ RSpec.describe PledgesController, :type => :controller do
                 post :create, pledge: {
                   team_id: @team.id,
                   amount: nil
-                }, team_id: @team.id
+                }
               }.to_not change{ Pledge.count }
               expect(response).to render_template :new
             end
@@ -110,7 +110,7 @@ RSpec.describe PledgesController, :type => :controller do
                 post :create, pledge: {
                   team_id: @team.id,
                   amount: 10
-                }, team_id: @team.id
+                }
             }.to_not change{ Pledge.count }
             expect(response).to redirect_to organizations_path
           end
@@ -123,7 +123,7 @@ RSpec.describe PledgesController, :type => :controller do
             post :create, pledge: {
               team_id: -1,
               amount: 10
-            }, team_id: -1
+            }
           }.to_not change{ Pledge.count }
           expect(response).to redirect_to organizations_path
         end
@@ -136,7 +136,7 @@ RSpec.describe PledgesController, :type => :controller do
           post :create, pledge: {
             team_id: 1,
             amount: 10
-          }, team_id: 1
+          }
         }.to_not change{ Pledge.count }
         expect(response).to redirect_to user_session_path
       end

@@ -80,8 +80,7 @@ RSpec.describe FundraisersController, :type => :controller do
                 organization_id: @org.id,
                 pledge_start_time: DateTime.now.iso8601,
                 pledge_end_time: (DateTime.now + 3.days).iso8601
-              },
-              organization_id: @org.id
+              }
             }.to_not change{ Fundraiser.count }
 
             expect(response).to redirect_to organizations_path
@@ -103,8 +102,7 @@ RSpec.describe FundraisersController, :type => :controller do
                   organization_id: @org.id,
                   pledge_start_time: DateTime.now.iso8601,
                   pledge_end_time: (DateTime.now + 3.days).iso8601
-                },
-                organization_id: @org.id
+                }
               }.to change{ Fundraiser.count }.by 1
 
               expect(response).to redirect_to new_fundraiser_event_path(Fundraiser.last)
@@ -120,8 +118,7 @@ RSpec.describe FundraisersController, :type => :controller do
                   organization_id: @org.id,
                   pledge_start_time: DateTime.now.iso8601,
                   pledge_end_time: (DateTime.now + 3.days).iso8601
-                },
-                organization_id: @org.id
+                }
               }.to_not change{ Fundraiser.count}
 
               expect(response).to render_template :new
@@ -148,8 +145,7 @@ RSpec.describe FundraisersController, :type => :controller do
                 organization_id: -1,
                 pledge_start_time: DateTime.now.iso8601,
                 pledge_end_time: (DateTime.now + 3.days).iso8601
-              },
-              organization_id: -1
+              }
             }.to_not change{ Fundraiser.count}
 
           expect(response).to redirect_to organizations_path
@@ -163,7 +159,7 @@ RSpec.describe FundraisersController, :type => :controller do
       it "redirects to sign up" do
         # This org ID does not need to exist because the user is not
         # logged in and therefore it will never be checked.
-        post :create, organization_id: 0
+        post :create
         expect(response).to redirect_to user_session_path
       end
     end

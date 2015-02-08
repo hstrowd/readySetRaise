@@ -80,7 +80,7 @@ RSpec.describe EventsController, :type => :controller do
                   fundraiser_id: @fundraiser.id,
                   start_time: DateTime.now.iso8601,
                   end_time: (DateTime.now + 3.hours).iso8601
-                }, fundraiser_id: @fundraiser.id
+                }
               }.to change{ Event.count }.by 1
 
               expect(response).to redirect_to Event.last
@@ -96,7 +96,7 @@ RSpec.describe EventsController, :type => :controller do
                   fundraiser_id: @fundraiser.id,
                   start_time: DateTime.now.iso8601,
                   end_time: (DateTime.now + 3.hours).iso8601
-                }, fundraiser_id: @fundraiser.id
+                }
               }.to_not change{ Event.count }
 
               expect(response).to render_template :new
@@ -120,7 +120,7 @@ RSpec.describe EventsController, :type => :controller do
               fundraiser_id: @fundraiser.id,
               start_time: DateTime.now.iso8601,
               end_time: (DateTime.now + 3.hours).iso8601
-            }, fundraiser_id: @fundraiser.id
+            }
             expect(response).to redirect_to organizations_path
           end
         end
@@ -134,7 +134,7 @@ RSpec.describe EventsController, :type => :controller do
             fundraiser_id: -1,
             start_time: DateTime.now.iso8601,
             end_time: (DateTime.now + 3.hours).iso8601
-          }, fundraiser_id: -1
+          }
           expect(response).to redirect_to organizations_path
         end
       end
@@ -148,7 +148,7 @@ RSpec.describe EventsController, :type => :controller do
           fundraiser_id: 1,
           start_time: DateTime.now.iso8601,
           end_time: (DateTime.now + 3.hours).iso8601
-        }, fundraiser_id: 1
+        }
         expect(response).to redirect_to user_session_path
       end
     end

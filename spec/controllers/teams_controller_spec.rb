@@ -78,7 +78,7 @@ RSpec.describe TeamsController, :type => :controller do
                   name: 'Test Team 1',
                   pledge_target: 150,
                   event_id: @event.id
-                }, event_id: @event.id
+                }
               }.to change{ Team.count }.by 1
 
               expect(response).to redirect_to @event
@@ -92,7 +92,7 @@ RSpec.describe TeamsController, :type => :controller do
                   name: nil,
                   pledge_target: 150,
                   event_id: @event.id
-                }, event_id: @event.id
+                }
               }.to_not change{ Team.count }
 
               expect(response).to render_template :new
@@ -115,7 +115,7 @@ RSpec.describe TeamsController, :type => :controller do
                 name: 'Test Team 1',
                 pledge_target: 150,
                 event_id: @event.id
-              }, event_id: @event.id
+              }
             }.to_not change{ Team.count }
             expect(response).to redirect_to organizations_path
           end
@@ -129,7 +129,7 @@ RSpec.describe TeamsController, :type => :controller do
               name: 'Test Team 1',
               pledge_target: 150,
               event_id: -1
-            }, event_id: -1
+            }
           }.to_not change{ Team.count }
           expect(response).to redirect_to organizations_path
         end
@@ -143,7 +143,7 @@ RSpec.describe TeamsController, :type => :controller do
             name: 'Test Team 1',
             pledge_target: 150,
             event_id: 1
-          }, event_id: 1
+          }
         }.to_not change{ Team.count }
         expect(response).to redirect_to user_session_path
       end
