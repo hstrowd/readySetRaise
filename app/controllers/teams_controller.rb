@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :lookup_team, only: [:show, :edit, :update]
 
   def new
@@ -40,12 +40,19 @@ private
 
     if !@team
       flash[:alert] = 'Unable to find requested team.'
-      redirect_to organization_path
+      if current_user
+        redirect_to organizations_path
+      else
+        redirect_to root_path
+      end
     end
   end
 
   def is_valid_event?(event_id)
-    return true if event_id && Event.find_by_id(event_id)
+    if event_id && (event = Event.find_by_id(event_id))
+      members = event.fundraiser.organization.members
+      return true if members.to_a.index { |user| user.id == current_user.id }
+    end
 
     flash[:alert] = 'Please select the organization for which you\'d like to create a new team.'
     redirect_to organizations_path
@@ -53,9 +60,15 @@ private
   end
 
   def team_params
-    input_params = params.require(:team).permit(:name, :event_id, :pledge_target)
-
-    input_params
+    begin
+      params.require(:team)
+        .permit(:name,
+                :event_id,
+                :pledge_target)
+    rescue ActionController::ParameterMissing => e
+      logger.info "Failed to parse team params from #{params.inspect}"
+      {}
+    end
   end
 
 end

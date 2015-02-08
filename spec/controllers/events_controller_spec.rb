@@ -284,8 +284,11 @@ RSpec.describe EventsController, :type => :controller do
 
   # ======== Dashboard Action ========
 
+  # TODO: Implement me.
+
 
   # ======== Pledge Breakdown Action ========
 
+  # TODO: Implement me.
 
 end

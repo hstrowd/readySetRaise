@@ -174,7 +174,7 @@ RSpec.describe FundraisersController, :type => :controller do
 
   describe 'GET show' do
     describe "when requested record is found" do
-      it "renders the new template" do
+      it "renders the show template" do
         fundraiser = create :fundraiser
         get :show, id: fundraiser.id
 
@@ -254,7 +254,7 @@ RSpec.describe FundraisersController, :type => :controller do
         end
 
         describe "when record update succeeds" do
-          it "modify and show the record" do
+          it "modifies and shows the record" do
             newTitle = "New Fundraiser Title"
             expect(@fundraiser.title).to_not eq newTitle
 
