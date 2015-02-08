@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  include DateHelper
+
   respond_to :html, :json
   before_action :authenticate_user!, except: [:show]
   before_action :lookup_event, except: [:new, :create]
@@ -88,10 +90,10 @@ private
 
     # Parse date values.
     if input_params.has_key?(:start_time)
-      input_params[:start_time] = DateTime.iso8601(input_params[:start_time])
+      input_params[:start_time] = parseIso8601Date(input_params[:start_time])
     end
     if input_params.has_key?(:end_time)
-      input_params[:end_time] = DateTime.iso8601(input_params[:end_time])
+      input_params[:end_time] = parseIso8601Date(input_params[:end_time])
     end
 
     input_params

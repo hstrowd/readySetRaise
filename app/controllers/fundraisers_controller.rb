@@ -1,4 +1,6 @@
 class FundraisersController < ApplicationController
+  include DateHelper
+
   before_action :authenticate_user!, except: [:show]
   before_action :lookup_fundraiser, only: [:show, :edit, :update]
 
@@ -90,10 +92,10 @@ private
 
     # Parse date values.
     if input_params.has_key?(:pledge_start_time)
-      input_params[:pledge_start_time] = DateTime.iso8601(input_params[:pledge_start_time])
+      input_params[:pledge_start_time] = parseIso8601Date(input_params[:pledge_start_time])
     end
     if input_params.has_key?(:pledge_end_time)
-      input_params[:pledge_end_time] = DateTime.iso8601(input_params[:pledge_end_time])
+      input_params[:pledge_end_time] = parseIso8601Date(input_params[:pledge_end_time])
     end
 
     input_params

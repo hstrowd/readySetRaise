@@ -1,6 +1,5 @@
 class PledgesController < ApplicationController
   before_action :authenticate_user!
-  before_action :lookup_pledge, only: [:show]
 
   def new
     team_id = params[:team_id]
@@ -26,19 +25,6 @@ class PledgesController < ApplicationController
 
 
 private
-
-  def lookup_pledge
-    @pledge = Pledge.find_by_id(params[:id]) if params[:id]
-
-    if !@pledge
-      flash[:alert] = 'Unable to find requested pledge.'
-      if current_user
-        redirect_to organizations_path
-      else
-        redirect_to root_path
-      end
-    end
-  end
 
   def is_valid_team?(team_id)
     if team_id && (team = Team.find_by_id(team_id))

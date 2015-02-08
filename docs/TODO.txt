@@ -30,9 +30,13 @@ Use Cases:
 
 
 Features:
- - Complete automated tests
+ - Implement model tests.
+ - Implement dashboard tests.
+ - Implement event cleanup job test.
+ - Implement password reset test.
  - Verify password reset functionality.
  - Handle all listed TODOs.
+ - Finish user account page.
  - Create a "Take a Tour" page
  - Create a Business Plan powerpoint/document (https://www.councilofnonprofits.org/tools-resources/business-planning-nonprofits)
  - File necessary paperwork (https://www.councilofnonprofits.org/tools-resources/how-start-nonprofit and https://www.harborcompliance.com/information/how-to-start-a-non-profit-organization-in-illinois.php)

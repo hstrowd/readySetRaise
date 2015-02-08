@@ -3,7 +3,7 @@ class OrganizationsController < ApplicationController
   before_action :lookup_org, only: [:show, :edit, :update]
 
   def index
-    @orgs = Organization.all
+    @orgs = current_user.organizations
   end
 
   def new

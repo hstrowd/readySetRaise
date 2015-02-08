@@ -134,6 +134,21 @@ RSpec.describe FundraisersController, :type => :controller do
               expect(assigns(:fundraiser).errors.count).to be > 0
             end
 
+            it "does not error due to invalid date formats" do
+              expect {
+                post :create, fundraiser: {
+                  title: nil,
+                  description: 'A test fundraiser.',
+                  organization_id: @org.id,
+                  pledge_start_time: DateTime.now.strftime('%m/%d/%y at %I:%M%p'),
+                  pledge_end_time: (DateTime.now + 3.days).strftime('%m/%d/%y at %I:%M%p')
+                }
+              }.to_not change{ Fundraiser.count}
+
+              expect(response).to render_template :new
+              expect(assigns(:fundraiser).errors.count).to be > 0
+            end
+
             it "does not error due to garbage parameters" do
               expect {
                 post :create, foo: 123
@@ -160,8 +175,6 @@ RSpec.describe FundraisersController, :type => :controller do
           expect(response).to redirect_to organizations_path
         end
       end
-
-      ## TODO: Test an invalid date format.
     end
 
     describe "when not logged in" do

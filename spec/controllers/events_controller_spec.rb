@@ -111,6 +111,20 @@ RSpec.describe EventsController, :type => :controller do
               expect(response).to render_template :new
             end
 
+            it "does not error due to invalid date formats" do
+              expect {
+                post :create, event: {
+                  title: nil,
+                  description: 'Test event description.',
+                  fundraiser_id: @fundraiser.id,
+                  start_time: DateTime.now.strftime('%m/%d/%y at %I:%M%p'),
+                  end_time: (DateTime.now + 3.hours).strftime('%m/%d/%y at %I:%M%p')
+                }
+              }.to_not change{ Event.count }
+
+              expect(response).to render_template :new
+            end
+
             it "does not error due to garbage parameters" do
               expect {
                 post :create, foo: 123

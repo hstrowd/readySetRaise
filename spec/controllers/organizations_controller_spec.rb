@@ -12,8 +12,15 @@ RSpec.describe OrganizationsController do
       end
 
       it "renders the index template" do
+        org1 = create :org
+        org1.members << @current_user
+        org2 = create :org
+
         get :index
+
         expect(response).to render_template :index
+        # Only show the current user's organizations.
+        expect(assigns(:orgs)).to eq @current_user.organizations
       end
     end
 
@@ -118,12 +125,39 @@ RSpec.describe OrganizationsController do
   # ======== Show Action ========
 
   describe "GET show" do
-    it "renders the show template" do
-      org = create :org
-      get :show, id: org.id
+    describe "when organization is found" do
+      before :each do
+          @org = create :org
+      end
 
-      expect(response).to render_template :show
-      expect(assigns(:org)).to eq org
+      describe "when the record id is used" do
+        it "renders the show template" do
+          get :show, id: @org.id
+
+          expect(response).to render_template :show
+          expect(assigns(:org)).to eq @org
+        end
+      end
+
+      describe "when the URL key is used" do
+        it "renders the show template" do
+          get :show, url_key: @org.url_key
+
+          expect(response).to render_template :show
+          expect(assigns(:org)).to eq @org
+        end
+      end
+
+      describe "when both the record id and URL key are used" do
+        it "renders the show template based on the record id" do
+          org2 = create :org
+
+          get :show, id: @org.id, url_key: org2.url_key
+
+          expect(response).to render_template :show
+          expect(assigns(:org)).to eq @org
+        end
+      end
     end
 
     describe "when organization is not found" do
