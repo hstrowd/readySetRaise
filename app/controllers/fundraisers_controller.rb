@@ -76,7 +76,17 @@ private
   end
 
   def fundraiser_params
-    input_params = params.require(:fundraiser).permit(:title, :description, :organization_id, :pledge_start_time, :pledge_end_time)
+    input_params = {}
+    begin
+      input_params = params.require(:fundraiser)
+        .permit(:title,
+                :description,
+                :organization_id,
+                :pledge_start_time,
+                :pledge_end_time)
+    rescue ActionController::ParameterMissing => e
+      logger.info "Failed to parse fundraiser params from #{params.inspect}"
+    end
 
     # Parse date values.
     if input_params.has_key?(:pledge_start_time)

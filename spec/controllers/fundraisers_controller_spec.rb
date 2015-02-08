@@ -17,7 +17,7 @@ RSpec.describe FundraisersController, :type => :controller do
         it "redirects to new org form" do
           expect(@current_user.organizations).to be_empty
 
-          get :new, :organization_id => -1
+          get :new, organization_id: -1
 
           expect(response).to redirect_to new_organization_path
         end
@@ -29,7 +29,7 @@ RSpec.describe FundraisersController, :type => :controller do
         end
 
         it "renders the new template for valid org requests" do
-          get :new, :organization_id => @org.id
+          get :new, organization_id: @org.id
 
           expect(assigns(:organizations)).to eq @current_user.organizations
           expect(assigns(:fundraiser)).to be_a_new Fundraiser
@@ -37,7 +37,7 @@ RSpec.describe FundraisersController, :type => :controller do
         end
 
         it "redirects to organization index for invalid requested org" do
-          get :new, :organization_id => -1
+          get :new, organization_id: -1
 
           expect(response).to redirect_to organizations_path
         end
@@ -45,10 +45,10 @@ RSpec.describe FundraisersController, :type => :controller do
     end
 
     describe "when not logged in" do
-      it "redirects to sign up if user not signed in" do
+      it "redirects to sign up" do
         # This org ID does not need to exist because the user is not
         # logged in and therefore it will never be checked.
-        get :new, :organization_id => 0
+        get :new, organization_id: 0
         expect(response).to redirect_to user_session_path
       end
     end
@@ -78,8 +78,8 @@ RSpec.describe FundraisersController, :type => :controller do
                 title: nil,
                 description: 'A test fundraiser.',
                 organization_id: @org.id,
-                pledge_start_time: '2014-10-10T18:19:20Z',
-                pledge_end_time: '2014-10-10T18:19:20Z'
+                pledge_start_time: DateTime.now.iso8601,
+                pledge_end_time: (DateTime.now + 3.days).iso8601
               },
               organization_id: @org.id
             }.to_not change{ Fundraiser.count }
@@ -101,11 +101,13 @@ RSpec.describe FundraisersController, :type => :controller do
                   title: 'Test Fundraiser',
                   description: 'A test fundraiser.',
                   organization_id: @org.id,
-                  pledge_start_time: '2014-10-10T18:19:20Z',
-                  pledge_end_time: '2014-10-10T18:19:20Z'
+                  pledge_start_time: DateTime.now.iso8601,
+                  pledge_end_time: (DateTime.now + 3.days).iso8601
                 },
                 organization_id: @org.id
-              }.to change{ Fundraiser.count }.by(1)
+              }.to change{ Fundraiser.count }.by 1
+
+              expect(response).to redirect_to new_fundraiser_event_path(Fundraiser.last)
             end
           end
 
@@ -116,14 +118,22 @@ RSpec.describe FundraisersController, :type => :controller do
                   title: nil,
                   description: 'A test fundraiser.',
                   organization_id: @org.id,
-                  pledge_start_time: '2014-10-10T18:19:20Z',
-                  pledge_end_time: '2014-10-10T18:19:20Z'
+                  pledge_start_time: DateTime.now.iso8601,
+                  pledge_end_time: (DateTime.now + 3.days).iso8601
                 },
                 organization_id: @org.id
               }.to_not change{ Fundraiser.count}
 
               expect(response).to render_template :new
               expect(assigns(:fundraiser).errors.count).to be > 0
+            end
+
+            it "does not error due to garbage parameters" do
+              expect {
+                post :create, foo: 123
+              }.to_not change{ Fundraiser.count }
+
+              expect(response).to redirect_to organizations_path
             end
           end
         end
@@ -136,8 +146,8 @@ RSpec.describe FundraisersController, :type => :controller do
                 title: 'Test Fundraiser',
                 description: 'A test fundraiser.',
                 organization_id: -1,
-                pledge_start_time: '2014-10-10T18:19:20Z',
-                pledge_end_time: '2014-10-10T18:19:20Z'
+                pledge_start_time: DateTime.now.iso8601,
+                pledge_end_time: (DateTime.now + 3.days).iso8601
               },
               organization_id: -1
             }.to_not change{ Fundraiser.count}
@@ -150,10 +160,10 @@ RSpec.describe FundraisersController, :type => :controller do
     end
 
     describe "when not logged in" do
-      it "redirects to sign up if user not signed in" do
+      it "redirects to sign up" do
         # This org ID does not need to exist because the user is not
         # logged in and therefore it will never be checked.
-        post :create, :organization_id => 0
+        post :create, organization_id: 0
         expect(response).to redirect_to user_session_path
       end
     end
@@ -259,6 +269,12 @@ RSpec.describe FundraisersController, :type => :controller do
           it "rerenders the edit form" do
             put :update, id: @fundraiser.id, fundraiser: { title: nil}
             expect(response).to render_template :edit
+          end
+
+          it "does not error due to garbage parameters" do
+            put :update, id: 1, foo: 123
+
+            expect(response).to redirect_to organizations_path
           end
         end
       end

@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   respond_to :html, :json
-  before_action :authenticate_user!
-  before_action :lookup_event, only: [:show, :edit, :update, :dashboard, :pledge_breakdown]
+  before_action :authenticate_user!, except: [:show]
+  before_action :lookup_event, except: [:new, :create]
 
   def new
     fundraiser_id = params[:fundraiser_id]
@@ -54,12 +54,19 @@ private
 
     if !@event
       flash[:alert] = 'Unable to find requested event.'
-      redirect_to organization_path
+      if current_user
+        redirect_to organizations_path
+      else
+        redirect_to root_path
+      end
     end
   end
 
   def is_valid_fundraiser?(fundraiser_id)
-    return true if fundraiser_id && Fundraiser.find_by_id(fundraiser_id)
+    if fundraiser_id && (fundraiser = Fundraiser.find_by_id(fundraiser_id))
+      members = fundraiser.organization.members
+      return true if members.to_a.index { |user| user.id == current_user.id }
+    end
 
     flash[:alert] = 'Please select the organization for which you\'d like to create a new event.'
     redirect_to organizations_path
@@ -67,7 +74,17 @@ private
   end
 
   def event_params
-    input_params = params.require(:event).permit(:title, :description, :fundraiser_id, :start_time, :end_time)
+    input_params = {}
+    begin
+      input_params = params.require(:event)
+        .permit(:title,
+                :description,
+                :fundraiser_id,
+                :start_time,
+                :end_time)
+    rescue ActionController::ParameterMissing => e
+      logger.info "Failed to parse event params from #{params.inspect}"
+    end
 
     # Parse date values.
     if input_params.has_key?(:start_time)

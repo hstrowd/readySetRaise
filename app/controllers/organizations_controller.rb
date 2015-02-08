@@ -62,7 +62,17 @@ private
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :description, :url_key, :homepage_url, :donation_url)
+    begin
+      params.require(:organization)
+        .permit(:name,
+                :description,
+                :url_key,
+                :homepage_url,
+                :donation_url)
+    rescue ActionController::ParameterMissing => e
+      logger.info "Failed to parse organization params from #{params.inspect}"
+      {}
+    end
   end
 
 end

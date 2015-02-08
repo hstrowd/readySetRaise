@@ -76,6 +76,14 @@ RSpec.describe OrganizationsController do
           expect(assigns(:org).errors.count).to be > 0
           expect(assigns(:org).description).to eq description
         end
+
+        it "does not throw an error when invalid parameters are provided" do
+          expect {
+            post :create, foo: 123
+          }.to_not change{ Organization.count }
+
+          expect(response).to render_template :new
+        end
       end
 
       describe "when the request succeeds" do
@@ -183,27 +191,46 @@ RSpec.describe OrganizationsController do
         sign_in @current_user
       end
 
-      describe "when the update succeeds" do
-        it "updates the organization" do
-          org = create :org
-          newName = 'New Org Name'
-          expect(org.name).to_not eq newName
+      describe "when the specified org is found" do
+        before :each do
+          @org = create :org
+        end
 
-          put :update, id: org.id, organization: {name: newName}
+        describe "when the update succeeds" do
+          it "updates the organization" do
+            newName = 'New Org Name'
+            expect(@org.name).to_not eq newName
 
-          newOrg = Organization.find org.id
-          expect(newOrg.name).to eq newName
-          expect(response).to redirect_to organization_path(org.id)
+            put :update, id: @org.id, organization: {name: newName}
+
+            newOrg = Organization.find @org.id
+            expect(newOrg.name).to eq newName
+            expect(response).to redirect_to organization_path(@org.id)
+          end
+        end
+
+        describe "when the update fails" do
+          it "rerenders the edit template" do
+            put :update, id: @org.id, organization: {name: nil}
+
+            expect(response).to render_template :edit
+          end
+
+          it "does not error due to garbage parameters" do
+            put :update, id: @org.id, foo: 123
+
+            # This actually succeeds because the garbage parameters
+            # are ignored so nothing about the organization is changed.
+            expect(response).to redirect_to @org
+          end
         end
       end
 
-      describe "when the update fails" do
-        it "rerenders the edit template" do
-          org = create :org
+      describe "when the specified org is not found" do
+        it "it redirects to orgs index" do
+          put :update, id: -1
 
-          put :update, id: org.id, organization: {name: nil}
-
-          expect(response).to render_template :edit
+          expect(response).to redirect_to organizations_path
         end
       end
     end
