@@ -20,6 +20,7 @@
   <div class="controls">
     <% if @event.organization.members.include?(current_user) %>
       <div class="members">
+        <!-- TODO: Disable this when the event is not active. -->
         <%= link_to new_event_team_path(@event) do %>
           <div class="action btn new-team">Add a Team</div>
         <% end %>

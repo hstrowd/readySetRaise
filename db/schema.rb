@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141012181452) do
     t.text     "description"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.datetime "cleanup_time"
     t.integer  "fundraiser_id", null: false
     t.integer  "creator_id",    null: false
     t.datetime "created_at"
@@ -63,15 +64,15 @@ ActiveRecord::Schema.define(version: 20141012181452) do
   add_index "organizations", ["url_key"], name: "index_organizations_on_url_key", unique: true, using: :btree
 
   create_table "pledges", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "donor_id"
     t.integer  "team_id"
     t.float    "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "pledges", ["donor_id"], name: "index_pledges_on_donor_id", using: :btree
   add_index "pledges", ["team_id"], name: "index_pledges_on_team_id", using: :btree
-  add_index "pledges", ["user_id"], name: "index_pledges_on_user_id", using: :btree
 
   create_table "team_members", id: false, force: true do |t|
     t.integer "team_id", null: false

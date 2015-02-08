@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for Your Support!</h1>
+    <p>Thanks so much for participating in the <%= @event.title %> event, supporting our <%= @event.fundraiser.title %> fundraiser. Your support is greatly valued and appreciated.</p>
+
+    <p>Below is a list of the pledges you made at this event:</p>
+
+    <% @pledges.each do |pledge| %>
+      <li><%= pledge.created_at %>: $<%= pledge.amount %> (for team <%= pledge.team.name %>)</li>
+    <% end %>
+
+    <p>This brings your total pledge amount to $<%= @pledges.sum('amount') %>. Please visit <a href="http://www.google.com/">our donation page</a> to complete this donation and fulfill your pledge.</p>
+
+    <p>Thanks again for joining us and supporting this great cause.</p>
+  </body>
+</html>

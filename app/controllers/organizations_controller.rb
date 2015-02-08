@@ -29,7 +29,7 @@ class OrganizationsController < ApplicationController
     # Make the current user a member.
     @org.members << current_user
 
-    redirect_to new_fundraiser_path
+    redirect_to new_organization_fundraiser_path(@org)
     return
   end
 

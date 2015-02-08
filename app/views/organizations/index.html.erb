@@ -12,7 +12,8 @@
     <div class="list">
       <% @orgs.each do |organization| %>
           <%= render partial: 'list_item', locals: { org: organization } %>
-      <% end %>      
+      <% end %>
+      <!-- TODO: Update this to detect when no organizations are found. -->
     </div>
   </div>
 </div>

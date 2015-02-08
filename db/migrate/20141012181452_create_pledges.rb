@@ -8,7 +8,7 @@ class CreatePledges < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :pledges, :user_id
+    add_index :pledges, :donor_id
     add_index :pledges, :team_id
   end
 end

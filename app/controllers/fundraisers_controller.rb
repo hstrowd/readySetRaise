@@ -3,6 +3,7 @@ class FundraisersController < ApplicationController
   before_action :lookup_fundraiser, only: [:show, :edit, :update]
 
   def index
+    # TODO: Make this only active fundraisers.
     @fundraisers = Fundraiser.all
   end
 

@@ -10,6 +10,7 @@
       <% @fundraisers.each do |f| %>
           <%= render partial: 'list_item', locals: { fundraiser: f } %>
       <% end %>
+      <!-- TODO: Detect when no fundraisers are found. -->
     </div>
   </div>
 </div>
