@@ -41,8 +41,8 @@ class EventsController < ApplicationController
   end
 
   def pledge_breakdown
-    pledge_breakdown = @event.teams.inject({}) do |donations, team|
-      donations[team.name] = team.pledge_total
+    pledge_breakdown = @event.teams.order(:name).inject([]) do |donations, team|
+      donations << [team.name, team.pledge_total]
       donations
     end
 

@@ -196,34 +196,34 @@ RSpec.describe EventsController, :type => :controller do
       describe "when JSON is requested" do
         it "should return valid JSON" do
           team = create :team, event: @event
-          pledge1 = create :pledge, team: team
-          pledge2 = create :pledge, team: team
-          pledge3 = create :pledge, team: team
+          pledge_1 = create :pledge, team: team
+          pledge_2 = create :pledge, team: team
+          pledge_3 = create :pledge, team: team
 
           get :show, format: :json, id: @event.id
 
           expect(response).to render_template :show
 
-          jsonEvent = JSON.parse(response.body)
-          expect(jsonEvent['eventID']).to eq @event.id
+          json_event = JSON.parse(response.body)
+          expect(json_event['eventID']).to eq @event.id
 
           # Includes pledge info
-          jsonPledges = jsonEvent['pledges']
-          expect(jsonPledges.count).to eq 3
+          json_pledges = json_event['pledges']
+          expect(json_pledges.count).to eq 3
 
-          jsonPledge = jsonPledges.bsearch { |p| pledge1.id == p['pledgeID'] }
-          expect(jsonPledge).to_not be_nil
-          expect(jsonPledge['amount']).to eq pledge1.amount
+          json_pledge = json_pledges.bsearch { |p| pledge_1.id == p['pledgeID'] }
+          expect(json_pledge).to_not be_nil
+          expect(json_pledge['amount']).to eq pledge_1.amount
 
           # Pledges include their associated team
-          jsonTeam = jsonPledge['team']
-          expect(jsonTeam).to_not be_nil
-          expect(jsonTeam['name']).to eq team.name
+          json_team = json_pledge['team']
+          expect(json_team).to_not be_nil
+          expect(json_team['name']).to eq team.name
 
           # Pledges include their associated donor
-          jsonDonor = jsonPledge['donor']
-          expect(jsonDonor).to_not be_nil
-          expect(jsonDonor['email']).to eq pledge1.donor.email
+          json_donor = json_pledge['donor']
+          expect(json_donor).to_not be_nil
+          expect(json_donor['email']).to eq pledge_1.donor.email
         end
       end
     end
@@ -390,6 +390,78 @@ RSpec.describe EventsController, :type => :controller do
 
   # ======== Pledge Breakdown Action ========
 
-  # TODO: Implement me.
+  describe "GET pledge_breakdown" do
+    describe "when user is logged in" do
+      before :each do
+        sign_in create :user
+      end
+
+      describe "when the requested record is found" do
+        it "should render the dashboard template" do
+          event = create :event
+
+          team_1 = create :team, event: event
+          pledge_1_1 = create :pledge, team: team_1
+          pledge_1_2 = create :pledge, team: team_1
+          pledge_1_3 = create :pledge, team: team_1
+          team_1_total = pledge_1_1.amount +
+            pledge_1_2.amount +
+            pledge_1_3.amount
+
+          team_2 = create :team, event: event
+          pledge_2_1 = create :pledge, team: team_2
+          pledge_2_2 = create :pledge, team: team_2
+          team_2_total = pledge_2_1.amount +
+            pledge_2_2.amount
+
+          team_3 = create :team, event: event
+          pledge_3_1 = create :pledge, team: team_3
+          pledge_3_2 = create :pledge, team: team_3
+          pledge_3_3 = create :pledge, team: team_3
+          pledge_3_4 = create :pledge, team: team_3
+          team_3_total = pledge_3_1.amount +
+            pledge_3_2.amount +
+            pledge_3_3.amount +
+            pledge_3_4.amount
+
+          get :pledge_breakdown, format: :json, id: event.id
+
+          json_pledge_breakdown = JSON.parse(response.body)
+
+          # Response will be ordered by team name.
+          # Since team names are sequenced, it should be 1, 2, 3.
+          team_1_breakdown = json_pledge_breakdown[0]
+          expect(team_1_breakdown[0]).to eq team_1.name
+          expect(team_1_breakdown[1]).to eq team_1_total
+
+          team_2_breakdown = json_pledge_breakdown[1]
+          expect(team_2_breakdown[0]).to eq team_2.name
+          expect(team_2_breakdown[1]).to eq team_2_total
+
+          team_3_breakdown = json_pledge_breakdown[2]
+          expect(team_3_breakdown[0]).to eq team_3.name
+          expect(team_3_breakdown[1]).to eq team_3_total
+        end
+      end
+
+      describe "when the requested record is not found" do
+        it "redirects to orgs index" do
+          get :pledge_breakdown, format: :json, id: 0
+          expect(response).to redirect_to organizations_path
+        end
+      end
+    end
+
+    describe "when user is not logged in" do
+      it "redirects to login form" do
+        get :pledge_breakdown, format: :json, id: 0
+
+        expect(response).to have_http_status(401)
+
+        json_response = JSON.parse(response.body)
+        expect(json_response['error']).to_not be_nil
+      end
+    end
+  end
 
 end
