@@ -3,7 +3,8 @@ class Event < ActiveRecord::Base
   has_one :organization, :through => :fundraiser
   belongs_to :creator, :class_name => 'User'
 
-  validates :title, :start_time, :end_time, :presence => true
+  validates :title, :fundraiser, :creator, :start_time, :end_time, :presence => true
+  validate :start_time_before_end_time
 
   has_many :teams
   has_many :pledges, :through => :teams
@@ -27,6 +28,14 @@ class Event < ActiveRecord::Base
 
   def pledge_total
     self.pledges.sum(:amount)
+  end
+
+private
+
+  def start_time_before_end_time
+    if start_time && end_time && start_time > end_time
+      errors.add(:start_time, "can't be after the end time")
+    end
   end
 
 end
