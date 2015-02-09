@@ -182,12 +182,49 @@ RSpec.describe EventsController, :type => :controller do
 
   describe "GET show" do
     describe "when requested record is found" do
+      before :each do
+        @event = create :event
+      end
+
       it "renders the show template" do
-        event = create :event
-        get :show, id: event.id
+        get :show, id: @event.id
 
         expect(response).to render_template :show
-        expect(assigns(:event)).to eq event
+        expect(assigns(:event)).to eq @event
+      end
+
+      describe "when JSON is requested" do
+        it "should return valid JSON" do
+          team = create :team, event: @event
+          pledge1 = create :pledge, team: team
+          pledge2 = create :pledge, team: team
+          pledge3 = create :pledge, team: team
+
+          get :show, format: :json, id: @event.id
+
+          expect(response).to render_template :show
+
+          jsonEvent = JSON.parse(response.body)
+          expect(jsonEvent['eventID']).to eq @event.id
+
+          # Includes pledge info
+          jsonPledges = jsonEvent['pledges']
+          expect(jsonPledges.count).to eq 3
+
+          jsonPledge = jsonPledges.bsearch { |p| pledge1.id == p['pledgeID'] }
+          expect(jsonPledge).to_not be_nil
+          expect(jsonPledge['amount']).to eq pledge1.amount
+
+          # Pledges include their associated team
+          jsonTeam = jsonPledge['team']
+          expect(jsonTeam).to_not be_nil
+          expect(jsonTeam['name']).to eq team.name
+
+          # Pledges include their associated donor
+          jsonDonor = jsonPledge['donor']
+          expect(jsonDonor).to_not be_nil
+          expect(jsonDonor['email']).to eq pledge1.donor.email
+        end
       end
     end
 
@@ -317,7 +354,38 @@ RSpec.describe EventsController, :type => :controller do
 
   # ======== Dashboard Action ========
 
-  # TODO: Implement me.
+  describe "GET dashboard" do
+    describe "when user is logged in" do
+      before :each do
+        sign_in create :user
+      end
+
+      describe "when the requested record is found" do
+        it "should render the dashboard template" do
+          event = create :event
+
+          get :dashboard, id: event.id
+
+          expect(response).to render_template :dashboard
+          expect(assigns(:event)).to eq event
+        end
+      end
+
+      describe "when the requested record is not found" do
+        it "redirects to orgs index" do
+          get :dashboard, id: 0
+          expect(response).to redirect_to organizations_path
+        end
+      end
+    end
+
+    describe "when user is not logged in" do
+      it "redirects to login form" do
+        get :dashboard, id: 0
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+  end
 
 
   # ======== Pledge Breakdown Action ========
