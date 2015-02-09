@@ -30,8 +30,6 @@ Use Cases:
 
 
 Features:
- - Implement dashboard tests.
- - Implement event cleanup job test.
  - Implement password reset test.
  - Verify password reset functionality.
  - Handle all listed TODOs.
