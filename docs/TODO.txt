@@ -46,7 +46,7 @@ Features:
  - Create a way for organizers to review donors after the event and track those that converted.
  - Allow a single follow up email to be sent to donors that have not converted.
  - Allow organization members to hand craft pledge recap email after the event.
-
+ - Add support for resending confirmation emails.
 
 
 

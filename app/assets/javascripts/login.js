@@ -33,7 +33,7 @@ var login = {
 }
 
 var onLoad = function () {
-    $('#header .login-btn a').click($.proxy(login.show, login));
+    $('#header .acct-btn.login-btn a').click($.proxy(login.show, login));
 };
 $(document).ready(onLoad);
 $(document).on('page:load', onLoad);

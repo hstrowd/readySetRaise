@@ -576,7 +576,7 @@ img {
 }
 
 
-#header .profile-nav .profile-intro, #header .profile-nav .login-btn {
+#header .profile-nav .profile-intro, #header .profile-nav .profile-splitter {
     display:none;
 }
 
@@ -662,6 +662,7 @@ img {
         position: relative;
 
         width: 6em;
+        height: 100%;
     }
     #header .profile-nav .welcome {
         display: inline-block;
@@ -673,8 +674,10 @@ img {
         text-align: center;
     }
 
-    #header .profile-nav .login-btn {
+    #header .profile-nav .profile-splitter {
         display: block;
+
+        height: 50%;
     }
 
     #header .menu.profile-nav .profile-intro {
@@ -723,10 +726,15 @@ img {
         height: initial;
     }
 
-    #header .profile-nav .login-btn a {
+    #header .profile-nav .acct-btn {
         display: inline-block;
-    
         width: 90%;
+        vertical-align: middle;
+    }
+    #header .profile-nav .acct-btn a {
+        display: inline-block;
+
+        width: 100%;
     }
     #header .profile-nav .btn {
         display: inline-block;

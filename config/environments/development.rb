@@ -33,7 +33,7 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # Required for devise gem.
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 5000 }
 
   # The base URL used for any assets included in emails.
   config.action_mailer.asset_host = "http://localhost:5000"
