@@ -49,6 +49,12 @@ gem "chartkick"
 # gem 'capistrano-rails', group: :development
 
 
+# ==== Development Tools ====
+
+group :development do
+  gem 'mailcatcher'
+end
+
 
 # ==== Test Tools ====
 

@@ -83,6 +83,9 @@ Rails.application.configure do
 
   # Required for devise gem.
   config.action_mailer.default_url_options = { host: 'teamraising.com', port: 80 }
+
+  # The base URL used for any assets included in emails.
+  config.action_mailer.asset_host = "https://teamraising.org"
 end
 
 ActionMailer::Base.smtp_settings = {

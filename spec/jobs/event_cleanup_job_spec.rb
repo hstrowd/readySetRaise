@@ -64,6 +64,8 @@ RSpec.describe EventCleanupJob do
           }
         }
 
+        ActionMailer::Base.deliveries.clear
+
         EventCleanupJob.perform
 
         expect(ActionMailer::Base.deliveries.count).to eq 3

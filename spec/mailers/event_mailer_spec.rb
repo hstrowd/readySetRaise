@@ -17,6 +17,7 @@ RSpec.describe EventMailer, type: :mailer do
         user = create :user
         event = create :event, end_time: DateTime.now + 3.hours
 
+        ActionMailer::Base.deliveries.clear
         expect(EventMailer.pledge_recap(user, event)).to be_a(ActionMailer::Base::NullMail)
         expect(ActionMailer::Base.deliveries).to be_empty
       end
@@ -35,6 +36,7 @@ RSpec.describe EventMailer, type: :mailer do
         it 'does not send an email' do
           user = create :user
 
+          ActionMailer::Base.deliveries.clear
           expect(EventMailer.pledge_recap(user, @event)).to be_a(ActionMailer::Base::NullMail)
           expect(ActionMailer::Base.deliveries).to be_empty
         end
@@ -48,6 +50,7 @@ RSpec.describe EventMailer, type: :mailer do
             team: @team
           }
 
+          ActionMailer::Base.deliveries.clear
           email = EventMailer.pledge_recap(user, @event)
           expect(email).to_not be_nil
           expect(email.to.count).to eq 1
