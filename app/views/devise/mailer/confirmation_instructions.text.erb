@@ -1,0 +1,12 @@
+Account Confirmation
+============================
+
+Welcome <%= @resource.first_name %>!
+
+Thanks for signing up at TeamRaising.org. You can confirm your account using the following link:
+
+<%= confirmation_url(@resource, confirmation_token: @token) %>
+
+We excited to have you join us. If you have any feedback don't hesitate to contact us at support@teamraising.org.
+
+- Your Friends at TeamRaising.org

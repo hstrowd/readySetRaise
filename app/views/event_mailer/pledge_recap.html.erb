@@ -1,20 +1,31 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Thanks for Your Support!</h1>
-    <p>Thanks so much for participating in the <%= @event.title %> event, supporting our <%= @event.fundraiser.title %> fundraiser. Your support is greatly valued and appreciated.</p>
+<% content_for :title do %>
+  Pledge Recap
+<% end %>
 
-    <p>Below is a list of the pledges you made at this event:</p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 22px;">
+      Thanks for Your Support!
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 20px 0 0 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+      <p>Thanks so much for participating in the <%= @event.title %> event, supporting our <%= @event.fundraiser.title %> fundraiser. Your support is greatly valued and appreciated.</p>
 
-    <% @pledges.each do |pledge| %>
-      <li><%= pledge.created_at %>: $<%= pledge.amount %> (for team <%= pledge.team.name %>)</li>
-    <% end %>
+      <p>Below is a list of the pledges you made at this event:</p>
 
-    <p>This brings your total pledge amount to $<%= @pledges.sum('amount') %>. Please visit <a href="http://www.google.com/">our donation page</a> to complete this donation and fulfill your pledge.</p>
+      <!-- TODO: Put this into a table. -->
+      <ul>
+        <% @pledges.each do |pledge| %>
+          <li><%= pledge.created_at %>: $<%= pledge.amount %> (for team <%= pledge.team.name %>)</li>
+        <% end %>
+      </ul>
 
-    <p>Thanks again for joining us and supporting this great cause.</p>
-  </body>
-</html>
+      <p>This brings your total pledge amount to $<%= @pledges.sum('amount') %>. Please visit <a href="http://www.google.com/">our donation page</a> to complete this donation and fulfill your pledge.</p>
+
+      <p>Thanks again for joining us and supporting this great cause.</p>
+
+      <p>- Your Friends at TeamRaising.org</p>
+    </td>
+  </tr>
+</table>
