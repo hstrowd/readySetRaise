@@ -48,6 +48,11 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  # Ensure fatories are loaded properly
+  config.before :suite do
+    FactoryGirl.reload
+  end
+
   # Clean the DB after each test.
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
@@ -58,6 +63,17 @@ RSpec.configure do |config|
     DatabaseCleaner.cleaning do
       example.run
     end
+  end
+
+  # Supporting catching and inspecting emails during each test
+  config.around :each do |test|
+    ActionMailer::Base.delivery_method = :test
+    ActionMailer::Base.perform_deliveries = true
+    ActionMailer::Base.deliveries = []
+
+    test.run
+
+    ActionMailer::Base.deliveries.clear
   end
 
 # The settings below are suggested to provide a good initial experience

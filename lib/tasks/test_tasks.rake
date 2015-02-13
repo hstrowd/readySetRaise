@@ -1,9 +1,9 @@
 namespace :test do
   task :spec do
     if (ENV['RAILS_ENV'] == "test")
-      Rake::Task['spec'].invoke
+      Rake::Task["spec"].execute
     else
-      system("rake test:spec RAILS_ENV=test")
+      system("rake RAILS_ENV=test test:spec")
     end
   end
 

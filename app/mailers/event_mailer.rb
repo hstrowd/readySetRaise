@@ -1,8 +1,8 @@
 class EventMailer < ApplicationMailer
-  layout :mailer
+  layout 'mailer'
 
   def pledge_recap(user, event)
-    if !@event.has_ended?
+    if !event.has_ended?
       logger.warn "Attempted to send pledge recap to user ${user.id} before event {event.id} ended."
       return
     end

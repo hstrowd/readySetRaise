@@ -21,16 +21,6 @@ RSpec.describe Users::RegistrationsController do
   # ======== Create Action ========
 
   describe "POST create" do
-    before :each do
-      ActionMailer::Base.delivery_method = :test
-      ActionMailer::Base.perform_deliveries = true
-      ActionMailer::Base.deliveries = []
-    end
-
-    after :each do
-      ActionMailer::Base.deliveries.clear
-    end
-
     describe "when valid attributes are provided" do
       it "creates a new user" do
         first_name = 'User'
@@ -48,6 +38,7 @@ RSpec.describe Users::RegistrationsController do
           password_confirmation: 'test1234'
         }
 
+        # Creates the user account.
         new_user = User.find_by_email(email)
         expect(new_user).not_to be_nil
         expect(new_user.first_name).to eq first_name
@@ -63,6 +54,7 @@ RSpec.describe Users::RegistrationsController do
         # Automatically logs in as the new user.
         expect(subject.current_user.email).to eq email
 
+        # Redirects to homepage.
         expect(response).to redirect_to root_url
       end
     end
