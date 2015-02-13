@@ -5,9 +5,6 @@ class FundraisersController < ApplicationController
   before_action :lookup_fundraiser, only: [:show, :edit, :update]
 
   def new
-    # TODO: Now that this is nested under an organization, should we still allow a fundraiser to be created for an arbitrary org?
-    return if redirect_to_new_org?
-
     org_id = params[:organization_id]
     return if !is_valid_org?(org_id)
 
@@ -54,16 +51,6 @@ private
       end
       return false
     end
-  end
-
-  def redirect_to_new_org?
-    # Lookp the organizations for this user.
-    @organizations = current_user.organizations
-    if @organizations.empty?
-      redirect_to new_organization_path
-      return true
-    end
-    return false
   end
 
   def is_valid_org?(org_id)

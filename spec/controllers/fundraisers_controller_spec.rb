@@ -22,17 +22,7 @@ RSpec.describe FundraisersController, :type => :controller do
         sign_in @current_user
       end
 
-      describe "when current user is a member of no orgs" do
-        it "redirects to new org form" do
-          expect(@current_user.organizations).to be_empty
-
-          get :new, organization_id: -1
-
-          expect(response).to redirect_to new_organization_path
-        end
-      end
-
-      describe "when current user is a member of at least one org" do
+      describe "when a valid org is specified" do
         before :each do
           @org = create :org, creator: @current_user
         end
@@ -40,12 +30,13 @@ RSpec.describe FundraisersController, :type => :controller do
         it "renders the new template for valid org requests" do
           get :new, organization_id: @org.id
 
-          expect(assigns(:organizations)).to eq @current_user.organizations
           expect(assigns(:fundraiser)).to be_a_new Fundraiser
           expect(response).to render_template :new
         end
+      end
 
-        it "redirects to organization index for invalid requested org" do
+      describe "when an invalid org is specified" do
+        it "redirects to org index" do
           get :new, organization_id: -1
 
           expect(response).to redirect_to organizations_path

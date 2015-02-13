@@ -55,13 +55,16 @@ private
     @event = Event.find_by_id(params[:id]) if params[:id]
 
     if !@event
-      # TODO: Consider handling this differently for JSON requests.
-
-      flash[:alert] = 'Unable to find requested event.'
-      if current_user
-        redirect_to organizations_path
-      else
-        redirect_to root_path
+      respond_to do |format|
+        format.html {
+          flash[:alert] = 'Unable to find requested event.'
+          if current_user
+            redirect_to organizations_path
+          else
+            redirect_to root_path
+          end
+        }
+        format.json { render :json => {:error => 'Event not found.'}.to_json, :status => 404 }
       end
     end
   end

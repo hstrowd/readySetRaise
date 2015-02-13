@@ -247,6 +247,16 @@ RSpec.describe EventsController, :type => :controller do
           expect(response).to redirect_to root_path
         end
       end
+
+      describe "when JSON is requested" do
+        it "returns a 404" do
+          get :show, format: :json, id: -1
+
+          expect(response).to have_http_status 404
+          json_response = JSON.parse(response.body)
+          expect(json_response['error']).to_not be_nil
+        end
+      end
     end
   end
 
@@ -447,7 +457,10 @@ RSpec.describe EventsController, :type => :controller do
       describe "when the requested record is not found" do
         it "redirects to orgs index" do
           get :pledge_breakdown, format: :json, id: 0
-          expect(response).to redirect_to organizations_path
+
+          expect(response).to have_http_status 404
+          json_response = JSON.parse(response.body)
+          expect(json_response['error']).to_not be_nil
         end
       end
     end
@@ -456,7 +469,7 @@ RSpec.describe EventsController, :type => :controller do
       it "redirects to login form" do
         get :pledge_breakdown, format: :json, id: 0
 
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status 401
 
         json_response = JSON.parse(response.body)
         expect(json_response['error']).to_not be_nil
