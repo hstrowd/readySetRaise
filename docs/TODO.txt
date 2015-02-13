@@ -30,8 +30,6 @@ Use Cases:
 
 
 Features:
- - Implement password reset test.
- - Verify password reset functionality.
  - Handle all listed TODOs.
  - Finish user account page.
  - Setup support@teamraising.org inbox.

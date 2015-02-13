@@ -87,6 +87,9 @@
       $(function() {
         initDateTimeField('event', 'start');
         initDateTimeField('event', 'end');
+
+        // Ensure the end date/time is always after the start date/time.
+        maintainChronologicalOrder('event', 'start', 'end');
       });
     </script>
 

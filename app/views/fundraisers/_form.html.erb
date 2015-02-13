@@ -101,6 +101,9 @@
 
         initDateTimeField('fundraiser', 'pledge_start');
         initDateTimeField('fundraiser', 'pledge_end');
+
+        // Ensure the pledge end date/time is always after the pledge start date/time.
+        maintainChronologicalOrder('fundraiser', 'pledge_start', 'pledge_end');
       });
     </script>
 

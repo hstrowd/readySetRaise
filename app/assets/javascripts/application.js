@@ -16,7 +16,8 @@
 //= require jquery-combobox
 //= require turbolinks
 
-//= require slick
+//= require login
+//= require google-analytics
 
 //= require_tree .
 
@@ -33,8 +34,9 @@ function isoToLocalStrings(dateInput) {
     var minutes = rawDate.getMinutes();
     var period = 'AM';
 
-    if (hours > 12) {
+    if (hours >= 12) {
         hours = hours % 12;
+        if (hours == 0) { hours = 12 }
         period = 'PM';
     }
     if (minutes < 10) {

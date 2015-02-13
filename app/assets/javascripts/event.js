@@ -1,7 +1,9 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
-//
+
+//= require datetime-fields
 //= require mustache.min
+//= require countdown.min
 
 var setupCountdown = function(outputSelector, time) {
     var $outputField = $(outputSelector);
