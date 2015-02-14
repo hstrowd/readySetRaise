@@ -139,67 +139,6 @@ ul.ui-autocomplete {
  *  ==== Show Page ====
  */
 
-#fundraiser-show>.header {
-    width: 95%;
-    margin: 2% auto;
-}
-#fundraiser-show>.header .icon {
-    display: inline-block;
-    
-    width: 4em;
-    max-width: 30%;
-    margin: 2%;
-
-    vertical-align: middle;
-}
-#fundraiser-show>.header .text {
-    display: inline-block;
-
-    width: 60%;
-
-    vertical-align: middle;
-}
-#fundraiser-show>.header .title {
-    font-size: 1.5em;
-}
-
-#fundraiser-show .controls {
-    text-align: center;
-}
-#fundraiser-show .controls .members {
-    display: inline-block;
-    margin: 2%;
-
-    text-align: center;
-}
-#fundraiser-show .controls .members .action {
-    display: inline-block;
-    
-    width: 10em;
-    max-width: 40%;
-}
-
-#fundraiser-show .details {
-    width: 85%;
-    margin: 2% auto;
-}
-#fundraiser-show .details .attribute {
-    margin: 1% 1% 1% 5%;
-}
-#fundraiser-show .details .attribute .label {
-    position: relative;
-    display: inline-block;
-
-    width: 35%;
-    min-width: 6em;
-    max-width: 8em;
-    right: 4%;
-    
-    vertical-align: middle;
-
-    font-weight: bold;
-}
-
 #fundraiser-show .details .attribute.pledge-window .timeframe {
     display: inline-block;
     width: 60%;
@@ -244,9 +183,6 @@ ul.ui-autocomplete {
 }
 
 @media screen and (min-width: 500px)  {
-    #fundraiser-show .details .attribute .label {
-        width: 8em;
-    }
     #fundraiser-show .details .attribute.pledge-window .timeframe {
         width: 65%;
 
@@ -268,54 +204,10 @@ ul.ui-autocomplete {
     }
 }
 @media screen and (min-width: 600px)  {
-    #fundraiser-show>.header {
-        margin: .8em auto;
-    }
-    #fundraiser-show>.header .icon {
-        margin: .8em;
-    }
-    #fundraiser-show .controls {
-        margin: .8em;
-    }
-    #fundraiser-show .details {
-        margin: .8em auto;
-    }
-    #fundraiser-show .details .attribute {
-        margin: .4em .4em .4em 2em;
-    }
     #fundraiser-show .events {
         margin: 1.6em;
     }
     #fundraiser-show .events .list .title {
         margin: .2em;
-    }
-}
-@media screen and (min-width: 900px)  {
-    #fundraiser-show>.header {
-        display: inline-block;
-
-        width: 65%;
-        margin: .8em 1.4em;
-    }
-    #fundraiser-show .controls {
-        display: inline-block;
-
-        width: 25%;
-
-        vertical-align: top;
-    }
-    #fundraiser-show .controls .members {
-        width: 100%;
-        margin: auto;
-
-        vertical-align: middle;
-        text-align: center;
-    }
-    #fundraiser-show .controls .members .action {
-        display: block;
-
-        max-width: 80%;
-
-        margin: .3em auto;
     }
 }

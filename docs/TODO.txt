@@ -40,6 +40,10 @@ Features:
  - Figure out what to do about organization images.
  - Add support for deleting all types of records.
  - Clean up post event recap email
+ - Fix footer stub.
+
+ - Push v1 live
+
  - Allow users to review their donations both on a per-event basis and globally.
  - Create a Business Plan powerpoint/document (https://www.councilofnonprofits.org/tools-resources/business-planning-nonprofits)
  - File necessary paperwork (https://www.councilofnonprofits.org/tools-resources/how-start-nonprofit and https://www.harborcompliance.com/information/how-to-start-a-non-profit-organization-in-illinois.php)
@@ -47,9 +51,13 @@ Features:
  - Create a way for organizers to review donors after the event and track those that converted.
  - Allow a single follow up email to be sent to donors that have not converted.
  - Allow organization members to hand craft pledge recap email after the event.
- - Add support for resending confirmation emails.
+ - Improve access to support for resending confirmation emails.
  - Allow anonymous pledges.
  - Add support for having other users become members of an organization.
  - Setup social media accounts.
+ - Support viewing an individual pledge.
+ - Update about us page to specify that we are entirely volunteer supported and operate fully based on donations.
 
+
+ - Support different pledge types/categories.
 

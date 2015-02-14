@@ -1,4 +1,4 @@
-<div id="org-show">
+<div id="org-show" class="std-show">
 
   <div class="header">
     <div class="icon">
@@ -6,8 +6,10 @@
         <%= image_tag 'org/defaultIcon.png' %>
       <% end %>
     </div>
-    <div class="name">
-      <%= @org.name %>
+    <div class="text">
+      <div class="title">
+        <%= @org.name %>
+      </div>
     </div>
   </div>
 
