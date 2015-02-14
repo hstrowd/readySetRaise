@@ -8,7 +8,8 @@ class OrganizationsController < ApplicationController
 
   def new
     if !current_user
-      # TODO: Mark this session as wanting to create an organization
+      # Send the user to the new org form after sign-up.
+      session[:post_signup_action] = :new_org
       redirect_to new_registration_path(:user)
       return
     end

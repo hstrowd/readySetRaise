@@ -54,8 +54,30 @@ RSpec.describe Users::RegistrationsController do
         # Automatically logs in as the new user.
         expect(subject.current_user.email).to eq email
 
-        # Redirects to homepage.
+        # Redirects to homepage if no action is specified for the session.
         expect(response).to redirect_to root_url
+      end
+
+      describe 'when a post signup action is specified' do
+        describe 'when the post signup action is new org' do
+          it 'redirects to the new org form' do
+            first_name = 'User'
+            last_name = 'Test'
+            email = generate_random_string + '@gmail.com'
+
+            subject.session[:post_signup_action] = :new_org
+
+            post :create, user: {
+              first_name: first_name,
+              last_name: last_name,
+              email: email,
+              password: 'test1234',
+              password_confirmation: 'test1234'
+            }
+
+            expect(response).to redirect_to new_organization_path
+          end
+        end
       end
     end
 

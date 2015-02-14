@@ -32,6 +32,7 @@ Use Cases:
 Features:
  - Handle all listed TODOs.
  - Finish user account page.
+ - Refine pledge recap email.
  - Setup support@teamraising.org inbox.
  - Shutdown dev SMTP domain on mailgun
  - Test on many browsers and devices.
@@ -46,6 +47,7 @@ Features:
  - Allow a single follow up email to be sent to donors that have not converted.
  - Allow organization members to hand craft pledge recap email after the event.
  - Add support for resending confirmation emails.
+ - Allow anonymous pledges.
 
 
 

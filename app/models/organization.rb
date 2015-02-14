@@ -22,6 +22,4 @@ class Organization < ActiveRecord::Base
       where("pledge_start_time > ?", DateTime.now)
     end
   end
-
-  # TODO: Add fields for primary color, secondary color, logo, key
 end
