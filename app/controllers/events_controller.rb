@@ -8,8 +8,13 @@ class EventsController < ApplicationController
   def new
     fundraiser_id = params[:fundraiser_id]
     return if !is_valid_fundraiser?(fundraiser_id)
+    fundraiser = Fundraiser.find(fundraiser_id)
 
-    @event = Event.new(fundraiser_id: fundraiser_id)
+    @event = Event.new(fundraiser: fundraiser)
+    if (!fundraiser.has_started?)
+      @event.start_time = fundraiser.pledge_start_time
+      @event.end_time = fundraiser.pledge_start_time
+    end
   end
 
   def create

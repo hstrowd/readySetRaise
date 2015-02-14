@@ -4,7 +4,7 @@
       <div class="title"><%= event.title %></div>
     <% end %>
     <div class="assoc-count">
-      (<%= event.teams.count %> <%= (event.teams.count > 1) ? 'team'.pluralize : 'team' %>)
+      (<%= pluralize(event.teams.count, 'team') %>)
     </div>
   </div>
   <div class="description"><%= event.description %></div>

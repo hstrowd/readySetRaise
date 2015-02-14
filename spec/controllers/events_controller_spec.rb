@@ -27,12 +27,39 @@ RSpec.describe EventsController, :type => :controller do
         end
 
         describe "when current user is member of org" do
-          it "renders the new template" do
-            @fundraiser.organization.members << @current_user
+          describe "when fundraiser has not started" do
+            before :each do
+              @fundraiser.pledge_start_time = DateTime.now + 3.days
+              @fundraiser.pledge_end_time = DateTime.now + 8.days
+              @fundraiser.save!
+            end
 
-            get :new, fundraiser_id: @fundraiser.id
+            it "renders the new template with start time of the fundraiser's pledge start time" do
+              @fundraiser.organization.members << @current_user
 
-            expect(response).to render_template :new
+              get :new, fundraiser_id: @fundraiser.id
+
+              expect(response).to render_template :new
+              expect(assigns(:event).start_time).to eq @fundraiser.pledge_start_time
+              expect(assigns(:event).end_time).to eq @fundraiser.pledge_start_time
+            end
+          end
+
+          describe "when fundraiser has started" do
+            before :each do
+              @fundraiser.pledge_start_time = DateTime.now - 3.days
+              @fundraiser.pledge_end_time = DateTime.now + 2.days
+            end
+
+            it "renders the new template with start time of the fundraiser's pledge start time" do
+              @fundraiser.organization.members << @current_user
+
+              get :new, fundraiser_id: @fundraiser.id
+
+              expect(response).to render_template :new
+              expect(assigns(:event).start_time).to be_nil
+              expect(assigns(:event).end_time).to be_nil
+            end
           end
         end
 
