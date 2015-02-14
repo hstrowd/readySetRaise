@@ -49,7 +49,7 @@
   </div>
 
   <% if !@fundraiser.events.present.empty? %>
-    <div class="events">
+    <div class="association events present">
       <div class="title">Active Events</div>
       <div class="list">
         <% @fundraiser.events.present.each do |e| %>
@@ -60,7 +60,7 @@
   <% end %>
 
   <% if !@fundraiser.events.future.empty? %>
-    <div class="events">
+    <div class="association events future">
       <div class="title">Upcoming Events</div>
       <div class="list">
         <% @fundraiser.events.future.each do |e| %>
@@ -71,7 +71,7 @@
   <% end %>
 
   <% if !@fundraiser.events.past.empty? %>
-    <div class="events">
+    <div class="association events past">
       <div class="title">Past Events</div>
       <div class="list">
         <% @fundraiser.events.past.each do |e| %>

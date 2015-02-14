@@ -164,23 +164,6 @@ ul.ui-autocomplete {
     display: none;
 }
 
-#fundraiser-show .events {
-    margin: 4%;
-}
-#fundraiser-show .events .title {
-    margin: 0.5em auto;
-
-    text-align: center;
-    font-size: 1.2em;
-    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
-}
-#fundraiser-show .events .list .title {
-    margin: 1%;
-
-    text-align: left;
-    font-size: 1.1em;
-    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-}
 
 @media screen and (min-width: 500px)  {
     #fundraiser-show .details .attribute.pledge-window .timeframe {
@@ -201,13 +184,5 @@ ul.ui-autocomplete {
     }
     #fundraiser-show .details .attribute.pledge-window .timeframe .multi-line {
         display: none;
-    }
-}
-@media screen and (min-width: 600px)  {
-    #fundraiser-show .events {
-        margin: 1.6em;
-    }
-    #fundraiser-show .events .list .title {
-        margin: .2em;
     }
 }
