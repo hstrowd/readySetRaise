@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
 
   validates :title, :fundraiser, :creator, :start_time, :end_time, :presence => true
   validate :start_time_before_end_time
+  validate :start_time_after_fundraiser_start
+  validate :end_time_before_fundraiser_end
 
   has_many :teams
   has_many :pledges, :through => :teams
@@ -33,9 +35,20 @@ class Event < ActiveRecord::Base
 private
 
   def start_time_before_end_time
-    if start_time && end_time && start_time > end_time
+    if start_time && end_time && (start_time > end_time)
       errors.add(:start_time, "can't be after the end time")
     end
   end
 
+  def start_time_after_fundraiser_start
+    if fundraiser && start_time && (start_time < fundraiser.pledge_start_time)
+      errors.add(:start_time, "can't be before the fundraiser's started")
+    end
+  end
+
+  def end_time_before_fundraiser_end
+    if fundraiser && end_time && (end_time > fundraiser.pledge_end_time)
+      errors.add(:end_time, "can't be after the fundraiser's ended")
+    end
+  end
 end

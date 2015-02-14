@@ -32,8 +32,6 @@
                }) %>
 
 
-    <!-- TODO: Enforce that the event start and end date are within the fundraiser's pledge timeframe. -->
-
     <% content_for 'start_time_field' do %>
       <%= f.hidden_field(:start_time, value: @event.start_time) %>
       <% if !@event.errors[:start_time].empty? %>

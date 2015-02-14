@@ -13,26 +13,31 @@ RSpec.describe Fundraiser, :type => :model do
     it "is invalid without a title" do
       fundraiser = build :fundraiser, title: nil
       expect(fundraiser).to_not be_valid
+      expect(fundraiser.errors.keys).to include :title
     end
 
     it "is invalid without a pledge start time" do
       fundraiser = build :fundraiser, pledge_start_time: nil
       expect(fundraiser).to_not be_valid
+      expect(fundraiser.errors.keys).to include :pledge_start_time
     end
 
     it "is invalid without a pledge end time" do
       fundraiser = build :fundraiser, pledge_end_time: nil
       expect(fundraiser).to_not be_valid
+      expect(fundraiser.errors.keys).to include :pledge_end_time
     end
 
     it "is invalid without an organization" do
       fundraiser = build :fundraiser, organization: nil
       expect(fundraiser).to_not be_valid
+      expect(fundraiser.errors.keys).to include :organization
     end
 
     it "is invalid without a creator" do
       fundraiser = build :fundraiser, creator: nil
       expect(fundraiser).to_not be_valid
+      expect(fundraiser.errors.keys).to include :creator
     end
 
     it "is invalid if the pledge start time is after the end time" do
@@ -41,6 +46,7 @@ RSpec.describe Fundraiser, :type => :model do
         pledge_end_time: (DateTime.now - 3.minutes)
       }
       expect(fundraiser).to_not be_valid
+      expect(fundraiser.errors.keys).to include :pledge_start_time
     end
 
     it "is valid even without a description" do

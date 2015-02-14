@@ -13,31 +13,65 @@ RSpec.describe Event, :type => :model do
     it "is invalid without a title" do
       event = build :event, title: nil
       expect(event).to_not be_valid
+      expect(event.errors.keys).to include :title
     end
 
     it "is invalid without a fundraiser" do
       event = build :event, fundraiser: nil
       expect(event).to_not be_valid
+      expect(event.errors.keys).to include :fundraiser
     end
 
     it "is invalid without a creator" do
       event = build :event, creator: nil
       expect(event).to_not be_valid
+      expect(event.errors.keys).to include :creator
     end
 
     it "is invalid without a start time" do
       event = build :event, start_time: nil
       expect(event).to_not be_valid
+      expect(event.errors.keys).to include :start_time
     end
 
     it "is invalid without a end time" do
       event = build :event, end_time: nil
       expect(event).to_not be_valid
+      expect(event.errors.keys).to include :end_time
     end
 
     it "is invalid when start time is after end time" do
       event = build :event, start_time: DateTime.now, end_time: (DateTime.now - 3.hours)
       expect(event).to_not be_valid
+      expect(event.errors.keys).to include :start_time
+    end
+
+    it "is invalid when start time is before fundraiser start time" do
+      fundraiser = create :fundraiser, {
+        pledge_start_time: (DateTime.now - 1.day),
+        pledge_end_time: (DateTime.now + 2.days)
+      }
+      event = build :event, {
+        fundraiser: fundraiser,
+        start_time: (DateTime.now - 2.days),
+        end_time: (DateTime.now + 3.hours)
+      }
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :start_time
+    end
+
+    it "is invalid when end time is after fundraiser end time" do
+      fundraiser = create :fundraiser, {
+        pledge_start_time: (DateTime.now - 1.day),
+        pledge_end_time: (DateTime.now + 2.days)
+      }
+      event = build :event, {
+        fundraiser: fundraiser,
+        start_time: DateTime.now,
+        end_time: (DateTime.now + 3.days)
+      }
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :end_time
     end
 
     it "is valid even without a description" do

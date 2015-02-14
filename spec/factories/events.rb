@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :event do
     title "Test Event"
     description "Test event's description."
-    start_time { DateTime.now }
-    end_time { DateTime.now + 3.hours }
+    start_time { DateTime.now - 1.day }
+    end_time { DateTime.now + 1.day }
     association :fundraiser
     association :creator
 

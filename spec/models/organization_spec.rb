@@ -13,31 +13,37 @@ RSpec.describe Organization, :type => :model do
     it "is invalid without a name" do
       org = build :org, name: nil
       expect(org).to_not be_valid
+      expect(org.errors.keys).to include :name
     end
 
     it "is invalid without a description" do
       org = build :org, description: nil
       expect(org).to_not be_valid
+      expect(org.errors.keys).to include :description
     end
 
     it "is invalid without a homepage URL" do
       org = build :org, homepage_url: nil
       expect(org).to_not be_valid
+      expect(org.errors.keys).to include :homepage_url
     end
 
     it "is invalid without a creator" do
       org = build :org, creator: nil
       expect(org).to_not be_valid
+      expect(org.errors.keys).to include :creator
     end
 
     it "is invalid without a URL key" do
       org = build :org, url_key: nil
       expect(org).to_not be_valid
+      expect(org.errors.keys).to include :url_key
     end
 
     it "is invalid with a URL key that is not URL safe" do
       org = build :org, url_key: 'foo@bar:'
       expect(org).to_not be_valid
+      expect(org.errors.keys).to include :url_key
     end
   end
 

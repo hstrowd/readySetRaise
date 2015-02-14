@@ -13,16 +13,19 @@ RSpec.describe Team, :type => :model do
     it "is invalid without a name" do
       team = build :team, name: nil
       expect(team).to_not be_valid
+      expect(team.errors.keys).to include :name
     end
 
     it "is invalid without an event" do
       team = build :team, event: nil
       expect(team).to_not be_valid
+      expect(team.errors.keys).to include :event
     end
 
     it "is invalid if the pledge target is not a number" do
       team = build :team, pledge_target: '$100'
       expect(team).to_not be_valid
+      expect(team.errors.keys).to include :pledge_target
     end
 
     it "is valid even without an pledge target" do

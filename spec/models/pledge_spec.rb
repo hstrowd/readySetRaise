@@ -13,21 +13,25 @@ RSpec.describe Pledge, :type => :model do
     it "is invalid without an amount" do
       pledge = build :pledge, amount: nil
       expect(pledge).to_not be_valid
+      expect(pledge.errors.keys).to include :amount
     end
 
     it "is invalid if amount is not a number" do
       pledge = build :pledge, amount: "$10"
       expect(pledge).to_not be_valid
+      expect(pledge.errors.keys).to include :amount
     end
 
     it "is invalid without a team" do
       pledge = build :pledge, team: nil
       expect(pledge).to_not be_valid
+      expect(pledge.errors.keys).to include :team
     end
 
     it "is invalid without an donor" do
       pledge = build :pledge, donor: nil
       expect(pledge).to_not be_valid
+      expect(pledge.errors.keys).to include :donor
     end
   end
 

@@ -13,21 +13,25 @@ RSpec.describe Organization, :type => :model do
     it "is invalid without a first name" do
       user = build :user, first_name: nil
       expect(user).to_not be_valid
+      expect(user.errors.keys).to include :first_name
     end
 
     it "is invalid without a last name" do
       user = build :user, first_name: nil
       expect(user).to_not be_valid
+      expect(user.errors.keys).to include :first_name
     end
 
     it "is invalid without a email" do
       user = build :user, email: nil
       expect(user).to_not be_valid
+      expect(user.errors.keys).to include :email
     end
 
     it "is invalid without a password" do
       user = build :user, password: nil
       expect(user).to_not be_valid
+      expect(user.errors.keys).to include :password
     end
 
     it "is valid without a phone number" do
