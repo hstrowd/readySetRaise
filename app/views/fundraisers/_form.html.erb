@@ -1,6 +1,7 @@
 <div class="fundraiser-form">
   <%= form_for(@fundraiser) do |f| %>
 
+    <%= f.hidden_field(:organization_id, value: @fundraiser.organization_id) %>
     <div class="field org">
       <div class="label">Organization</div>
       <div class="input"><%= link_to @fundraiser.organization.name, show_org_path(@fundraiser.organization.url_key) %></div>
@@ -22,23 +23,6 @@
                  model: @fundraiser, 
                  attr: :description
                }) %>
-
-    <!-- TODO: Update this to be a link to the organization. -->
-    <% if @organizations.nil? %>
-      <%= f.hidden_field(:organization_id, value: @fundraiser.organization_id) %>
-    <% elsif (@organizations.size == 1) %>
-      <%= f.hidden_field(:organization_id, value: @organizations[0].id) %>
-    <% else %>
-      <% content_for 'organization_field' do %>
-        <%= collection_select(:fundraiser, :organization_id, @organizations, :id, :name) %>
-      <% end %>
-      <%= render(partial: "shared/form_field", 
-                 locals: { 
-                   form: f, 
-                   model: @fundraiser, 
-                   attr: :organization
-                 }) %>
-    <% end %>
 
     <% content_for 'pledge_start_time_field' do %>
       <%= f.hidden_field(:pledge_start_time, value: @fundraiser.pledge_start_time) %>
@@ -78,8 +62,6 @@
                  field_label: 'Pledge ends on',
                  attr: :pledge_end_time
                }) %>
-
-    <!-- TODO: Add a multi-select field for single event vs multi event fundraisers. -->
 
     <div class="actions">
       <%= f.submit((action + " Fundraiser"), class: [:btn, :submit]) %>
