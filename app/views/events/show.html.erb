@@ -20,8 +20,10 @@
   <div class="controls">
     <% if @event.organization.members.include?(current_user) %>
       <div class="members">
-        <%= link_to new_event_team_path(@event) do %>
-          <div class="action btn new-team">Add a Team</div>
+        <% if !@event.has_ended? %>
+          <%= link_to new_event_team_path(@event) do %>
+            <div class="action btn new-team">Add a Team</div>
+          <% end %>
         <% end %>
         <%= link_to edit_event_path(@event) do %>
           <div class="action btn edit-event">Update Event</div>

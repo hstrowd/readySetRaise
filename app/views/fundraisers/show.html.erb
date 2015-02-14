@@ -19,9 +19,10 @@
   <div class="controls">
     <% if @fundraiser.organization.members.include?(current_user) %>
       <div class="members">
-        <!-- TODO: Disable this when the fundraiser is not active. -->
-        <%= link_to new_fundraiser_event_path(@fundraiser) do %>
-          <div class="action btn new-event">Schedule an Event</div>
+        <% if !@fundraiser.has_ended? %>
+          <%= link_to new_fundraiser_event_path(@fundraiser) do %>
+            <div class="action btn new-event">Schedule an Event</div>
+          <% end %>
         <% end %>
         <%= link_to edit_fundraiser_path(@fundraiser) do %>
           <div class="action btn edit-fundraiser">Update Fundraiser</div>

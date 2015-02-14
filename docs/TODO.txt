@@ -50,6 +50,6 @@ Features:
  - Add support for resending confirmation emails.
  - Allow anonymous pledges.
  - Add support for having other users become members of an organization.
-
+ - Setup social media accounts.
 
 
