@@ -468,15 +468,15 @@ RSpec.describe EventsController, :type => :controller do
           # Response will be ordered by team name.
           # Since team names are sequenced, it should be 1, 2, 3.
           team_1_breakdown = json_pledge_breakdown[0]
-          expect(team_1_breakdown[0]).to eq team_1.name
+          expect(team_1_breakdown[0]).to eq "#{team_1.name} (3)"
           expect(team_1_breakdown[1]).to eq team_1_total
 
           team_2_breakdown = json_pledge_breakdown[1]
-          expect(team_2_breakdown[0]).to eq team_2.name
+          expect(team_2_breakdown[0]).to eq "#{team_2.name} (2)"
           expect(team_2_breakdown[1]).to eq team_2_total
 
           team_3_breakdown = json_pledge_breakdown[2]
-          expect(team_3_breakdown[0]).to eq team_3.name
+          expect(team_3_breakdown[0]).to eq "#{team_3.name} (4)"
           expect(team_3_breakdown[1]).to eq team_3_total
         end
       end

@@ -5,7 +5,7 @@ class Fundraiser < ActiveRecord::Base
   validates :title, :organization, :creator, :pledge_start_time, :pledge_end_time, :presence => true
   validate :pledge_start_time_before_pledge_end_time
 
-  has_many :events do
+  has_many :events, -> { order "start_time ASC" } do
     def past
       where("end_time <= ?", DateTime.now)
     end

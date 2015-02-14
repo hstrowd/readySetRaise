@@ -11,7 +11,7 @@ class Organization < ActiveRecord::Base
     uniqueness: true
   }
 
-  has_many :fundraisers do
+  has_many :fundraisers, -> { order "pledge_start_time ASC" } do
     def past
       where("pledge_end_time <= ?", DateTime.now)
     end

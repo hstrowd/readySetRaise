@@ -37,9 +37,8 @@
             0%
           <% end %>
         </div>
-        <!-- TODO: Look into more efficient ways to handle pluralization. -->
         (<div class="total"><%= event.pledge_total %></div> / <div class="target"><%= event.pledge_target %></div>
-        <div class="count">from <%= event.pledges.count %> <%= (event.pledges.count == 1) ? 'pledge' : 'pledges' %></div>)
+        <div class="count">from <%= pluralize(event.pledges.count, 'pledge') %></div>)
       </div>
     </div>
   <% else %>
