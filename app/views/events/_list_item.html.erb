@@ -37,14 +37,14 @@
             0%
           <% end %>
         </div>
-        (<div class="total"><%= event.pledge_total %></div> / <div class="target"><%= event.pledge_target %></div>
+        (<div class="total"><%= event.pledge_total.round() %></div> / <div class="target"><%= event.pledge_target.round() %></div>
         <div class="count">from <%= pluralize(event.pledges.count, 'pledge') %></div>)
       </div>
     </div>
   <% else %>
     <div class="attr pledge-target">
       <div class="label">Pledge Target:</div>
-      <div class="value"><%= event.pledge_target %></div>
+      <div class="value"><%= event.pledge_target.round() %></div>
     </div>
   <% end %>
 

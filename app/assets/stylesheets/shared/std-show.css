@@ -76,6 +76,32 @@
     font-weight: bold;
 }
 
+.std-show .details .attribute .timeframe {
+    display: inline-block;
+    width: 60%;
+
+    text-align: center;
+
+    vertical-align: middle;
+}
+.std-show .details .attribute .timeframe .time {
+    width: 100%;
+
+    text-align: center;
+}
+.std-show .details .attribute .timeframe .time .date {
+    display: inline-block;
+}
+.std-show .details .attribute .timeframe .time .time {
+    display: inline-block;
+
+    width: auto;
+}
+.std-show .details .attribute .timeframe .single-line {
+    display: none;
+}
+
+
 .std-show .association {
     margin: 4%;
 }
@@ -93,10 +119,43 @@
     font-size: 1.1em;
     font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
+.std-show .association .notice {
+    width: 80%;
+    margin: auto;
+    padding: 1em;
+
+    background-color: #A0CAFF;
+
+    text-align:center;
+    color: #EE6060;
+}
+
 
 @media screen and (min-width: 500px)  {
     .std-show .details .attribute .label {
         width: 8em;
+    }
+    .std-show .details .attribute .timeframe {
+        width: 65%;
+
+        text-align: left;
+    }
+    .std-show .details .attribute .timeframe .time {
+        display: inline-block;
+        width: 7.5em;
+
+        text-align: center;
+
+        vertical-align: middle;
+    }
+    .std-show .details .attribute .timeframe .single-line {
+        display: inline-block;
+    }
+    .std-show .details .attribute .timeframe .multi-line {
+        display: none;
+    }
+    .std-show .association .notice {
+        width: 50%;
     }
 }
 @media screen and (min-width: 600px)  {
@@ -163,5 +222,8 @@
         max-width: 80%;
 
         margin: .3em auto;
+    }
+    .std-show .association .notice {
+        width: 40%;
     }
 }

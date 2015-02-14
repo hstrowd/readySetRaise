@@ -48,7 +48,9 @@
     </div>
   </div>
 
+  <% no_events = true %>
   <% if !@fundraiser.events.present.empty? %>
+    <% no_events = false %>
     <div class="association events present">
       <div class="title">Active Events</div>
       <div class="list">
@@ -60,6 +62,7 @@
   <% end %>
 
   <% if !@fundraiser.events.future.empty? %>
+    <% no_events = false %>
     <div class="association events future">
       <div class="title">Upcoming Events</div>
       <div class="list">
@@ -71,6 +74,7 @@
   <% end %>
 
   <% if !@fundraiser.events.past.empty? %>
+    <% no_events = false %>
     <div class="association events past">
       <div class="title">Past Events</div>
       <div class="list">
@@ -78,6 +82,13 @@
           <%= render partial: 'events/list_item', locals: { event: e } %>
         <% end %>
       </div>
+    </div>
+  <% end %>
+
+  <% if no_events %>
+    <div class="association events">
+      <div class="title">Events</div>
+      <div class="notice">No events scheduled yet!</div>
     </div>
   <% end %>
 

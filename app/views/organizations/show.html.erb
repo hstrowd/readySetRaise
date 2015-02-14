@@ -37,7 +37,9 @@
     </div>
   </div>
 
+  <% no_fundraisers = true %>
   <% if !@org.fundraisers.present.empty? %>
+    <% no_fundraisers = false %>
     <div class="association fundraisers present">
       <div class="title">Active Fundraisers (<%= @org.fundraisers.present.count %>)</div>
       <div class="list">
@@ -49,6 +51,7 @@
   <% end %>
 
   <% if !@org.fundraisers.future.empty? %>
+    <% no_fundraisers = false %>
     <div class="association fundraisers future">
       <div class="title">Upcoming Fundraisers (<%= @org.fundraisers.future.count %>)</div>
       <div class="list">
@@ -58,8 +61,9 @@
       </div>
     </div>
   <% end %>
-  
+
   <% if !@org.fundraisers.past.empty? %>
+    <% no_fundraisers = false %>
     <div class="association fundraisers past">
       <div class="title">Completed Fundraisers (<%= @org.fundraisers.past.count %>)</div>
       <div class="list">
@@ -67,6 +71,13 @@
           <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
         <% end %>
       </div>
+    </div>
+  <% end %>
+
+  <% if no_fundraisers %>
+    <div class="association fundraisers">
+      <div class="title">Fundraisers</div>
+      <div class="notice">No fundraisers started yet!</div>
     </div>
   <% end %>
 

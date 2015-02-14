@@ -61,10 +61,23 @@
     width: 97%;
     margin-left: 3%;
 }
-.item .attr.date .value .date {
+.list .item .attr.date .value .date {
     display: inline-block;
 }
-.item .attr.date .value .time {
+.list .item .attr.date .value .time {
+    display: inline-block;
+}
+
+.list .item .attr.pledges .value .percent {
+    display: inline-block;
+}
+.list .item .attr.pledges .value .total {
+    display: inline-block;
+}
+.list .item .attr.pledges .value .target {
+    display: inline-block;
+}
+.list .item .attr.pledges .value .count {
     display: inline-block;
 }
 

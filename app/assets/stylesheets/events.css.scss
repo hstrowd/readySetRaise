@@ -7,143 +7,6 @@
 //= require pickdate/default.time
 
 
-.event-form .field input.datetime {
-    display: inline-block;
-
-    width: 40%;
-
-    padding: 2%;
-}
-.event-form .field .picker--time .picker__frame {
-    min-width: 180px;
-    max-width: 200px;
-}
-.event-form .field .datetime-separator {
-    display: none;
-}
-
-@media screen and (min-width: 450px)  {
-  .event-form .field input.datetime {
-      display: inline-block;
-
-      width: 35%;
-  }
-  .event-form .field .datetime-separator {
-      display: inline-block;
-
-      width: 10%;
-      max-width: 1em;
-
-      margin: 0 auto;
-
-      text-align: center;
-  }
-}
-
-
-.item.event .attr.pledges .value .percent {
-    display: inline-block;
-}
-.item.event .attr.pledges .value .total {
-    display: inline-block;
-}
-.item.event .attr.pledges .value .target {
-    display: inline-block;
-}
-.item.event .attr.pledges .value .count {
-    display: inline-block;
-}
-
-
-
-
-/**
- *  ==== New Styles ====
- */
-
-#new-event form .description .input textarea {
-    height: 8em;
-}
-
-
-
-
-
-
-/**
- *  ==== Show Styles ====
- */
-
-#event-show .details .attribute.time .timeframe {
-    display: inline-block;
-    width: 60%;
-
-    text-align: center;
-
-    vertical-align: middle;
-}
-#event-show .details .attribute.time .timeframe .time {
-    width: 100%;
-
-    text-align: center;
-}
-#event-show .details .attribute.time .timeframe .time .date {
-    display: inline-block;
-}
-#event-show .details .attribute.time .timeframe .time .time {
-    display: inline-block;
-
-    width: auto;
-}
-#event-show .details .attribute.time .timeframe .single-line {
-    display: none;
-}
-
-#event-show .teams .notice {
-    width: 80%;
-    margin: auto;
-    padding: 1em;
-
-    background-color: #A0CAFF;
-
-    text-align:center;
-    color: #EE6060;
-}
-
-@media screen and (min-width: 500px)  {
-    #event-show .details .attribute.time .timeframe {
-        width: 65%;
-
-        text-align: left;
-    }
-    #event-show .details .attribute.time .timeframe .time {
-        display: inline-block;
-        width: 7.8em;
-
-        text-align: center;
-
-        vertical-align: middle;
-    }
-    #event-show .details .attribute.time .timeframe .single-line {
-        display: inline-block;
-    }
-    #event-show .details .attribute.time .timeframe .multi-line {
-        display: none;
-    }
-    #event-show .teams .notice {
-        width: 50%;
-    }
-}
-
-@media screen and (min-width: 900px)  {
-    #event-show .teams .notice {
-        width: 40%;
-    }
-}
-
-
-
-
 /**
  *  ==== Dashboard Styles ====
  */
@@ -229,17 +92,14 @@
 }
 #event-dashboard .pledge-log .headers .column.donor {
     width: 40%;
-    min-width: 9.5em;
     margin: 1%;
 }
 #event-dashboard .pledge-log .headers .column.team {
     width: 30%;
-    min-width: 7.5em;
     margin: 1%;
 }
 #event-dashboard .pledge-log .headers .column.amount {
     width: 10%;
-    min-width: 4em;
     margin: 1%;
 }
 #event-dashboard .pledge-log .list {
@@ -263,17 +123,14 @@
 }
 #event-dashboard .pledge-log .pledge .attr.donor {
     width: 40%;
-    min-width: 9.5em;
     margin: 1%;
 }
 #event-dashboard .pledge-log .pledge .attr.team {
     width: 30%;
-    min-width: 7.5em;
     margin: 1%;
 }
 #event-dashboard .pledge-log .pledge .attr.amount {
     width: 10%;
-    min-width: 4em;
     margin: 1%;
 }
 

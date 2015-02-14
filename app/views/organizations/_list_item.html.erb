@@ -16,25 +16,24 @@
     <div class="value"><div class="label">Description:</div> <%= org.description %></div>
   </div>
   <div class="attr fundraiser-snapshot">
-    <% if (nextFundraiser = org.fundraisers.first) %> 
-      <% if (nextFundraiser.pledge_start_time < DateTime.now) %>
-        <% if (nextFundraiser.pledge_end_time > DateTime.now) %>
-          <div class="in-progress">
-            <div class="label">Current Fundraiser</div>
-            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
-          </div>
-        <% else %>
-          <div class="completed">
-            <div class="label">Previous Fundraiser</div>
-            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
-          </div>
-        <% end %>
-      <% else %>
-          <div class="upcoming">
-            <div class="label">Upcoming Fundraiser</div>
-            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
-          </div>
-      <% end %>
+    <% if !org.fundraisers.present.empty? %>
+      <% fundraiser = org.fundraisers.present.first %>
+      <div class="present">
+        <div class="label">Current Fundraiser</div>
+        <div class="value"><%= link_to fundraiser.title, fundraiser %></div>
+      </div>
+    <% elsif !org.fundraisers.future.empty? %>
+      <% fundraiser = org.fundraisers.future.first %>
+      <div class="past">
+        <div class="label">Upcoming Fundraiser</div>
+        <div class="value"><%= link_to fundraiser.title, fundraiser %></div>
+      </div>
+    <% elsif !org.fundraisers.past.empty? %>
+      <% fundraiser = org.fundraisers.past.first %>
+      <div class="future">
+        <div class="label">Previous Fundraiser</div>
+        <div class="value"><%= link_to fundraiser.title, undraiser %></div>
+      </div>
     <% end %>
   </div>
 </div>
