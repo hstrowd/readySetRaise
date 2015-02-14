@@ -1,0 +1,40 @@
+/**
+ *  ==== Notification Bar Styles ====
+ **/
+
+#notifications {
+    width: 100%;
+}
+
+#notifications .notice {
+    width: 100%;
+
+    background-color: #E7EB87;
+
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: .9em;
+    text-align: center;
+}
+#notifications .notice .centerer {
+    width: 95%;
+    max-width: 940px;
+
+    padding: .7em 0;
+    margin: 0 auto;
+}
+
+#notifications .alert {
+    width: 100%;
+
+    background-color: #EB8787;
+
+    font-size: .9em;
+    text-align: center;
+}
+#notifications .alert .centerer {
+    width: 95%;
+    max-width: 940px;
+
+    padding: .7em 0;
+    margin: 0 auto;
+}

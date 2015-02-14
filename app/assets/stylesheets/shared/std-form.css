@@ -1,0 +1,201 @@
+/**
+ *  ==== Setup Form Styles ====
+ **/
+
+.std-form .centerer {
+    max-width: 940px;
+    width: 95%;
+}
+
+.std-form .instructions .title {
+    margin: 4% 6%;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.std-form .instructions .description {
+    margin: 4% 2%;
+}
+
+.std-form form {
+    margin: .75em 0;
+}
+.std-form .field {
+    margin: 2% 4%;
+
+    vertical-align: middle;
+}
+.std-form .field .label {
+    display: inline-block;
+    
+    width: 25%;
+    max-width: 150px;
+
+    margin-right: .6em;
+
+    color: #444444;
+    font-size: 0.9em;
+    
+    vertical-align: middle;
+    text-align: right;
+}
+.std-form .field .label .help-text {
+    font-size: .5em;
+}
+.std-form .field .label .field_with_errors {
+    width: 100%;
+}
+.std-form .field .input {
+    display: inline-block;
+
+    width: 60%;
+    max-width: 300px;
+
+    /* To account for the padding in the input field. */
+    margin-right: 1.5em;
+    vertical-align: middle;
+}
+.std-form .field .field_with_errors {
+    display: inline-block;
+
+    width: 100%;
+
+    vertical-align: middle;
+}
+.std-form .field input {
+    width: 100%;
+
+    padding: .75em;
+
+    vertical-align: middle;
+}
+.std-form .field .field_with_errors input {
+    border-color: #EB8787;
+    background-color: #FFBDBD;
+}
+.std-form .field .field_with_errors textarea {
+    border-color: #EB8787;
+    background-color: #FFBDBD;
+}
+.std-form .field textarea {
+    width: 100%;
+    height: 2.5em;
+    max-height: 20em;
+
+    padding: 0.75em;
+
+    vertical-align: middle;
+}
+.std-form .field .info {
+    display: inline-block;
+    position: relative;
+
+    width: 65%;
+
+    margin-left: 28%;    
+    vertical-align: top;
+
+    font-size: .5em;
+}
+.std-form .field .info .icon {
+    display: inline-block;
+    position: absolute;
+
+    width: 1.7em;
+    margin: .3em .1em;
+
+    vertical-align: middle;
+}
+.std-form .field .info .description {
+    display: inline-block;
+
+    max-width: 94%;
+
+    padding: 1%;
+    margin: 1%;
+    margin-left: 2.5em;
+
+    vertical-align: top;
+}
+.std-form .field .info.error .description {
+    margin-left: 1.5em;
+
+    border: .1em solid #EB8787;
+    border-radius: .2em;
+    background-color: #FFBDBD;
+
+    font-size: 2em;
+}
+
+.std-form .actions {
+    display: inherit;
+
+    width: 90%;
+    margin: 1.5em auto;
+
+    text-align: center;
+}
+.std-form .actions .btn {
+    display: inline-block;
+    
+    height: 3em;    
+    padding: .25em .2em;
+
+    background-color: #FFFFFF;
+    border: .12em solid #888888;
+    border-radius: .5em;
+
+    font-size: .75em;
+    font-weight: bold;
+    text-align: center;
+}
+.std-form .actions .btn.submit {
+    width: 35%;
+    min-width: 12em;
+}
+.std-form .actions .btn.cancel {
+    width: 20%;
+    min-width: 5em;
+}
+.std-form .actions .btn:hover {
+    padding: .3em .2em;
+
+    background-color: #A3EB87;
+    border: .18em solid #AAAAAA;
+}
+.std-form .actions .btn.cancel:hover {
+    background-color: #FEA8A8;
+    border: .18em solid #999999;
+}
+
+@media screen and (min-width: 600px)  {
+    .std-form .instructions .title {
+        margin: .5em 1.5em;
+    }
+    .std-form .instructions .description {
+        margin: .5em;
+    }
+    .std-form .field {
+        margin: 1% 2%;
+    }
+    .std-form .field .input {
+        width: 40%;
+    }
+    .std-form .field .info {
+        display: inline-block;
+    
+        width: 20%;
+        height: 2em;
+        overflow-y: visible;
+    
+        margin-left: 0;
+    }
+    .std-form .field .info .description {
+        display: none;
+    }
+    .std-form .field .info:hover .description {
+        display: inline-block;
+    }
+    .std-form .actions {
+        width: 60%;
+    }
+}

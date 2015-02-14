@@ -1,0 +1,381 @@
+/**
+ *  ==== Page Header Styles ====
+ **/
+
+#header {
+    position: fixed;
+    top: 0px;
+
+    width: 100%;
+    height: 4em;
+
+    /* Required to be above the Slick carousels. */
+    z-index: 99;
+    
+    background-color: rgba(255,255,255,0.80);
+
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: .9em;
+}
+
+#header .centerer {
+    width: 100%;
+    max-width: 940px;
+    height: 100%;
+
+    text-align: center;
+}
+
+#header .main-logo {
+    display: inline-block;
+
+    width: 50%;
+    max-width: 300px;
+    height: 100%;
+}
+#header .main-logo img {
+    display: inline-block;
+
+    max-width: 95%;
+
+    vertical-align: middle;
+}
+
+#header .controls {
+    display: none;
+}
+
+#header .menu {
+    display: inline-block;
+
+    width: 4em;
+    height: 100%;
+}
+#header .menu .vert-centerer {
+}
+#header .menu-btn {
+    display: inline-block;
+    
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+
+    background-color: #DDDDDD;
+}
+#header .menu-btn:hover {
+    cursor: pointer;
+
+    background-color: #BBBBBB;
+}
+#header .menu:hover .menu-btn {
+    background-color: #CCCCCC;
+}
+#header .menu-btn img {
+    display: inline-block;
+    
+    width: 55%;
+    min-width: 2em;
+    height: 55%;
+    min-height: 2em;
+
+    vertical-align: middle;
+}
+#header .menu .menu-dropdown {
+    position: fixed;
+    display: none;
+
+    min-width: 9em;
+
+    background-color: #CCCCCC;
+}
+#header .menu:hover .menu-dropdown {
+    display: initial;
+}
+/**
+ * The centerer is only needed when all links are being displayed in the header.
+ * Otherwise it just ends up getting in the way.
+ **/
+#header .menu-dropdown .vert-centerer {
+    display: none;
+}
+#header .menu-dropdown a {
+    color: #666666;
+    text-decoration: none;
+}
+#header .menu-dropdown a:hover {
+        color: #888888;
+}
+#header .menu-dropdown .nav-item {
+    min-height: 1.5em;
+    padding: .5em;
+}
+#header .menu-dropdown .nav-item:hover {
+    background-color: #BCFFA2;
+}
+
+#header .menu-dropdown .btn {
+    padding: initial;
+    margin: initial;
+
+    background-color: none;
+    border: none;
+    border-radius: initial;
+
+    color: initial;
+}
+
+#header .menu.profile-nav {
+    float: left;
+}
+#header .menu.primary-nav {
+    float: right;
+}
+#header .profile-nav .menu-dropdown {
+    left: 0;
+}
+#header .primary-nav .menu-dropdown {
+    right: 0;
+}
+
+
+#header .profile-nav .profile-intro, #header .profile-nav .profile-splitter {
+    display:none;
+}
+
+@media screen and (max-width: 700px)  {
+    /* This will simply not display right at these resolutions. */
+    #header .login {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 700px)  {
+    #header {
+        height: 5em;
+    }
+
+    #header .main-logo {
+        float:left;
+        width: 32%;
+    }
+    #header .centerer {
+        width: 97%;
+    }
+
+    #header .menu {
+        display: inline-block;
+
+        width: initial;
+    }
+    #header .menu.profile-nav, #header .menu.primary-nav {
+        float: right;
+    }
+    #header .menu .menu-btn {
+        display: none;
+    }
+    #header .menu-dropdown .vert-centerer {
+        display: inline-block;
+    }
+    #header .menu-dropdown .nav-item {
+        height: 100%;
+    }
+
+    #header .menu.primary-nav .menu-dropdown {
+        position: initial;
+        display: inline-block;
+        float: none;
+
+        height: 100%;
+        width: initial;
+
+        background-color: transparent;
+    }
+    #header .menu.primary-nav .menu-dropdown .nav-items {
+        display: inline-block;
+
+        height: 80%;
+    }
+    #header .menu.primary-nav .menu-dropdown a {
+        display: inline-block;
+
+        height: 100%;
+
+        background-color: transparent;
+    }
+    #header .menu.primary-nav .menu-dropdown .nav-item {
+        height: 100%;
+
+        margin: 0 .2em;
+        padding: 0 .3em;
+    }
+
+    #header .controls {
+        display: inline-block;
+
+        width: 64%;
+
+        text-align: right;
+    }
+
+    #header .menu.profile-nav {
+        position: relative;
+
+        width: 6em;
+        height: 100%;
+    }
+    #header .profile-nav .welcome {
+        display: inline-block;
+
+        margin: 2% 0;
+        vertical-align: middle;    
+
+        font-size: .6em;
+        text-align: center;
+    }
+
+    #header .profile-nav .profile-splitter {
+        display: block;
+
+        height: 50%;
+    }
+
+    #header .menu.profile-nav .profile-intro {
+        display: block;
+
+        width: 100%;
+        height: 100%;
+    }
+    #header .menu.profile-nav .profile-intro:hover {
+        background-color: #BCFFA2;
+        cursor: pointer;
+    }
+    #header .menu.profile-nav .welcome .account-name {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    
+        font-size: 1.66em;
+    }
+    #header .menu.profile-nav .profile-intro:hover + .menu-dropdown {
+        display: initial;
+    }
+
+    #header .menu.profile-nav .menu-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: -6em;
+
+        width: 12em;
+    }
+    #header .menu.profile-nav .menu-dropdown:hover {
+        display: initial;
+    }
+    #header .menu.profile-nav .menu-dropdown .vert-centerer {
+        display: none;
+    }
+    #header .menu.profile-nav .menu-dropdown .nav-items {
+        display: inline-block;
+
+        width: 100%;
+
+        text-align: center;
+    }
+    #header .profile-nav .nav-items .nav-item {
+        height: initial;
+    }
+
+    #header .profile-nav .acct-btn {
+        display: inline-block;
+        width: 90%;
+        vertical-align: middle;
+    }
+    #header .profile-nav .acct-btn a {
+        display: inline-block;
+
+        width: 100%;
+    }
+    #header .profile-nav .btn {
+        display: inline-block;
+        
+        width: 90%;
+        padding: .3em 0;
+        margin: .15em .05em;
+    
+        border-radius: .5em;
+    
+        text-align: center;
+    }
+    #header .profile-nav .btn:hover {
+        display: inline-block;
+        
+        padding: .25em 0;
+        margin: .15em 0;
+    }
+    #header .profile-nav a {
+        color: #666666;
+        text-decoration: none;
+    }
+    #header .profile-nav a:hover {
+        color: #222222;
+        text-decoration: underline;
+    }
+    
+    #header .login {
+        display: none;
+        
+        height: 2.2em;
+    
+        background-color: #A3EB87;
+    
+        font-size: .8em;
+    }
+    #header .login .align-helper {
+        width: 95%;
+        max-width: 920px;
+    
+        margin: 0 auto;
+    
+        text-align:right;
+    }
+    
+    #header .login .field {
+        display:inline-block;
+    
+        margin: .2em .25em;
+    }
+    #header .login .field .label {
+        display:inline-block;
+    
+        margin: 0 .15em;
+    }
+    #header .login input {
+        display: inline-block;
+    
+        padding: .15em;
+    }
+    
+    #header .login .actions {
+        display:inline-block;
+    }
+    #header .login .actions input.submit {
+        display: inline-block;
+        
+        width: 5em;
+        height: 2em;
+        padding: .15em .1em;
+        margin: .05em .1em;
+    
+        background-color: #FFFFFF;
+        border: .1em solid #888888;
+        border-radius: .5em;
+    
+        text-align: center;
+    }
+    #header .login .actions input.submit:hover {
+        background-color: #A0CAFF;
+        border: .1em solid #666666;
+    }
+    
+}
