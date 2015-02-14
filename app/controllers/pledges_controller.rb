@@ -28,8 +28,7 @@ private
 
   def is_valid_team?(team_id)
     if team_id && (team = Team.find_by_id(team_id))
-      members = team.event.fundraiser.organization.members
-      return true if members.to_a.index { |user| user.id == current_user.id }
+      return true
     end
 
     flash[:alert] = 'Please select the organization for which you\'d like to submit a new pledge.'

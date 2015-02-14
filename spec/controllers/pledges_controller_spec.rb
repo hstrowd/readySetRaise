@@ -37,9 +37,10 @@ RSpec.describe PledgesController, :type => :controller do
         end
 
         describe "when current user is not member of org" do
-          it "redirects to orgs index" do
+          it "renders the new template" do
             get :new, team_id: @team.id
-            expect(response).to redirect_to organizations_path
+
+            expect(response).to render_template :new
           end
         end
       end
@@ -81,7 +82,7 @@ RSpec.describe PledgesController, :type => :controller do
           end
 
           describe "when valid attributes are provided" do
-            it "creates a new event" do
+            it "creates a new pledge" do
               expect {
                 post :create, pledge: {
                   team_id: @team.id,
@@ -114,14 +115,17 @@ RSpec.describe PledgesController, :type => :controller do
         end
 
         describe "when the current user is not member of org" do
-          it "redirect to orgs index" do
-            expect {
+          describe "when valid attributes are provided" do
+            it "creates a new pledge" do
+              expect {
                 post :create, pledge: {
                   team_id: @team.id,
                   amount: 10
                 }
-            }.to_not change{ Pledge.count }
-            expect(response).to redirect_to organizations_path
+              }.to change{ Pledge.count }.by 1
+
+              expect(response).to redirect_to @team
+            end
           end
         end
       end
