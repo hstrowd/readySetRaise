@@ -40,7 +40,8 @@
     display: inline-block;
 
     width: 10em;
-    max-width: 40%;
+
+    vertical-align: middle;
 }
 .std-show .controls .public {
     display: inline-block;
@@ -52,7 +53,8 @@
     display: inline-block;
 
     width: 10em;
-    max-width: 100%;
+
+    vertical-align: middle;
 }
 
 .std-show .details {
