@@ -25,6 +25,9 @@
                  model: resource, 
                  attr: :phone_number
                }) %>
+    <% content_for 'email_field' do %>
+      <%= f.email_field :email %>
+    <% end %>
     <%= render(partial: "shared/form_field", 
                locals: { 
                  form: f, 
