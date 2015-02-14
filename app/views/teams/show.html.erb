@@ -55,7 +55,33 @@
     <% end %>
   </div>
 
-  <!-- TODO: Add a pledge log -->
-  <div class="pledge-log">
+  <div class="association pledges">
+    <div class="title">Pledges</div>
+    <% if !@team.pledges.empty? %>
+      <div class="table">
+        <div class="row header">
+          <div class="attr time">Time</div>
+          <div class="attr donor">Donor</div>
+          <div class="attr amount">
+            <span class="full">Amount</span>
+            <span class="abbreviated">Amt</span>
+          </div>
+        </div>
+        <% @team.pledges.each do |p| %>
+          <div class="row entry">
+            <div class="attr time"><%= p.created_at.iso8601() %></div>
+            <div class="attr donor"><%= p.donor.full_name %></div>
+            <div class="attr amount"><%= ('%.2f' % p.amount) %></div>
+          </div>
+        <% end %>
+      </div>
+      <script>
+        $(function() {
+          convertTimeValuesToLocal('#team-show .pledges .row.entry .attr.time');
+        });
+      </script>
+    <% else %>
+      <div class="notice">No pledges received yet.</div>
+    <% end %>
   </div>
 </div>

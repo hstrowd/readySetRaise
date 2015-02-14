@@ -16,7 +16,6 @@ class EventMailer < ApplicationMailer
       return
     end
 
-    # TODO: Update this to allow clients to specify their own mail structure.
     mail(to: @user.email, subject: "#{event.title} - Pledge Recap")
   end
 end
