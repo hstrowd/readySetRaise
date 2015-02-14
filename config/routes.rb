@@ -21,7 +21,8 @@ Rails.application.routes.draw do
                      :skip => [:passwords]
 
   devise_scope :user do
-    get "/users/:id", to: "users/registrations#show", as: 'show_user'
+    # Note: This view has not yet been created.
+#    get "/users/:id", to: "users/registrations#show", as: 'show_user'
 
     # Password Reset support.
     get "/users/password/reset/new" => "users/password_resets#new"

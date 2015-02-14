@@ -1,38 +1,73 @@
 <div id="account-update" class="std-form">
   <div class="centerer">
     <div class="instructions">
-      <div class="title">Update Account Details</div>
+      <div class="title">Account Details</div>
       <div class="description">Use the fields below to update your account details.</div>
     </div>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-      <%= render(partial: "shared/form_field", 
-                 locals: { 
-                   form: f, 
-                   model: resource, 
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: resource,
                    attr: :first_name
                  }) %>
-      <%= render(partial: "shared/form_field", 
-                 locals: { 
-                   form: f, 
-                   model: resource, 
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: resource,
                    attr: :last_name
                  }) %>
-      <%= render(partial: "shared/form_field", 
-                 locals: { 
-                   form: f, 
-                   model: resource, 
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: resource,
                    attr: :phone_number
                  }) %>
-      <%= render(partial: "shared/form_field", 
-                 locals: { 
-                   form: f, 
-                   model: resource, 
+      <% content_for 'email_field' do %>
+        <%= f.email_field :email %>
+      <% end %>
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: resource,
                    attr: :email
                  }) %>
-  
-      <div><%= f.submit "Update", class: :submit %></div>
+      <% content_for 'current_password_field' do %>
+        <%= f.password_field :current_password %>
+      <% end %>
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: resource,
+                   attr: :current_password
+                 }) %>
+      <% content_for 'password_field' do %>
+        <%= f.password_field :password %>
+      <% end %>
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: resource,
+                   attr: :password,
+                   field_label: 'New password',
+                   info: 'Leave blank to not remain unchanged.'
+                 }) %>
+      <% content_for 'password_confirmation_field' do %>
+        <%= f.password_field :password_confirmation %>
+      <% end %>
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: resource,
+                   attr: :password_confirmation,
+                   field_label: 'New password confirmation'
+                 }) %>
+
+      <div class="actions">
+        <%= f.submit 'Update', class: [:btn, :submit] %>
+      </div>
 
     <% end %>
 

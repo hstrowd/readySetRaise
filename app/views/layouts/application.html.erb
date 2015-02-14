@@ -33,7 +33,7 @@
                 <div class="vert-centerer"></div>
                 <div class="welcome">
                   Welcome back, 
-                  <div class="account-name"><%= link_to current_user.first_name, show_user_path(current_user.id) %></div>
+                  <div class="account-name"><%= link_to current_user.first_name, edit_user_registration_path(current_user.id) %></div>
                 </div>
               </div>
             <% else %>

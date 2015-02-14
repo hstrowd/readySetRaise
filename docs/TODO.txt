@@ -30,14 +30,13 @@ Use Cases:
 
 
 Features:
- - Finish user account page.
- - Setup support@teamraising.org inbox.
- - Shutdown dev SMTP domain on mailgun
- - Test on many browsers and devices.
- - Create a "Take a Tour" page
+ - Create a "Take a Tour" page.
  - Figure out what to do about organization images.
+
  - Add support for deleting all types of records.
+ - Setup support@teamraising.org inbox.
  - Fix footer stub.
+ - Test on many browsers and devices.
 
  - Push v1 live
 

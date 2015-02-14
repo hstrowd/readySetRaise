@@ -107,37 +107,42 @@ RSpec.describe Users::RegistrationsController do
   # ======== Show Action ========
 
   describe "GET show" do
-    describe "when logged in" do
-      before :each do
-        @current_user = create :user
-        sign_in @current_user
-      end
-
-      describe "when requesting current user's account" do
-        it "renders show template" do
-          get :show, id: @current_user.id
-          expect(response).to render_template :show
-        end
-      end
-
-      describe "when requesting account other than current user's" do
-        before :each do
-          @requested_user = create :user
-        end
-
-        it "redirects to current user's account" do
-          get :show, id: @requested_user.id
-          expect(response).to redirect_to show_user_path(@current_user)
-        end
-      end
+    it "should not be routable" do
+      user = create :user
+      expect(:show => '/users/#{user.id}').not_to be_routable
     end
 
-    describe "when not logged in" do
-      it "redirects to sign in form" do
-        get :show, id: 1
-        expect(response).to redirect_to new_user_session_path
-      end
-    end
+#    describe "when logged in" do
+#      before :each do
+#        @current_user = create :user
+#        sign_in @current_user
+#      end
+#
+#      describe "when requesting current user's account" do
+#        it "renders show template" do
+#          get :show, id: @current_user.id
+#          expect(response).to render_template :show
+#        end
+#      end
+#
+#      describe "when requesting account other than current user's" do
+#        before :each do
+#          @requested_user = create :user
+#        end
+#
+#        it "redirects to current user's account" do
+#          get :show, id: @requested_user.id
+#          expect(response).to redirect_to show_user_path(@current_user)
+#        end
+#      end
+#    end
+#
+#    describe "when not logged in" do
+#      it "redirects to sign in form" do
+#        get :show, id: 1
+#        expect(response).to redirect_to new_user_session_path
+#      end
+#    end
   end
 
 
@@ -225,6 +230,60 @@ RSpec.describe Users::RegistrationsController do
           }
 
           expect(response).to render_template :edit
+        end
+      end
+
+      describe "when a new password is specified" do
+        describe "when the new password and confirmation don't match" do
+          it "rerenders the edit template" do
+            put :update, user: {
+              password: 'abcd12345',
+              password_confirmation: 'zyxw54321',
+              current_password: 'abcd1234'
+            }
+
+            updated_user = User.find @current_user.id
+            expect(updated_user.encrypted_password).to eq @current_user.encrypted_password
+
+            expect(response).to render_template :edit
+          end
+        end
+
+        describe "when the new password and confirmation match" do
+          it "updates the user's password" do
+            put :update, user: {
+              password: 'abcd12345',
+              password_confirmation: 'abcd12345',
+              current_password: 'abcd1234'
+            }
+
+            updated_user = User.find @current_user.id
+            expect(updated_user.encrypted_password).to_not eq @current_user.encrypted_password
+
+            expect(response).to redirect_to root_url
+          end
+        end
+      end
+
+      describe "when a new email is specified" do
+        it "updates the user's email and sends a new confirmation email" do
+          ActionMailer::Base.deliveries.clear
+          put :update, user: {
+            email: 'new@email.com',
+            current_password: 'abcd1234'
+          }
+
+          updated_user = User.find @current_user.id
+          expect(updated_user.email).to eq @current_user.email
+          expect(updated_user.unconfirmed_email).to eq 'new@email.com'
+
+          # Sends a confirmation to the new email
+          expect(ActionMailer::Base.deliveries.count).to eq 1
+          confirm_email = ActionMailer::Base.deliveries[0]
+          expect(confirm_email.to.count).to eq 1
+          expect(confirm_email.to[0]).to eq updated_user.unconfirmed_email
+
+          expect(response).to redirect_to root_url
         end
       end
     end
