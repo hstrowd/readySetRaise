@@ -6,7 +6,7 @@ Thanks so much for participating in the <%= @event.title %> event, supporting ou
 Below is a list of the pledges you made at this event:
 
 <% @pledges.each do |pledge| %>
-  - <%= pledge.created_at %>: $<%= pledge.amount %> (for team <%= pledge.team.name %>)
+  - <%= humanize_time(pledge.created_at) %>: $<%= pledge.amount %> for team <%= pledge.team.name %>
 <% end %>
 
 This brings your total pledge amount to $<%= @pledges.sum('amount') %>. Please visit our donation page at http://www.google.com/ to complete this donation and fulfill your pledge.

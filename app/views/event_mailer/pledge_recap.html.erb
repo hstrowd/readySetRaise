@@ -14,12 +14,20 @@
 
       <p>Below is a list of the pledges you made at this event:</p>
 
-      <!-- TODO: Put this into a table. -->
-      <ul>
+      <table style="width: 95%; margin: 1em auto; text-align:center;">
+        <tr style="font-size: 1.1em">
+          <td>Time</td>
+          <td>Team Supported</td>
+          <td>Amount</td>
+        </tr>
         <% @pledges.each do |pledge| %>
-          <li><%= pledge.created_at %>: $<%= pledge.amount %> (for team <%= pledge.team.name %>)</li>
+          <tr style="font-size: 0.8em">
+            <td><%= humanize_time(pledge.created_at) %></td>
+            <td><%= pledge.team.name %></td>
+            <td>$<%= ('%.2f' % pledge.amount) %></td>
+          </tr>
         <% end %>
-      </ul>
+      </table>
 
       <p>This brings your total pledge amount to $<%= @pledges.sum('amount') %>. Please visit <a href="http://www.google.com/">our donation page</a> to complete this donation and fulfill your pledge.</p>
 
