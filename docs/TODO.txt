@@ -38,6 +38,7 @@ Features:
  - Test on many browsers and devices.
  - Create a "Take a Tour" page
  - Figure out what to do about organization images.
+ - Add support for deleting all types of records.
  - Clean up post event recap email
  - Allow users to review their donations both on a per-event basis and globally.
  - Create a Business Plan powerpoint/document (https://www.councilofnonprofits.org/tools-resources/business-planning-nonprofits)
@@ -48,6 +49,7 @@ Features:
  - Allow organization members to hand craft pledge recap email after the event.
  - Add support for resending confirmation emails.
  - Allow anonymous pledges.
+ - Add support for having other users become members of an organization.
 
 
 
