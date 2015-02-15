@@ -85,7 +85,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'teamraising.com', port: 443 }
 
   # The base URL used for any assets included in emails.
-  config.action_mailer.asset_host = "https://teamraising.org"
+  config.action_mailer.asset_host = "http://teamraising.org"
 end
 
 ActionMailer::Base.smtp_settings = {
