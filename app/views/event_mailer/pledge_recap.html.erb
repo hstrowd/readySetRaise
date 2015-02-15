@@ -10,7 +10,7 @@
   </tr>
   <tr>
     <td style="padding: 20px 0 0 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-      <p>Thanks so much for participating in the <%= @event.title %> event, supporting our <%= @event.fundraiser.title %> fundraiser. Your support is greatly valued and appreciated.</p>
+      <p>Thanks so much for participating in the <%= @event.title %>, supporting our <%= @event.fundraiser.title %>. Your support is greatly valued and appreciated.</p>
 
       <p>Below is a list of the pledges you made at this event:</p>
 
@@ -29,7 +29,7 @@
         <% end %>
       </table>
 
-      <p>This brings your total pledge amount to $<%= @pledges.sum('amount') %>. Please visit <a href="http://www.google.com/">our donation page</a> to complete this donation and fulfill your pledge.</p>
+      <p>This brings your total pledge amount to $<%= ('%.2f' % @pledges.sum('amount')) %>. Please visit <a href="http://www.google.com/">our donation page</a> to complete this donation and fulfill your pledge.</p>
 
       <p>Thanks again for joining us and supporting this great cause.</p>
 

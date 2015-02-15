@@ -4,7 +4,7 @@ class Team < ActiveRecord::Base
   has_one :organization, :through => :event
   has_many :pledges
 
-  validates :name, :event, :presence => true
+  validates :name, :event, :pledge_target, :presence => true
   validates_numericality_of :pledge_target, unless: "pledge_target.nil?"
 
   def pledge_total

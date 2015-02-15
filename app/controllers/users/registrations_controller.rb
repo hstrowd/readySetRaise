@@ -3,21 +3,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/:id
-  def show
-    if !current_user
-      redirect_to new_user_session_path
-      return
-    end
-
-    if(current_user.id != params[:id].to_i)
-      flash[:alert] = 'Invalid Request'
-      redirect_to action: :show, id: current_user.id
-      return
-    end
-
-    @user = current_user
-    @orgs = current_user.organizations
-  end
+  # def show
+  #   if !current_user
+  #     redirect_to new_user_session_path
+  #     return
+  #   end
+  #
+  #   if(current_user.id != params[:id].to_i)
+  #     flash[:alert] = 'Invalid Request'
+  #     redirect_to action: :show, id: current_user.id
+  #     return
+  #   end
+  #
+  #   @user = current_user
+  #   @orgs = current_user.organizations
+  # end
 
   # GET /resource/sign_up
   # def new

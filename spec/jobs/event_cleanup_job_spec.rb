@@ -66,7 +66,13 @@ RSpec.describe EventCleanupJob do
 
         ActionMailer::Base.deliveries.clear
 
+        job_start_time = DateTime.now
         EventCleanupJob.perform
+        job_end_time = DateTime.now
+
+        post_event_1 = Event.find @event_1.id
+        expect(post_event_1.cleanup_time).to be >= job_start_time
+        expect(post_event_1.cleanup_time).to be <= job_end_time
 
         expect(ActionMailer::Base.deliveries.count).to eq 3
 
@@ -78,6 +84,21 @@ RSpec.describe EventCleanupJob do
 
           expect(delivery.subject).to eq email_expectations[:subject]
         end
+      end
+    end
+    describe 'when an event has not yet ended' do
+      before :each do
+        @event = create :event, {
+          start_time: (DateTime.now - 3.hours),
+          end_time: (DateTime.now + 1.hour)
+        }
+      end
+
+      it "does not cleanup the event" do
+        EventCleanupJob.perform
+
+        post_event = Event.find @event.id
+        expect(post_event.cleanup_time).to be_nil
       end
     end
   end

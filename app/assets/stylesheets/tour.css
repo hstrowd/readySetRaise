@@ -1,0 +1,77 @@
+// Place all the styles related to the Tour page here.
+// They will automatically be included in application.css.
+//
+//= require fancybox/jquery.fancybox
+
+#tour .section {
+    width: 100%;
+}
+#tour .section .body {
+    width: 95%;
+    max-width: 50em;
+    margin: 0 auto;
+    padding: 2%;
+
+    text-align: left;
+
+    color: #444444;
+}
+
+#tour .section .body .screenshot {
+    display: inline-block;
+    
+    width: 30%;
+    margin: 1%;
+
+    vertical-align: middle;
+}
+#tour .section .body .screenshot img {
+    max-width: 90%;
+    max-height: 90%;
+    
+    padding: 5%;
+
+    background-color: #FFFFFF;
+    box-shadow: .3em .3em .6em #AAAAAA;
+}
+#tour .section .body .text {
+    display: inline-block;
+
+    width: 65%;
+    margin: 1%;
+
+    vertical-align: middle;
+}
+
+#tour .section .title {
+    width: 80%;
+    margin: .4em auto;
+
+    text-align: center;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 1.7em;
+    color: #000000;
+}
+#tour .section .title .subtitle {
+    font-size: .6em;
+}
+
+#tour .section .description {
+    margin: .5em;
+}
+
+@media screen and (min-width: 800px)  {
+    #tour .section .content {
+        width: 55%;
+    }
+}
+
+
+
+
+#tour .section.step-1 .description .org-url {
+    font-style: italic;
+}
+#tour .section.step-1 .description .custom-key {
+    font-weight: bold;
+}

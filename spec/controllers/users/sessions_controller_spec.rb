@@ -31,29 +31,29 @@ RSpec.describe Devise::SessionsController do
   describe "POST create" do
     describe "when not logged in" do
       describe "when proper credentials are provided" do
-        describe "when the account requires confirmation" do
-          pending "rejects the request" do
-            user = create :user
-
-            #expect(user.active_for_authentication?).to eq false
-
-            # Note: This cannot be set as part of the create because it gets overwritten.
-            user.confirmation_sent_at = (DateTime.now - 3.months)
-            user.save!
-
-            #expect(user.active_for_authentication?).to eq true
-
-            post :create, user: {
-              email: user.email,
-              password: 'abcd1234'
-            }
-
-            # binding.pry
-
-            expect(subject.current_user).to be_nil
-            expect(response).to render_template :new
-          end
-        end
+#        describe "when the account requires confirmation" do
+#          it "rejects the request" do
+#            user = create :user
+#
+#            #expect(user.active_for_authentication?).to eq false
+#
+#            # Note: This cannot be set as part of the create because it gets overwritten.
+#            user.confirmation_sent_at = (DateTime.now - 3.months)
+#            user.save!
+#
+#            #expect(user.active_for_authentication?).to eq true
+#
+#            post :create, user: {
+#              email: user.email,
+#              password: 'abcd1234'
+#            }
+#
+#            # binding.pry
+#
+#            expect(subject.current_user).to be_nil
+#            expect(response).to render_template :new
+#          end
+#        end
 
         describe "when the account has been confirmed" do
           it "logs the user in" do

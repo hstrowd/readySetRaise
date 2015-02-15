@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   # Allows organizations to be looked up by key.
   get 'orgs/:url_key' => 'organizations#show', as: 'show_org'
 
+  get 'tour' => 'home#tour'
   get 'about' => 'home#about'
 
   # You can have the root of your site routed with "root"

@@ -30,15 +30,17 @@ Use Cases:
 
 
 Features:
- - Create a "Take a Tour" page.
  - Figure out what to do about organization images.
 
- - Add support for deleting all types of records.
  - Setup support@teamraising.org inbox.
  - Fix footer stub.
  - Test on many browsers and devices.
 
  - Push v1 live
+
+ - Update dashboard graph to render properly when there are no pledges.
+ - Add support for deleting all types of records.
+ - Update teams to not support pledging after the event ends.
 
  - Allow users to review their donations both on a per-event basis and globally.
  - Create a Business Plan powerpoint/document (https://www.councilofnonprofits.org/tools-resources/business-planning-nonprofits)

@@ -1,0 +1,117 @@
+<div id="tour">
+  <div class="section step-1">
+    <div class="body">
+      <!-- TODO: Allow maximized version of these images to be viewed. -->
+      <div class="screenshot">
+        <%= link_to(image_tag("tour/1-registerOrg.png", alt: 'Organization Registration Form'),
+                    image_path("tour/1-registerOrg.png"),
+                    rel: 'step-1-screenshot',
+                    class: :fancybox) %>
+      </div>
+      <div class="text">
+        <div class="title">Step 1: Register your Organization</div>
+        <div class="description">
+          To get started, you'll want to register your organization in the system to capture all the information required to manage your fundraisers. A URL with a custom "URL key" will be generated with the format <span class="org-url">http://teamraising.org/orgs/<span class="custom-key">url-key</span></span>. Sharing this with your team members and donors will allow them to stay up to speed on all your fundraising activities.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section step-2">
+    <div class="body">
+      <div class="screenshot">
+        <%= link_to(image_tag("tour/2-launchFundraiser.png", alt: 'Fundraiser Planning Form'),
+                    image_path("tour/2-launchFundraiser.png"),
+                    class: :fancybox) %>
+      </div>
+      <div class="text">
+        <div class="title">Step 2: Plan a Fundraiser</div>
+        <div class="description">
+          The next step is to setup the fundraiser you'll be running. This will inform everyone of the purpose and other relevant details for the fundraiser, as well as highlighting the window of time during which pledges will be accepted. Fundraisers can span a long period of time and include a number of different events, or they can be quite brief, including only a single event. The choice is totally up to you.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section step-3">
+    <div class="body">
+      <div class="screenshot">
+        <%= link_to(image_tag("tour/3-scheduleEvent.png", alt: 'Event Scheduling Form'),
+                    image_path("tour/3-scheduleEvent.png"),
+                    class: :fancybox) %>
+      </div>
+      <div class="text">
+        <div class="title">Step 3: Schedule Events</div>
+        <div class="description">
+          For each event in the fundraiser, you'll create a separate record to capture the necessary information for your attendees. This is where you can record the date and time for the event, as well as other helpful information like the structure for the event, transportation options, etc.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section step-4">
+    <div class="body">
+      <div class="screenshot">
+        <%= link_to(image_tag("tour/4-createTeams.png", alt: 'Team Setup Form'),
+                    image_path("tour/4-createTeams.png"),
+                    class: :fancybox) %>
+      </div>
+      <div class="text">
+        <div class="title">Step 4: Assign Teams</div>
+        <div class="description">
+          Finally, you'll need to identify the various teams that will be participating in this event. These will be the groups to which donors or attendees submit their pledges. For each team you can set a pledge target, which the system will use to calculate and track their progress.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section step-5">
+    <div class="body">
+      <div class="screenshot">
+        <%= link_to(image_tag("tour/5-watchDashboard.png", alt: 'Event Dashboard'),
+                    image_path("tour/5-watchDashboard.png"),
+                    class: :fancybox) %>
+      </div>
+      <div class="text">
+        <div class="title">
+          Step 5: Party!!
+          <div class="subtitle">(a.k.a. Host the Event)</div>
+        </div>
+        <div class="description">
+          This is where the magic happens! We provide an event dashboard, that graphically highlights the progress of each team in raising pledges during the event. This dashboard automatically updates in realtime as new pledges are submitted. Putting this on display at your event will remind and encourage attendees to support the team of their choosing.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section step-6">
+    <div class="body">
+      <div class="screenshot">
+        <%= link_to(image_tag("tour/6-followUp.png", alt: 'Pledge Recap Email'),
+                    image_path("tour/6-followUp.png"),
+                    class: :fancybox) %>
+      </div>
+      <div class="text">
+        <div class="title">Step 6: Follow-Up with Donors</div>
+        <div class="description">
+          After the event, individuals will need to submit donations directly to your organization in order to fulfill their pledges. To support and remind them of this, we automatically send out a pledge recap email to every individual that submitted a pledge. This email includes a list of all pledges they submitted as well as a link to your donation URL.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(function() {
+    $('.fancybox').fancybox({
+      openEffect  : 'elastic',
+      closeEffect : 'elastic',
+      helpers: {
+        overlay: {
+          locked: false
+        }
+      }
+    });
+  });
+</script>

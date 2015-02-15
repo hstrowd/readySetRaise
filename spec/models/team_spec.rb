@@ -22,15 +22,16 @@ RSpec.describe Team, :type => :model do
       expect(team.errors.keys).to include :event
     end
 
-    it "is invalid if the pledge target is not a number" do
-      team = build :team, pledge_target: '$100'
+    it "is invalid if without a pledge target" do
+      team = build :team, pledge_target: nil
       expect(team).to_not be_valid
       expect(team.errors.keys).to include :pledge_target
     end
 
-    it "is valid even without an pledge target" do
-      team = build :team, pledge_target: nil
-      expect(team).to be_valid
+    it "is invalid if the pledge target is not a number" do
+      team = build :team, pledge_target: '$100'
+      expect(team).to_not be_valid
+      expect(team.errors.keys).to include :pledge_target
     end
   end
 

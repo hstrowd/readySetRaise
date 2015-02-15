@@ -4,7 +4,7 @@
 class EventCleanupJob
   def self.perform
     Rails.logger.info "Starting event cleanup job."
-    completedEvents = Event.where("end_time > ? AND cleanup_time IS NULL", (DateTime.now - 36.hours))
+    completedEvents = Event.where("end_time BETWEEN ? AND CURRENT_TIMESTAMP AND cleanup_time IS NULL", (DateTime.now - 36.hours))
 
     completedEvents.each do |event|
       Rails.logger.info "Cleaning up event #{event.id}."

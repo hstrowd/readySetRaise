@@ -3,7 +3,7 @@ class EventMailer < ApplicationMailer
 
   def pledge_recap(user, event)
     if !event.has_ended?
-      logger.warn "Attempted to send pledge recap to user ${user.id} before event {event.id} ended."
+      logger.warn "Attempted to send pledge recap to user #{user.id} before event #{event.id} ended."
       return
     end
 
@@ -12,7 +12,7 @@ class EventMailer < ApplicationMailer
     @pledges = event.pledges.where(donor: user).order(created_at: :asc)
 
     if @pledges.empty?
-      logger.warn "Attempted to send pledge recap to user ${user.id} for event ${event.id}, but no pledges were found for this user."
+      logger.warn "Attempted to send pledge recap to user #{user.id} for event #{event.id}, but no pledges were found for this user."
       return
     end
 
