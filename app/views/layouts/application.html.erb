@@ -54,6 +54,8 @@
                 </div>
               </div>
             <% end %>
+            <!-- An empty div ensures the dropdown menu always appears below its respective button. -->
+            <div></div>
             <div class="menu-dropdown">
               <div class="vert-centerer"></div>
               <%= render "layouts/account_management" %>
@@ -65,6 +67,8 @@
               <div class="vert-centerer"></div>
               <%= image_tag "menu.png" %>
             </div>
+            <!-- An empty div ensures the dropdown menu always appears below its respective button. -->
+            <div></div>
             <div class="menu-dropdown">
               <div class="vert-centerer"></div>
               <%= render "layouts/primary_navigation" %>
@@ -101,9 +105,7 @@
         <div class="centerer">
           <div class="copyright">Copyright © 2014 Harrison Strowd | All rights reserved.</div>
           <div class="links">
-            <a href="http://www.hstrowd.com" class="first">hstrowd.com</a> | 
-            <a href="http://www.strowd.com">strowd.com</a> | 
-            <a href="http://www.sarrison.com">sarrison.com</a>
+            <a href="http://www.strowd.com">strowd.com</a>
           </div>
         </div>
       </div>

@@ -257,7 +257,7 @@
     
         font-size: 1.66em;
     }
-    #header .menu.profile-nav .profile-intro:hover + .menu-dropdown {
+    #header .menu.profile-nav .profile-intro:hover ~ .menu-dropdown {
         display: initial;
     }
 

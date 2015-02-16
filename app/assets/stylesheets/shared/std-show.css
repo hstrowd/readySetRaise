@@ -70,7 +70,7 @@
     position: relative;
     display: inline-block;
 
-    width: 7em;
+    width: 6em;
     right: 4%;
 
     vertical-align: middle;
@@ -133,6 +133,11 @@
 }
 
 
+@media screen and (min-width: 500px)  {
+    .std-show .details .attribute .label {
+        width: 7em;
+    }
+}
 @media screen and (min-width: 500px)  {
     .std-show .details .attribute .label {
         width: 8em;

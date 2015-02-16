@@ -30,17 +30,20 @@ Use Cases:
 
 
 Features:
- - Setup support@teamraising.org inbox.
- - Fix footer stub.
- - Test on many browsers and devices.
-
  - Push v1 live
 
+ - Update the tour to render properly on mobile devices.
+ - Fix buttons on std forms for iphone viewing.
+ - Prevent keyboard from appearing when time fields are clicked on ios devices.
+
+ - On the team view only show pledge log to org members.
+ - Investigate ChartKick not loading properly
  - Purchase an SSL cert.
  - Update dashboard graph to render properly when there are no pledges.
  - Add support for deleting all types of records.
  - Update teams to not support pledging after the event ends.
 
+ - Setup NewRelic APM
  - Allow users to review their donations both on a per-event basis and globally.
  - Create a Business Plan powerpoint/document (https://www.councilofnonprofits.org/tools-resources/business-planning-nonprofits)
  - File necessary paperwork (https://www.councilofnonprofits.org/tools-resources/how-start-nonprofit and https://www.harborcompliance.com/information/how-to-start-a-non-profit-organization-in-illinois.php)
