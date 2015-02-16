@@ -1,6 +1,16 @@
-<h1>Editing event</h1>
+<div id="event-edit" class="std-form">
+  <div class="centerer">
+    <div class="instructions">
+      <div class="title">Update Event</div>
+      <div class="description">
+        Use the form below to update the details for your event.
+      </div>
+    </div>
 
-<%= render 'form' %>
+    <%= render(partial: 'form', locals: {
+                 action: 'Update',
+                 cancel_path: event_path(@event)
+               }) %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+  </div>
+</div>

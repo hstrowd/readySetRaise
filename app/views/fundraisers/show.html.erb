@@ -1,17 +1,35 @@
-<div id="fundraiser-show">
-  <div class="title">
-    <%= @fundraiser.title %>
-  </div>
-  <div class="subtitle">
-    by <%= link_to @fundraiser.organization.name, @fundraiser.organization %>
+<div id="fundraiser-show" class="std-show">
+
+  <div class="header">
+    <div class="icon">
+      <% if !@fundraiser.organization.logo_url.blank? %>
+        <%= link_to show_org_path(@fundraiser.organization.url_key) do %>
+          <%= image_tag @fundraiser.organization.logo_url %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="text">
+      <div class="title">
+        <%= @fundraiser.title %>
+      </div>
+      <div class="subtitle">
+        by <%= link_to @fundraiser.organization.name, show_org_path(@fundraiser.organization.url_key) %>
+      </div>
+    </div>
   </div>
 
-  <div class="member-controls">
-    <%= link_to new_fundraiser_event_path(@fundraiser) do %>
-      <div class="action btn new-event">Schedule an Event</div>
-    <% end %>
-    <%= link_to edit_fundraiser_path(@fundraiser) do %>
-      <div class="action btn edit-org">Update Fundraiser</div>
+  <div class="controls">
+    <% if @fundraiser.organization.members.include?(current_user) %>
+      <div class="members">
+        <% if !@fundraiser.has_ended? %>
+          <%= link_to new_fundraiser_event_path(@fundraiser) do %>
+            <div class="action btn new-event">Schedule an Event</div>
+          <% end %>
+        <% end %>
+        <%= link_to edit_fundraiser_path(@fundraiser) do %>
+          <div class="action btn edit-fundraiser">Update Fundraiser</div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 
@@ -21,33 +39,68 @@
       <%= @fundraiser.description %>
     </div>
     <div class="attribute pledge-window">
-      <div class="label">Pledges Window: </div>
+      <div class="label">Pledge Window: </div>
       <!-- Note: The from and to times will be shown after they are formatted properly. -->
-      <div class="from-time">
-        From: <div class="start-time" style="display:none;"><%= @fundraiser.pledge_start_time.iso8601() %></div>
-      </div>
-      <div class="to-time">
-        To: <div class="end-time" style="display:none;"><%= @fundraiser.pledge_end_time.iso8601() %></div>
+      <div class="timeframe" style="display:none;">
+        <div class="start time"><%= @fundraiser.pledge_start_time.iso8601() %></div>
+        <div class="single-line">-</div>
+        <div class="multi-line">to</div>
+        <div class="end time"><%= @fundraiser.pledge_end_time.iso8601() %></div>
       </div>
     </div>
   </div>
 
-  <div class="events">
-    <% @fundraiser.events.each do |e| %>
-      <div class="event">
-        <%= link_to e do %>
-          <div class="title"><%= e.title %></div>
+  <% no_events = true %>
+  <% if !@fundraiser.events.present.empty? %>
+    <% no_events = false %>
+    <div class="association events present">
+      <div class="title">Active Events</div>
+      <div class="list">
+        <% @fundraiser.events.present.each do |e| %>
+          <%= render partial: 'events/list_item', locals: { event: e } %>
         <% end %>
-        <div class="description"><%= e.description %></div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+
+  <% if !@fundraiser.events.future.empty? %>
+    <% no_events = false %>
+    <div class="association events future">
+      <div class="title">Upcoming Events</div>
+      <div class="list">
+        <% @fundraiser.events.future.each do |e| %>
+          <%= render partial: 'events/list_item', locals: { event: e } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if !@fundraiser.events.past.empty? %>
+    <% no_events = false %>
+    <div class="association events past">
+      <div class="title">Past Events</div>
+      <div class="list">
+        <% @fundraiser.events.past.each do |e| %>
+          <%= render partial: 'events/list_item', locals: { event: e } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if no_events %>
+    <div class="association events">
+      <div class="title">Events</div>
+      <div class="notice">No events scheduled yet!</div>
+    </div>
+  <% end %>
 
 </div>
 
 
 <script>
   $(function() {
-    setPledgeWindow();
+    convertToLocalTime('#fundraiser-show .pledge-window .start.time');
+    convertToLocalTime('#fundraiser-show .pledge-window .end.time');
+    $('#fundraiser-show .pledge-window .timeframe').show();
   });
 </script>

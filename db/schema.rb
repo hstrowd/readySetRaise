@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012181452) do
+ActiveRecord::Schema.define(version: 20150215173400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141012181452) do
     t.text     "description"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.datetime "cleanup_time"
     t.integer  "fundraiser_id", null: false
     t.integer  "creator_id",    null: false
     t.datetime "created_at"
@@ -57,21 +58,22 @@ ActiveRecord::Schema.define(version: 20141012181452) do
     t.integer  "creator_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logo_url"
   end
 
   add_index "organizations", ["creator_id"], name: "index_organizations_on_creator_id", using: :btree
   add_index "organizations", ["url_key"], name: "index_organizations_on_url_key", unique: true, using: :btree
 
   create_table "pledges", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "donor_id"
     t.integer  "team_id"
     t.float    "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "pledges", ["donor_id"], name: "index_pledges_on_donor_id", using: :btree
   add_index "pledges", ["team_id"], name: "index_pledges_on_team_id", using: :btree
-  add_index "pledges", ["user_id"], name: "index_pledges_on_user_id", using: :btree
 
   create_table "team_members", id: false, force: true do |t|
     t.integer "team_id", null: false

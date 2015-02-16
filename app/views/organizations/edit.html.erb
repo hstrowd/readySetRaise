@@ -1,6 +1,13 @@
-<h1>Editing organization</h1>
+<div id="org-edit" class="std-form">
+  <div class="centerer">
+    <div class="instructions">
+      <div class="title">Update Organization</div>
+      <div class="description">
+        Use the form below to update the details for your organization.
+      </div>
+    </div>
 
-<%= render 'form' %>
+    <%= render(partial: 'form', locals: { action: 'Update', cancel_path: organization_path(@org) }) %>
 
-<%= link_to 'Show', @org %> |
-<%= link_to 'Back', organizations_path %>
+  </div>
+</div>

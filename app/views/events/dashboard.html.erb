@@ -1,0 +1,81 @@
+<%= javascript_include_tag "//code.highcharts.com/highcharts.js", "chartkick" %>
+
+<div id="event-dashboard">
+  <div class="header">
+    <div class="logo">
+      <% if !@event.organization.logo_url.blank? %>
+        <%= link_to show_org_path(@event.organization.url_key) do %>
+          <%= image_tag @event.organization.logo_url %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="text">
+      <div class="title">
+        <%= @event.title %>
+      </div>
+      <div class="subtitle">
+        for <%= link_to @event.fundraiser.title, @event.fundraiser %>
+        by <%= link_to @event.organization.name, show_org_path(@event.organization.url_key) %>
+      </div>
+    </div>
+    <% if !@event.has_started? %>
+      <div class="clock start">
+        Starts in <span id="start-countdown" class="countdown"></span>
+      </div>
+    <% elsif @event.is_active? %>
+      <div class="clock end">
+        Ends in <span id="end-countdown" class="countdown"></span>
+      </div>
+    <% else %>
+      <div class="clock done">
+        Finished!
+      </div>
+    <% end %>
+  </div>
+
+  <div class="event-details">
+    <div class="pledge-breakdown">
+      <div class="title">Pledge Totals per Team</div>
+      <div id="chart-pledge-breakdown">Loading...</div>
+    </div>
+    <div class="pledge-log">
+      <div class="title">Recent Pledges</div>
+      <div class="headers">
+        <div class="column donor">Donor</div>
+        <div class="column team">Team</div>
+        <div class="column amount">Amount</div>
+      </div>
+      <div class="list">
+        <!-- Pledge records get added here dynamically. -->
+      </div>
+    </div>
+  </div>
+
+  <div class="overall">
+    <div class="title">Overall Progress</div>
+    <div class="progress-bar">
+      <div class="pct-complete">
+        <div class="label"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="pledge-item" type="x-tmpl-mustache">
+  <div class="pledge" data-pledge-id="{{ pledgeID }}">
+    <div class="attr donor">{{ donor.firstName }} {{ donor.lastName }}</div>
+    <div class="attr team">{{ team.name }}</div>
+    <div class="attr amount">{{ amount }}</div>
+  </div>
+</script>
+<script>
+  $(document).ready(function() {
+    var template = $('#pledge-item').html();
+    Mustache.parse(template);   // speeds up future uses
+
+    setupCountdown('#start-countdown', '<%= @event.start_time.iso8601() %>');
+    setupCountdown('#end-countdown', '<%= @event.end_time.iso8601() %>');
+
+    setupAutoRefresh(<%= @event.id %>);
+  });
+</script>

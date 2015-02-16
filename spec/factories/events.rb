@@ -2,9 +2,16 @@
 
 FactoryGirl.define do
   factory :event do
-    title "MyString"
-    description "MyText"
-    start_time "2014-10-12 13:11:45"
-    end_time "2014-10-12 13:11:45"
+    title "Test Event"
+    description "Test event's description."
+    start_time { DateTime.now - 1.day }
+    end_time { DateTime.now + 1.day }
+    association :fundraiser
+    association :creator
+
+    # Ensure the creator is a member of the associated org.
+    after :create do |event, evaluator|
+      event.fundraiser.organization.members << event.creator
+    end
   end
 end

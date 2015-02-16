@@ -1,6 +1,16 @@
-<h1>Editing fundraiser</h1>
+<div id="fundraiser-edit" class="std-form">
+  <div class="centerer">
+    <div class="instructions">
+      <div class="title">Update Fundraiser</div>
+      <div class="description">
+        Use the form below to update the details for your fundraiser.
+      </div>
+    </div>
 
-<%= render 'form' %>
+    <%= render(partial: 'form', locals: { 
+                 action: 'Update',
+                 cancel_path: fundraiser_path(@fundraiser)
+               }) %>
 
-<%= link_to 'Show', @fundraiser %> |
-<%= link_to 'Back', fundraisers_path %>
+  </div>
+</div>

@@ -1,8 +1,7 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :team do
-    name "MyString"
-    pledge_target 1.5
+    sequence(:name) { |n| "Test Team #{n}" }
+    pledge_target 15.5
+    association :event
   end
 end

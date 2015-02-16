@@ -11,13 +11,13 @@ RSpec.describe Devise::SessionsController do
     describe "when not logged in" do
       it "renders the new template" do
         get :new
-        expect(response).to render_template("new")
+        expect(response).to render_template :new
       end
     end
 
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
@@ -30,30 +30,72 @@ RSpec.describe Devise::SessionsController do
 
   describe "POST create" do
     describe "when not logged in" do
-      it "logs the user in" do
-        user = create(:user)
-        post :create, user: {
-          email: user.email,
-          password: 'abcd1234'
-        }
+      describe "when proper credentials are provided" do
+#        describe "when the account requires confirmation" do
+#          it "rejects the request" do
+#            user = create :user
+#
+#            #expect(user.active_for_authentication?).to eq false
+#
+#            # Note: This cannot be set as part of the create because it gets overwritten.
+#            user.confirmation_sent_at = (DateTime.now - 3.months)
+#            user.save!
+#
+#            #expect(user.active_for_authentication?).to eq true
+#
+#            post :create, user: {
+#              email: user.email,
+#              password: 'abcd1234'
+#            }
+#
+#            # binding.pry
+#
+#            expect(subject.current_user).to be_nil
+#            expect(response).to render_template :new
+#          end
+#        end
 
-        expect(subject.current_user.email).to eq user.email
+        describe "when the account has been confirmed" do
+          it "logs the user in" do
+            user = create :user
+            post :create, user: {
+              email: user.email,
+              password: 'abcd1234'
+            }
+
+            expect(subject.current_user).to_not be_nil
+            expect(subject.current_user.email).to eq user.email
+          end
+        end
       end
 
-      it "rejects improper passwords" do
-        user = create(:user)
-        post :create, user: {
-          email: user.email,
-          password: 'abcd12345'
-        }
+      describe "when invalid credentials are provided" do
+        it "rejects improper passwords" do
+          user = create :user
+          post :create, user: {
+            email: user.email,
+            password: 'abcd12345'
+          }
 
-        expect(subject.current_user).to be_nil
+          expect(subject.current_user).to be_nil
+          expect(response).to render_template :new
+        end
+
+        it "rejects unknown email" do
+          post :create, user: {
+            email: 'foo@example.com',
+            password: 'abcd12345'
+          }
+
+          expect(subject.current_user).to be_nil
+          expect(response).to render_template :new
+        end
       end
     end
 
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
@@ -67,7 +109,7 @@ RSpec.describe Devise::SessionsController do
   describe "DELETE destroy" do
     describe "when logged in" do
       before :each do
-        @current_user = create(:user)
+        @current_user = create :user
         sign_in @current_user
       end
 
@@ -86,7 +128,6 @@ RSpec.describe Devise::SessionsController do
     describe "when not logged in" do
       it "redirects to the home page" do
         put :destroy
-        # TODO: Find a more maintainable way to assert this redirect location.
         expect(response).to redirect_to root_url
       end
     end

@@ -1,3 +1,55 @@
 // Place all the styles related to the Teams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/**
+ * ==== Show ====
+ **/
+
+#team-show .association.pledges .table {
+    text-align: center;
+}
+#team-show .association.pledges .table .row {
+    margin: 2% auto;
+    padding: 2%;
+
+    max-width: 30em;
+
+    background-color: #A3EB87;
+}
+#team-show .association.pledges .table .row.header {
+    background-color: #A0CAFF;
+}
+#team-show .association.pledges .table .row .attr {
+    display: inline-block;
+
+    margin: 1% auto;
+
+    vertical-align: middle;
+}
+#team-show .association.pledges .table .row .attr.time {
+    width: 35%;
+}
+#team-show .association.pledges .table .row .attr.donor {
+    width: 40%;
+}
+#team-show .association.pledges .table .row .attr.amount {
+    width: 15%;
+}
+
+#team-show .association.pledges .table .row.header .attr.amount .full {
+    display: none;
+}
+
+@media screen and (min-width: 500px)  {
+    #team-show .association.pledges .table .row {
+        margin: .6em auto;
+        padding: .6em;
+    }
+    #team-show .association.pledges .table .row.header .attr.amount .full {
+        display: block;
+    }
+    #team-show .association.pledges .table .row.header .attr.amount .abbreviated {
+        display: none;
+    }
+}

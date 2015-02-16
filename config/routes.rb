@@ -1,21 +1,28 @@
 Rails.application.routes.draw do
 
-  resources :organizations
-  resources :fundraisers do
+  resources :organizations do
+    resources :fundraisers, only: [:new]
+  end
+  resources :fundraisers, except: [:index, :new] do
     resources :events, only: [:new]
-    resources :teams, only: [:new]
-    resources :pledges
   end
 
-  resources :events
-  resources :teams
-  resources :pledges
+  get 'events/:id/dashboard', to: 'events#dashboard', id: /\d+/, as: 'event_dashboard'
+  get 'events/:id/pledge-breakdown', to: 'events#pledge_breakdown', id: /\d+/, as: 'event_pledge_breakdown'
+  resources :events, except: [:index] do
+    resources :teams, only: [:new]
+  end
+  resources :teams, except: [:index] do
+    resources :pledges, only: [:new]
+  end
+  resources :pledges, only: [:create]
 
   devise_for :users, :controllers => { registrations: 'users/registrations' },
                      :skip => [:passwords]
 
   devise_scope :user do
-    get "/users/:id", to: "users/registrations#show", as: 'show_user'
+    # Note: This view has not yet been created.
+#    get "/users/:id", to: "users/registrations#show", as: 'show_user'
 
     # Password Reset support.
     get "/users/password/reset/new" => "users/password_resets#new"
@@ -31,6 +38,10 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  # Allows organizations to be looked up by key.
+  get 'orgs/:url_key' => 'organizations#show', as: 'show_org'
+
+  get 'tour' => 'home#tour'
   get 'about' => 'home#about'
 
   # For A/B Framework Testing

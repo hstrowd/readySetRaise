@@ -82,5 +82,18 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Required for devise gem.
-  config.action_mailer.default_url_options = { host: 'teamraising.com', port: 80 }
+  config.action_mailer.default_url_options = { host: 'teamraising.com', port: 443 }
+
+  # The base URL used for any assets included in emails.
+  config.action_mailer.asset_host = "http://teamraising.org"
 end
+
+ActionMailer::Base.smtp_settings = {
+  :port           => ENV['MAILGUN_SMTP_PORT'],
+  :address        => ENV['MAILGUN_SMTP_SERVER'],
+  :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+  :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+  :domain         => 'teamraising.org',
+  :authentication => :plain,
+}
+ActionMailer::Base.delivery_method = :smtp

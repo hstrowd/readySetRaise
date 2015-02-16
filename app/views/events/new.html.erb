@@ -2,9 +2,14 @@
   <div class="centerer">
     <div class="instructions">
       <div class="title">Schedule an Event</div>
-      <div class="description">...</div>
+      <div class="description">
+        What an exciting time it will be! Fill in the details for the event you'll be hosting as part of this fundraiser. Be sure to include all the details people will want to know, such as the theme/entertainment, location, attire, etc.
+      </div>
     </div>
 
-    <%= render 'form' %>
+    <%= render(partial: 'form', locals: {
+                 action: 'Schedule',
+                 cancel_path: fundraiser_path(@event.fundraiser)
+               }) %>
   </div>
 </div>

@@ -1,0 +1,137 @@
+// Place all the styles related to the Organizations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+//= depend_on_asset "logo.png"
+
+
+/**
+ *  ==== List Items ====
+ **/
+
+.list .item.organization .assoc-count {
+    /* Account for additional icon.*/
+    width: 12%;
+}
+
+
+
+/**
+ *  ==== Form ====
+ **/
+
+.org-form .field.name input {
+    font-size: 1.1em;
+
+    padding: 0.75em 0.4em
+}
+.org-form .field.url-key .info .variable {
+    display: inline-block;
+
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+
+/**
+ *  ==== Index ====
+ **/
+
+#org-index .intro {
+    margin: 0 3%;
+}
+#org-index .intro .title {
+    display: inline-block;
+    
+    width: 10em;
+    margin: 3%;
+    
+    vertical-align: middle;
+
+    color: #5F97DE;
+    font-size: 1.5em;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-weight: bold;
+}
+#org-index .intro .action.new-org {
+    display: inline-block;
+    float: right;
+    
+    height: 1.1em;
+    width: 1.1em;
+    margin: 3% 0;
+
+    vertical-align: middle;
+}
+#org-index .intro .action.new-org .icon {
+    height: 100%;
+    width: 100%;
+}
+#org-index .intro .action.new-org .text {
+    display: none;
+}
+#org-index .intro .description {
+    margin: 2% 0;
+}
+
+#org-index .list.empty {
+    margin: 1.5em;
+    text-align: center;
+
+    color: #FF0000;
+    font-size: 1.1em;
+    font-style: italic;
+}
+
+#org-index .list .item {
+    max-width: 50em;
+}
+#org-index .list .item .title {
+    font-size: 1.2em;
+}
+#org-index .list .item .attr.fundraiser-snapshot {
+    display: none;
+}
+
+@media screen and (min-width: 600px)  {
+    #org-index .list .item .attr.fundraiser-snapshot {
+        display: block;
+    }
+}
+@media screen and (min-width: 700px)  {
+    #org-index .intro .title {
+        margin: .8em 3%;
+    }
+    #org-index .intro .action.new-org {
+        height: inherit;
+        width: inherit;
+        margin: 1em 0;
+    }
+    #org-index .intro .action.new-org .icon {
+        display: none;
+    }
+    #org-index .intro .action.new-org .text {
+        display: block;
+    }
+    #org-index .intro .description {
+        margin: .8em 0;
+    }
+}
+@media screen and (min-width: 950px)  {
+    #org-index .intro .action.new-org {
+        margin-right: 6%;
+    }
+}
+
+
+
+/**
+ *  ==== Show ====
+ **/
+
+#org-show>.header .icon {
+    width: 8em;
+    height: 8em;
+}

@@ -1,35 +1,45 @@
 <div class="pledge-form">
   <%= form_for(@pledge) do |f| %>
 
-    <div class="field team">
-      <div class="label">
-        <%= f.label :team %>
-      </div>
-      <!-- TODO: Update this to be a dropdown. -->
-      <%= f.text_field :team, autofocus: true %>
-      <% if !@fundraiser.errors[:team].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:team][0].humanize %></div>
-        </div>
-      <% end %>
+    <%= f.hidden_field :team_id %>
+
+    <div class="field org">
+      <div class="label">Organization</div>
+      <div class="input"><%= link_to @pledge.organization.name, show_org_path(@pledge.organization.url_key) %></div>
     </div>
 
-    <div class="field amount">
-      <div class="label">
-        <%= f.label :amount %>
-      </div>
-      <%= f.number_field :amount, autofocus: true %>
-      <% if !@fundraiser.errors[:amount].empty? %>
-        <div class="error">
-          <div class="icon"></div>
-          <div class="reason"><%= @fundraiser.errors[:amount][0].humanize %></div>
-        </div>
-      <% end %>
+    <div class="field fundraiser">
+      <div class="label">Fundraiser</div>
+      <div class="input"><%= link_to @pledge.fundraiser.title, @pledge.fundraiser %></div>
     </div>
+
+    <div class="field event">
+      <div class="label">Event</div>
+      <div class="input"><%= link_to @pledge.event.title, @pledge.event %></div>
+    </div>
+
+    <div class="field team">
+      <div class="label">Team</div>
+      <div class="input"><%= link_to @pledge.team.name, @pledge.team %></div>
+    </div>
+
+    <% content_for 'amount_field' do %>
+      <%= f.number_field :amount, :step => 0.01 %>
+    <% end %>
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @pledge,
+                 attr: :amount
+               }) %>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Make Pledge", class: [:btn, :submit] %>
+      <%= f.button("Cancel", {
+                     onClick: 'window.location.assign("' + cancel_path + '")', 
+                     type: :button, 
+                     class: [:btn, :cancel]
+                   }) %>
     </div>
   <% end %>
 </div>

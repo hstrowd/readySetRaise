@@ -11,5 +11,32 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe EventsHelper, :type => :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "pledge_progress_percent" do
+    before :each do
+      @event = create :event
+    end
+
+    describe "when pledge_target is 0" do
+      before :each do
+        expect(@event.teams.count).to be 0
+      end
+
+      it "should be 0" do
+        expect(helper.pledge_progress_percent(@event)).to eq 0
+      end
+    end
+
+    describe "when pledge_target is not 0" do
+      before :each do
+        expect(@event.teams.count).to be 0
+        @team = create :team, event: @event, pledge_target: 10
+      end
+
+      it "should be the pledge total as a percent of the target" do
+        pledge_target = @team.pledge_target
+        expected_percent = (@event.pledge_total / pledge_target) * 100
+        expect(helper.pledge_progress_percent(@event)).to eq expected_percent.round
+      end
+    end
+  end
 end

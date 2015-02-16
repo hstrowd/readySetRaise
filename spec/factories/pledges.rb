@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :pledge do
-    donor ""
-    team ""
-    amount 1.5
+    association :donor
+    association :team
+    amount { rand(1..100) * 0.25 }
   end
 end

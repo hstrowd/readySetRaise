@@ -28,7 +28,9 @@
                    attr: :password_confirmation
                  }) %>
 
-      <div><%= f.submit "Update", class: :submit %></div>
+      <div class="actions">
+        <%= f.submit "Update", class: [:btn, :submit] %>
+      </div>
     <% end %>
 
   </div>

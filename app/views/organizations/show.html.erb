@@ -1,22 +1,30 @@
-<div id="org-show">
+<div id="org-show" class="std-show">
 
-  <div class="title">
+  <div class="header">
     <div class="icon">
-      <%= link_to @org do %>
-        <%= image_tag 'org/defaultIcon.png' %>
+      <% if !@org.logo_url.blank? %>
+        <%= link_to show_org_path(@org.url_key) do %>
+          <%= image_tag @org.logo_url %>
+        <% end %>
       <% end %>
     </div>
-    <div class="name">
-      <%= @org.name %>
+    <div class="text">
+      <div class="title">
+        <%= @org.name %>
+      </div>
     </div>
   </div>
 
-  <div class="member-controls">
-    <%= link_to new_fundraiser_path do %>
-      <div class="action btn new-fundraiser">Start New Fundraiser</div>
-    <% end %>
-    <%= link_to edit_organization_path(@org) do %>
-      <div class="action btn edit-org">Update Organization</div>
+  <div class="controls">
+    <% if @org.members.include?(current_user) %>
+      <div class="members">
+        <%= link_to new_organization_fundraiser_path(@org) do %>
+          <div class="action btn new-fundraiser">Start New Fundraiser</div>
+        <% end %>
+        <%= link_to edit_organization_path(@org) do %>
+          <div class="action btn edit-org">Update Organization</div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 
@@ -31,18 +39,48 @@
     </div>
   </div>
 
-  <div class="current-fundraisers">
-    <% @org.fundraisers.each do |f| %>
-      <div class="fundraiser">
-        <%= link_to f do %>
-          <div class="title"><%= f.title %></div>
+  <% no_fundraisers = true %>
+  <% if !@org.fundraisers.present.empty? %>
+    <% no_fundraisers = false %>
+    <div class="association fundraisers present">
+      <div class="title">Active Fundraisers (<%= @org.fundraisers.present.count %>)</div>
+      <div class="list">
+        <% @org.fundraisers.present.each do |f| %>
+          <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
         <% end %>
-        <div class="description"><%= f.description %></div>
       </div>
-    <% end %>
-  </div>
-  
-  <div class="past-fundraisers">
-  </div>
+    </div>
+  <% end %>
+
+  <% if !@org.fundraisers.future.empty? %>
+    <% no_fundraisers = false %>
+    <div class="association fundraisers future">
+      <div class="title">Upcoming Fundraisers (<%= @org.fundraisers.future.count %>)</div>
+      <div class="list">
+        <% @org.fundraisers.future.each do |f| %>
+          <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if !@org.fundraisers.past.empty? %>
+    <% no_fundraisers = false %>
+    <div class="association fundraisers past">
+      <div class="title">Completed Fundraisers (<%= @org.fundraisers.past.count %>)</div>
+      <div class="list">
+        <% @org.fundraisers.past.each do |f| %>
+          <%= render partial: 'fundraisers/list_item', locals: { fundraiser: f } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if no_fundraisers %>
+    <div class="association fundraisers">
+      <div class="title">Fundraisers</div>
+      <div class="notice">No fundraisers started yet!</div>
+    </div>
+  <% end %>
 
 </div>

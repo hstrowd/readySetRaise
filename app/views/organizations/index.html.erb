@@ -1,14 +1,24 @@
 <div id="org-index">
   <div class="centerer">
     <div class="intro">
-      <div class="title">Your Oganizations</div>
+      <div class="title">Your Organizations</div>
+      <%= link_to new_organization_path, class: 'action btn new-org' do %>
+        <%= image_tag 'add.png', class: 'icon' %>
+        <div class="text">Register New Organization</div>
+      <% end %>
       <div class="description">The following is a list of all organizations that you are involved in.</div>
     </div>
 
-    <div class="list">
-      <% @orgs.each do |organization| %>
+    <% if (@orgs.count > 0) %>
+      <div class="list">
+        <% @orgs.each do |organization| %>
           <%= render partial: 'list_item', locals: { org: organization } %>
-      <% end %>      
-    </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="list empty">
+        No organizations found. Please create one to get started.
+      </div>
+    <% end %>
   </div>
 </div>

@@ -16,5 +16,8 @@
 /tmp
 
 
+# Test coverage results.
+/coverage
+
 # Ignore precompiled assets.
 /public/assets

@@ -42,12 +42,31 @@ gem 'devise'
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Use ChartKick for dashboard graphs.
+gem "chartkick"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Test support tools
-gem "rspec-rails", :group => [:development, :test]
-gem "factory_girl_rails", "~> 4.0", :group => [:development, :test]
+
+# ==== Development Tools ====
+
+group :development do
+  gem 'mailcatcher'
+end
+
+
+# ==== Test Tools ====
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', "~> 4.0"
+  gem 'database_cleaner'
+  gem 'pry'
+  gem 'simplecov'
+end
+
+
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

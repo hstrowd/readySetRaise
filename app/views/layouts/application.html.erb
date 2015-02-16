@@ -26,7 +26,6 @@
           </div>
 
 
-<!--
           <div class="menu profile-nav">
             <div class="menu-btn">
               <div class="vert-centerer"></div>
@@ -37,31 +36,42 @@
                 <div class="vert-centerer"></div>
                 <div class="welcome">
                   Welcome back, 
-                  <div class="account-name"><%= link_to current_user.first_name, show_user_path(current_user.id) %></div>
+                  <div class="account-name"><%= link_to current_user.first_name, edit_user_registration_path(current_user.id) %></div>
                 </div>
               </div>
             <% else %>
-              <div class="login-btn">
+              <div class="profile-splitter">
                 <div class="vert-centerer"></div>
-                <div>
+                <div class="acct-btn login-btn">
                   <%= link_to new_session_path(:user) do %>
                     <div class="btn">Log In</div>
                   <% end %>
                 </div>
               </div>
+              <div class="profile-splitter">
+                <div class="vert-centerer"></div>
+                <div class="acct-btn signup-btn">
+                  <%= link_to new_registration_path(:user) do %>
+                    <div class="btn">Sign Up</div>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
+            <!-- An empty div ensures the dropdown menu always appears below its respective button. -->
+            <div></div>
             <div class="menu-dropdown">
               <div class="vert-centerer"></div>
               <%= render "layouts/account_management" %>
             </div>
           </div>
--->
 
           <div class="menu primary-nav">
             <div class="menu-btn">
               <div class="vert-centerer"></div>
               <%= image_tag "menu.png" %>
             </div>
+            <!-- An empty div ensures the dropdown menu always appears below its respective button. -->
+            <div></div>
             <div class="menu-dropdown">
               <div class="vert-centerer"></div>
               <%= render "layouts/primary_navigation" %>
@@ -98,9 +108,7 @@
         <div class="centerer">
           <div class="copyright">Copyright © 2014 Harrison Strowd | All rights reserved.</div>
           <div class="links">
-            <a href="http://www.hstrowd.com" class="first">hstrowd.com</a> | 
-            <a href="http://www.strowd.com">strowd.com</a> | 
-            <a href="http://www.sarrison.com">sarrison.com</a>
+            <a href="http://www.strowd.com">strowd.com</a>
           </div>
         </div>
       </div>

@@ -33,8 +33,27 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   # Required for devise gem.
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 5000 }
+
+  # The base URL used for any assets included in emails.
+  config.action_mailer.asset_host = "http://localhost:5000"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
+
+ActionMailer::Base.smtp_settings = {
+# Development Mailgun Account
+#  :port           => 587,
+#  :address        => 'smtp.mailgun.org',
+#  :user_name      => 'postmaster@dev.teamraising.org',
+#  :password       => '035bac1bc8818c9d0fdb21a16158291c',
+
+# Local Mailcatcher Server
+  :port           => 1025,
+  :address        => 'localhost',
+
+  :domain         => 'dev.teamraising.org',
+  :authentication => :plain,
+}
+ActionMailer::Base.delivery_method = :smtp

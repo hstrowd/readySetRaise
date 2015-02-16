@@ -1,0 +1,14 @@
+{
+  "eventID": <%= event.id %>,
+  "title": "<%= event.title.html_safe %>",
+  "startTime": "<%= event.start_time %>",
+  "endTime": "<%= event.end_time %>",
+  "pledges": [
+    <% event.pledges.order(created_at: :desc).limit(15).each_with_index do |pledge, index| %>
+      <%= (index != 0) ? ',' : '' %>
+      <%= render partial: 'pledges/full', locals: {pledge: pledge} %>
+    <% end %>
+  ],
+  "pledgeTarget": <%= event.pledge_target %>,
+  "pledgeTotal": <%= event.pledge_total %>
+}

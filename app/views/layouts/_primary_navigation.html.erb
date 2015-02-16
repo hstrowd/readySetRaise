@@ -1,22 +1,20 @@
 <div class="nav-items">
-  <%= link_to root_url do %>
+  <%= link_to root_path do %>
     <div class="nav-item home">
       <div class="vert-centerer"></div>Home
     </div>
   <% end %>
-<!--
+  <%= link_to tour_path, data: { 'no-turbolink' => true } do %>
+    <div class="nav-item org-index">
+      <div class="vert-centerer"></div>Take a Tour
+    </div>
+  <% end %>
   <%= link_to new_organization_path do %>
     <div class="nav-item org-new">
       <div class="vert-centerer"></div>Start Raising
     </div>
   <% end %>
-  <%= link_to fundraisers_path do %>
-    <div class="nav-item org-index">
-      <div class="vert-centerer"></div>Get Involved
-    </div>
-  <% end %>
--->
-  <%= link_to about_url do %>
+  <%= link_to about_path do %>
     <div class="nav-item about">
       <div class="vert-centerer"></div>About Us
     </div>

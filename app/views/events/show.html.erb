@@ -1,24 +1,80 @@
-<p id="notice"><%= notice %></p>
+<div id="event-show" class="std-show">
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+  <div class="header">
+    <div class="icon">
+      <% if !@event.organization.logo_url.blank? %>
+        <%= link_to show_org_path(@event.organization.url_key) do %>
+          <%= image_tag @event.organization.logo_url %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="text">
+      <div class="title">
+        <%= @event.title %>
+      </div>
+      <div class="subtitle">
+        for <%= link_to @event.fundraiser.title, @event.fundraiser %>
+        by <%= link_to @event.organization.name, show_org_path(@event.organization.url_key) %>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+  <div class="controls">
+    <% if @event.organization.members.include?(current_user) %>
+      <div class="members">
+        <% if !@event.has_ended? %>
+          <%= link_to new_event_team_path(@event) do %>
+            <div class="action btn new-team">Add a Team</div>
+          <% end %>
+        <% end %>
+        <%= link_to edit_event_path(@event) do %>
+          <div class="action btn edit-event">Update Event</div>
+        <% end %>
+        <% if @event.is_active? %>
+          <%= link_to event_dashboard_path(@event), data: { 'no-turbolink' => true } do %>
+            <div class="action btn launch-dashboard">Launch Dashboard</div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @event.start_time %>
-</p>
+  <div class="details">
+    <div class="attribute description">
+      <div class="label">Description:</div>
+      <%= @event.description %>
+    </div>
+    <div class="attribute time">
+      <div class="label">Time: </div>
+      <!-- Note: The from and to times will be shown after they are formatted properly. -->
+      <div class="timeframe" style="display:none;">
+        <div class="start time"><%= @event.start_time.iso8601() %></div>
+        <div class="single-line">-</div>
+        <div class="multi-line">to</div>
+        <div class="end time"><%= @event.end_time.iso8601() %></div>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>End time:</strong>
-  <%= @event.end_time %>
-</p>
+  <div class="association teams">
+    <div class="title">Teams</div>
+    <% if !@event.teams.empty? %>
+      <div class="list">
+        <% @event.teams.each do |t| %>
+          <%= render partial: 'teams/list_item', locals: { team: t } %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="notice">No teams registered yet!</div>
+    <% end %>
+   </div>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+</div>
+
+<script>
+  $(function() {
+    convertToLocalTime('#event-show .time .start.time');
+    convertToLocalTime('#event-show .time .end.time');
+    $('#event-show .time .timeframe').show();
+  });
+</script>

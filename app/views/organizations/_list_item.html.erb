@@ -1,40 +1,41 @@
-<div class="item">
+<div class="item organization">
   <div class="header">
-    <div class="name">
-      <%= link_to org do %>
+    <div class="icon">
+      <% if !org.logo_url.blank? %>
+        <%= link_to show_org_path(org.url_key) do %>
+          <%= image_tag org.logo_url %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="title">
+      <%= link_to show_org_path(org.url_key) do %>
         <%= org.name %>
       <% end %>
     </div>
-    <div class="member-count">(<%= org.members.count %> members)</div>
-  </div>
-  <div class="icon">
-    <%= link_to org do %>
-      <%= image_tag 'org/defaultIcon.png' %>
-    <% end %>
+    <div class="assoc-count">(<%= pluralize(org.members.count, 'member') %>)</div>
   </div>
   <div class="attr description">
     <div class="value"><div class="label">Description:</div> <%= org.description %></div>
   </div>
   <div class="attr fundraiser-snapshot">
-    <% if (nextFundraiser = org.fundraisers.first) %> 
-      <% if (nextFundraiser.pledge_start_time < DateTime.now) %>
-        <% if (nextFundraiser.pledge_end_time > DateTime.now) %>
-          <div class="in-progress">
-            <div class="label">Current Fundraiser</div>
-            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
-          </div>
-        <% else %>
-          <div class="completed">
-            <div class="label">Previous Fundraiser</div>
-            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
-          </div>
-        <% end %>
-      <% else %>
-          <div class="upcoming">
-            <div class="label">Upcoming Fundraiser</div>
-            <div class="value"><%= link_to nextFundraiser.title, nextFundraiser %></div>
-          </div>
-      <% end %>
+    <% if !org.fundraisers.present.empty? %>
+      <% fundraiser = org.fundraisers.present.first %>
+      <div class="present">
+        <div class="label">Current Fundraiser</div>
+        <div class="value"><%= link_to fundraiser.title, fundraiser %></div>
+      </div>
+    <% elsif !org.fundraisers.future.empty? %>
+      <% fundraiser = org.fundraisers.future.first %>
+      <div class="past">
+        <div class="label">Upcoming Fundraiser</div>
+        <div class="value"><%= link_to fundraiser.title, fundraiser %></div>
+      </div>
+    <% elsif !org.fundraisers.past.empty? %>
+      <% fundraiser = org.fundraisers.past.first %>
+      <div class="future">
+        <div class="label">Previous Fundraiser</div>
+        <div class="value"><%= link_to fundraiser.title, undraiser %></div>
+      </div>
     <% end %>
   </div>
 </div>

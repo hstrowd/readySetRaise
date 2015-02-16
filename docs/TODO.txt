@@ -1,0 +1,63 @@
+Gameplan:
+ - Step 1:
+   - Finish and launch v1 of the Service
+ - Step 2:
+   - Jump through the necessary hoops to create the organization
+   - Evangelize the idea with friends and family
+   - Continue adding features to the site
+ - Step 3:
+   - Host a fundraiser to "dog food" the service
+
+
+Use Cases:
+ - Bowling
+   - Recruit bowlers or teams of bowlers
+   - Have teams raise pledges on a per-pin, per-strike, per-spare, per-split conversion, etc basis (pledge intervals/critera/increments/categories)
+   - It could be done tournament style or just a certain number of rounds
+   - Invite donors to the event
+   - Serve food and drinks
+   - Manually update the scores for each category after each round to have the dashboard update.
+   - Convert the pledge log to a donor list
+ - Basketball
+   - Recruit team captains and have them recruit their team members
+   - Have teams raise pledges on a per-point, per-win, per-podium position bases
+   - Run it as a tournament
+   - Invite donors and spectators to the event
+   - Manually update the scores after each game to reflect this in the dashboard.
+   - Convert the pledge log to a donor list.
+ - Comedy Night
+ - Talent Show
+
+
+Features:
+ - Push v1 live
+
+ - Update the tour to render properly on mobile devices.
+ - Fix buttons on std forms for iphone viewing.
+ - Prevent keyboard from appearing when time fields are clicked on ios devices.
+
+ - On the team view only show pledge log to org members.
+ - Investigate ChartKick not loading properly
+ - Purchase an SSL cert.
+ - Update dashboard graph to render properly when there are no pledges.
+ - Add support for deleting all types of records.
+ - Update teams to not support pledging after the event ends.
+
+ - Setup NewRelic APM
+ - Allow users to review their donations both on a per-event basis and globally.
+ - Create a Business Plan powerpoint/document (https://www.councilofnonprofits.org/tools-resources/business-planning-nonprofits)
+ - File necessary paperwork (https://www.councilofnonprofits.org/tools-resources/how-start-nonprofit and https://www.harborcompliance.com/information/how-to-start-a-non-profit-organization-in-illinois.php)
+ - Add "Make Pledge" button to the events page.
+ - Create a way for organizers to review donors after the event and track those that converted.
+ - Allow a single follow up email to be sent to donors that have not converted.
+ - Allow organization members to hand craft pledge recap email after the event.
+ - Improve access to support for resending confirmation emails.
+ - Allow anonymous pledges.
+ - Add support for having other users become members of an organization.
+ - Setup social media accounts.
+ - Support viewing an individual pledge.
+ - Update about us page to specify that we are entirely volunteer supported and operate fully based on donations.
+
+
+ - Support different pledge types/categories.
+
