@@ -2,8 +2,10 @@
 
   <div class="header">
     <div class="icon">
-      <%= link_to show_org_path(@fundraiser.organization.url_key) do %>
-        <%= image_tag 'org/defaultIcon.png' %>
+      <% if !@fundraiser.organization.logo_url.blank? %>
+        <%= link_to show_org_path(@fundraiser.organization.url_key) do %>
+          <%= image_tag @fundraiser.organization.logo_url %>
+        <% end %>
       <% end %>
     </div>
     <div class="text">

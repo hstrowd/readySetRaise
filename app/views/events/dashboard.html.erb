@@ -3,8 +3,10 @@
 <div id="event-dashboard">
   <div class="header">
     <div class="logo">
-      <%= link_to show_org_path(@event.organization.url_key) do %>
-        <%= image_tag 'org/defaultIcon.png' %>
+      <% if !@event.organization.logo_url.blank? %>
+        <%= link_to show_org_path(@event.organization.url_key) do %>
+          <%= image_tag @event.organization.logo_url %>
+        <% end %>
       <% end %>
     </div>
     <div class="text">

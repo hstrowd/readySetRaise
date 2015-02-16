@@ -1,47 +1,54 @@
 <div class="org-form">
   <%= form_for(@org) do |f| %>
 
-    <%= render(partial: "shared/form_field", 
-               locals: { 
-                 form: f, 
-                 model: @org, 
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @org,
                  attr: :name
                }) %>
     <% content_for 'description_field' do %>
       <%= f.text_area :description %>
     <% end %>
-    <%= render(partial: "shared/form_field", 
-               locals: { 
-                 form: f, 
-                 model: @org, 
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @org,
                  attr: :description
                }) %>
-    <%= render(partial: "shared/form_field", 
-               locals: { 
-                 form: f, 
-                 model: @org, 
-                 field_label: :unique_key, 
-                 attr: :url_key, 
-                 info: 'Used in URLs (e.g. http://teamraising.org/orgs/<div class="variable">unique-key</div>/).' 
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @org,
+                 field_label: :unique_key,
+                 attr: :url_key,
+                 info: 'Used in URLs (e.g. http://teamraising.org/orgs/<div class="variable">unique-key</div>/).'
                }) %>
-    <%= render(partial: "shared/form_field", 
-               locals: { 
-                 form: f, 
-                 model: @org, 
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @org,
                  attr: :homepage_url
                }) %>
-    <%= render(partial: "shared/form_field", 
-               locals: { 
-                 form: f, 
-                 model: @org, 
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @org,
                  attr: :donation_url
+               }) %>
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @org,
+                 attr: :logo_url,
+                 info: 'Used as an icon for all your records. We suggest for this image to be approximately 128 x 128 pixels.'
                }) %>
 
     <div class="actions">
       <%= f.submit (action + " Organization"), class: [:btn, :submit] %>
       <%= f.button("Cancel", {
-                     onClick: 'window.location.assign("' + cancel_path + '")', 
-                     type: :button, 
+                     onClick: 'window.location.assign("' + cancel_path + '")',
+                     type: :button,
                      class: [:btn, :cancel]
                    }) %>
     </div>

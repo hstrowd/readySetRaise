@@ -45,6 +45,23 @@ RSpec.describe Organization, :type => :model do
       expect(org).to_not be_valid
       expect(org.errors.keys).to include :url_key
     end
+
+    it "is invalid with a homepage URL that is not HTTP or HTTPS" do
+      org = build :org, homepage_url: 'ftp://foo.com'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :homepage_url
+    end
+
+    it "is invalid with a logo URL that is not HTTP or HTTPS" do
+      org = build :org, logo_url: 'ftp://foo.com'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :logo_url
+    end
+
+    it "is valid even when the logo URL is missing" do
+      org = build :org, logo_url: nil
+      expect(org).to be_valid
+    end
   end
 
 

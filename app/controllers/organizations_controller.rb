@@ -69,7 +69,8 @@ private
                 :description,
                 :url_key,
                 :homepage_url,
-                :donation_url)
+                :donation_url,
+                :logo_url)
     rescue ActionController::ParameterMissing => e
       logger.info "Failed to parse organization params from #{params.inspect}"
       {}

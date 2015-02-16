@@ -98,18 +98,34 @@ RSpec.describe OrganizationsController do
 
       describe "when the request succeeds" do
         it "creates a new record" do
+          name = 'Test Organization'
+          description = 'A test organization.'
+          url_key = 'test-org'
+          homepage_url = 'http://www.test-org.com/'
+          donation_url = 'http://www.test-org.com/donate/'
+          logo_url = 'http://www.test-org.com/logo.png'
+
           expect {
             post :create, organization: {
-              name: 'Test Organization',
-              description: 'A test organization.',
-              url_key: 'test-org',
-              homepage_url: 'http://www.test-org.com/',
-              donation_url: 'http://www.test-org.com/donate/'
+              name: name,
+              description: description,
+              url_key: url_key,
+              homepage_url: homepage_url,
+              donation_url: donation_url,
+              logo_url: logo_url
             }
           }.to change{ Organization.count }.by 1
 
           org = Organization.find_by_url_key 'test-org'
           expect(org).to_not be_nil
+
+          # Allows all attributes to be set.
+          expect(org.name).to eq name
+          expect(org.description).to eq description
+          expect(org.url_key).to eq url_key
+          expect(org.homepage_url).to eq homepage_url
+          expect(org.donation_url).to eq donation_url
+          expect(org.logo_url).to eq logo_url
 
           expect(response).to redirect_to new_organization_fundraiser_path(org.id)
         end

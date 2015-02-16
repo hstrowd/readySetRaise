@@ -11,6 +11,8 @@ class Organization < ActiveRecord::Base
     uniqueness: true
   }
 
+  validates_with UrlValidator, fields: [:homepage_url, :logo_url]
+
   has_many :fundraisers, -> { order "pledge_start_time ASC" } do
     def past
       where("pledge_end_time <= ?", DateTime.now)
