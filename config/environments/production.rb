@@ -82,7 +82,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Required for devise gem.
-  config.action_mailer.default_url_options = { host: 'teamraising.org' }
+  config.action_mailer.default_url_options = { host: 'www.teamraising.org' }
 
   # The base URL used for any assets included in emails.
   config.action_mailer.asset_host = "http://teamraising.org"

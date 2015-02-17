@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Event, :type => :model do
+  include TestHelpers
+
   describe "when saving" do
     it "can be valid" do
       event = build :event
@@ -12,6 +14,12 @@ RSpec.describe Event, :type => :model do
 
     it "is invalid without a title" do
       event = build :event, title: nil
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :title
+    end
+
+    it "is invalid if the title is too long" do
+      event = build :event, title: generate_random_string(256)
       expect(event).to_not be_valid
       expect(event.errors.keys).to include :title
     end
@@ -77,6 +85,12 @@ RSpec.describe Event, :type => :model do
     it "is valid even without a description" do
       event = build :event, description: nil
       expect(event).to be_valid
+    end
+
+    it "is valid and able to be saved even with an extremely long description" do
+      event = build :event, description: generate_random_words(500)
+      expect(event).to be_valid
+      expect(event.save).to be true
     end
   end
 

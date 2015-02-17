@@ -8,8 +8,11 @@ class Organization < ActiveRecord::Base
   validates :url_key, {
     format: { with: /\A[a-zA-Z\-_.~0-9]+\z/, message: "must be URL safe (i.e. alphanumeric or '-', '_', '.', or '~')" },
     presence: true,
-    uniqueness: true
+    uniqueness: true,
+    length: { maximum: 255 }
   }
+
+  validates :name, :homepage_url, :donation_url, :logo_url, length: { maximum: 255 }
 
   validates_with UrlValidator, fields: [:homepage_url, :logo_url]
 

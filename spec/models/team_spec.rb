@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Team, :type => :model do
+  include TestHelpers
+
   describe "when saving" do
     it "can be valid" do
       team = build :team
@@ -12,6 +14,12 @@ RSpec.describe Team, :type => :model do
 
     it "is invalid without a name" do
       team = build :team, name: nil
+      expect(team).to_not be_valid
+      expect(team.errors.keys).to include :name
+    end
+
+    it "is invalid if the name is too long" do
+      team = build :team, name: generate_random_string(256)
       expect(team).to_not be_valid
       expect(team.errors.keys).to include :name
     end

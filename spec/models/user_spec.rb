@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Organization, :type => :model do
+  include TestHelpers
+
   describe "when saving" do
     it "can be valid" do
       user = build :user
@@ -16,14 +18,38 @@ RSpec.describe Organization, :type => :model do
       expect(user.errors.keys).to include :first_name
     end
 
-    it "is invalid without a last name" do
-      user = build :user, first_name: nil
+    it "is invalid if the first name is too long" do
+      user = build :user, first_name: generate_random_string(256)
       expect(user).to_not be_valid
       expect(user.errors.keys).to include :first_name
     end
 
+    it "is invalid without a last name" do
+      user = build :user, last_name: nil
+      expect(user).to_not be_valid
+      expect(user.errors.keys).to include :last_name
+    end
+
+    it "is invalid if the first name is too long" do
+      user = build :user, last_name: generate_random_string(256)
+      expect(user).to_not be_valid
+      expect(user.errors.keys).to include :last_name
+    end
+
+    it "is invalid if the phone number is too long" do
+      user = build :user, phone_number: generate_random_string(256)
+      expect(user).to_not be_valid
+      expect(user.errors.keys).to include :phone_number
+    end
+
     it "is invalid without a email" do
       user = build :user, email: nil
+      expect(user).to_not be_valid
+      expect(user.errors.keys).to include :email
+    end
+
+    it "is invalid if the email is too long" do
+      user = build :user, email: generate_random_string(246) + '@gmail.com'
       expect(user).to_not be_valid
       expect(user.errors.keys).to include :email
     end
@@ -34,7 +60,13 @@ RSpec.describe Organization, :type => :model do
       expect(user.errors.keys).to include :password
     end
 
-    it "is valid without a phone number" do
+    it "is invalid if the password is too long" do
+      user = build :user, password: generate_random_string(129)
+      expect(user).to_not be_valid
+      expect(user.errors.keys).to include :password
+    end
+
+    it "is valid even without a phone number" do
       user = build :user, phone_number: nil
       expect(user).to be_valid
     end

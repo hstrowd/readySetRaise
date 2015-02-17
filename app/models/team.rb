@@ -5,6 +5,7 @@ class Team < ActiveRecord::Base
   has_many :pledges
 
   validates :name, :event, :pledge_target, :presence => true
+  validates :name, length: { maximum: 255 }
   validates_numericality_of :pledge_target, unless: "pledge_target.nil?"
 
   def pledge_total

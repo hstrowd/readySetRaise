@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Organization, :type => :model do
+  include TestHelpers
+
   describe "when saving" do
     it "can be valid" do
       org = build :org
@@ -12,6 +14,12 @@ RSpec.describe Organization, :type => :model do
 
     it "is invalid without a name" do
       org = build :org, name: nil
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :name
+    end
+
+    it "is invalid if the name is too long" do
+      org = build :org, name: generate_random_string(256)
       expect(org).to_not be_valid
       expect(org.errors.keys).to include :name
     end
@@ -28,6 +36,12 @@ RSpec.describe Organization, :type => :model do
       expect(org.errors.keys).to include :homepage_url
     end
 
+    it "is invalid if the homepage URL is too long" do
+      org = build :org, homepage_url: 'http://' + generate_random_string(256) + '.com'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :homepage_url
+    end
+
     it "is invalid without a creator" do
       org = build :org, creator: nil
       expect(org).to_not be_valid
@@ -36,6 +50,12 @@ RSpec.describe Organization, :type => :model do
 
     it "is invalid without a URL key" do
       org = build :org, url_key: nil
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :url_key
+    end
+
+    it "is invalid if the URL key is too long" do
+      org = build :org, url_key: generate_random_string(256)
       expect(org).to_not be_valid
       expect(org.errors.keys).to include :url_key
     end
@@ -52,15 +72,44 @@ RSpec.describe Organization, :type => :model do
       expect(org.errors.keys).to include :homepage_url
     end
 
+    it "is invalid with a homepage URL that is malformed" do
+      org = build :org, homepage_url: 'foo bar'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :homepage_url
+    end
+
     it "is invalid with a logo URL that is not HTTP or HTTPS" do
       org = build :org, logo_url: 'ftp://foo.com'
       expect(org).to_not be_valid
       expect(org.errors.keys).to include :logo_url
     end
 
+    it "is invalid with a logo URL that is malformed" do
+      org = build :org, logo_url: 'foo bar'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :logo_url
+    end
+
+    it "is invalid if the logo URL is too long" do
+      org = build :org, logo_url: 'http://' + generate_random_string(256) + '.com'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :logo_url
+    end
+
+    it "is valid even with an extremely long description" do
+      org = build :org, description: generate_random_words(500)
+      expect(org).to be_valid
+    end
+
     it "is valid even when the logo URL is missing" do
       org = build :org, logo_url: nil
       expect(org).to be_valid
+    end
+
+    it "is valid and able to be saved even when the donation URL is missing" do
+      org = build :org, donation_url: nil
+      expect(org).to be_valid
+      expect(org.save).to be true
     end
   end
 

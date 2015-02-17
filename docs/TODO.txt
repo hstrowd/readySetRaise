@@ -30,14 +30,18 @@ Use Cases:
 
 
 Features:
- - Push v1 live
+ - Finish fixing fancybox image asset loading in production.
 
+ - Handle the case in which a donation URL is not provided for an organization.
+ - Add a get started button at the bottom of the tour page.
  - Update the tour to render properly on mobile devices.
  - Fix buttons on std forms for iphone viewing.
  - Prevent keyboard from appearing when time fields are clicked on ios devices.
+ - Fix console errors.
 
  - On the team view only show pledge log to org members.
  - Investigate ChartKick not loading properly
+ - Update tour and event dashboard pages to support turbolinks.
  - Purchase an SSL cert.
  - Update dashboard graph to render properly when there are no pledges.
  - Add support for deleting all types of records.

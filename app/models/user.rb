@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :organizations, through: :organization_memberships
 
   validates :first_name, :last_name, presence: true
+  validates :email, :first_name, :last_name, :phone_number, length: { maximum: 255 }
 
   def full_name
     first_name + ' ' + last_name

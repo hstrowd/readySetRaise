@@ -3,6 +3,7 @@ class Fundraiser < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
 
   validates :title, :organization, :creator, :pledge_start_time, :pledge_end_time, :presence => true
+  validates :title, length: { maximum: 255 }
   validate :pledge_start_time_before_pledge_end_time
 
   has_many :events, -> { order "start_time ASC" } do

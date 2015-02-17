@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
 
   validates :title, :fundraiser, :creator, :start_time, :end_time, :presence => true
+  validates :title, length: { maximum: 255 }
   validate :start_time_before_end_time
   validate :start_time_after_fundraiser_start
   validate :end_time_before_fundraiser_end

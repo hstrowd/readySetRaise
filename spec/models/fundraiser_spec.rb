@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Fundraiser, :type => :model do
+  include TestHelpers
+
   describe "when saving" do
     it "can be valid" do
       fundraiser = build :fundraiser
@@ -12,6 +14,12 @@ RSpec.describe Fundraiser, :type => :model do
 
     it "is invalid without a title" do
       fundraiser = build :fundraiser, title: nil
+      expect(fundraiser).to_not be_valid
+      expect(fundraiser.errors.keys).to include :title
+    end
+
+    it "is invalid if the title is too long" do
+      fundraiser = build :fundraiser, title: generate_random_string(256)
       expect(fundraiser).to_not be_valid
       expect(fundraiser.errors.keys).to include :title
     end
@@ -52,6 +60,12 @@ RSpec.describe Fundraiser, :type => :model do
     it "is valid even without a description" do
       fundraiser = build :fundraiser, description: nil
       expect(fundraiser).to be_valid
+    end
+
+    it "is valid and able to be saved even with an extremely long description" do
+      fundraiser = build :fundraiser, description: generate_random_words(500)
+      expect(fundraiser).to be_valid
+      expect(fundraiser.save).to be true
     end
   end
 
