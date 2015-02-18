@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
 
   validates :title, :fundraiser, :creator, :start_time, :end_time, :presence => true
   validates :title, length: { maximum: 255 }
+  # Capping the description at 5000 characters to prevent malicious entries.
+  validates :description, length: { maximum: 5000 }
   validate :start_time_before_end_time
   validate :start_time_after_fundraiser_start
   validate :end_time_before_fundraiser_end

@@ -4,6 +4,8 @@ class Fundraiser < ActiveRecord::Base
 
   validates :title, :organization, :creator, :pledge_start_time, :pledge_end_time, :presence => true
   validates :title, length: { maximum: 255 }
+  # Capping the description at 5000 characters to prevent malicious entries.
+  validates :description, length: { maximum: 5000 }
   validate :pledge_start_time_before_pledge_end_time
 
   has_many :events, -> { order "start_time ASC" } do

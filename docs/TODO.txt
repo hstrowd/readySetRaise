@@ -30,9 +30,6 @@ Use Cases:
 
 
 Features:
- - Finish fixing fancybox image asset loading in production.
- - Add length validation for text description fields.
-
  - Handle the case in which a donation URL is not provided for an organization.
  - Add a get started button at the bottom of the tour page.
  - Update the tour to render properly on mobile devices.

@@ -24,6 +24,12 @@ RSpec.describe Event, :type => :model do
       expect(event.errors.keys).to include :title
     end
 
+    it "is invalid if the description is too long" do
+      event = build :event, description: generate_random_string(5001)
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :description
+    end
+
     it "is invalid without a fundraiser" do
       event = build :event, fundraiser: nil
       expect(event).to_not be_valid
@@ -85,12 +91,6 @@ RSpec.describe Event, :type => :model do
     it "is valid even without a description" do
       event = build :event, description: nil
       expect(event).to be_valid
-    end
-
-    it "is valid and able to be saved even with an extremely long description" do
-      event = build :event, description: generate_random_words(500)
-      expect(event).to be_valid
-      expect(event.save).to be true
     end
   end
 

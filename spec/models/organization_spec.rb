@@ -30,6 +30,12 @@ RSpec.describe Organization, :type => :model do
       expect(org.errors.keys).to include :description
     end
 
+    it "is invalid if the description is too long" do
+      org = build :org, description: generate_random_string(5001)
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :description
+    end
+
     it "is invalid without a homepage URL" do
       org = build :org, homepage_url: nil
       expect(org).to_not be_valid
@@ -94,11 +100,6 @@ RSpec.describe Organization, :type => :model do
       org = build :org, logo_url: 'http://' + generate_random_string(256) + '.com'
       expect(org).to_not be_valid
       expect(org.errors.keys).to include :logo_url
-    end
-
-    it "is valid even with an extremely long description" do
-      org = build :org, description: generate_random_words(500)
-      expect(org).to be_valid
     end
 
     it "is valid even when the logo URL is missing" do
