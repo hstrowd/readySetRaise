@@ -27,6 +27,11 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Uncomment the following three lines to test the asset pipeline.
+  # config.assets.digest = true
+  # config.assets.precompile += %w( *.png *.gif *.jpg *.jpeg *.ttf *.eot *.svg *.woff )
+  # config.assets.debug = false
+
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
