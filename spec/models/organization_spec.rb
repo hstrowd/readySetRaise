@@ -48,6 +48,42 @@ RSpec.describe Organization, :type => :model do
       expect(org.errors.keys).to include :homepage_url
     end
 
+    it "is invalid with a homepage URL that is not HTTP or HTTPS" do
+      org = build :org, homepage_url: 'ftp://foo.com'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :homepage_url
+    end
+
+    it "is invalid with a homepage URL that is malformed" do
+      org = build :org, homepage_url: 'foo bar'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :homepage_url
+    end
+
+    it "is invalid without a donation URL" do
+      org = build :org, donation_url: nil
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :donation_url
+    end
+
+    it "is invalid if the donation URL is too long" do
+      org = build :org, donation_url: 'http://' + generate_random_string(245) + '.com'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :donation_url
+    end
+
+    it "is invalid if the donation URL is not HTTP or HTTPS" do
+      org = build :org, donation_url: 'ftp://foo.com'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :donation_url
+    end
+
+    it "is invalid if the donation URL is malformed" do
+      org = build :org, donation_url: 'foo123'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :donation_url
+    end
+
     it "is invalid without a creator" do
       org = build :org, creator: nil
       expect(org).to_not be_valid
@@ -72,18 +108,6 @@ RSpec.describe Organization, :type => :model do
       expect(org.errors.keys).to include :url_key
     end
 
-    it "is invalid with a homepage URL that is not HTTP or HTTPS" do
-      org = build :org, homepage_url: 'ftp://foo.com'
-      expect(org).to_not be_valid
-      expect(org.errors.keys).to include :homepage_url
-    end
-
-    it "is invalid with a homepage URL that is malformed" do
-      org = build :org, homepage_url: 'foo bar'
-      expect(org).to_not be_valid
-      expect(org.errors.keys).to include :homepage_url
-    end
-
     it "is invalid with a logo URL that is not HTTP or HTTPS" do
       org = build :org, logo_url: 'ftp://foo.com'
       expect(org).to_not be_valid
@@ -105,12 +129,6 @@ RSpec.describe Organization, :type => :model do
     it "is valid even when the logo URL is missing" do
       org = build :org, logo_url: nil
       expect(org).to be_valid
-    end
-
-    it "is valid and able to be saved even when the donation URL is missing" do
-      org = build :org, donation_url: nil
-      expect(org).to be_valid
-      expect(org.save).to be true
     end
   end
 

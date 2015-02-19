@@ -5,6 +5,7 @@ FactoryGirl.define do
     association :creator
     url_key { "#{name}".downcase }
     homepage_url { "http://#{name}.com" }
+    donation_url { "http://#{name}.com/donate" }
 
     # Make the creator a member as well.
     after :create do |org, evaluator|
