@@ -30,8 +30,6 @@ Use Cases:
 
 
 Features:
- - Handle the case in which a donation URL is not provided for an organization.
- - Add a get started button at the bottom of the tour page.
  - Update the tour to render properly on mobile devices.
  - Fix buttons on std forms for iphone viewing.
  - Prevent keyboard from appearing when time fields are clicked on ios devices.
