@@ -16,14 +16,20 @@
 
     color: #444444;
 }
+#tour .separator {
+    width: 70%;
+    max-width: 40em;
+
+    margin: 1em auto;
+
+    border-bottom: 1px solid #999999;
+}
 
 #tour .section .body .screenshot {
-    display: inline-block;
-    
-    width: 30%;
-    margin: 1%;
+    width: 80%;
+    max-width: 15em;
 
-    vertical-align: middle;
+    margin: 1em auto;
 }
 #tour .section .body .screenshot img {
     max-width: 90%;
@@ -35,12 +41,9 @@
     box-shadow: .3em .3em .6em #AAAAAA;
 }
 #tour .section .body .text {
-    display: inline-block;
+    width: 95%;
 
-    width: 65%;
-    margin: 1%;
-
-    vertical-align: middle;
+    margin: .5em auto;
 }
 
 #tour .section .title {
@@ -60,6 +63,24 @@
     margin: .5em;
 }
 
+@media screen and (min-width: 650px)  {
+    #tour .section .body .screenshot {
+        display: inline-block;
+
+        width: 30%;
+        margin: 1%;
+
+        vertical-align: middle;
+    }
+    #tour .section .body .text {
+        display: inline-block;
+
+        width: 65%;
+        margin: 1%;
+
+        vertical-align: middle;
+    }
+}
 @media screen and (min-width: 800px)  {
     #tour .section .content {
         width: 55%;
