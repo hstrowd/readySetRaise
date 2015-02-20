@@ -36,9 +36,9 @@ function isoToLocalStrings(dateInput) {
 
     if (hours >= 12) {
         hours = hours % 12;
-        if (hours == 0) { hours = 12 }
         period = 'PM';
     }
+    if (hours == 0) { hours = 12 }
     if (minutes < 10) {
         minutes = "0" + minutes;
     }

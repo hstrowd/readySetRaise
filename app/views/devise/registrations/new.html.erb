@@ -55,7 +55,11 @@
                  }) %>
 
       <div class="actions">
-        <%= f.submit 'Sign Up', class: [:btn, :submit] %>
+        <%= f.button('Sign Up', {
+                       onClick: '$("#signup form").submit()',
+                       type: :button,
+                       class: [:btn, :submit]
+                     }) %>
       </div>
 
     <% end %>

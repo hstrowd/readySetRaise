@@ -30,10 +30,8 @@ Use Cases:
 
 
 Features:
- - Update the tour to render properly on mobile devices.
+ - Disable show registration route.
  - Fix buttons on std forms for iphone viewing.
- - Prevent keyboard from appearing when time fields are clicked on ios devices.
- - Fix console errors.
 
  - On the team view only show pledge log to org members.
  - Investigate ChartKick not loading properly
@@ -42,6 +40,7 @@ Features:
  - Update dashboard graph to render properly when there are no pledges.
  - Add support for deleting all types of records.
  - Update teams to not support pledging after the event ends.
+ - Update account dropdown to include a profile link
 
  - Setup NewRelic APM
  - Allow users to review their donations both on a per-event basis and globally.

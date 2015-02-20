@@ -66,7 +66,11 @@
                  }) %>
 
       <div class="actions">
-        <%= f.submit 'Update', class: [:btn, :submit] %>
+        <%= f.button('Update', {
+                       onClick: '$("#account-update form").submit()',
+                       type: :button,
+                       class: [:btn, :submit]
+                     }) %>
       </div>
 
     <% end %>

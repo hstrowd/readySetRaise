@@ -21,7 +21,11 @@
                  }) %>
 
       <div class="actions">
-        <%= f.submit "Resend", class: [:btn, :submit]  %>
+        <%= f.button("Resend", {
+                       onClick: '$("#account-confirmation form").submit()',
+                       type: :button,
+                       class: [:btn, :submit]
+                     }) %>
       </div>
     <% end %>
 

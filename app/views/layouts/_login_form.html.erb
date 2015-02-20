@@ -23,7 +23,11 @@
       </div>
 
       <div class="actions">
-        <%= submit_tag "Submit", class: :submit %>
+        <%= button_tag "Submit", {
+              onClick: '$(".login form").submit()',
+              type: :button,
+              class: [:btn, :submit]
+            } %>
       </div>
     <% end %>
   </div>

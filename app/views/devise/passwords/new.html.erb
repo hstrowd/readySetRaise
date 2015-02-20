@@ -15,7 +15,11 @@
                  }) %>
 
       <div class="actions">
-        <%= f.submit "Email Me", class: [:btn, :submit] %>
+        <%= f.button("Email Me", {
+                       onClick: '$("#forgot-password form").submit()',
+                       type: :button,
+                       class: [:btn, :submit]
+                     }) %>
       </div>
     <% end %>
 

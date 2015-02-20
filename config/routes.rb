@@ -29,10 +29,6 @@ Rails.application.routes.draw do
     post "/users/password/reset" => "users/password_resets#create"
     get "/users/password/reset/edit" => "users/password_resets#edit"
     put "/users/password/reset" => "users/password_resets#update"
-
-    # Password changes for logged in users.
-    get "/users/password/change/new" => "users/password_changes#edit_password"
-    post "/users/password/change" => "users/password_changes#update_password"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

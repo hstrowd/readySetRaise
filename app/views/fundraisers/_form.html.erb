@@ -64,7 +64,11 @@
                }) %>
 
     <div class="actions">
-      <%= f.submit((action + " Fundraiser"), class: [:btn, :submit]) %>
+      <%= f.button(action + " Fundraiser", {
+                     onClick: '$(".fundraiser-form form").submit()',
+                     type: :button,
+                     class: [:btn, :submit]
+                   }) %>
       <%= f.button("Cancel", {
                      onClick: 'window.location.assign("' + cancel_path + '")', 
                      type: :button, 
