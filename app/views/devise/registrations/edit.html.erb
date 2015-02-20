@@ -43,6 +43,10 @@
                    model: resource,
                    attr: :current_password
                  }) %>
+      <% content_for 'password_label' do %>
+        <!-- Do not mark this as required -->
+        <%= f.label('New Password') %>
+      <% end %>
       <% content_for 'password_field' do %>
         <%= f.password_field :password %>
       <% end %>
@@ -51,7 +55,6 @@
                    form: f,
                    model: resource,
                    attr: :password,
-                   field_label: 'New password',
                    info: 'Leave blank to not remain unchanged.'
                  }) %>
       <% content_for 'password_confirmation_field' do %>

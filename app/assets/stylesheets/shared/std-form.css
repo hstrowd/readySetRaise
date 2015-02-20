@@ -38,6 +38,10 @@
     vertical-align: middle;
     text-align: right;
 }
+.std-form .field .label .required:after {
+    content: " *";
+    color: red;
+}
 .std-form .field .label .help-text {
     font-size: .5em;
 }

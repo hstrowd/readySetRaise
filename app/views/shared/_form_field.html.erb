@@ -1,10 +1,16 @@
 <div class="field <%= attr.to_s.dasherize %>">
 
   <div class="label">
-    <% if defined? field_label %>
-      <%= form.label(field_label) %>
+    <% if content_for?(attr.to_s + '_label') %>
+      <%= yield(attr.to_s + '_label') %>
     <% else %>
-      <%= form.label(attr) %>
+      <% classes = [] %>
+      <% classes << :required if required?(model, attr) %>
+      <% if defined? field_label %>
+        <%= form.label(field_label, class: classes) %>
+      <% else %>
+        <%= form.label(attr, class: classes) %>
+      <% end %>
     <% end %>
   </div>
 
