@@ -42,7 +42,16 @@ var refreshEventDashboard = function(eventData) {
     var hasNewPledges = updatePledgeLog($dashboard, eventData.pledges);
 
     if (hasNewPledges) {
-        new Chartkick.ColumnChart("chart-pledge-breakdown", '/events/' + eventData.eventID + '/pledge-breakdown.json', {});
+        var libraryOpts = {
+            xAxis: {
+                labels: {
+                    style: {
+                        fontSize: "1.3em"
+                    }
+                }
+            }
+        };
+        new Chartkick.ColumnChart("chart-pledge-breakdown", '/events/' + eventData.eventID + '/pledge-breakdown.json', { library: libraryOpts });
     }
 
     // Update the progress bar.
