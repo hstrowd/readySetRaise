@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TeamRaising.org - A platform for competitive, team-based fundraising.</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= favicon_link_tag %>
+    <%= csrf_meta_tags %>
+
+    <meta name="description" content="A team-based fundraising platform that generates more interest and excitement for fundraisers by tapping into peoples competitive nature.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= yield(:head) %>
+  </head>
+  <body>
+
+    <div id="page-container">
+      <% if content_for?('header') %>
+        <%= yield('header') %>
+      <% end %>
+
+      <div id="page-content">
+        <div id="notifications">
+          <div class="notice">
+            <% if notice %>
+              <div class="centerer"><%= notice %></div>
+            <% end %>
+            <!-- Add JS to close the notification after a few seconds. -->
+          </div>
+          <div class="alert">
+            <% if alert %>
+              <div class="centerer"><%= alert %></div>
+            <% end %>
+          </div>
+        </div>
+
+        <%= yield %>
+      </div>
+
+      <div id="footer">
+        <div class="centerer">
+          <div class="copyright">Copyright © 2014 Harrison Strowd | All rights reserved.</div>
+          <div class="links">
+            <a href="http://www.strowd.com">strowd.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

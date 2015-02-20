@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   include DateHelper
 
   respond_to :html, :json
+  layout "raw", only: [:dashboard]
+
   before_action :authenticate_user!, except: [:show]
   before_action :lookup_event, except: [:new, :create]
 
