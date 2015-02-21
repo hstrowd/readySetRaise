@@ -33,6 +33,16 @@
                  attr: :amount
                }) %>
 
+    <% content_for 'anonymous_field' do %>
+      <%= f.check_box :anonymous %>
+    <% end %>
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @pledge,
+                 attr: :anonymous
+               }) %>
+
     <div class="actions">
       <%= f.button("Make Pledge", {
                      onClick: '$(".pledge-form form").submit()',

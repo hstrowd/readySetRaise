@@ -28,10 +28,16 @@ RSpec.describe Pledge, :type => :model do
       expect(pledge.errors.keys).to include :team
     end
 
-    it "is invalid without an donor" do
+    it "is invalid without a donor" do
       pledge = build :pledge, donor: nil
       expect(pledge).to_not be_valid
       expect(pledge.errors.keys).to include :donor
+    end
+
+    it "is invalid without an anonymous value" do
+      pledge = build :pledge, anonymous: nil
+      expect(pledge).to_not be_valid
+      expect(pledge.errors.keys).to include :anonymous
     end
   end
 

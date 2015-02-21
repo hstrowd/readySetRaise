@@ -5,5 +5,6 @@ FactoryGirl.define do
     association :donor
     association :team
     amount { rand(1..100) * 0.25 }
+    anonymous false
   end
 end
