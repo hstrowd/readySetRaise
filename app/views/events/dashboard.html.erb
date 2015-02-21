@@ -1,7 +1,10 @@
 <%= javascript_include_tag "//code.highcharts.com/highcharts.js", "chartkick" %>
 
 <div id="event-dashboard">
+  <div class="pad"></div>
+
   <div class="header">
+    <div class="vert-centerer"></div>
     <div class="logo">
       <% if !@event.organization.logo_url.blank? %>
         <%= link_to show_org_path(@event.organization.url_key) do %>
@@ -20,45 +23,81 @@
     </div>
     <% if !@event.has_started? %>
       <div class="clock start">
-        Starts in <span id="start-countdown" class="countdown"></span>
+        <div class="vert-centerer"></div>
+        <div class="text">Starts in <span id="start-countdown" class="countdown"></span></div>
       </div>
     <% elsif @event.is_active? %>
       <div class="clock end">
-        Ends in <span id="end-countdown" class="countdown"></span>
+        <div class="vert-centerer"></div>
+        <div class="text">Ends in <span id="end-countdown" class="countdown"></span></div>
       </div>
     <% else %>
       <div class="clock done">
-        Finished!
+        <div class="vert-centerer"></div>
+        <div class="text">Finished!</div>
       </div>
     <% end %>
   </div>
 
+  <div class="pad"></div>
+
   <div class="event-details">
-    <div class="pledge-breakdown">
-      <div class="title">Pledge Totals per Team</div>
-      <div id="chart-pledge-breakdown">Loading...</div>
+    <div class="tabs">
+      <div class="tab selected" data-tab="pledge-breakdown">
+        <div class="vert-centerer"></div>
+        Totals per Team
+      </div>
+      <div class="tab" data-tab="pledge-log">
+        <div class="vert-centerer"></div>
+        Pledge Log
+      </div>
     </div>
-    <div class="pledge-log">
-      <div class="title">Recent Pledges</div>
-      <div class="headers">
-        <div class="column donor">Donor</div>
-        <div class="column team">Team</div>
-        <div class="column amount">Amount</div>
+
+    <div class="pledge-breakdown tab-container selected">
+      <div class="pad"></div>
+      <div class="tab-body">
+        <div class="title">
+          <div class="vert-centerer"></div>
+          Pledge Totals per Team
+        </div>
+        <div id="chart-pledge-breakdown">Loading...</div>
       </div>
-      <div class="list">
-        <!-- Pledge records get added here dynamically. -->
+      <div class="pad"></div>
+    </div>
+
+    <div class="pledge-log tab-container">
+      <div class="pad"></div>
+      <div class="tab-body">
+        <div class="title">Recent Pledges</div>
+        <div class="headers">
+          <div class="column donor">Donor</div>
+          <div class="column team">Team</div>
+          <div class="column amount">Amount</div>
+        </div>
+        <div class="list">
+          <!-- Pledge records get added here dynamically. -->
+        </div>
       </div>
+      <div class="pad"></div>
     </div>
   </div>
 
+  <div class="pad"></div>
+
   <div class="overall">
-    <div class="title">Overall Progress</div>
+    <div class="title">
+      <div class="vert-centerer"></div>
+      Overall Progress
+    </div>
     <div class="progress-bar">
       <div class="pct-complete">
+        <div class="vert-centerer"></div>
         <div class="label"></div>
       </div>
     </div>
   </div>
+
+  <div class="pad"></div>
 </div>
 
 <script id="pledge-item" type="x-tmpl-mustache">
@@ -77,5 +116,7 @@
     setupCountdown('#end-countdown', '<%= @event.end_time.iso8601() %>');
 
     setupAutoRefresh(<%= @event.id %>);
+    var $eventDetails = $("#event-dashboard .event-details");
+    setupTabs($eventDetails);
   });
 </script>

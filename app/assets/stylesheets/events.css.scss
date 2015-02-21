@@ -11,9 +11,16 @@
  *  ==== Dashboard Styles ====
  */
 
-#event-dashboard .title {
-    padding: 1%;
+#event-dashboard {
+    height: 100%;
 
+    font-size: .6em;
+}
+/* Pads are used to provide vertical spacing as a percent of the available height. */
+#event-dashboard .pad {
+    height: 2%;
+}
+#event-dashboard .title {
     text-align: center;
 
     font-size: 1.2em;
@@ -22,32 +29,52 @@
 
 #event-dashboard .header {
     width: 95%;
-    margin: 2% auto;
+    height: 15%;
+    margin: 0 auto;
+
+    text-align: center;
 }
 #event-dashboard .header .logo {
     display: none;
 
     width: 10%;
-    height: 8em;
+    height: 100%;
     margin: 0 1%;
 
     text-align: center;
     vertical-align: middle;
 }
+#event-dashboard .header .text {
+    display: inline-block;
+
+    width: 99%;
+
+    vertical-align: middle;
+}
 #event-dashboard .header .text .title {
     margin: 1% 0;
-    padding: 0;
 
     font-size: 2em;
 }
 #event-dashboard .header .text .subtitle {
+    display: none;
     text-align:center;
 }
 #event-dashboard .header .clock {
-    margin: 2%;
-    padding: 1%;
+    display: none;
 
-    text-align: center;
+    width: 13%;
+    height: 100%;
+
+    overflow-y: hidden;
+
+    margin: 0;
+    vertical-align: middle;
+
+    font-size: 1.2em;
+}
+#event-dashboard .header .clock .text {
+    height: initial;
 }
 #event-dashboard .header .clock.start {
     background-color: #A3EB87;
@@ -59,59 +86,120 @@
     background-color: #FDA8A8;
 }
 
+
+
 #event-dashboard .event-details {
     width: 95%;
-    margin: 2% auto;
+    height: 79%;
+
+    margin: 0 auto;
 }
 
-#event-dashboard .pledge-breakdown {
-    margin: .5em;
-    padding: .5em;
+#event-dashboard .event-details .tabs {
+    width: 100%;
+    height: 10%;
 
-    vertical-align: top;
+    margin: 0;
+    padding: 0;
 }
-#event-dashboard .pledge-breakdown .title {
+#event-dashboard .event-details .tabs .tab {
+    display: inline-block;
+
+    height: 100%;
+
+    padding: 0 5%;
+
+    color: #333333;
+    background-color: #BBBBBB;
+    border: 0 solid;
+
+    border-radius: 1em 1em 0 0;
+    -moz-border-radius: 1em 1em 0 0;
+    -webkit-border-top-left-radius: 1em 1em 0 0;
+
+    text-align: center;
+}
+#event-dashboard .event-details .tabs .tab:hover {
+    color: #222222;
+    background-color: #999999;
+}
+#event-dashboard .event-details .tabs .tab:active {
+    color: #000000;
+    background-color: #888888;
+}
+#event-dashboard .event-details .tabs .tab.selected {
     background-color: #93BFF6;
 }
+
+#event-dashboard .event-details .tab-container {
+    display: none;
+
+    height: 90%;
+
+    background-color: #93BFF6;
+}
+#event-dashboard .event-details .tab-container.selected {
+    display: block;
+}
+#event-dashboard .event-details .tab-container .pad {
+    height: 3%;
+}
+#event-dashboard .event-details .tab-container .tab-body {
+    width: 95%;
+    height: 94%;
+
+    margin: 0 auto;
+    padding: 0;
+
+    overflow-y: scroll;
+}
+#event-dashboard .event-details .tab-body .title {
+    height: 10%;
+}
+
 #event-dashboard #chart-pledge-breakdown {
-    height: 20em;
+    width: 100%;
+    height: 88%;
+
+    margin: 0 auto;
 
     color: #999999;
 }
 
 #event-dashboard .pledge-log {
-    margin: .5em;
-
-    vertical-align: top;
-
     text-align: center;
+
+    /* This may not be readable on a projector if not enlarged a bit. */
+    font-size: 1.2em;
+}
+#event-dashboard .pledge-log .headers {
+    width: 96%;
+    margin: 0 auto;
 }
 #event-dashboard .pledge-log .headers .column {
     display: inline-block;
+
+    margin: 1%;
 
     font-size: .9em;
     text-align: center;
 }
 #event-dashboard .pledge-log .headers .column.donor {
     width: 40%;
-    margin: 1%;
 }
 #event-dashboard .pledge-log .headers .column.team {
     width: 30%;
-    margin: 1%;
 }
 #event-dashboard .pledge-log .headers .column.amount {
     width: 10%;
-    margin: 1%;
 }
 #event-dashboard .pledge-log .list {
     max-height: 16em;
-    overflow-y: scroll;
 }
 #event-dashboard .pledge-log .pledge {
     width: 96%;
-    margin: 1%;
-    padding: 1%;
+
+    margin: 1% auto;
 }
 #event-dashboard .pledge-log .pledge {
     background-color: #A3EB87;
@@ -119,34 +207,36 @@
 #event-dashboard .pledge-log .pledge .attr {
     display: inline-block;
 
+    margin: 1%;
+
     vertical-align: middle;
 }
 #event-dashboard .pledge-log .pledge .attr.donor {
     width: 40%;
-    margin: 1%;
 }
 #event-dashboard .pledge-log .pledge .attr.team {
     width: 30%;
-    margin: 1%;
 }
 #event-dashboard .pledge-log .pledge .attr.amount {
     width: 10%;
-    margin: 1%;
 }
 
 #event-dashboard .overall {
-    width: 80%;
+    display: none;
 
-    margin: 1% auto;
+    width: 80%;
+    height: 12%;
+
+    margin: 0 auto;
 }
 #event-dashboard .overall .title {
-    padding: 1%;
+    height: 50%;
 
     background-color: #A3EB87;
 }
 #event-dashboard .overall .progress-bar {
     width: 100%;
-    height: 3em;
+    height: 50%;
 
     background-color: #FFFFFF;
 }
@@ -160,43 +250,66 @@
     text-align: right;
 }
 #event-dashboard .overall .progress-bar .pct-complete .label {
-    padding: .9em .4em;
+    display: inline-block;
+
+    padding: 0 .4em;
+}
+
+@media screen and (min-height: 300px)  {
+    #event-dashboard {
+        font-size: .7em;
+    }
+    #event-dashboard .header .text .subtitle {
+        display: block;
+    }
+    #event-dashboard .event-details {
+        height: 65%;
+    }
+    #event-dashboard .overall {
+        display: block;
+    }
+}
+@media screen and (min-height: 400px)  {
+    #event-dashboard {
+        font-size: .9em;
+    }
+}
+@media screen and (min-height: 500px)  {
+    #event-dashboard {
+        font-size: 1em;
+    }
 }
 
 @media screen and (min-width: 600px)  {
-    #event-dashboard .header {
-        margin: .7em auto;
-    }
     #event-dashboard .header .logo {
         display: inline-block;
     }
     #event-dashboard .header .text {
         display: inline-block;
 
-        width: 70%;
+        width: 86%;
 
         vertical-align: middle;
     }
 }
 @media screen and (min-width: 800px)  {
+    #event-dashboard .header .text {
+        width: 66%;
+    }
     #event-dashboard .header .clock {
         display: inline-block;
-
-        width: 13%;
-        margin: 1%;
-
-        vertical-align: middle;
+        width: 20%;
     }
-}
-@media screen and (min-width: 1200px)  {
-    #event-dashboard .pledge-breakdown {
-        display: inline-block;
-
-        width: 60%;
+    #event-dashboard .event-details .tab-container .tab-body {
+        width: 98%;
     }
-    #event-dashboard .pledge-log {
-        display: inline-block;
-
-        width: 35%;
+    #event-dashboard .pledge-log .headers .column {
+        margin: .5em;
+    }
+    #event-dashboard .pledge-log .pledge {
+        margin: .5em auto;
+    }
+    #event-dashboard .pledge-log .pledge .attr {
+        margin: .5em;
     }
 }

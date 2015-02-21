@@ -20,23 +20,7 @@
         <%= yield('header') %>
       <% end %>
 
-      <div id="page-content">
-        <div id="notifications">
-          <div class="notice">
-            <% if notice %>
-              <div class="centerer"><%= notice %></div>
-            <% end %>
-            <!-- Add JS to close the notification after a few seconds. -->
-          </div>
-          <div class="alert">
-            <% if alert %>
-              <div class="centerer"><%= alert %></div>
-            <% end %>
-          </div>
-        </div>
-
-        <%= yield %>
-      </div>
+      <%= yield('page_content') %>
 
       <div id="footer">
         <div class="centerer">

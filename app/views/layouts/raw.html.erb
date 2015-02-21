@@ -1,5 +1,11 @@
 <% content_for 'header' do %>
 <% end %>
 
+<% content_for 'page_content' do %>
+  <div id="page-content" class="dashboard">
+    <%= yield %>
+  </div>
+<% end %>
+
 
 <%= render "layouts/base_structure" %>

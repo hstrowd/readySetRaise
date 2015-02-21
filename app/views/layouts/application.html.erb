@@ -71,4 +71,25 @@
 <% end %>
 
 
+<% content_for 'page_content' do %>
+  <div id="page-content">
+    <div id="notifications">
+      <div class="notice">
+        <% if notice %>
+          <div class="centerer"><%= notice %></div>
+        <% end %>
+        <!-- Add JS to close the notification after a few seconds. -->
+      </div>
+      <div class="alert">
+        <% if alert %>
+          <div class="centerer"><%= alert %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <%= yield %>
+  </div>
+<% end %>
+
+
 <%= render "layouts/base_structure" %>

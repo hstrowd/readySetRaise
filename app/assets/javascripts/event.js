@@ -10,10 +10,11 @@ var setupCountdown = function(outputSelector, time) {
     if (!$outputField.length) { return; }
 
     var date = new Date(time);
+    var countdownUnits = (countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS);
     if (isNaN(date.getTime())) { return; }
-    $outputField.text(countdown(date).toString());
+    $outputField.text(countdown(date, null, countdownUnits).toString());
     setInterval(function() {
-        $outputField.text(countdown(date).toString());        
+        $outputField.text(countdown(date, null, countdownUnits).toString());
     }, 1000);
 };
 
@@ -91,4 +92,23 @@ var updateProgressBar = function($dashboard, pledgeTotal, pledgeTarget) {
     $progressBar.animate({width: pctComplete + '%'});
     var $progressLabel = $progressBar.find('.label');
     if ($progressLabel.length) { $progressLabel.text(pctComplete + '%'); }
+};
+
+
+var setupTabs = function($parentPanel) {
+    var $tabs = $parentPanel.children('.tabs');
+    $tabs.children('.tab').each(function (index, tab) {
+        $(tab).click(function(e) {
+            activateTab($(this), $parentPanel);
+        });
+    });
+};
+
+var activateTab = function($tab, $parentPanel) {
+    $tab.parent().children('.tab').removeClass('selected');
+    $tab.addClass('selected');
+
+    var selectedTab = $tab.data('tab');
+    $parentPanel.children('.tab-container').removeClass('selected');
+    $parentPanel.children('.tab-container.' + selectedTab).addClass('selected');
 };
