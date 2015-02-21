@@ -1,32 +1,44 @@
 <div class="item team">
-  <div class="header">
-    <div class="title">
-      <%= link_to team do %>
-        <%= team.name %>
+  <div class="team-info">
+    <div class="header">
+      <div class="title">
+        <%= link_to team do %>
+          <%= team.name %>
+        <% end %>
+      </div>
+    </div>
+
+    <% if team.event.has_started? %>
+      <div class="attr pledges">
+        <div class="label">Progress:</div>
+        <div class="value">
+          <div class="percent">
+            <% if (team.pledge_target > 0) %>
+              <%= (team.pledge_total / team.pledge_target * 100).round() %>%
+            <% else %>
+              0%
+            <% end %>
+          </div>
+          (<div class="total"><%= team.pledge_total.round() %></div> / <div class="target"><%= team.pledge_target.round() %></div>
+          <div class="count">from <%= pluralize(team.pledges.count, 'pledge') %></div>)
+        </div>
+      </div>
+    <% else %>
+      <div class="attr pledge-target">
+        <div class="label">Pledge Target:</div>
+        <div class="value"><%= team.pledge_target.round() %></div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <div class="new-pledge">
+      <% if team.fundraiser.is_active? %>
+        <%= link_to new_team_pledge_path(team) do %>
+          <div class="action btn">Make a Pledge</div>
+        <% end %>
       <% end %>
     </div>
   </div>
-
-  <% if team.event.has_started? %>
-    <div class="attr pledges">
-      <div class="label">Progress:</div>
-      <div class="value">
-        <div class="percent">
-          <% if (team.pledge_target > 0) %>
-            <%= (team.pledge_total / team.pledge_target * 100).round() %>%
-          <% else %>
-            0%
-          <% end %>
-        </div>
-        (<div class="total"><%= team.pledge_total.round() %></div> / <div class="target"><%= team.pledge_target.round() %></div>
-        <div class="count">from <%= pluralize(team.pledges.count, 'pledge') %></div>)
-      </div>
-    </div>
-  <% else %>
-    <div class="attr pledge-target">
-      <div class="label">Pledge Target:</div>
-      <div class="value"><%= team.pledge_target.round() %></div>
-    </div>
-  <% end %>
 
 </div>
