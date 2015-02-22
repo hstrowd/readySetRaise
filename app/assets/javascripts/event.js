@@ -89,7 +89,8 @@ var updateProgressBar = function($dashboard, pledgeTotal, pledgeTarget) {
     if (pledgeTarget > 0) {
         pctComplete = Math.round(pledgeTotal / pledgeTarget * 100);
     }
-    $progressBar.animate({width: pctComplete + '%'});
+    var progressBarWidth = Math.min(100, pctComplete);
+    $progressBar.animate({width: progressBarWidth + '%'});
     var $progressLabel = $progressBar.find('.label');
     if ($progressLabel.length) { $progressLabel.text(pctComplete + '%'); }
 };
@@ -134,7 +135,7 @@ var activateRotationButton = function() {
 };
 var toggleAutoRotate = function($parentPanel) {
     if (autoRotateTimer) {
-        disableAutoRotate();
+        disableAutoRotate($parentPanel);
     } else {
         enableAutoRotate($parentPanel);
     }
@@ -142,20 +143,25 @@ var toggleAutoRotate = function($parentPanel) {
 var enableAutoRotate = function($parentPanel) {
     autoRotateTimer = setInterval($.proxy(rotateTab, $parentPanel),
                                   ROTATION_INTERVAL_SECONDS * 1000);
-
     activateRotationButton();
+
+    var $pledgeLogBody = $parentPanel.find('.pledge-log .tab-body');
+    startAutoScroll($pledgeLogBody);
 };
-var disableAutoRotate = function() {
+var disableAutoRotate = function($parentPanel) {
     if (autoRotateTimer) { clearTimeout(autoRotateTimer); }
     autoRotateTimer = null;
     deactivateRotationButton();
+
+    var $pledgeLogBody = $parentPanel.find('.pledge-log .tab-body');
+    stopAutoScroll($pledgeLogBody);
 };
 
 var setupTabs = function($parentPanel) {
     var $tabs = $parentPanel.children('.tabs');
     $tabs.children('.tab.panel').each(function (index, tab) {
         $(tab).click(function(e) {
-            disableAutoRotate();
+            disableAutoRotate($parentPanel);
             activateTab($(this), $parentPanel);
         });
     });
@@ -168,4 +174,56 @@ var activateTab = function($tab, $parentPanel) {
     var selectedTab = $tab.data('tab');
     $parentPanel.children('.tab-container').removeClass('selected');
     $parentPanel.children('.tab-container.' + selectedTab).addClass('selected');
+
+    $parentPanel.trigger('tabChange');
+};
+
+
+
+
+/**
+ *  ==== Auto-Scrolling ====
+ **/
+
+var AUTO_SCROLL_PAUSE_MILLISECONDS = 1000;
+var autoScrollTimer = null;
+var autoScrollOn = false;
+var autoScrollTimer = null;
+
+var startAutoScroll = function($container) {
+    if (autoScrollOn) { return; }
+    autoScrollOn = true;
+    $.proxy(autoScroll, $container)();
+};
+var stopAutoScroll = function($container) {
+    autoScrollOn = false;
+    clearTimeout(autoScrollTimer);
+    $container.stop(true);
+};
+
+var continueAutoScroll = function() {
+    if (!autoScrollOn) { return };
+    // Wait when the bottom or top is reached and then scroll back.
+    autoScrollTimer = setTimeout($.proxy(autoScroll, this),
+                                 AUTO_SCROLL_PAUSE_MILLISECONDS);
+};
+var autoScroll = function() {
+    if (!autoScrollOn) { return };
+
+    var endScrollPosition = (this[0].scrollHeight - this.height());
+    // If it's already near the bottom, scroll back to the top.
+    if (endScrollPosition - this.scrollTop() < 10) {
+        endScrollPosition = 0;
+    }
+    var scrollDistance = Math.abs(this.scrollTop() - endScrollPosition);
+
+    var animationOptions = {
+        scrollTop: endScrollPosition
+    };
+    // Use a function of the scroll distance to ensure a consistent for short and long lists.
+    var animationDurationMilliseconds = scrollDistance * 50;
+    this.animate(animationOptions,
+                 animationDurationMilliseconds,
+                 'linear', // Don't ease the scroll in or out.
+                 $.proxy(continueAutoScroll, this));
 };

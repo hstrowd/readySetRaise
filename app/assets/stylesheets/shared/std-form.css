@@ -74,6 +74,9 @@
 
     vertical-align: middle;
 }
+.std-form .field input[type=checkbox] {
+    width: initial;
+}
 .std-form .field .field_with_errors input {
     border-color: #EB8787;
     background-color: #FFBDBD;

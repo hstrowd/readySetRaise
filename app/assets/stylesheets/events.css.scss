@@ -148,14 +148,38 @@
 }
 
 #event-dashboard .event-details .tab-container {
-    display: none;
+    display: block;
+    /** Note: If we use display none here, it changes the size of the
+     *    chart-pledge-breakdown container which results in the chart
+     *    redrawing in a smaller area. If we use visibility, the bars
+     *    in the chart are getting lost when the tab is reselected.
+     **/
+    z-index: 0;
+
+    position: relative;
+    right: -110%;
 
     height: 90%;
 
     background-color: #93BFF6;
 }
+/**
+ * I hate that these have to be set manually, but I couldn't find a
+ * better way to work within the constraints mentioned in the 'Note'
+ * above.
+ **/
+#event-dashboard .event-details .tab-container.tab-1 {
+    top: -90%;
+}
+#event-dashboard .event-details .tab-container.tab-2 {
+    top: -180%;
+}
+#event-dashboard .event-details .tab-container.tab-3 {
+    top: -270%;
+}
 #event-dashboard .event-details .tab-container.selected {
-    display: block;
+    z-index: 10;
+    right: 0;
 }
 #event-dashboard .event-details .tab-container .pad {
     height: 3%;
@@ -262,8 +286,10 @@
 #event-dashboard .overall .progress-bar .pct-complete {
     height: 100%;
     width: 0;
-    max-width: 100%;
-
+    /**
+     * Setting a max width on the progess bar threw off JQuery's ability to animate this.
+     *    max-width: 100%;
+     **/
     background-color: #A0CAFF;
 
     text-align: right;
@@ -303,6 +329,15 @@
     #event-dashboard .event-details .tab-container {
         height: 91%;
     }
+    #event-dashboard .event-details .tab-container.tab-1 {
+        top: -91%;
+    }
+    #event-dashboard .event-details .tab-container.tab-2 {
+        top: -182%;
+    }
+    #event-dashboard .event-details .tab-container.tab-3 {
+        top: -273%;
+    }
 }
 @media screen and (min-height: 600px)  {
     #event-dashboard .event-details .tabs {
@@ -311,6 +346,15 @@
     #event-dashboard .event-details .tab-container {
         height: 92%;
     }
+    #event-dashboard .event-details .tab-container.tab-1 {
+        top: -92%;
+    }
+    #event-dashboard .event-details .tab-container.tab-2 {
+        top: -184%;
+    }
+    #event-dashboard .event-details .tab-container.tab-3 {
+        top: -276%;
+    }
 }
 @media screen and (min-height: 700px)  {
     #event-dashboard .event-details .tabs {
@@ -318,6 +362,15 @@
     }
     #event-dashboard .event-details .tab-container {
         height: 94%;
+    }
+    #event-dashboard .event-details .tab-container.tab-1 {
+        top: -94%;
+    }
+    #event-dashboard .event-details .tab-container.tab-2 {
+        top: -192%;
+    }
+    #event-dashboard .event-details .tab-container.tab-3 {
+        top: -288%;
     }
 }
 
