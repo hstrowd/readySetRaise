@@ -43,13 +43,17 @@
 
   <div class="event-details">
     <div class="tabs">
-      <div class="tab selected" data-tab="pledge-breakdown">
+      <div class="tab tab-0 panel selected" data-tab="pledge-breakdown" data-index="0">
         <div class="vert-centerer"></div>
         Totals per Team
       </div>
-      <div class="tab" data-tab="pledge-log">
+      <div class="tab tab-1 panel" data-tab="pledge-log" data-index="1">
         <div class="vert-centerer"></div>
         Pledge Log
+      </div>
+      <div class="tab button" onClick="toggleAutoRotate($('#event-dashboard .event-details'));">
+        <div class="pad"></div>
+        <%= image_tag 'events/dashboard/auto-rotate.png' %>
       </div>
     </div>
 

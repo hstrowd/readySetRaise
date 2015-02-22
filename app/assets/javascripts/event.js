@@ -95,10 +95,67 @@ var updateProgressBar = function($dashboard, pledgeTotal, pledgeTarget) {
 };
 
 
+var rotateTab = function() {
+    var $tabs = this.children('.tabs');
+    var $selectedTab = $tabs.children('.tab.selected');
+
+    var $nextTab = null;
+    if ($selectedTab.length) {
+        var currentIndex = $selectedTab.data('index');
+        var $nextTabByIndex = $tabs.children('.tab-' + (currentIndex + 1));
+        if ($nextTabByIndex.length) {
+            $nextTab = $($nextTabByIndex[0]);
+        }
+    }
+
+    if (!$nextTab || !$nextTab.length) {
+        $nextTab = $tabs.children('.tab-0');
+    }
+
+    if ($nextTab.length) {
+        activateTab($nextTab, this);
+    }
+};
+
+var autoRotateTimer = null;
+var autoRotateTabSelector = '#event-dashboard .event-details .tabs .tab.button';
+var ROTATION_INTERVAL_SECONDS = 30;
+
+var deactivateRotationButton = function() {
+    var $rotationTab = $(autoRotateTabSelector);
+    $rotationTab.removeClass('pressed');
+};
+var activateRotationButton = function() {
+    var $rotationTab = $(autoRotateTabSelector);
+    var isPressed = $rotationTab.hasClass('pressed');
+    if (!isPressed) {
+        $rotationTab.addClass('pressed');
+    }
+};
+var toggleAutoRotate = function($parentPanel) {
+    if (autoRotateTimer) {
+        disableAutoRotate();
+    } else {
+        enableAutoRotate($parentPanel);
+    }
+};
+var enableAutoRotate = function($parentPanel) {
+    autoRotateTimer = setInterval($.proxy(rotateTab, $parentPanel),
+                                  ROTATION_INTERVAL_SECONDS * 1000);
+
+    activateRotationButton();
+};
+var disableAutoRotate = function() {
+    if (autoRotateTimer) { clearTimeout(autoRotateTimer); }
+    autoRotateTimer = null;
+    deactivateRotationButton();
+};
+
 var setupTabs = function($parentPanel) {
     var $tabs = $parentPanel.children('.tabs');
-    $tabs.children('.tab').each(function (index, tab) {
+    $tabs.children('.tab.panel').each(function (index, tab) {
         $(tab).click(function(e) {
+            disableAutoRotate();
             activateTab($(this), $parentPanel);
         });
     });

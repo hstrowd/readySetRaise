@@ -107,8 +107,6 @@
 
     height: 100%;
 
-    padding: 0 5%;
-
     color: #333333;
     background-color: #BBBBBB;
     border: 0 solid;
@@ -119,6 +117,9 @@
 
     text-align: center;
 }
+#event-dashboard .event-details .tabs .tab.panel {
+    padding: 0 5%;
+}
 #event-dashboard .event-details .tabs .tab:hover {
     color: #222222;
     background-color: #999999;
@@ -127,8 +128,23 @@
     color: #000000;
     background-color: #888888;
 }
-#event-dashboard .event-details .tabs .tab.selected {
+#event-dashboard .event-details .tabs .tab.panel.selected,
+#event-dashboard .event-details .tabs .tab.button.pressed {
     background-color: #93BFF6;
+}
+
+#event-dashboard .event-details .tabs .tab.button {
+    display: inline-block;
+    float: right;
+
+    padding: 0 1%;
+}
+#event-dashboard .event-details .tabs .tab.button .pad {
+    height: 5%;
+}
+#event-dashboard .event-details .tabs .tab.button img {
+    height: 90%;
+    vertical-align: middle;
 }
 
 #event-dashboard .event-details .tab-container {
@@ -157,6 +173,9 @@
     height: 10%;
 }
 
+#event-dashboard .event-details .pledge-breakdown .title {
+    background-color: #A3EB87;
+}
 #event-dashboard #chart-pledge-breakdown {
     width: 100%;
     height: 88%;
@@ -277,6 +296,28 @@
 @media screen and (min-height: 500px)  {
     #event-dashboard {
         font-size: 1em;
+    }
+    #event-dashboard .event-details .tabs {
+        height: 9%;
+    }
+    #event-dashboard .event-details .tab-container {
+        height: 91%;
+    }
+}
+@media screen and (min-height: 600px)  {
+    #event-dashboard .event-details .tabs {
+        height: 8%;
+    }
+    #event-dashboard .event-details .tab-container {
+        height: 92%;
+    }
+}
+@media screen and (min-height: 700px)  {
+    #event-dashboard .event-details .tabs {
+        height: 6%;
+    }
+    #event-dashboard .event-details .tab-container {
+        height: 94%;
     }
 }
 
