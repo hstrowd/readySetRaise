@@ -179,7 +179,7 @@ var activateTab = function($tab, $parentPanel) {
     $parentPanel.children('.tab-container').removeClass('selected');
     $parentPanel.children('.tab-container.' + selectedTab).addClass('selected');
 
-    $parentPanel.trigger('tabChange');
+    $parentPanel.trigger('tabChange', selectedTab);
 };
 
 
@@ -203,6 +203,12 @@ var stopAutoScroll = function($container) {
     autoScrollOn = false;
     clearTimeout(autoScrollTimer);
     $container.stop(true);
+};
+var resetAutoScroll = function($container) {
+    if (!autoScrollOn) { return; }
+    stopAutoScroll($container);
+    $container.scrollTop(0);
+    startAutoScroll($container);
 };
 
 var continueAutoScroll = function() {

@@ -125,5 +125,10 @@
     setupAutoRefresh(<%= @event.id %>);
     var $eventDetails = $("#event-dashboard .event-details");
     setupTabs($eventDetails);
+    $eventDetails.on('tabChange', function(e, newTab) {
+      if (newTab == 'pledge-log') {
+        resetAutoScroll($eventDetails.find('.pledge-log .tab-body'));
+      }
+    });
   });
 </script>
