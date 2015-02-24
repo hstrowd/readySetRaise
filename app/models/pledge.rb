@@ -7,5 +7,5 @@ class Pledge < ActiveRecord::Base
 
   validates :amount, :team, :donor, :presence => true
   validates :anonymous, :inclusion => {:in => [true, false]}
-  validates_numericality_of :amount
+  validates :amount, numericality: { greater_than_or_equal_to: 0 }
 end

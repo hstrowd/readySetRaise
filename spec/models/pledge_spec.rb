@@ -22,6 +22,12 @@ RSpec.describe Pledge, :type => :model do
       expect(pledge.errors.keys).to include :amount
     end
 
+    it "is invalid if amount is negative" do
+      pledge = build :pledge, amount: -0.01
+      expect(pledge).to_not be_valid
+      expect(pledge.errors.keys).to include :amount
+    end
+
     it "is invalid without a team" do
       pledge = build :pledge, team: nil
       expect(pledge).to_not be_valid

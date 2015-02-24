@@ -40,6 +40,7 @@ Features:
 
  - Setup NewRelic APM
  - Setup some form of CI
+ - Organize the Event.js file (look into Rails JS frameworks)
  - Allow users to review their donations both on a per-event basis and globally.
  - Create a Business Plan powerpoint/document (https://www.councilofnonprofits.org/tools-resources/business-planning-nonprofits)
  - File necessary paperwork (https://www.councilofnonprofits.org/tools-resources/how-start-nonprofit and https://www.harborcompliance.com/information/how-to-start-a-non-profit-organization-in-illinois.php)

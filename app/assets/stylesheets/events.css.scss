@@ -264,6 +264,10 @@
     width: 10%;
 }
 
+#event-dashboard .pledge-log .pledge .attr.amount .full {
+    display:none;
+}
+
 #event-dashboard .overall {
     display: none;
 
@@ -384,6 +388,12 @@
         width: 86%;
 
         vertical-align: middle;
+    }
+    #event-dashboard .pledge-log .pledge .attr.amount .full {
+        display: block;
+    }
+    #event-dashboard .pledge-log .pledge .attr.amount .dollars {
+        display: none;
     }
 }
 @media screen and (min-width: 800px)  {

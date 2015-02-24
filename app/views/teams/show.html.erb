@@ -40,7 +40,7 @@
   <div class="details">
     <div class="attribute pledge-target">
       <div class="label">Pledge Target:</div>
-      <%= ('%.2f' % @team.pledge_target) %>
+      $<%= ('%.2f' % @team.pledge_target) %>
     </div>
 
     <% if @team.event.has_started? %>
@@ -52,7 +52,7 @@
             Current Pledges:
           <% end %>
         </div>
-        <%= ('%.2f' % @team.pledge_total) %>
+        $<%= ('%.2f' % @team.pledge_total) %>
       </div>
     <% end %>
   </div>
@@ -73,7 +73,7 @@
           <div class="row entry">
             <div class="attr time"><%= p.created_at.iso8601() %></div>
             <div class="attr donor"><%= donor_name(p) %></div>
-            <div class="attr amount"><%= ('%.2f' % p.amount) %></div>
+            <div class="attr amount">$<%= ('%.2f' % p.amount) %></div>
           </div>
         <% end %>
       </div>

@@ -108,7 +108,10 @@
   <div class="pledge" data-pledge-id="{{ pledgeID }}">
     <div class="attr donor">{{ publicDonorName }}</div>
     <div class="attr team">{{ team.name }}</div>
-    <div class="attr amount">{{ amount }}</div>
+    <div class="attr amount">
+      <span class="full">${{ full_amount }}</span>
+      <span class="dollars">${{ dollar_amount }}</span>
+    </div>
   </div>
 </script>
 <script>
