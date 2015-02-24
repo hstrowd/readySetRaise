@@ -49,10 +49,10 @@ end
 
 ActionMailer::Base.smtp_settings = {
 # Development Mailgun Account
-#  :port           => 587,
-#  :address        => 'smtp.mailgun.org',
-#  :user_name      => 'postmaster@dev.teamraising.org',
-#  :password       => '035bac1bc8818c9d0fdb21a16158291c',
+#  :port           => ENV['MAILGUN_SMTP_PORT'],
+#  :address        => ENV['MAILGUN_SMTP_SERVER'],
+#  :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+#  :password       => ENV['MAILGUN_SMTP_PASSWORD']
 
 # Local Mailcatcher Server
   :port           => 1025,
