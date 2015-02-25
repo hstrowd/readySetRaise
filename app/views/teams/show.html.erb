@@ -30,7 +30,7 @@
 
     <div class="public">
       <% if @team.fundraiser.is_active? %>
-        <%= link_to new_team_pledge_path(@team) do %>
+        <%= link_to new_team_pledge_url(@team, protocol: secure_protocol) do %>
           <div class="action btn new-pledge">Make a Pledge</div>
         <% end %>
       <% end %>

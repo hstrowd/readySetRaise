@@ -5,7 +5,7 @@
       <div class="description">Use the fields below to update your account details.</div>
     </div>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: registration_url(resource_name, protocol: secure_protocol)) do |f| %>
 
       <%= render(partial: "shared/form_field",
                  locals: {

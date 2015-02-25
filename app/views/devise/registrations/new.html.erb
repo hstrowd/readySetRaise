@@ -2,7 +2,7 @@
   <div class="centerer">
     <div class="instructions">
       <div class="title">Account Setup - Welcome!</div>
-      <div class="description">Already have an account? Skip straight to <%= link_to "Log In", new_session_path(:user) %>.</div>
+      <div class="description">Already have an account? Skip straight to <%= link_to "Log In", new_session_url(:user, protocol: secure_protocol) %>.</div>
     </div>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>

@@ -1,6 +1,6 @@
 <div class="login">
   <div class="align-helper">
-    <%= form_tag session_path(:user) do |f| %>
+    <%= form_tag session_url(:user, protocol: secure_protocol) do |f| %>
       <div class="field">
         <div class="label">
           <%= label_tag :email %>

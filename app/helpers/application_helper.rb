@@ -1,2 +1,6 @@
 module ApplicationHelper
+  def secure_protocol
+    return 'https' if Rails.env.production?
+    return 'http'
+  end
 end

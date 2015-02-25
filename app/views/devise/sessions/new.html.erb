@@ -5,7 +5,7 @@
       <div class="description">Haven't created an account yet? Get started at the <%= link_to "Account Setup", new_registration_path(:user) %> page. Forgot your password? Recover it with the <%= link_to "Password Reset", users_password_reset_new_path %> utility.</div>
     </div>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_url(resource_name, protocol: secure_protocol)) do |f| %>
 
       <% content_for 'email_field' do %>
         <%= f.email_field :email %>
