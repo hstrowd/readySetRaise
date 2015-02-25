@@ -33,6 +33,16 @@
                  attr: :amount
                }) %>
 
+    <% content_for 'monthly_field' do %>
+      <%= f.check_box :monthly %>
+    <% end %>
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @pledge,
+                 attr: :monthly
+               }) %>
+
     <% content_for 'anonymous_field' do %>
       <%= f.check_box :anonymous %>
     <% end %>

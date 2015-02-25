@@ -86,7 +86,9 @@ RSpec.describe PledgesController, :type => :controller do
               expect {
                 post :create, pledge: {
                   team_id: @team.id,
-                  amount: 10
+                  amount: 10,
+                  monthly: true,
+                  anonymous: true
                 }
               }.to change{ Pledge.count }.by 1
 

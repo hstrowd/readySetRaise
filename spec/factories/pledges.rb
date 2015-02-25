@@ -6,5 +6,6 @@ FactoryGirl.define do
     association :team
     amount { rand(1..100) * 0.25 }
     anonymous false
+    monthly false
   end
 end

@@ -264,9 +264,19 @@
     width: 10%;
 }
 
+#event-dashboard .pledge-log .pledge .attr.amount.monthly span:after,
+#event-dashboard .pledge-log .footer .monthly .symbol:after {
+    content: "*";
+    color: red;
+}
 #event-dashboard .pledge-log .pledge .attr.amount .full {
     display:none;
 }
+
+#event-dashboard .pledge-log .footer {
+    font-size: .8em;
+}
+
 
 #event-dashboard .overall {
     display: none;

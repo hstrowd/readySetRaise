@@ -74,6 +74,7 @@ var updatePledgeLog = function($dashboard, pledges) {
         // Ensure two decimal places are always shown.
         pledge.full_amount = pledge.amount.toFixed(2);
         pledge.dollar_amount = Math.round(pledge.amount);
+        pledge.amount_class = (pledge.monthly && 'monthly') || '';
 
         var template = $('#pledge-item').html();
         var $rendered = $(Mustache.render(template, pledge));

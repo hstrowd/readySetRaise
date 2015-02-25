@@ -6,6 +6,6 @@ class Pledge < ActiveRecord::Base
   has_one :organization, :through => :team
 
   validates :amount, :team, :donor, :presence => true
-  validates :anonymous, :inclusion => {:in => [true, false]}
+  validates :anonymous, :monthly, :inclusion => {:in => [true, false]}
   validates :amount, numericality: { greater_than_or_equal_to: 0 }
 end

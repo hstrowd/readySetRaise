@@ -41,7 +41,8 @@ private
       params.require(:pledge)
         .permit(:team_id,
                 :amount,
-                :anonymous)
+                :anonymous,
+                :monthly)
     rescue ActionController::ParameterMissing => e
       logger.info "Failed to parse pledge params from #{params.inspect}"
       {}

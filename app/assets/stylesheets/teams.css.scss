@@ -80,8 +80,18 @@
     width: 15%;
 }
 
+#team-show .association.pledges .table .row .attr.amount.monthly:after,
+#team-show .association.pledges .footer .monthly .symbol:after {
+    content: "*";
+    color: red;
+}
 #team-show .association.pledges .table .row.header .attr.amount .full {
     display: none;
+}
+
+#team-show .association.pledges .footer {
+    text-align: center;
+    font-size: .8em;
 }
 
 @media screen and (min-width: 500px)  {

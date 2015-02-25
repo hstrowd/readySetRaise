@@ -13,7 +13,15 @@ class Event < ActiveRecord::Base
   validate :end_time_before_fundraiser_end
 
   has_many :teams
-  has_many :pledges, :through => :teams
+  has_many :pledges, :through => :teams do
+    def one_time
+      where("monthly = FALSE")
+    end
+    def monthly
+      where("monthly = TRUE")
+    end
+  end
+
 
   def has_started?
     self.start_time < DateTime.now
@@ -33,7 +41,8 @@ class Event < ActiveRecord::Base
   end
 
   def pledge_total
-    self.pledges.sum(:amount)
+    self.pledges.one_time.sum(:amount) +
+      (self.pledges.monthly.sum(:amount) * 12)
   end
 
 private

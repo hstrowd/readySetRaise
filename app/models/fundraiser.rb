@@ -21,7 +21,14 @@ class Fundraiser < ActiveRecord::Base
   end
 
   has_many :teams, :through => :events
-  has_many :pledges, :through => :events
+  has_many :pledges, :through => :events do
+    def one_time
+      where("monthly = FALSE")
+    end
+    def monthly
+      where("monthly = TRUE")
+    end
+  end
 
 
   def has_started?
@@ -42,7 +49,8 @@ class Fundraiser < ActiveRecord::Base
   end
 
   def pledge_total
-    self.pledges.sum(:amount)
+    self.pledges.one_time.sum(:amount) +
+      (self.pledges.monthly.sum(:amount) * 12)
   end
 
 private

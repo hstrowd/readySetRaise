@@ -5,5 +5,6 @@
   "anonymous": <%= pledge.anonymous %>,
   "publicDonorName": "<%= donor_name(pledge) %>",
   "team": <%= render partial: 'teams/brief', locals: {team: pledge.team} %>,
-  "amount": <%= pledge.amount %>
+  "amount": <%= pledge.amount %>,
+  "monthly": <%= pledge.monthly %>
 }

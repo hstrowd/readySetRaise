@@ -45,6 +45,12 @@ RSpec.describe Pledge, :type => :model do
       expect(pledge).to_not be_valid
       expect(pledge.errors.keys).to include :anonymous
     end
+
+    it "is invalid without an monthly value" do
+      pledge = build :pledge, monthly: nil
+      expect(pledge).to_not be_valid
+      expect(pledge.errors.keys).to include :monthly
+    end
   end
 
   describe "associations" do
