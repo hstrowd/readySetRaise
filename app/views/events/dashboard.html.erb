@@ -45,7 +45,7 @@
     <div class="tabs">
       <div class="tab tab-0 panel selected" data-tab="pledge-breakdown" data-index="0">
         <div class="vert-centerer"></div>
-        Totals per Team
+        Totals per <%= @event.team_descriptor.singular %>
       </div>
       <div class="tab tab-1 panel" data-tab="pledge-log" data-index="1">
         <div class="vert-centerer"></div>
@@ -62,7 +62,7 @@
       <div class="tab-body">
         <div class="title">
           <div class="vert-centerer"></div>
-          Pledge Totals per Team
+          Pledge Totals per <%= @event.team_descriptor.singular %>
         </div>
         <div id="chart-pledge-breakdown">Loading...</div>
       </div>
@@ -75,7 +75,7 @@
         <div class="title">Recent Pledges</div>
         <div class="headers">
           <div class="column donor">Donor</div>
-          <div class="column team">Team</div>
+          <div class="column team"><%= @event.team_descriptor.singular %></div>
           <div class="column amount">Amount</div>
         </div>
         <div class="list">

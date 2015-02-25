@@ -31,6 +31,17 @@
                  attr: :description
                }) %>
 
+    <% content_for 'team_descriptor_field' do %>
+      <%= f.collection_select :team_descriptor_id, TeamDescriptor.all, :id, :plural %>
+    <% end %>
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @event,
+                 attr: :team_descriptor,
+                 field_label: 'Type of Teams',
+                 info: "If you don't see the descriptor you would like to use, please email #{mail_to "support@teamraising.org"}."
+               }) %>
 
     <% content_for 'start_time_field' do %>
       <%= f.hidden_field(:start_time, value: @event.start_time) %>

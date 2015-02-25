@@ -1,9 +1,9 @@
 <div id="event-edit" class="std-form">
   <div class="centerer">
     <div class="instructions">
-      <div class="title">Update Event</div>
+      <div class="title">Update <%= @team.event.team_descriptor.singular %></div>
       <div class="description">
-        Use the form below to update the details for your event.
+        Use the form below to update the details for your <%= @team.event.team_descriptor.singular.downcase %>.
       </div>
     </div>
 

@@ -54,6 +54,12 @@ RSpec.describe Event, :type => :model do
       expect(event.errors.keys).to include :end_time
     end
 
+    it "is invalid without a team descriptor" do
+      event = build :event, team_descriptor: nil
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :team_descriptor
+    end
+
     it "is invalid when start time is after end time" do
       event = build :event, start_time: DateTime.now, end_time: (DateTime.now - 3.hours)
       expect(event).to_not be_valid

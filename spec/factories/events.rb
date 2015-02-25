@@ -8,6 +8,7 @@ FactoryGirl.define do
     end_time { DateTime.now + 1.day }
     association :fundraiser
     association :creator
+    team_descriptor { TeamDescriptor.find(1) }
 
     # Ensure the creator is a member of the associated org.
     after :create do |event, evaluator|

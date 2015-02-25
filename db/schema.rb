@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220205100) do
+ActiveRecord::Schema.define(version: 20150223221200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,15 @@ ActiveRecord::Schema.define(version: 20150220205100) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "cleanup_time"
-    t.integer  "fundraiser_id", null: false
-    t.integer  "creator_id",    null: false
+    t.integer  "fundraiser_id",      null: false
+    t.integer  "creator_id",         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_descriptor_id", null: false
   end
 
   add_index "events", ["fundraiser_id"], name: "index_events_on_fundraiser_id", using: :btree
+  add_index "events", ["team_descriptor_id"], name: "index_events_on_team_descriptor_id", using: :btree
 
   create_table "fundraisers", force: true do |t|
     t.string   "title",             null: false
@@ -75,6 +77,15 @@ ActiveRecord::Schema.define(version: 20150220205100) do
 
   add_index "pledges", ["donor_id"], name: "index_pledges_on_donor_id", using: :btree
   add_index "pledges", ["team_id"], name: "index_pledges_on_team_id", using: :btree
+
+  create_table "team_descriptors", force: true do |t|
+    t.string   "singular",   null: false
+    t.string   "plural",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "team_descriptors", ["singular"], name: "index_team_descriptors_on_singular", unique: true, using: :btree
 
   create_table "team_members", id: false, force: true do |t|
     t.integer "team_id", null: false

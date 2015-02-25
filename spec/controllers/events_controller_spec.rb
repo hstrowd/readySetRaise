@@ -115,7 +115,8 @@ RSpec.describe EventsController, :type => :controller do
                   description: 'Test event description.',
                   fundraiser_id: @fundraiser.id,
                   start_time: DateTime.now.iso8601,
-                  end_time: (DateTime.now + 3.hours).iso8601
+                  end_time: (DateTime.now + 3.hours).iso8601,
+                  team_descriptor_id: 1
                 }
               }.to change{ Event.count }.by 1
 

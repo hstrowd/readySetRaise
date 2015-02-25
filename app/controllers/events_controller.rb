@@ -96,7 +96,8 @@ private
                 :description,
                 :fundraiser_id,
                 :start_time,
-                :end_time)
+                :end_time,
+                :team_descriptor_id)
     rescue ActionController::ParameterMissing => e
       logger.info "Failed to parse event params from #{params.inspect}"
     end

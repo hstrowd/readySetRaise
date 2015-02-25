@@ -77,6 +77,13 @@
 .std-form .field input[type=checkbox] {
     width: initial;
 }
+.std-form .field .input select {
+    max-width: 20em;
+    width: 100%;
+    height: 2.5em;
+
+    vertical-align: middle;
+}
 .std-form .field .field_with_errors input {
     border-color: #EB8787;
     background-color: #FFBDBD;

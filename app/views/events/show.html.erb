@@ -24,7 +24,7 @@
       <div class="members">
         <% if !@event.has_ended? %>
           <%= link_to new_event_team_path(@event) do %>
-            <div class="action btn new-team">Add a Team</div>
+            <div class="action btn new-team">Add a <%= @event.team_descriptor.singular %></div>
           <% end %>
         <% end %>
         <%= link_to edit_event_path(@event) do %>
@@ -57,7 +57,7 @@
   </div>
 
   <div class="association teams">
-    <div class="title">Teams</div>
+    <div class="title"><%= @event.team_descriptor.plural %></div>
     <% if !@event.teams.empty? %>
       <div class="list">
         <% @event.teams.each do |t| %>

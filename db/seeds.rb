@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+teamDescriptors = [{
+    singular: 'Comedian',
+    plural: 'Comedians'
+  }, {
+    singular: 'Player',
+    plural: 'Players'
+  }];
+TeamDescriptor.create(teamDescriptors)
