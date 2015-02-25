@@ -325,7 +325,7 @@
     #header .login {
         display: none;
         
-        height: 2.2em;
+        height: 2.4em;
     
         background-color: #A3EB87;
     
@@ -352,14 +352,14 @@
     }
     #header .login input {
         display: inline-block;
-    
+
         padding: .15em;
     }
     
     #header .login .actions {
         display:inline-block;
     }
-    #header .login .actions input.submit {
+    #header .login .actions button.submit {
         display: inline-block;
         
         width: 5em;
@@ -373,7 +373,7 @@
     
         text-align: center;
     }
-    #header .login .actions input.submit:hover {
+    #header .login .actions button.submit:hover {
         background-color: #A0CAFF;
         border: .1em solid #666666;
     }
