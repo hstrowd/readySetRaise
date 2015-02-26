@@ -150,7 +150,7 @@ var enableAutoRotate = function($parentPanel) {
                                   ROTATION_INTERVAL_SECONDS * 1000);
     activateRotationButton();
 
-    var $pledgeLogBody = $parentPanel.find('.pledge-log .tab-body');
+    var $pledgeLogBody = $parentPanel.find('.pledge-log .tab-body .list');
     startAutoScroll($pledgeLogBody);
 };
 var disableAutoRotate = function($parentPanel) {
@@ -158,7 +158,7 @@ var disableAutoRotate = function($parentPanel) {
     autoRotateTimer = null;
     deactivateRotationButton();
 
-    var $pledgeLogBody = $parentPanel.find('.pledge-log .tab-body');
+    var $pledgeLogBody = $parentPanel.find('.pledge-log .tab-body .list');
     stopAutoScroll($pledgeLogBody);
 };
 

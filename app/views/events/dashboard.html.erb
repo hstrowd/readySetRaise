@@ -74,6 +74,7 @@
       <div class="tab-body">
         <div class="title">Recent Pledges</div>
         <div class="headers">
+          <div class="vert-centerer"></div>
           <div class="column donor">Donor</div>
           <div class="column team"><%= @event.team_descriptor.singular %></div>
           <div class="column amount">Amount</div>
@@ -82,6 +83,7 @@
           <!-- Pledge records get added here dynamically. -->
         </div>
         <div class="footer">
+          <div class="vert-centerer"></div>
           <div class="monthly"><span class="symbol"></span> - Indicates monthly pledges</div>
         </div>
       </div>
@@ -130,7 +132,7 @@
     setupTabs($eventDetails);
     $eventDetails.on('tabChange', function(e, newTab) {
       if (newTab == 'pledge-log') {
-        resetAutoScroll($eventDetails.find('.pledge-log .tab-body'));
+        resetAutoScroll($eventDetails.find('.pledge-log .tab-body .list'));
       }
     });
   });

@@ -190,8 +190,6 @@
 
     margin: 0 auto;
     padding: 0;
-
-    overflow-y: scroll;
 }
 #event-dashboard .event-details .tab-body .title {
     height: 10%;
@@ -217,15 +215,19 @@
 }
 #event-dashboard .pledge-log .headers {
     width: 96%;
+    height: 8%;
+
     margin: 0 auto;
 }
 #event-dashboard .pledge-log .headers .column {
     display: inline-block;
 
-    margin: 1%;
+    margin: 0 1%;
+
+    text-align: center;
+    vertical-align: middle;
 
     font-size: .9em;
-    text-align: center;
 }
 #event-dashboard .pledge-log .headers .column.donor {
     width: 40%;
@@ -237,7 +239,9 @@
     width: 10%;
 }
 #event-dashboard .pledge-log .list {
-    max-height: 16em;
+    height: 75%;
+
+    overflow-y: scroll;
 }
 #event-dashboard .pledge-log .pledge {
     width: 96%;
@@ -274,9 +278,13 @@
 }
 
 #event-dashboard .pledge-log .footer {
+    height: 7%;
     font-size: .8em;
 }
-
+#event-dashboard .pledge-log .footer .monthly {
+    display: inline-block;
+    vertical-align: bottom;
+}
 
 #event-dashboard .overall {
     display: none;
@@ -369,6 +377,19 @@
     #event-dashboard .event-details .tab-container.tab-3 {
         top: -276%;
     }
+
+    #event-dashboard .event-details .pledge-log .title {
+        height: 8%;
+    }
+    #event-dashboard .event-details .pledge-log .headers {
+        height: 6%;
+    }
+    #event-dashboard .event-details .pledge-log .list {
+        height: 81%;
+    }
+    #event-dashboard .event-details .pledge-log .footer {
+        height: 5%;
+    }
 }
 @media screen and (min-height: 700px)  {
     #event-dashboard .event-details .tabs {
@@ -418,7 +439,7 @@
         width: 98%;
     }
     #event-dashboard .pledge-log .headers .column {
-        margin: .5em;
+        margin: 0 .5em;
     }
     #event-dashboard .pledge-log .pledge {
         margin: .5em auto;
