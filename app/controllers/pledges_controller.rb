@@ -9,7 +9,15 @@ class PledgesController < ApplicationController
   end
 
   def create
-    return if !is_valid_team?(pledge_params[:team_id])
+    team_id = pledge_params[:team_id]
+    return if !is_valid_team?(team_id)
+
+    team = Team.find_by_id(team_id)
+    if !team.fundraiser.is_active? || team.event.has_ended?
+      flash[:alert] = 'The pledge window for this event is closed. Please contact the coordinator directly to submit any further pledges/or donations.'
+      redirect_to team.event
+      return
+    end
 
     @pledge = Pledge.new(pledge_params)
     @pledge.donor = current_user

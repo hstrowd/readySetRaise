@@ -72,67 +72,135 @@ RSpec.describe PledgesController, :type => :controller do
       end
 
       describe "when associated team is found" do
-        before :each do
-          @team = create :team
-        end
+        describe "when valid attributes are provided" do
+          describe "before fundraiser pledge window starts" do
+            it "prevents new pledges" do
+              fundraiser = create :fundraiser, {
+                pledge_start_time: DateTime.now + 1.day,
+                pledge_end_time: DateTime.now + 3.day
+              }
+              event = create :event, {
+                fundraiser: fundraiser,
+                start_time: DateTime.now + 36.hours,
+                end_time: DateTime.now + 39.hours
+              }
+              team = create :team, event: event
 
-        describe "when the current user is member of org" do
-          before :each do
-            @team.event.fundraiser.organization.members << @current_user
-          end
-
-          describe "when valid attributes are provided" do
-            it "creates a new pledge" do
               expect {
                 post :create, pledge: {
-                  team_id: @team.id,
+                  team_id: team.id,
+                  amount: 10,
+                  monthly: true,
+                  anonymous: true
+                }
+              }.to_not change{ Pledge.count }
+
+              expect(response).to redirect_to event
+            end
+          end
+
+          describe "during fundraiser pledge window before event start" do
+            it "creates a new pledge" do
+              fundraiser = create :fundraiser, {
+                pledge_start_time: DateTime.now - 1.day,
+                pledge_end_time: DateTime.now + 3.day
+              }
+              event = create :event, {
+                fundraiser: fundraiser,
+                start_time: DateTime.now + 36.hours,
+                end_time: DateTime.now + 39.hours
+              }
+              team = create :team, event: event
+
+              expect {
+                post :create, pledge: {
+                  team_id: team.id,
                   amount: 10,
                   monthly: true,
                   anonymous: true
                 }
               }.to change{ Pledge.count }.by 1
 
-              expect(response).to redirect_to @team
+              expect(response).to redirect_to team
             end
           end
 
-          describe "when invalid attributes are provided" do
-            it "rerenders the edit form" do
+          describe "during the event" do
+            it "creates a new pledge" do
+              fundraiser = create :fundraiser, {
+                pledge_start_time: DateTime.now - 1.day,
+                pledge_end_time: DateTime.now + 3.day
+              }
+              event = create :event, {
+                fundraiser: fundraiser,
+                start_time: DateTime.now - 3.hours,
+                end_time: DateTime.now + 3.hours
+              }
+              team = create :team, event: event
+
               expect {
                 post :create, pledge: {
-                  team_id: @team.id,
-                  amount: nil
+                  team_id: team.id,
+                  amount: 10,
+                  monthly: true,
+                  anonymous: true
+                }
+              }.to change{ Pledge.count }.by 1
+
+              expect(response).to redirect_to team
+            end
+          end
+
+          describe "after the event ends" do
+            it "rejects new pledges" do
+              fundraiser = create :fundraiser, {
+                pledge_start_time: DateTime.now - 1.day,
+                pledge_end_time: DateTime.now + 3.day
+              }
+              event = create :event, {
+                fundraiser: fundraiser,
+                start_time: DateTime.now - 6.hours,
+                end_time: DateTime.now - 2.hours
+              }
+              team = create :team, event: event
+
+              expect {
+                post :create, pledge: {
+                  team_id: team.id,
+                  amount: 10,
+                  monthly: true,
+                  anonymous: true
                 }
               }.to_not change{ Pledge.count }
-              expect(response).to render_template :new
-            end
 
-            it "does not error due to garbage parameters" do
-              expect {
-                post :create, foo: 123
-              }.to_not change{ Pledge.count }
-              expect(response).to redirect_to organizations_path
+              expect(response).to redirect_to event
             end
           end
         end
 
-        describe "when the current user is not member of org" do
-          describe "when valid attributes are provided" do
-            it "creates a new pledge" do
-              expect {
-                post :create, pledge: {
-                  team_id: @team.id,
-                  amount: 10
-                }
-              }.to change{ Pledge.count }.by 1
+        describe "when invalid attributes are provided" do
+          it "rerenders the edit form" do
+            team = create :team
 
-              expect(response).to redirect_to @team
-            end
+            expect {
+              post :create, pledge: {
+                team_id: team.id,
+                amount: nil
+              }
+            }.to_not change{ Pledge.count }
+            expect(response).to render_template :new
+          end
+
+          it "does not error due to garbage parameters" do
+            expect {
+              post :create, foo: 123
+            }.to_not change{ Pledge.count }
+            expect(response).to redirect_to organizations_path
           end
         end
       end
 
-      describe "when associated event is not found" do
+      describe "when associated team is not found" do
         it "redirect to orgs index" do
           expect {
             post :create, pledge: {
