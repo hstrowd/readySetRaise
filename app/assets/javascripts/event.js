@@ -42,7 +42,8 @@ var refreshEventDashboard = function(eventData) {
     // Add new pledges to the pledge log.
     var hasNewPledges = updatePledgeLog($dashboard, eventData.pledges);
 
-    if (hasNewPledges) {
+    var chartContainer = $('#chart-pledge-breakdown');
+    if (hasNewPledges || !chartContainer.children().length) {
         var libraryOpts = {
             xAxis: {
                 labels: {

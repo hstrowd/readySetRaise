@@ -30,14 +30,12 @@ Use Cases:
 
 
 Features:
- - On the team view only show pledge log to org members.
  - Update tour and event dashboard pages to support turbolinks.
- - Purchase an SSL cert.
- - Update dashboard graph to render properly when there are no pledges.
  - Add support for deleting all types of records.
  - Update teams to not support pledging after the event ends.
  - Update account dropdown to include a profile link
  - Look into alternatives to having a submit input in forms to allow enter to submit the form
+ - Find a new image for the exciment section of the pitch.
 
  - Setup NewRelic APM
  - Setup some form of CI
