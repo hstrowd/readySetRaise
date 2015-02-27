@@ -1,31 +1,20 @@
-<h1>Listing events</h1>
+<div id="event-index">
+  <div class="centerer">
+    <div class="intro">
+      <div class="title">Active Events</div>
+      <div class="description">Check out the following events that are scheduled to start soon, are currently taking place, or ended recently.</div>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% if (@events.count > 0) %>
+      <div class="list">
+        <% @events.each do |event| %>
+          <%= render partial: 'list_item', locals: { event: event, show_full_context: true } %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="list empty">
+        No organizations found. Please create one to get started.
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %>
+  </div>
+</div>

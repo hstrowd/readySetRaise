@@ -8,6 +8,33 @@
 
 
 /**
+ *  ==== Index ====
+ **/
+
+#event-index .intro {
+    margin: 0 3%;
+}
+#event-index .intro .title {
+    display: inline-block;
+    
+    width: 10em;
+    margin: 3%;
+    
+    vertical-align: middle;
+
+    color: #5F97DE;
+    font-size: 1.5em;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-weight: bold;
+}
+@media screen and (min-width: 700px)  {
+    #event-index .intro .title {
+        margin: .8em 3%;
+    }
+}
+
+
+/**
  *  ==== Dashboard Styles ====
  */
 

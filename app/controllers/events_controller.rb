@@ -5,7 +5,13 @@ class EventsController < ApplicationController
   layout "raw", only: [:dashboard]
 
   before_action :authenticate_user!, except: [:show]
-  before_action :lookup_event, except: [:new, :create]
+  before_action :lookup_event, except: [:index, :new, :create]
+
+  def index
+    @events = Event.where("start_time <= ? AND end_time >= ?",
+                          (DateTime.now + 3.hours),
+                          (DateTime.now - 3.hours))
+  end
 
   def new
     fundraiser_id = params[:fundraiser_id]

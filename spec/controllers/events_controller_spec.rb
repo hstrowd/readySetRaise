@@ -6,8 +6,67 @@ RSpec.describe EventsController, :type => :controller do
   # ======== Index Action ========
 
   describe "GET index" do
-    it "should not be routable" do
-      expect(:get => '/events').not_to be_routable
+    describe "when logged in" do
+      before :each do
+        @current_user = create :user
+        sign_in @current_user
+      end
+
+      it "shows the upcoming, current, and recently completed events" do
+        fundraiser = create :fundraiser, {
+          pledge_start_time: DateTime.now - 5.days,
+          pledge_end_time: DateTime.now + 5.days
+        }
+
+        long_future_event = create :event, {
+          fundraiser: fundraiser,
+          start_time: DateTime.now + 2.days,
+          end_time: DateTime.now + 3.days
+        }
+
+        short_future_event = create :event, {
+          fundraiser: fundraiser,
+          start_time: DateTime.now + 1.hour,
+          end_time: DateTime.now + 4.hours
+        }
+
+        current_event = create :event, {
+          fundraiser: fundraiser,
+          start_time: DateTime.now - 2.hours,
+          end_time: DateTime.now + 2.hours
+        }
+
+        short_past_event = create :event, {
+          fundraiser: fundraiser,
+          start_time: DateTime.now - 4.hours,
+          end_time: DateTime.now - 1.hour
+        }
+
+        long_past_event = create :event, {
+          fundraiser: fundraiser,
+          start_time: DateTime.now - 3.days,
+          end_time: DateTime.now - 2.days
+        }
+
+        get :index
+
+        events = assigns(:events)
+        expect(events).not_to be_nil
+
+        expect(events.count).to eq 3
+        expect(events.include?(long_future_event)).to eq false
+        expect(events.include?(short_future_event)).to eq true
+        expect(events.include?(current_event)).to eq true
+        expect(events.include?(short_past_event)).to eq true
+        expect(events.include?(long_past_event)).to eq false
+      end
+    end
+
+    describe "when not logged in" do
+      it "redirects to sign up" do
+        get :index
+        expect(response).to redirect_to user_session_path
+      end
     end
   end
 

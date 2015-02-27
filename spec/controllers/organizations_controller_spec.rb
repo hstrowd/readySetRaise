@@ -19,8 +19,13 @@ RSpec.describe OrganizationsController do
         get :index
 
         expect(response).to render_template :index
+
         # Only show the current user's organizations.
-        expect(assigns(:orgs)).to eq @current_user.organizations
+        orgs = assigns(:orgs)
+        expect(orgs).not_to be_nil
+        expect(orgs.count).to eq 1
+        expect(orgs.include?(org1)).to eq true
+        expect(orgs.include?(org2)).to eq false
       end
     end
 
