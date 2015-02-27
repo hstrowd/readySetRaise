@@ -19,7 +19,7 @@
             <div class="vert-centerer"></div>
             <div class="welcome">
               Welcome back,
-              <div class="account-name"><%= link_to current_user.first_name, edit_user_registration_url(current_user.id, protocol: secure_protocol) %></div>
+              <div class="account-name"><%= current_user.first_name %></div>
             </div>
           </div>
         <% else %>

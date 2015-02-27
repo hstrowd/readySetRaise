@@ -4,6 +4,9 @@
     <%= link_to organizations_path do %>
       <div class="nav-item">My Organizations</div>
     <% end %>
+    <%= link_to edit_user_registration_url(current_user.id, protocol: secure_protocol) do %>
+      <div class="nav-item">Update Account</div>
+    <% end %>
     <%= link_to destroy_session_path(:user), method: :delete do %>
       <div class="nav-item">Log Out</div>
     <% end %>
