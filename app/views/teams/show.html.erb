@@ -4,7 +4,7 @@
     <div class="icon">
       <% if !@team.organization.logo_url.blank? %>
         <%= link_to show_org_path(@team.organization.url_key) do %>
-          <%= image_tag @team.organization.logo_url %>
+          <%= image_tag @team.organization.logo_url, alt: 'Organization Logo' %>
         <% end %>
       <% end %>
     </div>
