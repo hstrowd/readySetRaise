@@ -73,7 +73,7 @@
           <div class="row entry">
             <div class="attr time"><%= p.created_at.iso8601() %></div>
             <div class="attr donor"><%= donor_name(p) %></div>
-            <div class="attr amount<%= (p.monthly && ' monthly') %>">$<%= ('%.2f' % p.amount) %></div>
+            <div class="attr amount<%= (p.monthly && ' monthly') || '' %>">$<%= ('%.2f' % p.amount) %></div>
           </div>
         <% end %>
       </div>
