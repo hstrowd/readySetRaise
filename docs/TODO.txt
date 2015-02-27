@@ -31,12 +31,10 @@ Use Cases:
 
 Features:
  - Update tour and event dashboard pages to support turbolinks.
- - Add support for deleting all types of records.
- - Update teams to not support pledging after the event ends.
- - Update account dropdown to include a profile link
  - Look into alternatives to having a submit input in forms to allow enter to submit the form
  - Find a new image for the exciment section of the pitch.
 
+ - Add support for deleting all types of records.
  - Setup NewRelic APM
  - Setup some form of CI
  - Organize the Event.js file (look into Rails JS frameworks)
