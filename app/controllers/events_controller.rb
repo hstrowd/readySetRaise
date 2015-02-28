@@ -68,6 +68,12 @@ private
   def lookup_event
     @event = Event.find_by_id(params[:id]) if params[:id]
 
+    # Check if the url_keys were specified for this request.
+    if !@event && params[:org_url_key] && params[:event_url_key]
+      @event = Event.find_by_org_and_event_url_keys(params[:org_url_key],
+                                                    params[:event_url_key])
+    end
+
     if !@event
       respond_to do |format|
         format.html {
@@ -100,6 +106,7 @@ private
       input_params = params.require(:event)
         .permit(:title,
                 :description,
+                :url_key,
                 :fundraiser_id,
                 :start_time,
                 :end_time,

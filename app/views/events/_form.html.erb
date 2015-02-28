@@ -31,6 +31,15 @@
                  attr: :description
                }) %>
 
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @event,
+                 field_label: :unique_key,
+                 attr: :url_key,
+                 info: "Used in URLs (e.g. https://teamraising.org/#{@event.organization.url_key}/<div class=\"variable\">unique-key</div>/)."
+               }) %>
+
     <% content_for 'team_descriptor_field' do %>
       <%= f.collection_select :team_descriptor_id, TeamDescriptor.all, :id, :plural %>
     <% end %>

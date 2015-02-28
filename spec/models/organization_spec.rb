@@ -96,8 +96,15 @@ RSpec.describe Organization, :type => :model do
       expect(org.errors.keys).to include :url_key
     end
 
-    it "is invalid if the URL key is too long" do
-      org = build :org, url_key: generate_random_string(256)
+    it "is invalid if the URL key is a reversed key" do
+      org = build :org, url_key: 'organizations'
+      expect(org).to_not be_valid
+      expect(org.errors.keys).to include :url_key
+    end
+
+    it "is invalid if the URL key is a duplicate" do
+      existing_org = create :org
+      org = build :org, url_key: existing_org.url_key
       expect(org).to_not be_valid
       expect(org.errors.keys).to include :url_key
     end

@@ -49,7 +49,7 @@ private
 
   def lookup_org
     @org = Organization.find_by_id(params[:id]) if params[:id]
-    @org = Organization.find_by_url_key(params[:url_key]) if !@org && params[:url_key]
+    @org = Organization.find_by_url_key(params[:org_url_key]) if !@org && params[:org_url_key]
 
     if !@org
       flash[:alert] = 'Unable to find requested organization.'

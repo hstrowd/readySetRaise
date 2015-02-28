@@ -273,11 +273,47 @@ RSpec.describe EventsController, :type => :controller do
         @event = create :event
       end
 
-      it "renders the show template" do
-        get :show, id: @event.id
+      describe "when the event ID is specified" do
+        it "renders the show template" do
+          get :show, id: @event.id
 
-        expect(response).to render_template :show
-        expect(assigns(:event)).to eq @event
+          expect(response).to render_template :show
+          expect(assigns(:event)).to eq @event
+        end
+      end
+
+      describe "when the org and event URL keys are specified" do
+        it "renders the show template" do
+          get :show, {
+            org_url_key: @event.organization.url_key,
+            event_url_key: @event.url_key
+          }
+
+          expect(response).to render_template :show
+          expect(assigns(:event)).to eq @event
+        end
+
+        describe "when improper org URL key is provided" do
+          it "redirects to the home page" do
+            get :show, {
+              org_url_key: 'unknown_org',
+              event_url_key: @event.url_key
+            }
+
+            expect(response).to redirect_to root_url
+          end
+        end
+
+        describe "when improper event URL key is provided" do
+          it "redirects to the home page" do
+            get :show, {
+              org_url_key: @event.organization.url_key,
+              event_url_key: 'unknown_event'
+            }
+
+            expect(response).to redirect_to root_url
+          end
+        end
       end
 
       describe "when JSON is requested" do

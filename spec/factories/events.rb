@@ -4,10 +4,11 @@ FactoryGirl.define do
   factory :event do
     title "Test Event"
     description "Test event's description."
-    start_time { DateTime.now - 1.day }
-    end_time { DateTime.now + 1.day }
+    sequence(:url_key) { |n|  "event#{n}" }
     association :fundraiser
     association :creator
+    start_time { DateTime.now - 1.day }
+    end_time { DateTime.now + 1.day }
     team_descriptor { TeamDescriptor.find(1) }
 
     # Ensure the creator is a member of the associated org.

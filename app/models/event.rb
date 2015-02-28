@@ -6,11 +6,17 @@ class Event < ActiveRecord::Base
 
   validates :title, :fundraiser, :creator, :start_time, :end_time, :team_descriptor, :presence => true
   validates :title, length: { maximum: 255 }
+  validates :url_key, {
+    format: { with: /\A[a-zA-Z\-_.~0-9]+\z/, message: "must be URL safe (i.e. alphanumeric or '-', '_', '.', or '~')" },
+    allow_nil: true,
+    length: { maximum: 255 }
+  }
   # Capping the description at 5000 characters to prevent malicious entries.
   validates :description, length: { maximum: 5000 }
   validate :start_time_before_end_time
   validate :start_time_after_fundraiser_start
   validate :end_time_before_fundraiser_end
+  validate :url_key_unique_to_company
 
   has_many :teams
   has_many :pledges, :through => :teams do
@@ -20,6 +26,21 @@ class Event < ActiveRecord::Base
     def monthly
       where("monthly = TRUE")
     end
+  end
+
+
+  def self.find_by_org_and_event_url_keys(org_url_key, event_url_key)
+    org = Organization.find_by_url_key(org_url_key)
+    return nil if !org
+
+    events = Event.joins(:organization).where("events.url_key = ? AND organization_id = \?", event_url_key, org.id);
+    return nil if events.blank?
+
+    if events.size > 1
+      logger.error("Multiple events found with URL key '#{event_url_key}' in organization #{org.id}")
+    end
+
+    return events.first
   end
 
 
@@ -62,6 +83,16 @@ private
   def end_time_before_fundraiser_end
     if fundraiser && end_time && (end_time > fundraiser.pledge_end_time)
       errors.add(:end_time, "can't be after the fundraiser's ended")
+    end
+  end
+
+  def url_key_unique_to_company
+    if organization && url_key
+      if !id.blank? && !organization.events.where("url_key = ? AND events.id != ?", url_key, id).empty?
+        errors.add(:url_key, "has already been taken")
+      elsif id.blank? && !organization.events.where("url_key = ?", url_key).empty?
+        errors.add(:url_key, "has already been taken")
+      end
     end
   end
 end

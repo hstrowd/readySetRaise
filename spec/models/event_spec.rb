@@ -30,6 +30,36 @@ RSpec.describe Event, :type => :model do
       expect(event.errors.keys).to include :description
     end
 
+    it "is invalid if the URL key is too long" do
+      event = build :event, url_key: generate_random_string(256)
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :url_key
+    end
+
+    it "is invalid if the URL key is a duplicate for the organization" do
+      existing_event = create :event
+      event = build :event, {
+        organization: existing_event.organization,
+        url_key: existing_event.url_key
+      }
+
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :url_key
+    end
+
+    it "is invalid when updating an event to a URL key that is a duplicate for the organization" do
+      existing_event = create :event
+      event = create :event, organization: existing_event.organization
+      event.url_key = existing_event.url_key
+      expect(event).to be_valid
+    end
+
+    it "is invalid with a URL key that is not URL safe" do
+      event = build :event, url_key: 'foo@bar:'
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :url_key
+    end
+
     it "is invalid without a fundraiser" do
       event = build :event, fundraiser: nil
       expect(event).to_not be_valid
@@ -96,6 +126,21 @@ RSpec.describe Event, :type => :model do
 
     it "is valid even without a description" do
       event = build :event, description: nil
+      expect(event).to be_valid
+    end
+
+    it "is valid even without a url_key" do
+      event = build :event, url_key: nil
+      expect(event).to be_valid
+    end
+
+    it "is valid when the URL key is a duplicate from another organization" do
+      existing_event = create :event
+      new_org = create :organization
+      event = build :event, {
+        organization: new_org,
+        url_key: existing_event.url_key
+      }
       expect(event).to be_valid
     end
   end

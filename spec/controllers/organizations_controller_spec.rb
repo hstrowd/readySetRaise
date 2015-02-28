@@ -165,7 +165,7 @@ RSpec.describe OrganizationsController do
 
       describe "when the URL key is used" do
         it "renders the show template" do
-          get :show, url_key: @org.url_key
+          get :show, org_url_key: @org.url_key
 
           expect(response).to render_template :show
           expect(assigns(:org)).to eq @org
@@ -176,7 +176,7 @@ RSpec.describe OrganizationsController do
         it "renders the show template based on the record id" do
           org2 = create :org
 
-          get :show, id: @org.id, url_key: org2.url_key
+          get :show, id: @org.id, org_url_key: org2.url_key
 
           expect(response).to render_template :show
           expect(assigns(:org)).to eq @org

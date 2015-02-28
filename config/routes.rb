@@ -34,8 +34,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # Allows organizations to be looked up by key.
-  get 'orgs/:url_key' => 'organizations#show', as: 'show_org'
+  # Allows organizations and events to be accessed using custom key.
+  get ':org_url_key' => 'organizations#show', as: 'show_org', constraints: ReservedUrlKeyConstraint.new
+  get ':org_url_key/:event_url_key' => 'events#show', as: 'show_event', constraints: ReservedUrlKeyConstraint.new
 
   get 'tour' => 'home#tour'
   get 'about' => 'home#about'
