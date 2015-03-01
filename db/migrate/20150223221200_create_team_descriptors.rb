@@ -11,15 +11,21 @@ class CreateTeamDescriptors < ActiveRecord::Migration
     add_column :events, :team_descriptor_id, :integer
 
     # Add a default entry and populate all existing records with this.
-    teamDescriptor = TeamDescriptor.create!({
-        singular: 'Team',
-        plural: 'Teams'
-      })
+    # Operate directly on the DB to ensure future model changes don't break this logic.
+    TeamDescriptor.connection.execute("""
+INSERT INTO team_descriptors
+    ( id
+    , singular
+    , plural
+    )
+  VALUES
+    ( 1
+    , 'Team'
+    , 'Teams'
+    );
+""")
 
-    Event.all.each do |event|
-      event.team_descriptor = teamDescriptor
-      event.save!
-    end
+    Event.connection.execute('UPDATE events SET team_descriptor_id = 1 WHERE team_descriptor_id IS NULL;')
 
     change_column :events, :team_descriptor_id, :integer, null: false
 
