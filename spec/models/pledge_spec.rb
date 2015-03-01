@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Pledge, :type => :model do
+  include TestHelpers
+
   describe "when saving" do
     it "can be valid" do
       pledge = build :pledge
@@ -50,6 +52,17 @@ RSpec.describe Pledge, :type => :model do
       pledge = build :pledge, monthly: nil
       expect(pledge).to_not be_valid
       expect(pledge.errors.keys).to include :monthly
+    end
+
+    it "is invalid if comment is too long" do
+      pledge = build :pledge, comment: generate_random_string(256)
+      expect(pledge).to_not be_valid
+      expect(pledge.errors.keys).to include :comment
+    end
+
+    it "is valid even without a comment" do
+      pledge = build :pledge, comment: nil
+      expect(pledge).to be_valid
     end
   end
 

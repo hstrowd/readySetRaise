@@ -51,7 +51,8 @@ RSpec.describe Event, :type => :model do
       existing_event = create :event
       event = create :event, organization: existing_event.organization
       event.url_key = existing_event.url_key
-      expect(event).to be_valid
+      expect(event).to_not be_valid
+      expect(event.errors.keys).to include :url_key
     end
 
     it "is invalid with a URL key that is not URL safe" do

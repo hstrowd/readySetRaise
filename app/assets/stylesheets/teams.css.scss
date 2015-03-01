@@ -56,7 +56,7 @@
     margin: 2% auto;
     padding: 2%;
 
-    max-width: 30em;
+    max-width: 60em;
 
     background-color: #A3EB87;
 }
@@ -79,6 +79,9 @@
 #team-show .association.pledges .table .row .attr.amount {
     width: 15%;
 }
+#team-show .association.pledges .table .row .attr.comment {
+    display: none;
+}
 
 #team-show .association.pledges .table .row .attr.amount.monthly:after,
 #team-show .association.pledges .footer .monthly .symbol:after {
@@ -96,13 +99,48 @@
 
 @media screen and (min-width: 500px)  {
     #team-show .association.pledges .table .row {
-        margin: .6em auto;
-        padding: .6em;
+        margin: .4em auto;
+        padding: .4em;
     }
     #team-show .association.pledges .table .row.header .attr.amount .full {
         display: block;
     }
     #team-show .association.pledges .table .row.header .attr.amount .abbreviated {
         display: none;
+    }
+}
+@media screen and (min-width: 700px)  {
+    #team-show .association.pledges .table .row .attr {
+        margin: 0.9% auto;
+    }
+    #team-show .association.pledges .table .row .attr.time {
+        width: 25%;
+    }
+    #team-show .association.pledges .table .row .attr.donor {
+        width: 30%;
+    }
+    #team-show .association.pledges .table .row .attr.amount {
+        width: 12%;
+    }
+    #team-show .association.pledges .table .row .attr.comment {
+        display: inline-block;
+        width: 30%;
+    }
+}
+@media screen and (min-width: 700px)  {
+    #team-show .association.pledges .table .row .attr {
+        margin: 0.7% auto;
+    }
+    #team-show .association.pledges .table .row .attr.time {
+        width: 20%;
+    }
+    #team-show .association.pledges .table .row .attr.donor {
+        width: 27%;
+    }
+    #team-show .association.pledges .table .row .attr.amount {
+        width: 10%;
+    }
+    #team-show .association.pledges .table .row .attr.comment {
+        width: 40%;
     }
 }

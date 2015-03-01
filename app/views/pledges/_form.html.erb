@@ -53,6 +53,16 @@
                  attr: :anonymous
                }) %>
 
+    <% content_for 'comment_field' do %>
+      <%= f.text_area :comment %>
+    <% end %>
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @pledge,
+                 attr: :comment
+               }) %>
+
     <div class="actions">
       <%= f.button("Make Pledge", {
                      onClick: '$(".pledge-form form").submit()',

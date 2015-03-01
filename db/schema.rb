@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228094400) do
+ActiveRecord::Schema.define(version: 20150301113800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150228094400) do
     t.datetime "updated_at"
     t.boolean  "anonymous",  default: false, null: false
     t.boolean  "monthly",    default: false, null: false
+    t.string   "comment"
   end
 
   add_index "pledges", ["donor_id"], name: "index_pledges_on_donor_id", using: :btree
