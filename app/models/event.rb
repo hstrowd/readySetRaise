@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   validates :title, length: { maximum: 255 }
   validates :url_key, {
     format: { with: /\A[a-zA-Z\-_.~0-9]+\z/, message: "must be URL safe (i.e. alphanumeric or '-', '_', '.', or '~')" },
-    allow_nil: true,
+    allow_blank: true,
     length: { maximum: 255 }
   }
   # Capping the description at 5000 characters to prevent malicious entries.

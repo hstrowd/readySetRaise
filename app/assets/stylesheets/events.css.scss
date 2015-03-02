@@ -367,6 +367,17 @@
     padding: 0 .4em;
 }
 
+#event-dashboard .pledge-prompt {
+    display: none;
+
+    background-color: #FDA8A8;
+
+    text-align: center;
+}
+#event-dashboard .pledge-prompt .url {
+    font-weight: bold;
+}
+
 @media screen and (min-height: 300px)  {
     #event-dashboard {
         font-size: .7em;
@@ -451,6 +462,15 @@
     }
     #event-dashboard .event-details .tab-container.tab-3 {
         top: -288%;
+    }
+
+    #event-dashboard .overall {
+        height: 8%;
+    }
+
+    #event-dashboard .pledge-prompt {
+        display: block;
+        height: 4%;
     }
 }
 

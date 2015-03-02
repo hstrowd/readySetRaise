@@ -39,4 +39,28 @@ RSpec.describe EventsHelper, :type => :helper do
       end
     end
   end
+
+  describe "show_url" do
+    describe "when event has url_key set" do
+      before :each do
+        @event = create :event
+      end
+
+      it "returns the custom URL" do
+        expected_url = "http://test.host/#{@event.organization.url_key}/#{@event.url_key}"
+        expect(helper.show_url(@event)).to eq expected_url
+      end
+    end
+
+    describe "when event does not have url_key set" do
+      before :each do
+        @event = create :event, url_key: nil
+      end
+
+      it "returns the event URL by ID" do
+        expected_url = "http://test.host/events/#{@event.id}"
+        expect(helper.show_url(@event)).to eq expected_url
+      end
+    end
+  end
 end
