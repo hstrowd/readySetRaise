@@ -30,7 +30,8 @@ Use Cases:
 
 
 Features:
- - Update tour and event dashboard pages to support turbolinks.
+ - Investigate view testing.
+
  - Look into alternatives to having a submit input in forms to allow enter to submit the form
  - Find a new image for the exciment section of the pitch.
 
@@ -41,7 +42,7 @@ Features:
  - Allow users to review their donations both on a per-event basis and globally.
  - Create a Business Plan powerpoint/document (https://www.councilofnonprofits.org/tools-resources/business-planning-nonprofits)
  - File necessary paperwork (https://www.councilofnonprofits.org/tools-resources/how-start-nonprofit and https://www.harborcompliance.com/information/how-to-start-a-non-profit-organization-in-illinois.php)
- - Add "Make Pledge" button to the events page.
+ - Update tour and event dashboard pages to support turbolinks.
  - Create a way for organizers to review donors after the event and track those that converted.
  - Allow a single follow up email to be sent to donors that have not converted.
  - Allow organization members to hand craft pledge recap email after the event.
