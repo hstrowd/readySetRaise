@@ -1,11 +1,11 @@
 {
   "pledgeID": <%= pledge.id %>,
-  "createdAt": "<%= pledge.created_at %>",
+  "createdAt": <%= json_string(pledge.created_at) %>,
   "donor": <%= render partial: 'devise/registrations/brief', locals: {user: pledge.donor} %>,
   "anonymous": <%= pledge.anonymous %>,
-  "publicDonorName": "<%= donor_name(pledge) %>",
+  "publicDonorName": <%= json_string(donor_name(pledge)) %>,
   "team": <%= render partial: 'teams/brief', locals: {team: pledge.team} %>,
   "amount": <%= pledge.amount %>,
   "monthly": <%= pledge.monthly %>,
-  "comment": "<%= pledge.comment && pledge.comment.html_safe %>"
+  "comment": <%= json_string(pledge.comment) %>
 }

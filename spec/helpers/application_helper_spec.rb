@@ -35,4 +35,22 @@ RSpec.describe ApplicationHelper, :type => :helper do
       end
     end
   end
+
+  describe "json_string" do
+    it "returns an empty string when provided nil" do
+      expect(helper.json_string(nil)).to eq '""'
+    end
+
+    it "escapes embedded quotes" do
+      expect(helper.json_string('foo "bar" baz')).to eq '"foo \"bar\" baz"'
+    end
+
+    it "escapes non-html safe characters tags" do
+      expect(helper.json_string('foo: \,<,>,&')).to eq '"foo: \\\\,\u003c,\u003e,\u0026"'
+    end
+
+    it "leavs html safe characters as is" do
+      expect(helper.json_string('foo: |~`\',.:;/=')).to eq '"foo: |~`\',.:;/="'
+    end
+  end
 end

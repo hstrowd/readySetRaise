@@ -1,7 +1,7 @@
 {
   "userID": <%= user.id %>,
-  "firstName": "<%= user.first_name.html_safe %>",
-  "lastName": "<%= user.last_name.html_safe %>",
-  "email": "<%= user.email.html_safe %>",
-  "phone": "<%= user.phone_number && user.phone_number.html_safe %>"
+  "firstName": <%= json_string(user.first_name) %>,
+  "lastName": <%= json_string(user.last_name) %>,
+  "email": <%= json_string(user.email) %>,
+  "phone": <%= json_string(user.phone_number) %>
 }

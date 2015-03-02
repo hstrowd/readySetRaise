@@ -1,5 +1,5 @@
 {
   "teamID": <%= team.id %>,
-  "name": "<%= team.name.html_safe %>",
-  "pledgeTarget": "<%= team.pledge_target %>"
+  "name": <%= json_string(team.name) %>,
+  "pledgeTarget": <%= json_string(team.pledge_target) %>
 }
