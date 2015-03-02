@@ -7,5 +7,5 @@
   "team": <%= render partial: 'teams/brief', locals: {team: pledge.team} %>,
   "amount": <%= pledge.amount %>,
   "monthly": <%= pledge.monthly %>,
-  "comment": "<%= pledge.comment %>"
+  "comment": "<%= pledge.comment && pledge.comment.html_safe %>"
 }
