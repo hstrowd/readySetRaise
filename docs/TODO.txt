@@ -30,8 +30,30 @@ Use Cases:
 
 
 Features:
+ - Drop pledge targets for non-organization members.
+ - Add notification to team view of email to be sent on event completion with donation link.
+ - Fix typo on Make a Pledge page "you" => "your"
+ - Make event banner bigger on dashboard
+ - Pause scrolling at the top of the pledge log momentarilly
+ - Return users to the event page after submitting a pledge
+
+ - Add a more option and ellipsis to the record descriptions
+ - Fix hamburger icon location during zoom on phones
+ - Add a button to the entries in the event index view
+ - Fix countdown to handle switching from "event will start" to "event will end" to "event ended"
+
+ - Add a pledge review view
+ - Add a pledge confirmation view
+ - Return people to last page after login
+ - Add commas to dollar figures
+ - Set dashboard amounts to ellipsis
+
+ - Start a blog.
  - Look into alternatives to having a submit input in forms to allow enter to submit the form
  - Find a new image for the exciment section of the pitch.
+ - Update organization logo URL to allow the protocol to be omitted.
+ - Add support for organization memebrs to review event pledge results (i.e. event recap view).
+ - purchase teamrasing.org
 
  - Create view specs
  - Add support for deleting all types of records.

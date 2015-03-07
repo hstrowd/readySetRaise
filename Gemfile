@@ -21,6 +21,9 @@ gem 'jquery-ui-rails'
 gem 'turbolinks'
 
 
+# Logging Support
+gem 'log4r'
+
 # Required to support all Heroku platforms.
 gem 'rails_12factor', group: :production
 

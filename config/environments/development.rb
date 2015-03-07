@@ -1,3 +1,6 @@
+# Setup log levels for: DEBUG, INFO, WARN, ERROR, FATAL
+Log4r.define_levels(*Log4r::Log4rConfig::LogLevels)
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -27,6 +30,9 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Setup the assets logger to log WARN and above.
+  config.assets.logger = Log4r::Logger.new('Assets Log', Log4r::WARN)
+
   # Uncomment the following three lines to test the asset pipeline.
   # config.assets.digest = true
   # config.assets.precompile += %w( *.png *.gif *.jpg *.jpeg *.ttf *.eot *.svg *.woff )
@@ -45,6 +51,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Setup the view logger to log WARN and above.
+  config.action_view.logger = Log4r::Logger.new('View Log', Log4r::WARN)
+
 end
 
 ActionMailer::Base.smtp_settings = {
