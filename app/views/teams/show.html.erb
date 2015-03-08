@@ -20,7 +20,7 @@
   </div>
 
   <div class="controls">
-    <% if @team.organization.members.include?(current_user) %>
+    <% if is_org_member(@team) %>
       <div class="members">
         <%= link_to edit_team_path(@team) do %>
           <div class="action btn edit-team">Update Team</div>
@@ -38,10 +38,12 @@
   </div>
 
   <div class="details">
-    <div class="attribute pledge-target">
-      <div class="label">Pledge Target:</div>
-      $<%= ('%.2f' % @team.pledge_target) %>
-    </div>
+    <% if is_org_member(@team) %>
+      <div class="attribute pledge-target">
+        <div class="label">Pledge Target:</div>
+        $<%= ('%.2f' % @team.pledge_target) %>
+      </div>
+    <% end %>
 
     <% if @team.event.has_started? %>
       <div class="attribute pledge-total">
@@ -54,10 +56,17 @@
         </div>
         $<%= ('%.2f' % @team.pledge_total) %>
       </div>
+
+      <div class="attribute pledge-count">
+        <div class="label">
+          Pledge Count:
+        </div>
+        <%= @team.pledges.count %>
+      </div>
     <% end %>
   </div>
 
-  <% if @team.organization.members.include?(current_user) %>
+  <% if is_org_member(@team) %>
     <div class="association pledges">
       <div class="title">Pledges</div>
       <% if !@team.pledges.empty? %>

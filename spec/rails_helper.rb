@@ -56,4 +56,5 @@ RSpec.configure do |config|
 
   # Enables support for devise testing.
   config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :helper
 end

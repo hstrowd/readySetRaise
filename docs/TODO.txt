@@ -30,12 +30,12 @@ Use Cases:
 
 
 Features:
- - Drop pledge targets for non-organization members.
  - Add notification to team view of email to be sent on event completion with donation link.
- - Fix typo on Make a Pledge page "you" => "your"
  - Make event banner bigger on dashboard
  - Pause scrolling at the top of the pledge log momentarilly
  - Return users to the event page after submitting a pledge
+ - Fix date fields on event and fundraiser update forms (they are populating with the wrong values.
+ - Add a link to resend a confirmation from the confirmation required alert.
 
  - Add a more option and ellipsis to the record descriptions
  - Fix hamburger icon location during zoom on phones

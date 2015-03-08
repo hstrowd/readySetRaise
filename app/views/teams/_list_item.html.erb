@@ -8,25 +8,20 @@
       </div>
     </div>
 
-    <% if team.event.has_started? %>
-      <div class="attr pledges">
-        <div class="label">Progress:</div>
-        <div class="value">
-          <div class="percent">
-            <% if (team.pledge_target > 0) %>
-              <%= (team.pledge_total / team.pledge_target * 100).round() %>%
-            <% else %>
-              0%
-            <% end %>
-          </div>
-          (<div class="total">$<%= team.pledge_total.round() %></div> / <div class="target">$<%= team.pledge_target.round() %></div>
-          <div class="count">from <%= pluralize(team.pledges.count, 'pledge') %></div>)
-        </div>
-      </div>
-    <% else %>
+    <% if is_org_member(team) %>
       <div class="attr pledge-target">
         <div class="label">Pledge Target:</div>
         <div class="value">$<%= team.pledge_target.round() %></div>
+      </div>
+    <% end %>
+
+    <% if team.event.has_started? %>
+      <div class="attr pledges">
+        <div class="label">Pledges Received:</div>
+        <div class="value">
+          <div class="total">$<%= team.pledge_total.round() %></div>
+          <div class="count">from <%= pluralize(team.pledges.count, 'pledge') %></div>
+        </div>
       </div>
     <% end %>
   </div>

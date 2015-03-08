@@ -38,7 +38,7 @@
             0%
           <% end %>
         </div>
-        (<div class="total">$<%= fundraiser.pledge_total.round() %></div> / <div class="target">$<%= fundraiser.pledge_target.round() %></div>
+        (<div class="total">$<%= fundraiser.pledge_total.round() %></div>
         <div class="count">from <%= pluralize(fundraiser.pledges.count, 'pledge') %></div>)
       </div>
     </div>
