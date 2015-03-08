@@ -257,6 +257,49 @@
     color: #999999;
 }
 
+#event-dashboard .pledge-breakdown .overall {
+    display: none;
+
+    width: 80%;
+    height: 15%;
+
+    margin: 0 auto;
+}
+#event-dashboard .pledge-breakdown .overall .title {
+    height: 50%;
+
+    background-color: #A3EB87;
+}
+#event-dashboard .pledge-breakdown .overall .progress-bar {
+    width: 100%;
+    height: 50%;
+
+    background-color: #FFFFFF;
+}
+#event-dashboard .pledge-breakdown .overall .progress-bar .pct-complete {
+    height: 100%;
+    width: 0;
+    /**
+     * Setting a max width on the progess bar threw off JQuery's ability to animate this.
+     *    max-width: 100%;
+     **/
+    background-color: #A0CAFF;
+
+    text-align: right;
+}
+#event-dashboard .pledge-breakdown .overall .progress-bar .pct-complete .label-align {
+    height: 100%;
+    min-width: 2.1em;
+}
+#event-dashboard .pledge-breakdown .overall .progress-bar .pct-complete .label {
+    display: inline-block;
+
+    padding: 0 .4em;
+
+    vertical-align: middle;
+}
+
+
 #event-dashboard .pledge-log {
     text-align: center;
 
@@ -301,9 +344,10 @@
     width: 96%;
 
     margin: 1% auto;
-}
-#event-dashboard .pledge-log .pledge {
+
     background-color: #A3EB87;
+
+    font-size: .8em;
 }
 #event-dashboard .pledge-log .pledge .attr {
     display: inline-block;
@@ -331,45 +375,6 @@
     vertical-align: bottom;
 }
 
-#event-dashboard .overall {
-    display: none;
-
-    width: 80%;
-    height: 12%;
-
-    margin: 0 auto;
-}
-#event-dashboard .overall .title {
-    height: 50%;
-
-    background-color: #A3EB87;
-}
-#event-dashboard .overall .progress-bar {
-    width: 100%;
-    height: 50%;
-
-    background-color: #FFFFFF;
-}
-#event-dashboard .overall .progress-bar .pct-complete {
-    height: 100%;
-    width: 0;
-    /**
-     * Setting a max width on the progess bar threw off JQuery's ability to animate this.
-     *    max-width: 100%;
-     **/
-    background-color: #A0CAFF;
-
-    text-align: right;
-}
-#event-dashboard .overall .progress-bar .pct-complete .label-align {
-    height: 100%;
-    min-width: 2.1em;
-}
-#event-dashboard .overall .progress-bar .pct-complete .label {
-    display: inline-block;
-
-    padding: 0 .4em;
-}
 
 #event-dashboard .pledge-prompt {
     display: none;
@@ -389,16 +394,22 @@
     #event-dashboard .header .text .subtitle {
         display: block;
     }
-    #event-dashboard .event-details {
-        height: 65%;
-    }
-    #event-dashboard .overall {
-        display: block;
+    #event-dashboard .event-details .tabs {
+        height: 8%;
     }
 }
 @media screen and (min-height: 400px)  {
     #event-dashboard {
         font-size: .9em;
+    }
+
+    #event-dashboard .pledge-breakdown #chart-pledge-breakdown {
+        height: 72%;
+    }
+    #event-dashboard .pledge-breakdown .overall {
+        display: block;
+
+        height: 15%;
     }
 }
 @media screen and (min-height: 500px)  {
@@ -406,7 +417,7 @@
         font-size: 1em;
     }
     #event-dashboard .event-details .tabs {
-        height: 9%;
+        height: 7%;
     }
     #event-dashboard .event-details .tab-container {
         height: 91%;
@@ -422,8 +433,12 @@
     }
 }
 @media screen and (min-height: 600px)  {
+    #event-dashboard {
+        font-size: 1.2em;
+    }
+
     #event-dashboard .event-details .tabs {
-        height: 8%;
+        height: 6%;
     }
     #event-dashboard .event-details .tab-container {
         height: 92%;
@@ -452,9 +467,14 @@
     }
 }
 @media screen and (min-height: 700px)  {
-    #event-dashboard .event-details .tabs {
-        height: 6%;
+    #event-dashboard {
+        font-size: 1.4em;
     }
+
+    #event-dashboard .event-details {
+        height: 73%;
+    }
+
     #event-dashboard .event-details .tab-container {
         height: 94%;
     }
@@ -462,19 +482,17 @@
         top: -94%;
     }
     #event-dashboard .event-details .tab-container.tab-2 {
-        top: -192%;
+        top: -188%;
     }
     #event-dashboard .event-details .tab-container.tab-3 {
-        top: -288%;
-    }
-
-    #event-dashboard .overall {
-        height: 8%;
+        top: -282%;
     }
 
     #event-dashboard .pledge-prompt {
         display: block;
-        height: 4%;
+        height: 6%;
+
+        font-size: 1.2em;
     }
 }
 
