@@ -3,7 +3,7 @@
  **/
 
 #header {
-    position: fixed;
+    position: absolute;
     top: 0px;
 
     width: 100%;
@@ -27,7 +27,7 @@
 }
 
 #header .main-logo {
-    display: inline-block;
+    display: none;
 
     width: 50%;
     max-width: 300px;
@@ -150,6 +150,11 @@
     }
 }
 
+@media screen and (min-width: 250px)  {
+    #header .main-logo {
+        display: inline-block;
+    }
+}
 @media screen and (min-width: 700px)  {
     #header {
         height: 5em;
@@ -378,4 +383,10 @@
         border: .1em solid #666666;
     }
     
+}
+
+@media screen and (min-height: 550px)  {
+    #header {
+        position: fixed;
+    }
 }
