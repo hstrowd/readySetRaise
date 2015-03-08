@@ -121,7 +121,7 @@ RSpec.describe PledgesController, :type => :controller do
                 }
               }.to change{ Pledge.count }.by 1
 
-              expect(response).to redirect_to team
+              expect(response).to redirect_to event
             end
           end
 
@@ -147,7 +147,10 @@ RSpec.describe PledgesController, :type => :controller do
                 }
               }.to change{ Pledge.count }.by 1
 
-              expect(response).to redirect_to team
+              # The user should be told that they will receive an email recap.
+              expect(flash[:notice]).not_to be_blank
+
+              expect(response).to redirect_to event
             end
           end
 

@@ -27,7 +27,10 @@ class PledgesController < ApplicationController
       return
     end
 
-    redirect_to @pledge.team
+    # Notify the user that their pledge was received.
+    flash[:notice] = "Thanks for your pledge! You'll receive an email after the event with a link to process your donation."
+
+    redirect_to @pledge.event
     return
   end
 
@@ -39,7 +42,7 @@ private
       return true
     end
 
-    flash[:alert] = 'Please select the organization for which you\'d like to submit a new pledge.'
+    flash[:alert] = "Please select the organization for which you'd like to submit a new pledge."
     redirect_to organizations_path
     return false
   end
