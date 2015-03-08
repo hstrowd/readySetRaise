@@ -191,7 +191,7 @@ var activateTab = function($tab, $parentPanel) {
  *  ==== Auto-Scrolling ====
  **/
 
-var AUTO_SCROLL_PAUSE_MILLISECONDS = 1000;
+var AUTO_SCROLL_PAUSE_MILLISECONDS = 2000;
 var autoScrollTimer = null;
 var autoScrollOn = false;
 var autoScrollTimer = null;
@@ -199,7 +199,8 @@ var autoScrollTimer = null;
 var startAutoScroll = function($container) {
     if (autoScrollOn) { return; }
     autoScrollOn = true;
-    $.proxy(autoScroll, $container)();
+    autoScrollTimer = setTimeout($.proxy(autoScroll, $container),
+                                 AUTO_SCROLL_PAUSE_MILLISECONDS);
 };
 var stopAutoScroll = function($container) {
     autoScrollOn = false;
