@@ -30,15 +30,14 @@ Use Cases:
 
 
 Features:
- - Fix redirect URL params passed to sign-up action to handle the case when the user is already logged in.
  - Add a more option and ellipsis to the record descriptions
 
  - Add a button to the entries in the event index view
 
  - Add a link to resend a confirmation from the confirmation required alert.
  - Fix date fields on event and fundraiser update forms (they are populating with the wrong values.
- - Return people to last page after login
  - Fix countdown to handle switching from "event will start" to "event will end" to "event ended"
+ - Fix the account edit page when the user is not logged in to redirect to the home page.
 
 
  - Add a pledge review view

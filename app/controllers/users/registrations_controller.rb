@@ -21,16 +21,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    # TODO: If we're already logged in and a redirect was requested,
-    # attempt to redirect immediately.
     super
 
-    if params[:redirect]
-      path = Rails.application.routes.recognize_path("/#{params[:redirect]}", :method => :get) rescue nil
+    if !params[:redirect].blank?
+      redirect_path = params[:redirect].gsub(/^\//, "")
+      path = Rails.application.routes.recognize_path("/#{redirect_path}",
+                                                     :method => :get) rescue nil
       if path
-        session[:post_signup_path] = "/#{params[:redirect]}"
+        store_location_for(:user, "/#{redirect_path}")
       else
-        logger.warn("Unrecognized post-signup path: #{params[:redirect]}")
+        logger.warn("Unrecognized post-signup path: #{redirect_path}")
       end
     end
   end
@@ -77,13 +77,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    if session[:post_signup_path]
-      return session[:post_signup_path]
-    else
-      return root_path
-    end
-  end
+  # def after_sign_up_path_for(resource)
+  #     super
+  # end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

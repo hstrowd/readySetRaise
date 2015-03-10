@@ -17,8 +17,10 @@ Rails.application.routes.draw do
   end
   resources :pledges, only: [:create]
 
-  devise_for :users, :controllers => { registrations: 'users/registrations' },
-                     :skip => [:passwords]
+  devise_for :users, :controllers => {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }, :skip => [:passwords]
 
   devise_scope :user do
     # Note: This view has not yet been created.
