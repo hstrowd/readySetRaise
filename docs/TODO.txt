@@ -30,18 +30,18 @@ Use Cases:
 
 
 Features:
- - Fix date fields on event and fundraiser update forms (they are populating with the wrong values.
- - Add a link to resend a confirmation from the confirmation required alert.
-
- - Add a more option and ellipsis to the record descriptions
- - Fix hamburger icon location during zoom on phones
- - Add a button to the entries in the event index view
- - Fix countdown to handle switching from "event will start" to "event will end" to "event ended"
  - Fix redirect URL params passed to sign-up action to handle the case when the user is already logged in.
+ - Add a more option and ellipsis to the record descriptions
+
+ - Add a button to the entries in the event index view
+
+ - Add a link to resend a confirmation from the confirmation required alert.
+ - Fix date fields on event and fundraiser update forms (they are populating with the wrong values.
+ - Return people to last page after login
+ - Fix countdown to handle switching from "event will start" to "event will end" to "event ended"
+
 
  - Add a pledge review view
- - Add a pledge confirmation view
- - Return people to last page after login
  - Add commas to dollar figures
  - Set dashboard amounts to ellipsis
  - Fix overall progress showing 0% on safari

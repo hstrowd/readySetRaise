@@ -20,7 +20,7 @@
       <div class="nav-item">Log In</div>
     <% end %>
 
-    <%= link_to new_registration_url(:user, protocol: secure_protocol) do %>
+    <%= link_to new_registration_url(:user, protocol: secure_protocol, redirect: request.fullpath) do %>
       <div class="nav-item">Sign Up</div>
     <% end %>
 

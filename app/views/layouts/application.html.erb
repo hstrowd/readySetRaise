@@ -34,7 +34,7 @@
           <div class="profile-splitter">
             <div class="vert-centerer"></div>
             <div class="acct-btn signup-btn">
-              <%= link_to new_registration_path(:user) do %>
+              <%= link_to new_registration_path(:user, protocol: secure_protocol, redirect: request.fullpath) do %>
                 <div class="btn">Sign Up</div>
               <% end %>
             </div>
