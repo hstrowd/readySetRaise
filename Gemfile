@@ -56,6 +56,8 @@ gem "chartkick"
 
 group :development do
   gem 'mailcatcher'
+
+  gem 'disable_assets_logger'
 end
 
 

@@ -20,6 +20,7 @@ class Organization < ActiveRecord::Base
   validates :name, :description, :homepage_url, :donation_url, :creator, :presence => true
   validates :url_key, {
     format: { with: /\A[a-zA-Z\-_.~0-9]+\z/, message: "must be URL safe (i.e. alphanumeric or '-', '_', '.', or '~')" },
+    # This could alternatively be done using ActionController::Routing::Routes.recognize_path
     exclusion: { in: ApplicationController.reserved_routing_keywords },
     presence: true,
     uniqueness: true,

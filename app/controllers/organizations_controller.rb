@@ -9,7 +9,7 @@ class OrganizationsController < ApplicationController
   def new
     if !current_user
       # Send the user to the new org form after sign-up.
-      session[:post_signup_action] = :new_org
+      session[:post_signup_path] = new_organization_path
       redirect_to new_registration_path(:user)
       return
     end

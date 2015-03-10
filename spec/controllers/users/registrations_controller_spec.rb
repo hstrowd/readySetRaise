@@ -15,6 +15,28 @@ RSpec.describe Users::RegistrationsController do
       get :new
       expect(response).to render_template :new
     end
+
+    describe "a valid redirect is provided" do
+      it "sets the post_signup_path" do
+        event = create :event
+        redirect_path = event_path(event)
+        get :new, redirect: redirect_path
+
+        expect(response).to render_template :new
+        expect(subject.session[:post_signup_path]).to eq "/#{redirect_path}"
+      end
+    end
+
+    describe "an invalid redirect is provided" do
+      it "leaves the post_signup_path unchanged" do
+        subject.session[:post_signup_path] = "events/1"
+        redirect_path = 'foo/bar/baz'
+        get :new, redirect: redirect_path
+
+        expect(response).to render_template :new
+        expect(subject.session[:post_signup_path]).to eq "events/1"
+      end
+    end
   end
 
 
@@ -59,13 +81,15 @@ RSpec.describe Users::RegistrationsController do
       end
 
       describe 'when a post signup action is specified' do
-        describe 'when the post signup action is new org' do
-          it 'redirects to the new org form' do
+        describe 'when the post_signup_path is set' do
+          it 'redirects to the post_signup_path' do
             first_name = 'User'
             last_name = 'Test'
             email = generate_random_string + '@gmail.com'
 
-            subject.session[:post_signup_action] = :new_org
+            event = create :event
+            redirect_path = event_path(event)
+            subject.session[:post_signup_path] = redirect_path
 
             post :create, user: {
               first_name: first_name,
@@ -75,7 +99,7 @@ RSpec.describe Users::RegistrationsController do
               password_confirmation: 'test1234'
             }
 
-            expect(response).to redirect_to new_organization_path
+            expect(response).to redirect_to redirect_path
           end
         end
       end

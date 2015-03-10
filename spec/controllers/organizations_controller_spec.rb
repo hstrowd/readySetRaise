@@ -59,7 +59,7 @@ RSpec.describe OrganizationsController do
         expect(response).to redirect_to new_user_registration_path
 
         # Marks the session to redirect to new org after sign-up.
-        expect(subject.session[:post_signup_action]).to eq :new_org
+        expect(subject.session[:post_signup_path]).to eq new_organization_path
       end
     end
   end

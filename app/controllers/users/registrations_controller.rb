@@ -20,9 +20,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    # TODO: If we're already logged in and a redirect was requested,
+    # attempt to redirect immediately.
+    super
+
+    if params[:redirect]
+      path = Rails.application.routes.recognize_path("/#{params[:redirect]}", :method => :get) rescue nil
+      if path
+        session[:post_signup_path] = "/#{params[:redirect]}"
+      else
+        logger.warn("Unrecognized post-signup path: #{params[:redirect]}")
+      end
+    end
+  end
 
   # POST /resource
   # def create
@@ -67,8 +78,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    if session[:post_signup_action] == :new_org
-      return new_organization_path
+    if session[:post_signup_path]
+      return session[:post_signup_path]
     else
       return root_path
     end

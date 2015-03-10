@@ -49,6 +49,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    disable_assets_logger (1.0.0)
     docile (1.1.5)
     erubis (2.7.0)
     eventmachine (1.0.5)
@@ -205,6 +206,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
+  disable_assets_logger
   factory_girl_rails (~> 4.0)
   jbuilder (~> 2.0)
   jquery-rails

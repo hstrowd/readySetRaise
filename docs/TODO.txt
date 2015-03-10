@@ -30,10 +30,6 @@ Use Cases:
 
 
 Features:
- - Add notification to team view of email to be sent on event completion with donation link.
- - Make event banner bigger on dashboard
- - Pause scrolling at the top of the pledge log momentarilly
- - Return users to the event page after submitting a pledge
  - Fix date fields on event and fundraiser update forms (they are populating with the wrong values.
  - Add a link to resend a confirmation from the confirmation required alert.
 
@@ -41,12 +37,14 @@ Features:
  - Fix hamburger icon location during zoom on phones
  - Add a button to the entries in the event index view
  - Fix countdown to handle switching from "event will start" to "event will end" to "event ended"
+ - Fix redirect URL params passed to sign-up action to handle the case when the user is already logged in.
 
  - Add a pledge review view
  - Add a pledge confirmation view
  - Return people to last page after login
  - Add commas to dollar figures
  - Set dashboard amounts to ellipsis
+ - Fix overall progress showing 0% on safari
 
  - Start a blog.
  - Look into alternatives to having a submit input in forms to allow enter to submit the form
