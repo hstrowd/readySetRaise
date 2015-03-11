@@ -36,7 +36,8 @@
   <div class="details">
     <div class="attribute description">
       <div class="label">Description:</div>
-      <%= @fundraiser.description %>
+      <%= render partial: 'shared/toggleable_size',
+          locals: { content: @fundraiser.description } %>
     </div>
     <div class="attribute pledge-window">
       <div class="label">Pledge Window: </div>

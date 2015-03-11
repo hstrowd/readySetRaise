@@ -1,0 +1,18 @@
+<% content_for_key ||= nil %>
+<% content ||= nil %>
+<% less_height ||= 100 %>
+<div class="toggle-size less" data-less-height="<%= less_height %>">
+  <div class="view" style="max-height: <%= less_height %>px">
+    <div class="content">
+      <% if content_for_key %>
+        <%= yield(content_for_key) %>
+      <% else %>
+        <%= content %>
+      <% end %>
+    </div>
+  </div>
+  <div class="size-toggles">
+    <a class="toggle more">Show More</a>
+    <a class="toggle less">Show Less</a>
+  </div>
+</div>

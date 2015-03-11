@@ -63,6 +63,13 @@
     width: 85%;
     margin: 2% auto;
 }
+.std-show .details .title {
+    margin: 0.5em auto;
+
+    text-align: center;
+    font-size: 1.2em;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
 .std-show .details .attribute {
     margin: 1% 1% 1% 5%;
 }

@@ -35,7 +35,8 @@
     </div>
     <div class="attribute description">
       <div class="label">Description:</div>
-      <%= @org.description %>
+      <%= render partial: 'shared/toggleable_size',
+          locals: { less_height: 100, content: @org.description } %>
     </div>
   </div>
 

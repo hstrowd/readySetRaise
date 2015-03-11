@@ -23,7 +23,10 @@
       (<%= pluralize(event.teams.count, 'team') %>)
     </div>
   </div>
-  <div class="description"><%= event.description %></div>
+  <div class="description">
+      <%= render partial: 'shared/toggleable_size',
+          locals: { less_height: 60, content: event.description } %>
+  </div>
 
   <% if event.has_ended? %>
     <div class="attr date ended">

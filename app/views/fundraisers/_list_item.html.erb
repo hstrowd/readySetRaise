@@ -6,7 +6,11 @@
     <div class="assoc-count">(<%= pluralize(fundraiser.events.count, 'event') %>)</div>
   </div>
   <div class="attr description">
-    <div class="value"><div class="label">Description:</div> <%= fundraiser.description %></div>
+    <div class="value">
+      <div class="label">Description:</div>
+      <%= render partial: 'shared/toggleable_size',
+          locals: { less_height: 60, content: fundraiser.description } %>
+    </div>
   </div>
 
   <% if fundraiser.has_ended? %>

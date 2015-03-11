@@ -39,10 +39,25 @@
     <% end %>
   </div>
 
+  <div class="association teams">
+    <div class="title"><%= @event.team_descriptor.plural %></div>
+    <% if !@event.teams.empty? %>
+      <div class="list">
+        <% @event.teams.each do |t| %>
+          <%= render partial: 'teams/list_item', locals: { team: t } %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="notice">No teams registered yet!</div>
+    <% end %>
+  </div>
+
   <div class="details">
+    <div class="title">Event Details</div>
     <div class="attribute description">
       <div class="label">Description:</div>
-      <%= @event.description %>
+      <%= render partial: 'shared/toggleable_size',
+          locals: { less_height: 60, content: @event.description } %>
     </div>
     <div class="attribute time">
       <div class="label">Time: </div>
@@ -55,19 +70,6 @@
       </div>
     </div>
   </div>
-
-  <div class="association teams">
-    <div class="title"><%= @event.team_descriptor.plural %></div>
-    <% if !@event.teams.empty? %>
-      <div class="list">
-        <% @event.teams.each do |t| %>
-          <%= render partial: 'teams/list_item', locals: { team: t } %>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="notice">No teams registered yet!</div>
-    <% end %>
-   </div>
 
 </div>
 

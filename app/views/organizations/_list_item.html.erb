@@ -15,7 +15,11 @@
     <div class="assoc-count">(<%= pluralize(org.members.count, 'member') %>)</div>
   </div>
   <div class="attr description">
-    <div class="value"><div class="label">Description:</div> <%= org.description %></div>
+    <div class="value">
+      <div class="label">Description:</div>
+      <%= render partial: 'shared/toggleable_size',
+          locals: { less_height: 60, content: org.description } %>
+    </div>
   </div>
   <div class="attr fundraiser-snapshot">
     <% if !org.fundraisers.present.empty? %>

@@ -47,4 +47,47 @@ function isoToLocalStrings(dateInput) {
     var timeString = hours + ':' + minutes + ' ' + period;
 
     return [dateString, timeString];
-}
+};
+
+
+function setupSizeToggling($toggleableFields) {
+    $.each($toggleableFields, function(index, field) {
+        var $field = $(field);
+        var $view = $field.find('.view');
+        var lessHeight = $field.data('less-height');
+        var $moreToggle = $field.find('.toggle.more');
+        var $lessToggle = $field.find('.toggle.less');
+        if (!lessHeight || $moreToggle.length <= 0 || $view.length <= 0 || $lessToggle.length <= 0) {
+            // Field missing necessary components for size toggling.
+            return;
+        }
+
+        $moreToggle.click(function() {
+            $field.removeClass('less').addClass('more');
+            $view.css('max-height', '');
+        });
+        $lessToggle.click(function() {
+            $field.removeClass('more').addClass('less');
+            $view.css('max-height', lessHeight + 'px');
+        });
+    });
+};
+
+function checkForSizeToggling($toggleableFields) {
+    $.each($toggleableFields, function(index, field) {
+        var $field = $(field);
+        var lessHeight = $field.data('less-height');
+        var $content = $field.find('.content');
+        var $toggles = $field.find('.size-toggles');
+        if (!lessHeight || $content.length <= 0 || $toggles.length <= 0) {
+            // Field missing necessary components for size toggling.
+            return;
+        }
+
+        if ($content.height() <= lessHeight) {
+            $toggles.hide();
+        } else {
+            $toggles.show();
+        }
+    });
+};

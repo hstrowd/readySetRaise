@@ -32,5 +32,16 @@
       </div>
     </div>
 
+    <script>
+      $(function() {
+        var toggleableSizeFields = $('.toggle-size');
+        setupSizeToggling(toggleableSizeFields);
+
+        checkForSizeToggling(toggleableSizeFields);
+        window.onresize = function(event) {
+          checkForSizeToggling(toggleableSizeFields);
+        };
+      });
+    </script>
   </body>
 </html>
