@@ -43,18 +43,79 @@ RSpec.describe EventMailer, type: :mailer do
       end
 
       describe 'when user has pledges for event' do
-        it 'sends a pledge recap email' do
-          user = create :user
-          pledge = create :pledge, {
-            donor: user,
-            team: @team
-          }
+        describe "when user has both monthly and one-time pledges" do
+          it 'sends a pledge recap email' do
+            user = create :user
+            pledge_1 = create :pledge, {
+              donor: user,
+              team: @team
+            }
+            pledge_2 = create :pledge, {
+              donor: user,
+              team: @team,
+              monthly: true
+            }
+            pledge_3 = create :pledge, {
+              donor: user,
+              team: @team,
+              monthly: false
+            }
+            pledge_4 = create :pledge, {
+              donor: user,
+              team: @team,
+              monthly: true
+            }
 
-          ActionMailer::Base.deliveries.clear
-          email = EventMailer.pledge_recap(user, @event)
-          expect(email).to_not be_nil
-          expect(email.to.count).to eq 1
-          expect(email.to[0]).to eq user.email
+            ActionMailer::Base.deliveries.clear
+            email = EventMailer.pledge_recap(user, @event)
+            expect(email).to_not be_nil
+            expect(email.to.count).to eq 1
+            expect(email.to[0]).to eq user.email
+          end
+        end
+
+        describe "when user has only one-time pledges" do
+          it 'sends a pledge recap email' do
+            user = create :user
+            pledge_1 = create :pledge, {
+              donor: user,
+              team: @team,
+              monthly: false
+            }
+            pledge_2 = create :pledge, {
+              donor: user,
+              team: @team,
+              monthly: false
+            }
+
+            ActionMailer::Base.deliveries.clear
+            email = EventMailer.pledge_recap(user, @event)
+            expect(email).to_not be_nil
+            expect(email.to.count).to eq 1
+            expect(email.to[0]).to eq user.email
+          end
+        end
+
+        describe "when user has only monthly pledges" do
+          it 'sends a pledge recap email' do
+            user = create :user
+            pledge_1 = create :pledge, {
+              donor: user,
+              team: @team,
+              monthly: true
+            }
+            pledge_2 = create :pledge, {
+              donor: user,
+              team: @team,
+              monthly: true
+            }
+
+            ActionMailer::Base.deliveries.clear
+            email = EventMailer.pledge_recap(user, @event)
+            expect(email).to_not be_nil
+            expect(email.to.count).to eq 1
+            expect(email.to[0]).to eq user.email
+          end
         end
       end
     end

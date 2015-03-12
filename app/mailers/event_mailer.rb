@@ -16,6 +16,9 @@ class EventMailer < ApplicationMailer
       return
     end
 
+    @one_time_total = @pledges.where(monthly: false).sum(:amount)
+    @monthly_total = @pledges.where(monthly: true).sum(:amount)
+
     mail(to: @user.email, subject: "#{event.title} - Pledge Recap")
   end
 end

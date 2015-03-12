@@ -24,12 +24,30 @@
           <tr style="font-size: 0.8em">
             <td><%= humanize_time(pledge.created_at) %></td>
             <td><%= pledge.team.name %></td>
-            <td>$<%= ('%.2f' % pledge.amount) %></td>
+            <td>
+              $<%= ('%.2f' % pledge.amount) %>
+              <% if pledge.monthly %>
+                <span style="color:red;">*</span>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </table>
 
-      <p>This brings your total pledge amount to $<%= ('%.2f' % @pledges.sum('amount')) %>. Please visit <a href="http://www.google.com/">our donation page</a> to complete this donation and fulfill your pledge.</p>
+      <p style="font-size:0.8em;text-align:center;">
+        <span style="color:red;">*</span> - Indicates monthly pledges
+      </p>
+
+      <p>
+        This brings 
+        <% if (@monthly_total > 0) && (@one_time_total > 0) %>
+          your one-time total pledge amount to $<%= ('%.2f' % @one_time_total) %> and your monthly total pledge amount to $<%= ('%.2f' % @monthly_total) %>
+        <% elsif (@monthly_total > 0) %>
+          your monthly total pledge amount to $<%= ('%.2f' % @monthly_total) %>
+        <% else %>
+          your one-time total pledge amount to $<%= ('%.2f' % @one_time_total) %>
+        <% end %>
+        . Please visit <a href="<%= @event.organization.donation_url %>">our donation page</a> to complete this donation and fulfill your pledge.</p>
 
       <p>Thanks again for joining us and supporting this great cause.</p>
 

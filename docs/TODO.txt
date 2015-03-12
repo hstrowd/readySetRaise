@@ -30,9 +30,8 @@ Use Cases:
 
 
 Features:
- - Add a more option and ellipsis to the record descriptions
-
  - Add a button to the entries in the event index view
+ - Figure out why the Today date is wrong on the date picker.
 
  - Add a link to resend a confirmation from the confirmation required alert.
  - Fix date fields on event and fundraiser update forms (they are populating with the wrong values.
