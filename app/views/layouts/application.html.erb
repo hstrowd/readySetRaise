@@ -17,7 +17,8 @@
         <% if current_user %>
           <div class="profile-intro">
             <div class="vert-centerer"></div>
-            <div class="welcome">
+            <!-- TODO: On iPad devices the only way to stop the hover on this item is to click another link. -->
+            <div class="welcome" onclick="">
               Welcome back,
               <div class="account-name"><%= current_user.first_name %></div>
             </div>
