@@ -434,7 +434,11 @@
 }
 @media screen and (min-height: 600px)  {
     #event-dashboard {
-        font-size: 1.2em;
+        font-size: 1.5em;
+    }
+
+    #event-dashboard .event-details {
+        height: 73%;
     }
 
     #event-dashboard .event-details .tabs {
@@ -464,6 +468,13 @@
     }
     #event-dashboard .event-details .pledge-log .footer {
         height: 5%;
+    }
+
+    #event-dashboard .pledge-prompt {
+        display: block;
+        height: 6%;
+
+        font-size: 1.2em;
     }
 }
 @media screen and (min-height: 700px)  {
