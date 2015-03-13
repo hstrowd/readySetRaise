@@ -45,7 +45,6 @@ Features:
  - Fix overall progress showing 0% on safari
 
  - Start a blog.
- - Look into alternatives to having a submit input in forms to allow enter to submit the form
  - Find a new image for the exciment section of the pitch.
  - Update organization logo URL to allow the protocol to be omitted.
  - Add support for organization memebrs to review event pledge results (i.e. event recap view).
