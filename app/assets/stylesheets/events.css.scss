@@ -323,13 +323,10 @@
     font-size: .9em;
 }
 #event-dashboard .pledge-log .donor {
-    width: 40%;
+    width: 45%;
 }
 #event-dashboard .pledge-log .team {
-    width: 40%;
-}
-#event-dashboard .pledge-log .amount {
-    width: 10%;
+    width: 45%;
 }
 #event-dashboard .pledge-log .headers .column.comment,
 #event-dashboard .pledge-log .list .attr.comment {
@@ -355,24 +352,6 @@
     margin: 1% 0;
 
     vertical-align: middle;
-}
-
-#event-dashboard .pledge-log .pledge .attr.amount.monthly span:after,
-#event-dashboard .pledge-log .footer .monthly .symbol:after {
-    content: "*";
-    color: red;
-}
-#event-dashboard .pledge-log .amount .full {
-    display: none;
-}
-
-#event-dashboard .pledge-log .footer {
-    height: 7%;
-    font-size: .8em;
-}
-#event-dashboard .pledge-log .footer .monthly {
-    display: inline-block;
-    vertical-align: bottom;
 }
 
 
@@ -464,10 +443,7 @@
         height: 6%;
     }
     #event-dashboard .event-details .pledge-log .list {
-        height: 81%;
-    }
-    #event-dashboard .event-details .pledge-log .footer {
-        height: 5%;
+        height: 86%;
     }
 
     #event-dashboard .pledge-prompt {
@@ -518,12 +494,6 @@
 
         vertical-align: middle;
     }
-    #event-dashboard .pledge-log .amount .full {
-        display: block;
-    }
-    #event-dashboard .pledge-log .amount .abbr {
-        display: none;
-    }
 }
 @media screen and (min-width: 800px)  {
     #event-dashboard .header .text {
@@ -553,14 +523,11 @@
     #event-dashboard .pledge-log .team {
         width: 25%;
     }
-    #event-dashboard .pledge-log .amount {
-        width: 9%;
-    }
     #event-dashboard .pledge-log .headers .column.comment,
     #event-dashboard .pledge-log .list .attr.comment {
         display: inline-block;
     }
     #event-dashboard .pledge-log .comment {
-        width: 38%;
+        width: 47%;
     }
 }

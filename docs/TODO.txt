@@ -1,12 +1,11 @@
 Gameplan:
- - Step 1:
-   - Finish and launch v1 of the Service
  - Step 2:
    - Jump through the necessary hoops to create the organization
    - Evangelize the idea with friends and family
    - Continue adding features to the site
  - Step 3:
    - Host a fundraiser to "dog food" the service
+
 
 
 Use Cases:
@@ -29,26 +28,39 @@ Use Cases:
  - Talent Show
 
 
-Features:
+Backlog:
+ - Drop the amount from the dashboard.
+ - Fix dashboard to layout properly at all resolutions.
  - Add a button to the entries in the event index view
+ - Move the event list to the homepage.
  - Figure out why the Today date is wrong on the date picker.
-
  - Add a link to resend a confirmation from the confirmation required alert.
- - Fix date fields on event and fundraiser update forms (they are populating with the wrong values.
+ - Fix date fields on event and fundraiser update forms (they are populating with the wrong values).
  - Fix countdown to handle switching from "event will start" to "event will end" to "event ended"
  - Fix the account edit page when the user is not logged in to redirect to the home page.
-
-
+ - Allow people to pull up the dashboard on their phone.
  - Add a pledge review view
  - Add commas to dollar figures
  - Set dashboard amounts to ellipsis
  - Fix overall progress showing 0% on safari
+ - Add a way for the event host to edit any pledge (e.g. fixing a mistake)
+ - Ensure auto-formfills work as expected
+ - Fix sign up error messages on mobile devices
+ - Password error message does not display correctly on all mobile devices.
+ - Add a launch dashboard button to events index view
+ - Figure out why Sara is getting logged out repeatedly while navigating through the site
+ - Give org logo prominence in emails.
 
+
+ - Rework the copy on the homepage tour and about us pages.
+ - Make site navigation easier
+ - The event end time is conflicting: it causes pledges to stop being accepted, but it also is displayed on the dashboard as the end of the event for attendees.
  - Start a blog.
  - Find a new image for the exciment section of the pitch.
  - Update organization logo URL to allow the protocol to be omitted.
  - Add support for organization memebrs to review event pledge results (i.e. event recap view).
  - purchase teamrasing.org
+
 
  - Create view specs
  - Add support for deleting all types of records.
@@ -71,4 +83,3 @@ Features:
 
 
  - Support different pledge types/categories.
-

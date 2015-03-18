@@ -94,18 +94,10 @@
           <div class="vert-centerer"></div>
           <div class="column donor">Donor</div>
           <div class="column team"><%= @event.team_descriptor.singular %></div>
-          <div class="column amount">
-            <span class="full">Amount</span>
-            <span class="abbr">Amt</span>
-          </div>
           <div class="column comment">Comment</div>
         </div>
         <div class="list">
           <!-- Pledge records get added here dynamically. -->
-        </div>
-        <div class="footer">
-          <div class="vert-centerer"></div>
-          <div class="monthly"><span class="symbol"></span> - Indicates monthly pledges</div>
         </div>
       </div>
       <div class="pad"></div>
@@ -125,10 +117,6 @@
   <div class="pledge" data-pledge-id="{{ pledgeID }}">
     <div class="attr donor">{{ publicDonorName }}</div>
     <div class="attr team">{{ team.name }}</div>
-    <div class="attr amount {{ amount_class }}">
-      <span class="full">${{ full_amount }}</span>
-      <span class="abbr">${{ dollar_amount }}</span>
-    </div>
     <div class="attr comment">{{ comment }}</div>
   </div>
 </script>
