@@ -7,6 +7,9 @@
 
     <%= form_for(resource, as: resource_name, url: users_password_reset_path, html: { method: :post }) do |f| %>
 
+      <% content_for 'email_field' do %>
+        <%= f.email_field :email %>
+      <% end %>
       <%= render(partial: "shared/form_field",
                  locals: {
                    form: f,
