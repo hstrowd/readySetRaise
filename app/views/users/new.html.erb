@@ -1,0 +1,45 @@
+<div id="new-user" class="std-form">
+  <div class="centerer">
+    <div class="instructions">
+      <div class="title">Personal Information</div>
+      <div class="description">
+	Fill out the form below to provide the necessary information for us to record your pledge and to follow up with you after the event.
+      </div>
+    </div>
+
+    <%= form_for(@user) do |f| %>
+
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: @user,
+                   attr: :first_name
+                 }) %>
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: @user,
+                   attr: :last_name
+                 }) %>
+      <% content_for 'email_field' do %>
+        <%= f.email_field :email %>
+      <% end %>
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: @user,
+                   attr: :email
+                 }) %>
+
+      <div class="actions">
+        <%= f.button('Submit', {
+                       onClick: '$("#new-user form").submit()',
+                       type: :submit,
+                       class: [:btn, :submit]
+                     }) %>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>
