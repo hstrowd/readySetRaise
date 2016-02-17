@@ -18,8 +18,37 @@ class PledgesController < ApplicationController
       return
     end
 
-    @pledge = Pledge.new(pledge_params)
-    @pledge.donor = current_user
+    create_pledge(pledge_params)
+    return
+  end
+
+  def process_pending
+    if session[:pending_pledge].blank?
+      flash[:alert] = 'Unable to process pledge. Please try again. Thanks!'
+      redirect_to :back
+      return
+    end
+
+    create_pledge(session[:pending_pledge])
+  end
+
+private
+
+  def create_pledge(pledge_attrs)
+    session[:pending_pledge] = nil
+
+    @pledge = Pledge.new(pledge_attrs)
+    @pledge.donor = current_user if current_user
+
+    # Allow pledges to be submitted without logging in, but require an account to be created
+    # after pledge details are entered.
+    binding.pry
+    if !@pledge.donor
+      session[:pending_action] = 'create_pledge'
+      session[:pending_pledge] = pledge_attrs
+      redirect_to new_user_path
+      return
+    end
 
     if !@pledge.save
       render :new
@@ -30,11 +59,7 @@ class PledgesController < ApplicationController
     flash[:notice] = "Thanks for your pledge! You'll receive an email after the event with a link to process your donation."
 
     redirect_to @pledge.event
-    return
   end
-
-
-private
 
   def is_valid_team?(team_id)
     if team_id && (team = Team.find_by_id(team_id))

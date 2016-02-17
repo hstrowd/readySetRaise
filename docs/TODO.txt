@@ -1,3 +1,12 @@
+Top Priorities:
+ - Allow pledges to be entered without logging in.
+ - Clean up the dashboard page.
+ - Clean up the event page.
+ - Drop the fundraiser and organization models.
+
+
+
+
 Gameplan:
  - Step 2:
    - Jump through the necessary hoops to create the organization
@@ -29,7 +38,6 @@ Use Cases:
 
 
 Backlog:
- - Drop the amount from the dashboard.
  - Fix dashboard to layout properly at all resolutions.
  - Add a button to the entries in the event index view
  - Move the event list to the homepage.
@@ -50,6 +58,8 @@ Backlog:
  - Add a launch dashboard button to events index view
  - Figure out why Sara is getting logged out repeatedly while navigating through the site
  - Give org logo prominence in emails.
+ - Add events to the dashboard that trigger banners or draw peoples attention (a team reaches 12/50/75/100% of their goal, a 10% interval of the overall goal is reached.
+ - Add a tab to the dashboard to pull in Twitter/Instagram feeds.
 
 
  - Rework the copy on the homepage tour and about us pages.

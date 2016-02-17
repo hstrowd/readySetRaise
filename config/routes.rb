@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :pledges, only: [:new]
   end
   resources :pledges, only: [:create]
+  get 'pledges/process_pending', to: 'pledges#process_pending', as: 'process_pending_pledge'
+
+  resources :users, only: [:new, :create]
 
   devise_for :users, :controllers => {
     registrations: 'users/registrations',

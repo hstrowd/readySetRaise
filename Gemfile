@@ -58,8 +58,8 @@ gem 'newrelic_rpm'
 group :development do
   gem 'foreman'
   gem 'mailcatcher'
-
   gem 'disable_assets_logger'
+  gem 'pry'
 end
 
 
