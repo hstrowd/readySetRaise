@@ -6,19 +6,15 @@
   <div class="header">
     <div class="vert-centerer"></div>
     <div class="logo">
-      <% if !@event.organization.logo_url.blank? %>
-        <%= link_to show_org_path(@event.organization.url_key) do %>
-          <%= image_tag @event.organization.logo_url %>
+      <% if !@event.logo_url.blank? %>
+        <%= link_to show_event_path(@event) do %>
+          <%= image_tag @event.logo_url %>
         <% end %>
       <% end %>
     </div>
     <div class="text">
       <div class="title">
         <%= @event.title %>
-      </div>
-      <div class="subtitle">
-        for <%= link_to @event.fundraiser.title, @event.fundraiser %>
-        by <%= link_to @event.organization.name, show_org_path(@event.organization.url_key) %>
       </div>
     </div>
     <% if !@event.has_started? %>
@@ -109,7 +105,7 @@
 
   <div class="pledge-prompt">
     <div class="vert-centerer"></div>
-    <span class="url"><%= show_url(@event) %></span>
+    <span class="url"><%= link_to show_url(@event), show_url(@event) %></span>
   </div>
 </div>
 

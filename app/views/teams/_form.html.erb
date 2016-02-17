@@ -3,16 +3,6 @@
 
     <%= f.hidden_field :event_id %>
 
-    <div class="field org">
-      <div class="label">Organization</div>
-      <div class="input"><%= link_to @team.organization.name, show_org_path(@team.organization.url_key) %></div>
-    </div>
-
-    <div class="field fundraiser">
-      <div class="label">Fundraiser</div>
-      <div class="input"><%= link_to @team.fundraiser.title, @team.fundraiser %></div>
-    </div>
-
     <div class="field event">
       <div class="label">Event</div>
       <div class="input"><%= link_to @team.event.title, @team.event %></div>

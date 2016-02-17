@@ -1,5 +1,5 @@
 module TeamsHelper
-  def is_org_member(team)
-    team.organization.members.include?(current_user)
+  def is_event_member(team)
+    team.event.is_member?(current_user)
   end
 end

@@ -1,18 +1,6 @@
 <div class="event-form">
   <%= form_for @event do |f| %>
 
-    <%= f.hidden_field :fundraiser_id %>
-
-    <div class="field org">
-      <div class="label">Organization</div>
-      <div class="input"><%= link_to @event.organization.name, show_org_path(@event.organization.url_key) %></div>
-    </div>
-
-    <div class="field fundraiser">
-      <div class="label">Fundraiser</div>
-      <div class="input"><%= link_to @event.fundraiser.title, @event.fundraiser %></div>
-    </div>
-
     <%= render(partial: "shared/form_field", 
                locals: { 
                  form: f, 
@@ -37,7 +25,7 @@
                  model: @event,
                  field_label: :unique_key,
                  attr: :url_key,
-                 info: "Used in URLs (e.g. https://teamraising.org/#{@event.organization.url_key}/<div class=\"variable\">unique-key</div>/)."
+                 info: "Used in URLs (e.g. https://teamraising.org/<div class=\"variable\">unique-key</div>/)."
                }) %>
 
     <% content_for 'team_descriptor_field' do %>
@@ -90,6 +78,13 @@
                  model: @event,
                  field_label: 'Ends on',
                  attr: :end_time
+               }) %>
+    <%= render(partial: "shared/form_field",
+               locals: {
+                 form: f,
+                 model: @event,
+                 attr: :logo_url,
+                 info: 'Used as an icon for all your records. We suggest for this image to be approximately 128 x 128 pixels.'
                }) %>
 
     <div class="actions">

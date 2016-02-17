@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <% if is_org_member(team) %>
+    <% if is_event_member(team) %>
       <div class="attr pledge-target">
         <div class="label">Pledge Target:</div>
         <div class="value">$<%= team.pledge_target.round() %></div>
@@ -28,7 +28,7 @@
 
   <div class="actions">
     <div class="new-pledge">
-      <% if team.fundraiser.is_active? && !team.event.has_ended? %>
+      <% if team.event.has_started? && !team.event.has_ended? %>
         <%= link_to new_team_pledge_url(team, protocol: secure_protocol) do %>
           <div class="action btn">Make a Pledge</div>
         <% end %>

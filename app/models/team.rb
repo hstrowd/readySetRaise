@@ -1,7 +1,5 @@
 class Team < ActiveRecord::Base
   belongs_to :event
-  has_one :fundraiser, :through => :event
-  has_one :organization, :through => :event
   has_many :pledges do
     def one_time
       where("monthly = FALSE")

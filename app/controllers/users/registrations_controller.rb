@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   end
   #
   #   @user = current_user
-  #   @orgs = current_user.organizations
   # end
 
   # GET /resource/sign_up

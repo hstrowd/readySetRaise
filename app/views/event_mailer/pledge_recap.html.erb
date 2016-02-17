@@ -10,7 +10,7 @@
   </tr>
   <tr>
     <td style="padding: 20px 0 0 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-      <p>Thanks so much for participating in the <%= @event.title %>, supporting our <%= @event.fundraiser.title %>. Your support is greatly valued and appreciated.</p>
+      <p>Thanks so much for participating in the <%= @event.title %>. Your support is greatly valued and appreciated.</p>
 
       <p>Below is a list of the pledges you made at this event:</p>
 
@@ -47,7 +47,7 @@
         <% else %>
           your one-time total pledge amount to $<%= ('%.2f' % @one_time_total) %>
         <% end %>
-        . Please visit <a href="<%= @event.organization.donation_url %>">our donation page</a> to complete this donation and fulfill your pledge.</p>
+        . Please visit <a href="<%= @event.donation_url %>">our donation page</a> to complete this donation and fulfill your pledge.</p>
 
       <p>Thanks again for joining us and supporting this great cause.</p>
 

@@ -1,5 +1,4 @@
 class PledgesController < ApplicationController
-  before_action :authenticate_user!
 
   def new
     team_id = params[:team_id]
@@ -13,8 +12,8 @@ class PledgesController < ApplicationController
     return if !is_valid_team?(team_id)
 
     team = Team.find_by_id(team_id)
-    if !team.fundraiser.is_active? || team.event.has_ended?
-      flash[:alert] = 'The pledge window for this event is closed. Please contact the coordinator directly to submit any further pledges/or donations.'
+    if team.event.has_ended?
+      flash[:alert] = 'The event has ended. Please contact the coordinator directly to submit any further pledges/or donations.'
       redirect_to team.event
       return
     end
@@ -42,8 +41,8 @@ private
       return true
     end
 
-    flash[:alert] = "Please select the organization for which you'd like to submit a new pledge."
-    redirect_to organizations_path
+    flash[:alert] = "Please select the event for which you'd like to submit a new pledge."
+    redirect_to events_path
     return false
   end
 

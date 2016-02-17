@@ -1,23 +1,15 @@
-<% # Dictates whether or not the organization details should be included. %>
-<% show_full_context ||= false %>
-
 <div class="item event">
   <div class="header">
     <% if show_full_context %>
       <div class="icon">
-        <% if !event.organization.logo_url.blank? %>
-          <%= link_to show_org_path(event.organization.url_key) do %>
-            <%= image_tag event.organization.logo_url, alt: 'Organization Logo' %>
-          <% end %>
+        <% if !event.logo_url.blank? %>
+          <%= image_tag event.logo_url, alt: 'Event Logo' %>
         <% end %>
       </div>
     <% end %>
 
     <div class="title">
       <%= link_to event.title, event %>
-      <% if show_full_context %>
-        by <%= link_to event.organization.name, event.organization %>
-      <% end %>
     </div>
     <div class="assoc-count">
       (<%= pluralize(event.teams.count, 'team') %>)

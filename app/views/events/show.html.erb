@@ -2,25 +2,19 @@
 
   <div class="header">
     <div class="icon">
-      <% if !@event.organization.logo_url.blank? %>
-        <%= link_to show_org_path(@event.organization.url_key) do %>
-          <%= image_tag @event.organization.logo_url, alt: 'Organization Logo' %>
-        <% end %>
+      <% if !@event.logo_url.blank? %>
+        <%= image_tag @event.logo_url, alt: 'Event Logo' %>
       <% end %>
     </div>
     <div class="text">
       <div class="title">
         <%= @event.title %>
       </div>
-      <div class="subtitle">
-        for <%= link_to @event.fundraiser.title, @event.fundraiser %>
-        by <%= link_to @event.organization.name, show_org_path(@event.organization.url_key) %>
-      </div>
     </div>
   </div>
 
   <div class="controls">
-    <% if @event.organization.members.include?(current_user) %>
+    <% if @event.is_member?(current_user) %>
       <div class="members">
         <% if !@event.has_ended? %>
           <%= link_to new_event_team_path(@event) do %>
@@ -50,25 +44,6 @@
     <% else %>
       <div class="notice">No teams registered yet!</div>
     <% end %>
-  </div>
-
-  <div class="details">
-    <div class="title">Event Details</div>
-    <div class="attribute description">
-      <div class="label">Description:</div>
-      <%= render partial: 'shared/toggleable_size',
-          locals: { less_height: 60, content: @event.description } %>
-    </div>
-    <div class="attribute time">
-      <div class="label">Time: </div>
-      <!-- Note: The from and to times will be shown after they are formatted properly. -->
-      <div class="timeframe" style="display:none;">
-        <div class="start time"><%= @event.start_time.iso8601() %></div>
-        <div class="single-line">-</div>
-        <div class="multi-line">to</div>
-        <div class="end time"><%= @event.end_time.iso8601() %></div>
-      </div>
-    </div>
   </div>
 
 </div>
