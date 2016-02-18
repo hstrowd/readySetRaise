@@ -8,11 +8,7 @@ module EventsHelper
   end
 
   def show_url(event)
-    if (!event.url_key.blank?)
-      return "#{root_url(protocol: secure_protocol)}#{event.url_key}"
-    else
-      return event_url(event, protocol: secure_protocol)
-    end
+    return new_event_pledge_url(event, protocol: secure_protocol)
   end
 
   def thirty_minute_internvals

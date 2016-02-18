@@ -1,29 +1,8 @@
 <div class="item team">
   <div class="team-info">
-    <div class="header">
-      <div class="title">
-        <%= link_to team do %>
-          <%= team.name %>
-        <% end %>
-      </div>
+    <div class="name">
+      <%= team.name %>
     </div>
-
-    <% if is_event_member(team) %>
-      <div class="attr pledge-target">
-        <div class="label">Pledge Target:</div>
-        <div class="value">$<%= team.pledge_target.round() %></div>
-      </div>
-    <% end %>
-
-    <% if team.event.has_started? %>
-      <div class="attr pledges">
-        <div class="label">Pledges Received:</div>
-        <div class="value">
-          <div class="total">$<%= team.pledge_total.round() %></div>
-          <div class="count">from <%= pluralize(team.pledges.count, 'pledge') %></div>
-        </div>
-      </div>
-    <% end %>
   </div>
 
   <div class="actions">
@@ -36,4 +15,7 @@
     </div>
   </div>
 
+  <div class="progress-bar">
+    <div class="pct-complete" style="width: <%= [(team.pledge_total / team.pledge_target) * 100, 100].min %>%"></div>
+  </div>
 </div>

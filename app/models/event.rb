@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
   end
 
   def is_member?(user)
-    user.is_admin?
+    user && user.is_admin?
   end
 
   def pledge_target

@@ -1,4 +1,4 @@
-<div id="event-show" class="std-show">
+<div id="event-show">
 
   <div class="header">
     <div class="icon">
@@ -15,26 +15,23 @@
 
   <div class="controls">
     <% if @event.is_member?(current_user) %>
-      <div class="members">
-        <% if !@event.has_ended? %>
-          <%= link_to new_event_team_path(@event) do %>
-            <div class="action btn new-team">Add a <%= @event.team_descriptor.singular %></div>
-          <% end %>
+      <% if !@event.has_ended? %>
+        <%= link_to new_event_team_path(@event) do %>
+          <div class="action btn new-team">Add a <%= @event.team_descriptor.singular %></div>
         <% end %>
-        <%= link_to edit_event_path(@event) do %>
-          <div class="action btn edit-event">Update Event</div>
+      <% end %>
+      <%= link_to edit_event_path(@event) do %>
+        <div class="action btn edit-event">Update Event</div>
+      <% end %>
+      <% if @event.is_active? %>
+        <%= link_to event_dashboard_path(@event), data: { 'no-turbolink' => true } do %>
+          <div class="action btn launch-dashboard">Launch Dashboard</div>
         <% end %>
-        <% if @event.is_active? %>
-          <%= link_to event_dashboard_path(@event), data: { 'no-turbolink' => true } do %>
-            <div class="action btn launch-dashboard">Launch Dashboard</div>
-          <% end %>
-        <% end %>
-      </div>
+      <% end %>
     <% end %>
   </div>
 
   <div class="association teams">
-    <div class="title"><%= @event.team_descriptor.plural %></div>
     <% if !@event.teams.empty? %>
       <div class="list">
         <% @event.teams.each do |t| %>

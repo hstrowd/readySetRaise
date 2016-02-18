@@ -3,15 +3,32 @@
 
     <%= f.hidden_field :team_id %>
 
-    <div class="field event">
-      <div class="label">Event</div>
-      <div class="input"><%= link_to @pledge.event.title, @pledge.event %></div>
-    </div>
+    <% if @pledge.team.nil? %>
+      <div class="field event">
+        <div class="label">Event</div>
+        <div class="input"><%= link_to @event.title, @event %></div>
+      </div>
 
-    <div class="field team">
-      <div class="label">Team</div>
-      <div class="input"><%= link_to @pledge.team.name, @pledge.team %></div>
-    </div>
+      <% content_for 'team_id_field' do %>
+        <%= f.collection_select :team_id, @event.teams, :id, :name %>
+      <% end %>
+      <%= render(partial: "shared/form_field",
+                 locals: {
+                   form: f,
+                   model: @pledge,
+                   attr: :team_id
+                 }) %>
+    <% else %>
+      <div class="field event">
+        <div class="label">Event</div>
+        <div class="input"><%= link_to @pledge.event.title, @pledge.event %></div>
+      </div>
+
+      <div class="field team">
+        <div class="label">Team</div>
+        <div class="input"><%= link_to @pledge.team.name, @pledge.team %></div>
+      </div>
+    <% end %>
 
     <% content_for 'amount_field' do %>
       <%= f.number_field :amount, placeholder: '$', step: 0.01, min: 0 %>
@@ -31,26 +48,6 @@
                  form: f,
                  model: @pledge,
                  attr: :monthly
-               }) %>
-
-    <% content_for 'anonymous_field' do %>
-      <%= f.check_box :anonymous %>
-    <% end %>
-    <%= render(partial: "shared/form_field",
-               locals: {
-                 form: f,
-                 model: @pledge,
-                 attr: :anonymous
-               }) %>
-
-    <% content_for 'comment_field' do %>
-      <%= f.text_area :comment %>
-    <% end %>
-    <%= render(partial: "shared/form_field",
-               locals: {
-                 form: f,
-                 model: @pledge,
-                 attr: :comment
                }) %>
 
     <div class="actions">
