@@ -1,0 +1,25 @@
+/**
+ * Place all the styles related to the Privacy page here.
+ * They will automatically be included in application.css.
+ */
+
+#privacy {
+    width: 100%;
+    max-width: 60em;
+    margin: 1em auto;
+}
+#privacy .title {
+    font-size: 2em;
+    margin: .5em 2em;
+}
+#privacy .section-heading {
+    font-size: 1.3em;
+    margin: 1em 1.5em .3em;
+}
+#privacy .subsection-heading {
+    font-weight: bold;
+    margin: .7em auto .3em;
+}
+#privacy .body-text {
+    margin: .7em auto;
+}
