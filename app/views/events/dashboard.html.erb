@@ -43,9 +43,9 @@
         <div class="vert-centerer"></div>
         Totals per <%= @event.team_descriptor.singular %>
       </div>
-      <div class="tab tab-1 panel" data-tab="pledge-log" data-index="1">
+      <div class="tab tab-1 panel" data-tab="social-media" data-index="1">
         <div class="vert-centerer"></div>
-        Pledge Log
+        Social Media
       </div>
       <div class="tab button" onClick="toggleAutoRotate($('#event-dashboard .event-details'));">
         <div class="pad"></div>
@@ -82,18 +82,31 @@
       <div class="pad"></div>
     </div>
 
-    <div class="pledge-log tab-container tab-1">
+    <div class="social-media tab-container tab-1">
       <div class="pad"></div>
       <div class="tab-body">
-        <div class="title">Recent Pledges</div>
-        <div class="headers">
-          <div class="vert-centerer"></div>
-          <div class="column donor">Donor</div>
-          <div class="column team"><%= @event.team_descriptor.singular %></div>
-          <div class="column comment">Comment</div>
-        </div>
-        <div class="list">
-          <!-- Pledge records get added here dynamically. -->
+        <div class="title">Social Media</div>
+        <div class="content">
+          <div class="main-image">
+            <%= image_tag "https://instagram.ford1-1.fna.fbcdn.net/t51.2885-15/e15/10729417_413249292186229_504304194_n.jpg?ig_cache_key=ODQyMzY4Mjg4MjUwNDc1MDA1.2" %>
+            <% image_tag "https://scontent.cdninstagram.com/t51.2885-15/s640x640/sh0.08/e35/12568966_936275896419980_75684004_n.jpg?ig_cache_key=MTE2NjYzNzg2NzA4NDE0NDYxMg%3D%3D.2" %>
+          </div>
+          <div class="description">
+            <div class="author">
+              <div class="pic">
+                <%= image_tag "https://instagram.ford1-1.fna.fbcdn.net/t51.2885-19/11078419_534807783325308_1178808559_a.jpg" %>
+                <% image_tag "https://scontent.cdninstagram.com/t51.2885-19/11232827_100939430242593_1016652989_a.jpg" %>
+              </div>
+              <div class="name">
+                Vera Beilinson
+                <!-- Harrison Strowd -->
+              </div>
+            </div>
+            <div class="caption">
+              A Love Bug and Her Sunflower, here comes HALLOWEEN #pupmkin #oprfyl #lights #yas #whitegirling
+              <!-- Morning fetch with #SnowyChloe. #ChiTownWinters -->
+            </div>
+          </div>
         </div>
       </div>
       <div class="pad"></div>
@@ -127,10 +140,5 @@
     setupAutoRefresh(<%= @event.id %>);
     var $eventDetails = $("#event-dashboard .event-details");
     setupTabs($eventDetails);
-    $eventDetails.on('tabChange', function(e, newTab) {
-      if (newTab == 'pledge-log') {
-        resetAutoScroll($eventDetails.find('.pledge-log .tab-body .list'));
-      }
-    });
   });
 </script>

@@ -1,22 +1,3 @@
-Top Priorities:
- - Allow pledges to be entered without logging in.
- - Clean up the dashboard page.
- - Clean up the event page.
- - Drop the fundraiser and organization models.
-
-
-
-
-Gameplan:
- - Step 2:
-   - Jump through the necessary hoops to create the organization
-   - Evangelize the idea with friends and family
-   - Continue adding features to the site
- - Step 3:
-   - Host a fundraiser to "dog food" the service
-
-
-
 Use Cases:
  - Bowling
    - Recruit bowlers or teams of bowlers
@@ -38,19 +19,10 @@ Use Cases:
 
 
 Backlog:
- - Fix dashboard to layout properly at all resolutions.
+ - Fix dashboard to layout properly at all resolutions
  - Add a button to the entries in the event index view
- - Move the event list to the homepage.
- - Figure out why the Today date is wrong on the date picker.
- - Add a link to resend a confirmation from the confirmation required alert.
- - Fix date fields on event and fundraiser update forms (they are populating with the wrong values).
- - Fix countdown to handle switching from "event will start" to "event will end" to "event ended"
  - Fix the account edit page when the user is not logged in to redirect to the home page.
  - Allow people to pull up the dashboard on their phone.
- - Add a pledge review view
- - Add commas to dollar figures
- - Set dashboard amounts to ellipsis
- - Fix overall progress showing 0% on safari
  - Add a way for the event host to edit any pledge (e.g. fixing a mistake)
  - Ensure auto-formfills work as expected
  - Fix sign up error messages on mobile devices
@@ -60,6 +32,9 @@ Backlog:
  - Give org logo prominence in emails.
  - Add events to the dashboard that trigger banners or draw peoples attention (a team reaches 12/50/75/100% of their goal, a 10% interval of the overall goal is reached.
  - Add a tab to the dashboard to pull in Twitter/Instagram feeds.
+
+ - Support users logging in
+ - Add a pledge recap for logged in users
 
 
  - Rework the copy on the homepage tour and about us pages.
