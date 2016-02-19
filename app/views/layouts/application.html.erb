@@ -8,47 +8,6 @@
         <%= image_tag 'logo-small.png' %>
       </div>
 
-
-      <div class="menu profile-nav">
-        <div class="menu-btn">
-          <div class="vert-centerer"></div>
-          <%= image_tag "profile.png" %>
-        </div>
-        <% if current_user %>
-          <div class="profile-intro">
-            <div class="vert-centerer"></div>
-            <!-- TODO: On iPad devices the only way to stop the hover on this item is to click another link. -->
-            <div class="welcome" onclick="">
-              Welcome back,
-              <div class="account-name"><%= current_user.first_name %></div>
-            </div>
-          </div>
-        <% else %>
-          <div class="profile-splitter">
-            <div class="vert-centerer"></div>
-            <div class="acct-btn login-btn">
-              <%= link_to new_session_path(:user) do %>
-                <div class="btn">Log In</div>
-              <% end %>
-            </div>
-          </div>
-          <div class="profile-splitter">
-            <div class="vert-centerer"></div>
-            <div class="acct-btn signup-btn">
-              <%= link_to new_registration_path(:user, protocol: secure_protocol, redirect: request.fullpath) do %>
-                <div class="btn">Sign Up</div>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-        <!-- An empty div ensures the dropdown menu always appears below its respective button. -->
-        <div></div>
-        <div class="menu-dropdown">
-          <div class="vert-centerer"></div>
-          <%= render "layouts/account_management" %>
-        </div>
-      </div>
-
       <div class="menu primary-nav">
         <div class="menu-btn">
           <div class="vert-centerer"></div>
