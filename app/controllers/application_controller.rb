@@ -8,7 +8,15 @@ class ApplicationController < ActionController::Base
   # Returns a list of all top level routing keywords that are reserved for use by the
   # application (i.e. these cannos be used as a org URL key).
   def self.reserved_routing_keywords
-    %w(tour about users organizations fundraisers events teams pledges)
+    %w(tour about users events teams pledges)
+  end
+
+  def require_admin!
+    return true if current_user.is_admin?
+
+    flash[:alert] = 'You are not authorized to perform this action.'
+    redirect_to root_path
+    return false
   end
 
   def after_sign_in_path_for(resource)

@@ -6,7 +6,7 @@
     </div>
 
     <%= render(partial: 'form', locals: {
-                 cancel_path: event_path(@pledge.event)
+                 cancel_path: event_path(@pledge.event || @event)
                }) %>
   </div>
 </div>

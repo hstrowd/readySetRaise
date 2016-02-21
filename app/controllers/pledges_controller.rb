@@ -1,7 +1,15 @@
 class PledgesController < ApplicationController
+
   def new
     team_id = params[:team_id]
-    return if !is_valid_team?(team_id)
+    unless team_id && (team = Team.find_by_id(team_id))
+      team_id = nil
+      event_id = params[:event_id]
+      unless event_id && (@event = Event.find_by_id(event_id))
+        flash[:alert] = "Please select the event for which you'd like to submit a new pledge."
+        return
+      end
+    end
 
     @pledge = Pledge.new(team_id: team_id)
   end
@@ -11,8 +19,8 @@ class PledgesController < ApplicationController
     return if !is_valid_team?(team_id)
 
     team = Team.find_by_id(team_id)
-    if !team.fundraiser.is_active? || team.event.has_ended?
-      flash[:alert] = 'The pledge window for this event is closed. Please contact the coordinator directly to submit any further pledges/or donations.'
+    if team.event.has_ended?
+      flash[:alert] = 'The event has ended. Please contact the coordinator directly to submit any further pledges/or donations.'
       redirect_to team.event
       return
     end
@@ -41,7 +49,6 @@ private
 
     # Allow pledges to be submitted without logging in, but require an account to be created
     # after pledge details are entered.
-    binding.pry
     if !@pledge.donor
       session[:pending_action] = 'create_pledge'
       session[:pending_pledge] = pledge_attrs
@@ -65,8 +72,8 @@ private
       return true
     end
 
-    flash[:alert] = "Please select the organization for which you'd like to submit a new pledge."
-    redirect_to organizations_path
+    flash[:alert] = "Please select the event for which you'd like to submit a new pledge."
+    redirect_to events_path
     return false
   end
 

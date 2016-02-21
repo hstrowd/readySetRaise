@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
+  before_action :require_admin!, only: [:new, :create, :edit, :update]
   before_action :lookup_team, only: [:show, :edit, :update]
 
   def new
@@ -41,7 +42,7 @@ private
     if !@team
       flash[:alert] = 'Unable to find requested team.'
       if current_user
-        redirect_to organizations_path
+        redirect_to events_path
       else
         redirect_to root_path
       end
@@ -49,13 +50,10 @@ private
   end
 
   def is_valid_event?(event_id)
-    if event_id && (event = Event.find_by_id(event_id))
-      members = event.fundraiser.organization.members
-      return true if members.to_a.index { |user| user.id == current_user.id }
-    end
+    return true if event_id && Event.find_by_id(event_id)
 
-    flash[:alert] = 'Please select the organization for which you\'d like to create a new team.'
-    redirect_to organizations_path
+    flash[:alert] = 'Please select the event for which you\'d like to create a new team.'
+    redirect_to event_path
     return false
   end
 

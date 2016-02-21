@@ -1,15 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :organizations do
-    resources :fundraisers, only: [:new]
-  end
-  resources :fundraisers, except: [:index, :new] do
-    resources :events, only: [:new]
-  end
-
   get 'events/:id/dashboard', to: 'events#dashboard', id: /\d+/, as: 'event_dashboard'
   get 'events/:id/pledge-breakdown', to: 'events#pledge_breakdown', id: /\d+/, as: 'event_pledge_breakdown'
   resources :events do
+    resources :pledges, only: [:new]
     resources :teams, only: [:new]
   end
   resources :teams, except: [:index] do
@@ -39,15 +33,15 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # Allows organizations and events to be accessed using custom key.
-  get ':org_url_key' => 'organizations#show', as: 'show_org', constraints: ReservedUrlKeyConstraint.new
-  get ':org_url_key/:event_url_key' => 'events#show', as: 'show_event', constraints: ReservedUrlKeyConstraint.new
-
   get 'tour' => 'home#tour'
   get 'about' => 'home#about'
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+
+  # Allows events to be accessed using custom key.
+  get ':event_url_key' => 'events#show', as: 'show_event', constraints: ReservedUrlKeyConstraint.new
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

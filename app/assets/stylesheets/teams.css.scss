@@ -8,42 +8,32 @@
 
 .list .item.team .team-info {
     width: 100%;
+    color: #3861E2;
+
+    font-size: 2em;
 }
 .list .item.team .actions .new-pledge {
-    width: 50%;
+    width: 80%;
 
     margin: .5em auto 0;
+
+    font-size: 1.2em;
 }
 .list .item.team .actions .new-pledge .btn:hover {
     background-color: #DDDDDD;
 }
+.list .item.team .progress-bar {
+    height: 2em;
+    width: 80%;
+    margin: 5% auto;
 
-@media screen and (min-width: 500px)  {
-    .list .item.team .team-info {
-        display: inline-block;
-
-        width: 70%;
-
-        vertical-align: middle;
-    }
-    .list .item.team .actions {
-        display: inline-block;
-
-        width: 29%;
-
-        vertical-align: middle;
-        text-align: right;
-    }
-    .list .item.team .actions .new-pledge {
-        float: right;
-
-        width: 90%;
-        max-width: 10em;
-
-        margin: 0 0;
-    }
+    background-color: #FFFFFF;
 }
+.list .item.team .progress-bar .pct-complete {
+    height: 100%;
 
+    background-color: #A0CAFF;
+}
 
 /**
  * ==== Show ====

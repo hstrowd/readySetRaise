@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   layout "raw", only: [:dashboard]
 
   before_action :authenticate_user!, except: [:show]
+  before_action :require_admin!, only: [:new, :create, :edit, :update]
   before_action :lookup_event, except: [:index, :new, :create]
 
   def index
@@ -14,20 +15,10 @@ class EventsController < ApplicationController
   end
 
   def new
-    fundraiser_id = params[:fundraiser_id]
-    return if !is_valid_fundraiser?(fundraiser_id)
-    fundraiser = Fundraiser.find(fundraiser_id)
-
-    @event = Event.new(fundraiser: fundraiser)
-    if (!fundraiser.has_started?)
-      @event.start_time = fundraiser.pledge_start_time
-      @event.end_time = fundraiser.pledge_start_time
-    end
+    @event = Event.new
   end
 
   def create
-    return if !is_valid_fundraiser?(event_params[:fundraiser_id])
-
     @event = Event.new(event_params)
     @event.creator = current_user
 
@@ -69,9 +60,8 @@ private
     @event = Event.find_by_id(params[:id]) if params[:id]
 
     # Check if the url_keys were specified for this request.
-    if !@event && params[:org_url_key] && params[:event_url_key]
-      @event = Event.find_by_org_and_event_url_keys(params[:org_url_key],
-                                                    params[:event_url_key])
+    if !@event && params[:event_url_key]
+      @event = Event.find_by_url_key(params[:event_url_key])
     end
 
     if !@event
@@ -79,7 +69,7 @@ private
         format.html {
           flash[:alert] = 'Unable to find requested event.'
           if current_user
-            redirect_to organizations_path
+            redirect_to events_path
           else
             redirect_to root_path
           end
@@ -89,17 +79,6 @@ private
     end
   end
 
-  def is_valid_fundraiser?(fundraiser_id)
-    if fundraiser_id && (fundraiser = Fundraiser.find_by_id(fundraiser_id))
-      members = fundraiser.organization.members
-      return true if members.to_a.index { |user| user.id == current_user.id }
-    end
-
-    flash[:alert] = 'Please select the organization for which you\'d like to create a new event.'
-    redirect_to organizations_path
-    return false
-  end
-
   def event_params
     input_params = {}
     begin
@@ -107,9 +86,9 @@ private
         .permit(:title,
                 :description,
                 :url_key,
-                :fundraiser_id,
                 :start_time,
                 :end_time,
+                :logo_url,
                 :team_descriptor_id)
     rescue ActionController::ParameterMissing => e
       logger.info "Failed to parse event params from #{params.inspect}"
